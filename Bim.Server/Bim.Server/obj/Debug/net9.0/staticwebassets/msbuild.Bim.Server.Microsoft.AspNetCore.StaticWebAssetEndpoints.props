@@ -1,0 +1,388 @@
+﻿<Project>
+  <ItemGroup>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/09b395d7-df09-4fc8-a89d-c0734575a9a3_Door-Folding-Hawa-Variotec-Glass-Parallel (1).02i849le48.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\09b395d7-df09-4fc8-a89d-c0734575a9a3_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"02i849le48"},{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="},{"Name":"label","Value":"_content/Bim.Server/uploads/09b395d7-df09-4fc8-a89d-c0734575a9a3_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Wed, 23 Apr 2025 14:16:17 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/09b395d7-df09-4fc8-a89d-c0734575a9a3_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\09b395d7-df09-4fc8-a89d-c0734575a9a3_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Wed, 23 Apr 2025 14:16:17 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/120228d6-e31f-4732-9dbb-c16194581af9_Door-Folding-Hawa-Variotec-Glass-Parallel (1).02i849le48.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\120228d6-e31f-4732-9dbb-c16194581af9_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"02i849le48"},{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="},{"Name":"label","Value":"_content/Bim.Server/uploads/120228d6-e31f-4732-9dbb-c16194581af9_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 13:50:58 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/120228d6-e31f-4732-9dbb-c16194581af9_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\120228d6-e31f-4732-9dbb-c16194581af9_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 13:50:58 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/1869ea5b-7e96-4c86-bb6e-8d6427d65ddb_Door-Folding-Hawa-Variotec-Glass-Parallel.02i849le48.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\1869ea5b-7e96-4c86-bb6e-8d6427d65ddb_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"02i849le48"},{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="},{"Name":"label","Value":"_content/Bim.Server/uploads/1869ea5b-7e96-4c86-bb6e-8d6427d65ddb_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 14:12:36 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/1869ea5b-7e96-4c86-bb6e-8d6427d65ddb_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\1869ea5b-7e96-4c86-bb6e-8d6427d65ddb_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 14:12:36 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/210f3504-ff52-4c93-ae06-baa45ed4f934_Door-Folding-Hawa-Variotec-Glass-Parallel (1).02i849le48.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\210f3504-ff52-4c93-ae06-baa45ed4f934_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"02i849le48"},{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="},{"Name":"label","Value":"_content/Bim.Server/uploads/210f3504-ff52-4c93-ae06-baa45ed4f934_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 14:10:11 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/210f3504-ff52-4c93-ae06-baa45ed4f934_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\210f3504-ff52-4c93-ae06-baa45ed4f934_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 14:10:11 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/252de5c2-3ded-4fdb-bca6-83da6dade8e3_Door-Folding-Hawa-Variotec-Glass-Parallel.02i849le48.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\252de5c2-3ded-4fdb-bca6-83da6dade8e3_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"02i849le48"},{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="},{"Name":"label","Value":"_content/Bim.Server/uploads/252de5c2-3ded-4fdb-bca6-83da6dade8e3_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 14:43:21 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/252de5c2-3ded-4fdb-bca6-83da6dade8e3_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\252de5c2-3ded-4fdb-bca6-83da6dade8e3_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 14:43:21 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/2641d1a5-b82f-41c7-b8ac-fd8c061c2513_hsw60-ifc.i9i707kemb.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\2641d1a5-b82f-41c7-b8ac-fd8c061c2513_hsw60-ifc.ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"i9i707kemb"},{"Name":"integrity","Value":"sha256-ymvJ0LSh2\u002Bi0YEz0DC2Mmt1yJwwyPsuxjm0Xp6Zwbxk="},{"Name":"label","Value":"_content/Bim.Server/uploads/2641d1a5-b82f-41c7-b8ac-fd8c061c2513_hsw60-ifc.ifc"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"18683"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022ymvJ0LSh2\u002Bi0YEz0DC2Mmt1yJwwyPsuxjm0Xp6Zwbxk=\u0022"},{"Name":"Last-Modified","Value":"Wed, 23 Apr 2025 14:12:39 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/2641d1a5-b82f-41c7-b8ac-fd8c061c2513_hsw60-ifc.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\2641d1a5-b82f-41c7-b8ac-fd8c061c2513_hsw60-ifc.ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-ymvJ0LSh2\u002Bi0YEz0DC2Mmt1yJwwyPsuxjm0Xp6Zwbxk="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"18683"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022ymvJ0LSh2\u002Bi0YEz0DC2Mmt1yJwwyPsuxjm0Xp6Zwbxk=\u0022"},{"Name":"Last-Modified","Value":"Wed, 23 Apr 2025 14:12:39 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/3a08d612-0bf7-47ae-b352-d77f9cc73ee6_Door-Folding-Hawa-Variotec-Glass-Parallel (1).02i849le48.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\3a08d612-0bf7-47ae-b352-d77f9cc73ee6_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"02i849le48"},{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="},{"Name":"label","Value":"_content/Bim.Server/uploads/3a08d612-0bf7-47ae-b352-d77f9cc73ee6_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 13:57:38 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/3a08d612-0bf7-47ae-b352-d77f9cc73ee6_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\3a08d612-0bf7-47ae-b352-d77f9cc73ee6_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 13:57:38 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/4630c8ee-5b0c-483f-82ac-d3fe4dfb09eb_Door-Folding-Hawa-Variotec-Glass-Parallel (1).02i849le48.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\4630c8ee-5b0c-483f-82ac-d3fe4dfb09eb_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"02i849le48"},{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="},{"Name":"label","Value":"_content/Bim.Server/uploads/4630c8ee-5b0c-483f-82ac-d3fe4dfb09eb_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 10:29:49 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/4630c8ee-5b0c-483f-82ac-d3fe4dfb09eb_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\4630c8ee-5b0c-483f-82ac-d3fe4dfb09eb_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 10:29:49 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/4edf7084-7db7-4313-8663-317035bc1a29_Door-Folding-Hawa-Variotec-Glass-Parallel.02i849le48.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\4edf7084-7db7-4313-8663-317035bc1a29_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"02i849le48"},{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="},{"Name":"label","Value":"_content/Bim.Server/uploads/4edf7084-7db7-4313-8663-317035bc1a29_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 14:35:11 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/4edf7084-7db7-4313-8663-317035bc1a29_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\4edf7084-7db7-4313-8663-317035bc1a29_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 14:35:11 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/4ffaf9e3-9731-4c97-8f71-b3653151d616_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\4ffaf9e3-9731-4c97-8f71-b3653151d616_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-Gv12HOvulcAVX9E\u002BgOT9pTIL3hLLo4HVmhdJCsaUVDg="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"130577"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022Gv12HOvulcAVX9E\u002BgOT9pTIL3hLLo4HVmhdJCsaUVDg=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 14:56:03 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/4ffaf9e3-9731-4c97-8f71-b3653151d616_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.iywpq0zwnr.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\4ffaf9e3-9731-4c97-8f71-b3653151d616_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"iywpq0zwnr"},{"Name":"integrity","Value":"sha256-Gv12HOvulcAVX9E\u002BgOT9pTIL3hLLo4HVmhdJCsaUVDg="},{"Name":"label","Value":"_content/Bim.Server/uploads/4ffaf9e3-9731-4c97-8f71-b3653151d616_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.ifc"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"130577"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022Gv12HOvulcAVX9E\u002BgOT9pTIL3hLLo4HVmhdJCsaUVDg=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 14:56:03 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/6a594246-95ab-482a-9dbf-9fa318d286ff_Door-Folding-Hawa-Variotec-Glass-Parallel (1).02i849le48.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\6a594246-95ab-482a-9dbf-9fa318d286ff_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"02i849le48"},{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="},{"Name":"label","Value":"_content/Bim.Server/uploads/6a594246-95ab-482a-9dbf-9fa318d286ff_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 13:40:53 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/6a594246-95ab-482a-9dbf-9fa318d286ff_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\6a594246-95ab-482a-9dbf-9fa318d286ff_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 13:40:53 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/6e33264a-f30c-4535-9938-4b0de54516ca_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\6e33264a-f30c-4535-9938-4b0de54516ca_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-Gv12HOvulcAVX9E\u002BgOT9pTIL3hLLo4HVmhdJCsaUVDg="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"130577"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022Gv12HOvulcAVX9E\u002BgOT9pTIL3hLLo4HVmhdJCsaUVDg=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 14:28:05 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/6e33264a-f30c-4535-9938-4b0de54516ca_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.iywpq0zwnr.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\6e33264a-f30c-4535-9938-4b0de54516ca_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"iywpq0zwnr"},{"Name":"integrity","Value":"sha256-Gv12HOvulcAVX9E\u002BgOT9pTIL3hLLo4HVmhdJCsaUVDg="},{"Name":"label","Value":"_content/Bim.Server/uploads/6e33264a-f30c-4535-9938-4b0de54516ca_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.ifc"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"130577"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022Gv12HOvulcAVX9E\u002BgOT9pTIL3hLLo4HVmhdJCsaUVDg=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 14:28:05 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/79f9de81-dd9a-4350-bcba-5e6ec96b97aa_Door-Folding-Hawa-Variotec-Glass-Parallel (1).02i849le48.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\79f9de81-dd9a-4350-bcba-5e6ec96b97aa_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"02i849le48"},{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="},{"Name":"label","Value":"_content/Bim.Server/uploads/79f9de81-dd9a-4350-bcba-5e6ec96b97aa_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 14:48:34 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/79f9de81-dd9a-4350-bcba-5e6ec96b97aa_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\79f9de81-dd9a-4350-bcba-5e6ec96b97aa_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 14:48:34 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/7a5c2eb4-255e-4284-84b9-832bf335f8ed_hsw60-ifc.i9i707kemb.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\7a5c2eb4-255e-4284-84b9-832bf335f8ed_hsw60-ifc.ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"i9i707kemb"},{"Name":"integrity","Value":"sha256-ymvJ0LSh2\u002Bi0YEz0DC2Mmt1yJwwyPsuxjm0Xp6Zwbxk="},{"Name":"label","Value":"_content/Bim.Server/uploads/7a5c2eb4-255e-4284-84b9-832bf335f8ed_hsw60-ifc.ifc"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"18683"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022ymvJ0LSh2\u002Bi0YEz0DC2Mmt1yJwwyPsuxjm0Xp6Zwbxk=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 14:09:28 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/7a5c2eb4-255e-4284-84b9-832bf335f8ed_hsw60-ifc.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\7a5c2eb4-255e-4284-84b9-832bf335f8ed_hsw60-ifc.ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-ymvJ0LSh2\u002Bi0YEz0DC2Mmt1yJwwyPsuxjm0Xp6Zwbxk="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"18683"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022ymvJ0LSh2\u002Bi0YEz0DC2Mmt1yJwwyPsuxjm0Xp6Zwbxk=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 14:09:28 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/7cbee169-6049-4e4d-9425-53f0ea99be0c_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\7cbee169-6049-4e4d-9425-53f0ea99be0c_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-Gv12HOvulcAVX9E\u002BgOT9pTIL3hLLo4HVmhdJCsaUVDg="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"130577"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022Gv12HOvulcAVX9E\u002BgOT9pTIL3hLLo4HVmhdJCsaUVDg=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 14:02:16 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/7cbee169-6049-4e4d-9425-53f0ea99be0c_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.iywpq0zwnr.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\7cbee169-6049-4e4d-9425-53f0ea99be0c_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"iywpq0zwnr"},{"Name":"integrity","Value":"sha256-Gv12HOvulcAVX9E\u002BgOT9pTIL3hLLo4HVmhdJCsaUVDg="},{"Name":"label","Value":"_content/Bim.Server/uploads/7cbee169-6049-4e4d-9425-53f0ea99be0c_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.ifc"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"130577"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022Gv12HOvulcAVX9E\u002BgOT9pTIL3hLLo4HVmhdJCsaUVDg=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 14:02:16 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/8a95bae1-d4c4-4d02-a124-0a563bf4c1e3_Door-Folding-Hawa-Variotec-Glass-Parallel.02i849le48.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\8a95bae1-d4c4-4d02-a124-0a563bf4c1e3_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"02i849le48"},{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="},{"Name":"label","Value":"_content/Bim.Server/uploads/8a95bae1-d4c4-4d02-a124-0a563bf4c1e3_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 11:02:02 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/8a95bae1-d4c4-4d02-a124-0a563bf4c1e3_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\8a95bae1-d4c4-4d02-a124-0a563bf4c1e3_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 11:02:02 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/9b7962d8-ea75-4e19-9831-9976d0820803_Door-Folding-Hawa-Variotec-Glass-Parallel.02i849le48.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\9b7962d8-ea75-4e19-9831-9976d0820803_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"02i849le48"},{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="},{"Name":"label","Value":"_content/Bim.Server/uploads/9b7962d8-ea75-4e19-9831-9976d0820803_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Wed, 23 Apr 2025 14:12:18 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/9b7962d8-ea75-4e19-9831-9976d0820803_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\9b7962d8-ea75-4e19-9831-9976d0820803_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Wed, 23 Apr 2025 14:12:18 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/aa81e77a-3019-4509-ae97-ced4aa4e873f_Door-Folding-Hawa-Variotec-Glass-Parallel (1).02i849le48.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\aa81e77a-3019-4509-ae97-ced4aa4e873f_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"02i849le48"},{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="},{"Name":"label","Value":"_content/Bim.Server/uploads/aa81e77a-3019-4509-ae97-ced4aa4e873f_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Wed, 23 Apr 2025 16:34:32 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/aa81e77a-3019-4509-ae97-ced4aa4e873f_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\aa81e77a-3019-4509-ae97-ced4aa4e873f_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Wed, 23 Apr 2025 16:34:32 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/aaedcf3f-2c5a-4aca-9bac-9c1b9cae79a4_Door-Folding-Hawa-Variotec-Glass-Parallel (1).02i849le48.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\aaedcf3f-2c5a-4aca-9bac-9c1b9cae79a4_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"02i849le48"},{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="},{"Name":"label","Value":"_content/Bim.Server/uploads/aaedcf3f-2c5a-4aca-9bac-9c1b9cae79a4_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 10:58:07 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/aaedcf3f-2c5a-4aca-9bac-9c1b9cae79a4_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\aaedcf3f-2c5a-4aca-9bac-9c1b9cae79a4_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 10:58:07 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/b43d596f-a5b7-4d94-b245-54be7491c1cb_Door-Folding-Hawa-Variotec-Glass-Parallel.02i849le48.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\b43d596f-a5b7-4d94-b245-54be7491c1cb_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"02i849le48"},{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="},{"Name":"label","Value":"_content/Bim.Server/uploads/b43d596f-a5b7-4d94-b245-54be7491c1cb_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 13:58:51 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/b43d596f-a5b7-4d94-b245-54be7491c1cb_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\b43d596f-a5b7-4d94-b245-54be7491c1cb_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 13:58:51 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/c69bfb4e-abb0-451a-b797-1cc9ac27fe5f_Door-Folding-Hawa-Variotec-Glass-Parallel.02i849le48.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\c69bfb4e-abb0-451a-b797-1cc9ac27fe5f_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"02i849le48"},{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="},{"Name":"label","Value":"_content/Bim.Server/uploads/c69bfb4e-abb0-451a-b797-1cc9ac27fe5f_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 13:51:40 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/c69bfb4e-abb0-451a-b797-1cc9ac27fe5f_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\c69bfb4e-abb0-451a-b797-1cc9ac27fe5f_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 13:51:40 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/c9cc0f3b-4f61-45f7-8b13-d38733014190_Door-Folding-Hawa-Variotec-Glass-Parallel.02i849le48.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\c9cc0f3b-4f61-45f7-8b13-d38733014190_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"02i849le48"},{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="},{"Name":"label","Value":"_content/Bim.Server/uploads/c9cc0f3b-4f61-45f7-8b13-d38733014190_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Wed, 23 Apr 2025 14:19:18 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/c9cc0f3b-4f61-45f7-8b13-d38733014190_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\c9cc0f3b-4f61-45f7-8b13-d38733014190_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Wed, 23 Apr 2025 14:19:18 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/cce862fa-5931-40e1-b1c5-3164f7b4d341_Door-Folding-Hawa-Variotec-Glass-Parallel (1).02i849le48.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\cce862fa-5931-40e1-b1c5-3164f7b4d341_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"02i849le48"},{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="},{"Name":"label","Value":"_content/Bim.Server/uploads/cce862fa-5931-40e1-b1c5-3164f7b4d341_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 10:18:51 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/cce862fa-5931-40e1-b1c5-3164f7b4d341_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\cce862fa-5931-40e1-b1c5-3164f7b4d341_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 10:18:51 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/d70a1d19-1815-40c7-8b47-b33d9b105092_Door-Folding-Hawa-Variotec-Glass-Parallel.02i849le48.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\d70a1d19-1815-40c7-8b47-b33d9b105092_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"02i849le48"},{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="},{"Name":"label","Value":"_content/Bim.Server/uploads/d70a1d19-1815-40c7-8b47-b33d9b105092_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 13:55:41 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/d70a1d19-1815-40c7-8b47-b33d9b105092_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\d70a1d19-1815-40c7-8b47-b33d9b105092_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 13:55:41 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/e719d23a-7c89-4f77-b54c-715104f5f159_Door-Folding-Hawa-Variotec-Glass-Parallel.02i849le48.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\e719d23a-7c89-4f77-b54c-715104f5f159_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"02i849le48"},{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="},{"Name":"label","Value":"_content/Bim.Server/uploads/e719d23a-7c89-4f77-b54c-715104f5f159_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 14:41:18 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/e719d23a-7c89-4f77-b54c-715104f5f159_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\e719d23a-7c89-4f77-b54c-715104f5f159_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 14:41:18 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/e9d0d0b7-4747-4ca7-867c-a7fdbb47d3d3_Door-Folding-Hawa-Variotec-Glass-Parallel.02i849le48.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\e9d0d0b7-4747-4ca7-867c-a7fdbb47d3d3_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"02i849le48"},{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="},{"Name":"label","Value":"_content/Bim.Server/uploads/e9d0d0b7-4747-4ca7-867c-a7fdbb47d3d3_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 14:42:54 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/e9d0d0b7-4747-4ca7-867c-a7fdbb47d3d3_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\e9d0d0b7-4747-4ca7-867c-a7fdbb47d3d3_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 14:42:54 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/ec5b7b61-6488-4f08-9a63-24cfa2f96c96_Door-Folding-Hawa-Variotec-Glass-Parallel.02i849le48.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\ec5b7b61-6488-4f08-9a63-24cfa2f96c96_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"02i849le48"},{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="},{"Name":"label","Value":"_content/Bim.Server/uploads/ec5b7b61-6488-4f08-9a63-24cfa2f96c96_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Wed, 23 Apr 2025 16:26:48 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/ec5b7b61-6488-4f08-9a63-24cfa2f96c96_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\ec5b7b61-6488-4f08-9a63-24cfa2f96c96_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Wed, 23 Apr 2025 16:26:48 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/f2449844-3175-481f-9057-9ded7af8553d_Door-Folding-Hawa-Variotec-Glass-Parallel (1).02i849le48.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\f2449844-3175-481f-9057-9ded7af8553d_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"02i849le48"},{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="},{"Name":"label","Value":"_content/Bim.Server/uploads/f2449844-3175-481f-9057-9ded7af8553d_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 10:24:14 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/f2449844-3175-481f-9057-9ded7af8553d_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\f2449844-3175-481f-9057-9ded7af8553d_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 10:24:14 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/f2fbe6f6-591e-4f21-8994-92e9fbcfa26a_Door-Folding-Hawa-Variotec-Glass-Parallel.02i849le48.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\f2fbe6f6-591e-4f21-8994-92e9fbcfa26a_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"02i849le48"},{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="},{"Name":"label","Value":"_content/Bim.Server/uploads/f2fbe6f6-591e-4f21-8994-92e9fbcfa26a_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 13:39:15 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/f2fbe6f6-591e-4f21-8994-92e9fbcfa26a_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\f2fbe6f6-591e-4f21-8994-92e9fbcfa26a_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 13:39:15 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/fa6e83e4-1605-4697-95e4-c9d4b75dcf76_Door-Folding-Hawa-Variotec-Glass-Parallel.02i849le48.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\fa6e83e4-1605-4697-95e4-c9d4b75dcf76_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"02i849le48"},{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="},{"Name":"label","Value":"_content/Bim.Server/uploads/fa6e83e4-1605-4697-95e4-c9d4b75dcf76_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 14:04:41 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/uploads/fa6e83e4-1605-4697-95e4-c9d4b75dcf76_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\fa6e83e4-1605-4697-95e4-c9d4b75dcf76_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2923792"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 14:04:41 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/wasm/web-ifc-mt.worker.30k87ck5i2.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\wasm\web-ifc-mt.worker.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"30k87ck5i2"},{"Name":"integrity","Value":"sha256-vVGY23rbxgaidJ5EayNAplSt12qqczmFDQqkUHtpGH8="},{"Name":"label","Value":"_content/Bim.Server/wasm/web-ifc-mt.worker.js"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2239"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022vVGY23rbxgaidJ5EayNAplSt12qqczmFDQqkUHtpGH8=\u0022"},{"Name":"Last-Modified","Value":"Wed, 23 Apr 2025 13:37:30 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/wasm/web-ifc-mt.worker.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\wasm\web-ifc-mt.worker.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-vVGY23rbxgaidJ5EayNAplSt12qqczmFDQqkUHtpGH8="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2239"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022vVGY23rbxgaidJ5EayNAplSt12qqczmFDQqkUHtpGH8=\u0022"},{"Name":"Last-Modified","Value":"Wed, 23 Apr 2025 13:37:30 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/wasm/web-ifc.3336965fpz.wasm">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\wasm\web-ifc.wasm'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"3336965fpz"},{"Name":"integrity","Value":"sha256-H\u002BYAVcurpJ1aTai1Aghz1l2YQG4atfei7w56x/4tw2A="},{"Name":"label","Value":"_content/Bim.Server/wasm/web-ifc.wasm"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1141095"},{"Name":"Content-Type","Value":"application/wasm"},{"Name":"ETag","Value":"\u0022H\u002BYAVcurpJ1aTai1Aghz1l2YQG4atfei7w56x/4tw2A=\u0022"},{"Name":"Last-Modified","Value":"Wed, 23 Apr 2025 15:17:12 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bim.Server/wasm/web-ifc.wasm">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\wasm\web-ifc.wasm'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-H\u002BYAVcurpJ1aTai1Aghz1l2YQG4atfei7w56x/4tw2A="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1141095"},{"Name":"Content-Type","Value":"application/wasm"},{"Name":"ETag","Value":"\u0022H\u002BYAVcurpJ1aTai1Aghz1l2YQG4atfei7w56x/4tw2A=\u0022"},{"Name":"Last-Modified","Value":"Wed, 23 Apr 2025 15:17:12 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+  </ItemGroup>
+</Project>

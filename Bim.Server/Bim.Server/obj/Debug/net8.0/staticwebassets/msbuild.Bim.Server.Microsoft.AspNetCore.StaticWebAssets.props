@@ -1,0 +1,742 @@
+﻿<Project>
+  <ItemGroup>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\pdfs\2022020320211122Wellness center Sama.pdf'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Bim.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Bim.Server</BasePath>
+      <RelativePath>pdfs/2022020320211122Wellness center Sama.pdf</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>5ipweew5fc</Fingerprint>
+      <Integrity>47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\pdfs\2022020320211122Wellness center Sama.pdf'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\pdfs\98ae4ea0-6e47-4bff-9470-33920d875f11_2022020320211122Wellness center Sama.pdf'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Bim.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Bim.Server</BasePath>
+      <RelativePath>pdfs/98ae4ea0-6e47-4bff-9470-33920d875f11_2022020320211122Wellness center Sama.pdf</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>5ipweew5fc</Fingerprint>
+      <Integrity>47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\pdfs\98ae4ea0-6e47-4bff-9470-33920d875f11_2022020320211122Wellness center Sama.pdf'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\pdfs\d0a94b54-44f1-4106-9464-c4ffba5b8d5d_2022020320211122Wellness center Sama.pdf'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Bim.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Bim.Server</BasePath>
+      <RelativePath>pdfs/d0a94b54-44f1-4106-9464-c4ffba5b8d5d_2022020320211122Wellness center Sama.pdf</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>5ipweew5fc</Fingerprint>
+      <Integrity>47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\pdfs\d0a94b54-44f1-4106-9464-c4ffba5b8d5d_2022020320211122Wellness center Sama.pdf'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\09b395d7-df09-4fc8-a89d-c0734575a9a3_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Bim.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Bim.Server</BasePath>
+      <RelativePath>uploads/09b395d7-df09-4fc8-a89d-c0734575a9a3_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>02i849le48</Fingerprint>
+      <Integrity>mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\09b395d7-df09-4fc8-a89d-c0734575a9a3_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\120228d6-e31f-4732-9dbb-c16194581af9_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Bim.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Bim.Server</BasePath>
+      <RelativePath>uploads/120228d6-e31f-4732-9dbb-c16194581af9_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>02i849le48</Fingerprint>
+      <Integrity>mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\120228d6-e31f-4732-9dbb-c16194581af9_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\1869ea5b-7e96-4c86-bb6e-8d6427d65ddb_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Bim.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Bim.Server</BasePath>
+      <RelativePath>uploads/1869ea5b-7e96-4c86-bb6e-8d6427d65ddb_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>02i849le48</Fingerprint>
+      <Integrity>mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\1869ea5b-7e96-4c86-bb6e-8d6427d65ddb_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\210f3504-ff52-4c93-ae06-baa45ed4f934_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Bim.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Bim.Server</BasePath>
+      <RelativePath>uploads/210f3504-ff52-4c93-ae06-baa45ed4f934_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>02i849le48</Fingerprint>
+      <Integrity>mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\210f3504-ff52-4c93-ae06-baa45ed4f934_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\252de5c2-3ded-4fdb-bca6-83da6dade8e3_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Bim.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Bim.Server</BasePath>
+      <RelativePath>uploads/252de5c2-3ded-4fdb-bca6-83da6dade8e3_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>02i849le48</Fingerprint>
+      <Integrity>mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\252de5c2-3ded-4fdb-bca6-83da6dade8e3_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\2641d1a5-b82f-41c7-b8ac-fd8c061c2513_hsw60-ifc.ifc'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Bim.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Bim.Server</BasePath>
+      <RelativePath>uploads/2641d1a5-b82f-41c7-b8ac-fd8c061c2513_hsw60-ifc.ifc</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>i9i707kemb</Fingerprint>
+      <Integrity>ymvJ0LSh2+i0YEz0DC2Mmt1yJwwyPsuxjm0Xp6Zwbxk=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\2641d1a5-b82f-41c7-b8ac-fd8c061c2513_hsw60-ifc.ifc'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\35834dae-aa5c-4150-bdb3-c98a8d28fceb_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Bim.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Bim.Server</BasePath>
+      <RelativePath>uploads/35834dae-aa5c-4150-bdb3-c98a8d28fceb_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>02i849le48</Fingerprint>
+      <Integrity>mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\35834dae-aa5c-4150-bdb3-c98a8d28fceb_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\364c056a-e16a-444c-b0d3-b1684c4f059d_hsw60-ifc.ifc'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Bim.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Bim.Server</BasePath>
+      <RelativePath>uploads/364c056a-e16a-444c-b0d3-b1684c4f059d_hsw60-ifc.ifc</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>i9i707kemb</Fingerprint>
+      <Integrity>ymvJ0LSh2+i0YEz0DC2Mmt1yJwwyPsuxjm0Xp6Zwbxk=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\364c056a-e16a-444c-b0d3-b1684c4f059d_hsw60-ifc.ifc'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\3a08d612-0bf7-47ae-b352-d77f9cc73ee6_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Bim.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Bim.Server</BasePath>
+      <RelativePath>uploads/3a08d612-0bf7-47ae-b352-d77f9cc73ee6_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>02i849le48</Fingerprint>
+      <Integrity>mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\3a08d612-0bf7-47ae-b352-d77f9cc73ee6_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\4630c8ee-5b0c-483f-82ac-d3fe4dfb09eb_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Bim.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Bim.Server</BasePath>
+      <RelativePath>uploads/4630c8ee-5b0c-483f-82ac-d3fe4dfb09eb_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>02i849le48</Fingerprint>
+      <Integrity>mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\4630c8ee-5b0c-483f-82ac-d3fe4dfb09eb_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\4edf7084-7db7-4313-8663-317035bc1a29_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Bim.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Bim.Server</BasePath>
+      <RelativePath>uploads/4edf7084-7db7-4313-8663-317035bc1a29_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>02i849le48</Fingerprint>
+      <Integrity>mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\4edf7084-7db7-4313-8663-317035bc1a29_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\4ffaf9e3-9731-4c97-8f71-b3653151d616_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.ifc'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Bim.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Bim.Server</BasePath>
+      <RelativePath>uploads/4ffaf9e3-9731-4c97-8f71-b3653151d616_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.ifc</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>iywpq0zwnr</Fingerprint>
+      <Integrity>Gv12HOvulcAVX9E+gOT9pTIL3hLLo4HVmhdJCsaUVDg=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\4ffaf9e3-9731-4c97-8f71-b3653151d616_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.ifc'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\6a594246-95ab-482a-9dbf-9fa318d286ff_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Bim.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Bim.Server</BasePath>
+      <RelativePath>uploads/6a594246-95ab-482a-9dbf-9fa318d286ff_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>02i849le48</Fingerprint>
+      <Integrity>mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\6a594246-95ab-482a-9dbf-9fa318d286ff_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\6e33264a-f30c-4535-9938-4b0de54516ca_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.ifc'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Bim.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Bim.Server</BasePath>
+      <RelativePath>uploads/6e33264a-f30c-4535-9938-4b0de54516ca_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.ifc</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>iywpq0zwnr</Fingerprint>
+      <Integrity>Gv12HOvulcAVX9E+gOT9pTIL3hLLo4HVmhdJCsaUVDg=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\6e33264a-f30c-4535-9938-4b0de54516ca_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.ifc'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\79f9de81-dd9a-4350-bcba-5e6ec96b97aa_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Bim.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Bim.Server</BasePath>
+      <RelativePath>uploads/79f9de81-dd9a-4350-bcba-5e6ec96b97aa_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>02i849le48</Fingerprint>
+      <Integrity>mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\79f9de81-dd9a-4350-bcba-5e6ec96b97aa_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\7a5c2eb4-255e-4284-84b9-832bf335f8ed_hsw60-ifc.ifc'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Bim.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Bim.Server</BasePath>
+      <RelativePath>uploads/7a5c2eb4-255e-4284-84b9-832bf335f8ed_hsw60-ifc.ifc</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>i9i707kemb</Fingerprint>
+      <Integrity>ymvJ0LSh2+i0YEz0DC2Mmt1yJwwyPsuxjm0Xp6Zwbxk=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\7a5c2eb4-255e-4284-84b9-832bf335f8ed_hsw60-ifc.ifc'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\7cbee169-6049-4e4d-9425-53f0ea99be0c_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.ifc'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Bim.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Bim.Server</BasePath>
+      <RelativePath>uploads/7cbee169-6049-4e4d-9425-53f0ea99be0c_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.ifc</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>iywpq0zwnr</Fingerprint>
+      <Integrity>Gv12HOvulcAVX9E+gOT9pTIL3hLLo4HVmhdJCsaUVDg=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\7cbee169-6049-4e4d-9425-53f0ea99be0c_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.ifc'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\8a95bae1-d4c4-4d02-a124-0a563bf4c1e3_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Bim.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Bim.Server</BasePath>
+      <RelativePath>uploads/8a95bae1-d4c4-4d02-a124-0a563bf4c1e3_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>02i849le48</Fingerprint>
+      <Integrity>mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\8a95bae1-d4c4-4d02-a124-0a563bf4c1e3_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\98ae4ea0-6e47-4bff-9470-33920d875f11_2022020320211122Wellness center Sama.ifc'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Bim.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Bim.Server</BasePath>
+      <RelativePath>uploads/98ae4ea0-6e47-4bff-9470-33920d875f11_2022020320211122Wellness center Sama.ifc</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>0tu82nlp06</Fingerprint>
+      <Integrity>9NvGYdVVu/kvuApARD9ra1QPoKgzuF14SHkwNoFHtZM=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\98ae4ea0-6e47-4bff-9470-33920d875f11_2022020320211122Wellness center Sama.ifc'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\9b7962d8-ea75-4e19-9831-9976d0820803_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Bim.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Bim.Server</BasePath>
+      <RelativePath>uploads/9b7962d8-ea75-4e19-9831-9976d0820803_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>02i849le48</Fingerprint>
+      <Integrity>mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\9b7962d8-ea75-4e19-9831-9976d0820803_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\a3593866-6447-407f-bf79-dd5f62f6000c_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Bim.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Bim.Server</BasePath>
+      <RelativePath>uploads/a3593866-6447-407f-bf79-dd5f62f6000c_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>02i849le48</Fingerprint>
+      <Integrity>mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\a3593866-6447-407f-bf79-dd5f62f6000c_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\aa81e77a-3019-4509-ae97-ced4aa4e873f_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Bim.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Bim.Server</BasePath>
+      <RelativePath>uploads/aa81e77a-3019-4509-ae97-ced4aa4e873f_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>02i849le48</Fingerprint>
+      <Integrity>mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\aa81e77a-3019-4509-ae97-ced4aa4e873f_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\aaedcf3f-2c5a-4aca-9bac-9c1b9cae79a4_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Bim.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Bim.Server</BasePath>
+      <RelativePath>uploads/aaedcf3f-2c5a-4aca-9bac-9c1b9cae79a4_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>02i849le48</Fingerprint>
+      <Integrity>mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\aaedcf3f-2c5a-4aca-9bac-9c1b9cae79a4_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\b21004d9-437b-48e1-b6f5-dcad998e3e9c_Sliding_Door-Hawa-Junior_80_Z_Pocket_Symmetric.ifc'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Bim.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Bim.Server</BasePath>
+      <RelativePath>uploads/b21004d9-437b-48e1-b6f5-dcad998e3e9c_Sliding_Door-Hawa-Junior_80_Z_Pocket_Symmetric.ifc</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>imwsnseaa5</Fingerprint>
+      <Integrity>1qSkIBXW3py2iVab+JEhd9xtS8YpJ/3yxSkU0W7Fh+8=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\b21004d9-437b-48e1-b6f5-dcad998e3e9c_Sliding_Door-Hawa-Junior_80_Z_Pocket_Symmetric.ifc'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\b43d596f-a5b7-4d94-b245-54be7491c1cb_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Bim.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Bim.Server</BasePath>
+      <RelativePath>uploads/b43d596f-a5b7-4d94-b245-54be7491c1cb_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>02i849le48</Fingerprint>
+      <Integrity>mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\b43d596f-a5b7-4d94-b245-54be7491c1cb_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\c69bfb4e-abb0-451a-b797-1cc9ac27fe5f_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Bim.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Bim.Server</BasePath>
+      <RelativePath>uploads/c69bfb4e-abb0-451a-b797-1cc9ac27fe5f_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>02i849le48</Fingerprint>
+      <Integrity>mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\c69bfb4e-abb0-451a-b797-1cc9ac27fe5f_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\c9cc0f3b-4f61-45f7-8b13-d38733014190_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Bim.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Bim.Server</BasePath>
+      <RelativePath>uploads/c9cc0f3b-4f61-45f7-8b13-d38733014190_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>02i849le48</Fingerprint>
+      <Integrity>mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\c9cc0f3b-4f61-45f7-8b13-d38733014190_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\cce862fa-5931-40e1-b1c5-3164f7b4d341_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Bim.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Bim.Server</BasePath>
+      <RelativePath>uploads/cce862fa-5931-40e1-b1c5-3164f7b4d341_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>02i849le48</Fingerprint>
+      <Integrity>mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\cce862fa-5931-40e1-b1c5-3164f7b4d341_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\d0a94b54-44f1-4106-9464-c4ffba5b8d5d_2022020320211122Wellness center Sama.ifc'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Bim.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Bim.Server</BasePath>
+      <RelativePath>uploads/d0a94b54-44f1-4106-9464-c4ffba5b8d5d_2022020320211122Wellness center Sama.ifc</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>0tu82nlp06</Fingerprint>
+      <Integrity>9NvGYdVVu/kvuApARD9ra1QPoKgzuF14SHkwNoFHtZM=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\d0a94b54-44f1-4106-9464-c4ffba5b8d5d_2022020320211122Wellness center Sama.ifc'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\d70a1d19-1815-40c7-8b47-b33d9b105092_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Bim.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Bim.Server</BasePath>
+      <RelativePath>uploads/d70a1d19-1815-40c7-8b47-b33d9b105092_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>02i849le48</Fingerprint>
+      <Integrity>mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\d70a1d19-1815-40c7-8b47-b33d9b105092_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\e719d23a-7c89-4f77-b54c-715104f5f159_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Bim.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Bim.Server</BasePath>
+      <RelativePath>uploads/e719d23a-7c89-4f77-b54c-715104f5f159_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>02i849le48</Fingerprint>
+      <Integrity>mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\e719d23a-7c89-4f77-b54c-715104f5f159_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\e9d0d0b7-4747-4ca7-867c-a7fdbb47d3d3_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Bim.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Bim.Server</BasePath>
+      <RelativePath>uploads/e9d0d0b7-4747-4ca7-867c-a7fdbb47d3d3_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>02i849le48</Fingerprint>
+      <Integrity>mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\e9d0d0b7-4747-4ca7-867c-a7fdbb47d3d3_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\ec5b7b61-6488-4f08-9a63-24cfa2f96c96_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Bim.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Bim.Server</BasePath>
+      <RelativePath>uploads/ec5b7b61-6488-4f08-9a63-24cfa2f96c96_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>02i849le48</Fingerprint>
+      <Integrity>mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\ec5b7b61-6488-4f08-9a63-24cfa2f96c96_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\f2449844-3175-481f-9057-9ded7af8553d_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Bim.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Bim.Server</BasePath>
+      <RelativePath>uploads/f2449844-3175-481f-9057-9ded7af8553d_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>02i849le48</Fingerprint>
+      <Integrity>mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\f2449844-3175-481f-9057-9ded7af8553d_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\f2fbe6f6-591e-4f21-8994-92e9fbcfa26a_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Bim.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Bim.Server</BasePath>
+      <RelativePath>uploads/f2fbe6f6-591e-4f21-8994-92e9fbcfa26a_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>02i849le48</Fingerprint>
+      <Integrity>mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\f2fbe6f6-591e-4f21-8994-92e9fbcfa26a_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\fa6e83e4-1605-4697-95e4-c9d4b75dcf76_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Bim.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Bim.Server</BasePath>
+      <RelativePath>uploads/fa6e83e4-1605-4697-95e4-c9d4b75dcf76_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>02i849le48</Fingerprint>
+      <Integrity>mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\fa6e83e4-1605-4697-95e4-c9d4b75dcf76_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\wasm\web-ifc.wasm'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Bim.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Bim.Server</BasePath>
+      <RelativePath>wasm/web-ifc.wasm</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>3336965fpz</Fingerprint>
+      <Integrity>H+YAVcurpJ1aTai1Aghz1l2YQG4atfei7w56x/4tw2A=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\wasm\web-ifc.wasm'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\wasm\web-ifc-mt.worker.js'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Bim.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Bim.Server</BasePath>
+      <RelativePath>wasm/web-ifc-mt.worker.js</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>30k87ck5i2</Fingerprint>
+      <Integrity>vVGY23rbxgaidJ5EayNAplSt12qqczmFDQqkUHtpGH8=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\wasm\web-ifc-mt.worker.js'))</OriginalItemSpec>
+    </StaticWebAsset>
+  </ItemGroup>
+</Project>

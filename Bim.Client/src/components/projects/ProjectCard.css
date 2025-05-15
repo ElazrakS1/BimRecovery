@@ -1,0 +1,206 @@
+.project-card {
+    background: var(--color-surface);
+    border: 1px solid rgba(3, 72, 113, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+        linear-gradient(135deg, rgba(3, 72, 113, 0.05) 0%, transparent 100%),
+        repeating-linear-gradient(45deg, 
+            rgba(3, 72, 113, 0.02) 0px, 
+            rgba(3, 72, 113, 0.02) 2px,
+            transparent 2px, 
+            transparent 10px
+        );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-elevation-2);
+}
+
+.project-card:hover::before {
+    opacity: 1;
+}
+
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.project-header h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0;
+    flex: 1;
+    line-height: 1.4;
+}
+
+.project-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: 1rem;
+}
+
+.action-button {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    color: var(--color-text-light);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.action-button:hover {
+    background: var(--color-background);
+    transform: translateY(-2px);
+}
+
+.action-button.view {
+    color: var(--color-primary);
+}
+
+.action-button.view:hover {
+    background: rgba(3, 72, 113, 0.1);
+}
+
+.action-button.upload {
+    color: var(--color-success);
+}
+
+.action-button.upload:hover {
+    background: rgba(76, 175, 80, 0.1);
+}
+
+.action-button.delete {
+    color: var(--color-danger);
+}
+
+.action-button.delete:hover {
+    background: rgba(244, 67, 54, 0.1);
+}
+
+.project-description {
+    color: var(--color-text-light);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.project-metadata {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-background);
+}
+
+.metadata-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    color: var(--color-text-light);
+}
+
+.metadata-item i {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-background);
+    border-radius: 6px;
+    color: var(--color-primary);
+}
+
+.file-upload {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-background);
+}
+
+.file-upload-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    border: 2px dashed rgba(3, 72, 113, 0.2);
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    justify-content: center;
+    background: var(--color-background);
+}
+
+.file-upload-label:hover {
+    border-color: var(--color-primary);
+    background: rgba(3, 72, 113, 0.05);
+}
+
+.file-upload-label i {
+    font-size: 1.25rem;
+    color: var(--color-primary);
+}
+
+.file-upload-input {
+    display: none;
+}
+
+.status-message {
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.status-message.uploading {
+    background: rgba(3, 72, 113, 0.1);
+    color: var(--color-primary);
+}
+
+.status-message.error {
+    background: rgba(244, 67, 54, 0.1);
+    color: var(--color-danger);
+    border: 1px solid rgba(244, 67, 54, 0.2);
+}
+
+.error-message {
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    background: rgba(244, 67, 54, 0.1);
+    border: 1px solid rgba(244, 67, 54, 0.2);
+    border-radius: 8px;
+    color: var(--color-danger);
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}

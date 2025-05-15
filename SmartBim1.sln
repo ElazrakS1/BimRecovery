@@ -1,0 +1,29 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bim.Server", "Bim.Server", "{1D1FD9FF-6CA3-7CC6-3495-DD7DAA058446}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bim.Server", "Bim.Server\Bim.Server\Bim.Server.csproj", "{8D0C3BEF-ECA3-1296-0D1D-7127A2F64171}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8D0C3BEF-ECA3-1296-0D1D-7127A2F64171}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D0C3BEF-ECA3-1296-0D1D-7127A2F64171}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D0C3BEF-ECA3-1296-0D1D-7127A2F64171}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D0C3BEF-ECA3-1296-0D1D-7127A2F64171}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8D0C3BEF-ECA3-1296-0D1D-7127A2F64171} = {1D1FD9FF-6CA3-7CC6-3495-DD7DAA058446}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3409C7D9-8015-4655-8AF0-47605D57397B}
+	EndGlobalSection
+EndGlobal

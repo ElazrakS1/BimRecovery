@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200" viewBox="0 0 300 200">
+  <!-- Fond -->
+  <rect width="300" height="200" fill="#f5f5f5"/>
+  
+  <!-- Ciel -->
+  <rect width="300" height="120" fill="#87CEEB"/>
+  
+  <!-- Tour Eiffel stylisée -->
+  <path d="M150,30 L170,180 L130,180 Z" fill="#2c3e50"/>
+  <path d="M120,80 L180,80 L170,100 L130,100 Z" fill="#2c3e50"/>
+  <path d="M130,120 L170,120 L165,130 L135,130 Z" fill="#2c3e50"/>
+  
+  <!-- Base de la tour -->
+  <rect x="140" y="180" width="20" height="10" fill="#2c3e50"/>
+  
+  <!-- Sol -->
+  <rect width="300" height="10" y="190" fill="#8B4513"/>
+  
+  <!-- Text overlay -->
+  <rect x="0" y="160" width="300" height="40" fill="rgba(52, 152, 219, 0.8)"/>
+  <text x="150" y="180" font-family="Arial" font-size="16" font-weight="bold" fill="white" text-anchor="middle" dominant-baseline="middle">Tour Eiffel Rénovation</text>
+  <text x="150" y="195" font-family="Arial" font-size="12" fill="white" text-anchor="middle" dominant-baseline="middle">BIM Project</text>
+</svg>

@@ -1,0 +1,3318 @@
+{
+  "Version": 1,
+  "Hash": "uQSYrpV7RHOrNN4FbwZIhoA+MXWRV2yS6D7L1Md53cU=",
+  "Source": "Bim.Server",
+  "BasePath": "_content/Bim.Server",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "Bim.Server\\wwwroot",
+      "Source": "Bim.Server",
+      "ContentRoot": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\",
+      "BasePath": "_content/Bim.Server",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\09b395d7-df09-4fc8-a89d-c0734575a9a3_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "SourceId": "Bim.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\",
+      "BasePath": "_content/Bim.Server",
+      "RelativePath": "uploads/09b395d7-df09-4fc8-a89d-c0734575a9a3_Door-Folding-Hawa-Variotec-Glass-Parallel (1)#[.{fingerprint}]?.ifc",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "02i849le48",
+      "Integrity": "mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\09b395d7-df09-4fc8-a89d-c0734575a9a3_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc"
+    },
+    {
+      "Identity": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\120228d6-e31f-4732-9dbb-c16194581af9_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "SourceId": "Bim.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\",
+      "BasePath": "_content/Bim.Server",
+      "RelativePath": "uploads/120228d6-e31f-4732-9dbb-c16194581af9_Door-Folding-Hawa-Variotec-Glass-Parallel (1)#[.{fingerprint}]?.ifc",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "02i849le48",
+      "Integrity": "mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\120228d6-e31f-4732-9dbb-c16194581af9_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc"
+    },
+    {
+      "Identity": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\1869ea5b-7e96-4c86-bb6e-8d6427d65ddb_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "SourceId": "Bim.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\",
+      "BasePath": "_content/Bim.Server",
+      "RelativePath": "uploads/1869ea5b-7e96-4c86-bb6e-8d6427d65ddb_Door-Folding-Hawa-Variotec-Glass-Parallel#[.{fingerprint}]?.ifc",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "02i849le48",
+      "Integrity": "mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\1869ea5b-7e96-4c86-bb6e-8d6427d65ddb_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc"
+    },
+    {
+      "Identity": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\210f3504-ff52-4c93-ae06-baa45ed4f934_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "SourceId": "Bim.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\",
+      "BasePath": "_content/Bim.Server",
+      "RelativePath": "uploads/210f3504-ff52-4c93-ae06-baa45ed4f934_Door-Folding-Hawa-Variotec-Glass-Parallel (1)#[.{fingerprint}]?.ifc",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "02i849le48",
+      "Integrity": "mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\210f3504-ff52-4c93-ae06-baa45ed4f934_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc"
+    },
+    {
+      "Identity": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\252de5c2-3ded-4fdb-bca6-83da6dade8e3_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "SourceId": "Bim.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\",
+      "BasePath": "_content/Bim.Server",
+      "RelativePath": "uploads/252de5c2-3ded-4fdb-bca6-83da6dade8e3_Door-Folding-Hawa-Variotec-Glass-Parallel#[.{fingerprint}]?.ifc",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "02i849le48",
+      "Integrity": "mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\252de5c2-3ded-4fdb-bca6-83da6dade8e3_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc"
+    },
+    {
+      "Identity": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\2641d1a5-b82f-41c7-b8ac-fd8c061c2513_hsw60-ifc.ifc",
+      "SourceId": "Bim.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\",
+      "BasePath": "_content/Bim.Server",
+      "RelativePath": "uploads/2641d1a5-b82f-41c7-b8ac-fd8c061c2513_hsw60-ifc#[.{fingerprint}]?.ifc",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "i9i707kemb",
+      "Integrity": "ymvJ0LSh2+i0YEz0DC2Mmt1yJwwyPsuxjm0Xp6Zwbxk=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\2641d1a5-b82f-41c7-b8ac-fd8c061c2513_hsw60-ifc.ifc"
+    },
+    {
+      "Identity": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\3a08d612-0bf7-47ae-b352-d77f9cc73ee6_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "SourceId": "Bim.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\",
+      "BasePath": "_content/Bim.Server",
+      "RelativePath": "uploads/3a08d612-0bf7-47ae-b352-d77f9cc73ee6_Door-Folding-Hawa-Variotec-Glass-Parallel (1)#[.{fingerprint}]?.ifc",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "02i849le48",
+      "Integrity": "mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\3a08d612-0bf7-47ae-b352-d77f9cc73ee6_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc"
+    },
+    {
+      "Identity": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\4630c8ee-5b0c-483f-82ac-d3fe4dfb09eb_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "SourceId": "Bim.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\",
+      "BasePath": "_content/Bim.Server",
+      "RelativePath": "uploads/4630c8ee-5b0c-483f-82ac-d3fe4dfb09eb_Door-Folding-Hawa-Variotec-Glass-Parallel (1)#[.{fingerprint}]?.ifc",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "02i849le48",
+      "Integrity": "mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\4630c8ee-5b0c-483f-82ac-d3fe4dfb09eb_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc"
+    },
+    {
+      "Identity": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\4edf7084-7db7-4313-8663-317035bc1a29_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "SourceId": "Bim.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\",
+      "BasePath": "_content/Bim.Server",
+      "RelativePath": "uploads/4edf7084-7db7-4313-8663-317035bc1a29_Door-Folding-Hawa-Variotec-Glass-Parallel#[.{fingerprint}]?.ifc",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "02i849le48",
+      "Integrity": "mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\4edf7084-7db7-4313-8663-317035bc1a29_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc"
+    },
+    {
+      "Identity": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\4ffaf9e3-9731-4c97-8f71-b3653151d616_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.ifc",
+      "SourceId": "Bim.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\",
+      "BasePath": "_content/Bim.Server",
+      "RelativePath": "uploads/4ffaf9e3-9731-4c97-8f71-b3653151d616_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit#[.{fingerprint}]?.ifc",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "iywpq0zwnr",
+      "Integrity": "Gv12HOvulcAVX9E+gOT9pTIL3hLLo4HVmhdJCsaUVDg=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\4ffaf9e3-9731-4c97-8f71-b3653151d616_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.ifc"
+    },
+    {
+      "Identity": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\6a594246-95ab-482a-9dbf-9fa318d286ff_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "SourceId": "Bim.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\",
+      "BasePath": "_content/Bim.Server",
+      "RelativePath": "uploads/6a594246-95ab-482a-9dbf-9fa318d286ff_Door-Folding-Hawa-Variotec-Glass-Parallel (1)#[.{fingerprint}]?.ifc",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "02i849le48",
+      "Integrity": "mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\6a594246-95ab-482a-9dbf-9fa318d286ff_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc"
+    },
+    {
+      "Identity": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\6e33264a-f30c-4535-9938-4b0de54516ca_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.ifc",
+      "SourceId": "Bim.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\",
+      "BasePath": "_content/Bim.Server",
+      "RelativePath": "uploads/6e33264a-f30c-4535-9938-4b0de54516ca_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit#[.{fingerprint}]?.ifc",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "iywpq0zwnr",
+      "Integrity": "Gv12HOvulcAVX9E+gOT9pTIL3hLLo4HVmhdJCsaUVDg=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\6e33264a-f30c-4535-9938-4b0de54516ca_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.ifc"
+    },
+    {
+      "Identity": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\79f9de81-dd9a-4350-bcba-5e6ec96b97aa_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "SourceId": "Bim.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\",
+      "BasePath": "_content/Bim.Server",
+      "RelativePath": "uploads/79f9de81-dd9a-4350-bcba-5e6ec96b97aa_Door-Folding-Hawa-Variotec-Glass-Parallel (1)#[.{fingerprint}]?.ifc",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "02i849le48",
+      "Integrity": "mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\79f9de81-dd9a-4350-bcba-5e6ec96b97aa_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc"
+    },
+    {
+      "Identity": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\7a5c2eb4-255e-4284-84b9-832bf335f8ed_hsw60-ifc.ifc",
+      "SourceId": "Bim.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\",
+      "BasePath": "_content/Bim.Server",
+      "RelativePath": "uploads/7a5c2eb4-255e-4284-84b9-832bf335f8ed_hsw60-ifc#[.{fingerprint}]?.ifc",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "i9i707kemb",
+      "Integrity": "ymvJ0LSh2+i0YEz0DC2Mmt1yJwwyPsuxjm0Xp6Zwbxk=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\7a5c2eb4-255e-4284-84b9-832bf335f8ed_hsw60-ifc.ifc"
+    },
+    {
+      "Identity": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\7cbee169-6049-4e4d-9425-53f0ea99be0c_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.ifc",
+      "SourceId": "Bim.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\",
+      "BasePath": "_content/Bim.Server",
+      "RelativePath": "uploads/7cbee169-6049-4e4d-9425-53f0ea99be0c_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit#[.{fingerprint}]?.ifc",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "iywpq0zwnr",
+      "Integrity": "Gv12HOvulcAVX9E+gOT9pTIL3hLLo4HVmhdJCsaUVDg=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\7cbee169-6049-4e4d-9425-53f0ea99be0c_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.ifc"
+    },
+    {
+      "Identity": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\8a95bae1-d4c4-4d02-a124-0a563bf4c1e3_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "SourceId": "Bim.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\",
+      "BasePath": "_content/Bim.Server",
+      "RelativePath": "uploads/8a95bae1-d4c4-4d02-a124-0a563bf4c1e3_Door-Folding-Hawa-Variotec-Glass-Parallel#[.{fingerprint}]?.ifc",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "02i849le48",
+      "Integrity": "mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\8a95bae1-d4c4-4d02-a124-0a563bf4c1e3_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc"
+    },
+    {
+      "Identity": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\9b7962d8-ea75-4e19-9831-9976d0820803_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "SourceId": "Bim.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\",
+      "BasePath": "_content/Bim.Server",
+      "RelativePath": "uploads/9b7962d8-ea75-4e19-9831-9976d0820803_Door-Folding-Hawa-Variotec-Glass-Parallel#[.{fingerprint}]?.ifc",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "02i849le48",
+      "Integrity": "mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\9b7962d8-ea75-4e19-9831-9976d0820803_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc"
+    },
+    {
+      "Identity": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\aa81e77a-3019-4509-ae97-ced4aa4e873f_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "SourceId": "Bim.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\",
+      "BasePath": "_content/Bim.Server",
+      "RelativePath": "uploads/aa81e77a-3019-4509-ae97-ced4aa4e873f_Door-Folding-Hawa-Variotec-Glass-Parallel (1)#[.{fingerprint}]?.ifc",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "02i849le48",
+      "Integrity": "mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\aa81e77a-3019-4509-ae97-ced4aa4e873f_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc"
+    },
+    {
+      "Identity": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\aaedcf3f-2c5a-4aca-9bac-9c1b9cae79a4_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "SourceId": "Bim.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\",
+      "BasePath": "_content/Bim.Server",
+      "RelativePath": "uploads/aaedcf3f-2c5a-4aca-9bac-9c1b9cae79a4_Door-Folding-Hawa-Variotec-Glass-Parallel (1)#[.{fingerprint}]?.ifc",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "02i849le48",
+      "Integrity": "mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\aaedcf3f-2c5a-4aca-9bac-9c1b9cae79a4_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc"
+    },
+    {
+      "Identity": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\b43d596f-a5b7-4d94-b245-54be7491c1cb_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "SourceId": "Bim.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\",
+      "BasePath": "_content/Bim.Server",
+      "RelativePath": "uploads/b43d596f-a5b7-4d94-b245-54be7491c1cb_Door-Folding-Hawa-Variotec-Glass-Parallel#[.{fingerprint}]?.ifc",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "02i849le48",
+      "Integrity": "mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\b43d596f-a5b7-4d94-b245-54be7491c1cb_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc"
+    },
+    {
+      "Identity": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\c69bfb4e-abb0-451a-b797-1cc9ac27fe5f_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "SourceId": "Bim.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\",
+      "BasePath": "_content/Bim.Server",
+      "RelativePath": "uploads/c69bfb4e-abb0-451a-b797-1cc9ac27fe5f_Door-Folding-Hawa-Variotec-Glass-Parallel#[.{fingerprint}]?.ifc",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "02i849le48",
+      "Integrity": "mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\c69bfb4e-abb0-451a-b797-1cc9ac27fe5f_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc"
+    },
+    {
+      "Identity": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\c9cc0f3b-4f61-45f7-8b13-d38733014190_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "SourceId": "Bim.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\",
+      "BasePath": "_content/Bim.Server",
+      "RelativePath": "uploads/c9cc0f3b-4f61-45f7-8b13-d38733014190_Door-Folding-Hawa-Variotec-Glass-Parallel#[.{fingerprint}]?.ifc",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "02i849le48",
+      "Integrity": "mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\c9cc0f3b-4f61-45f7-8b13-d38733014190_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc"
+    },
+    {
+      "Identity": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\cce862fa-5931-40e1-b1c5-3164f7b4d341_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "SourceId": "Bim.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\",
+      "BasePath": "_content/Bim.Server",
+      "RelativePath": "uploads/cce862fa-5931-40e1-b1c5-3164f7b4d341_Door-Folding-Hawa-Variotec-Glass-Parallel (1)#[.{fingerprint}]?.ifc",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "02i849le48",
+      "Integrity": "mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\cce862fa-5931-40e1-b1c5-3164f7b4d341_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc"
+    },
+    {
+      "Identity": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\d70a1d19-1815-40c7-8b47-b33d9b105092_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "SourceId": "Bim.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\",
+      "BasePath": "_content/Bim.Server",
+      "RelativePath": "uploads/d70a1d19-1815-40c7-8b47-b33d9b105092_Door-Folding-Hawa-Variotec-Glass-Parallel#[.{fingerprint}]?.ifc",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "02i849le48",
+      "Integrity": "mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\d70a1d19-1815-40c7-8b47-b33d9b105092_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc"
+    },
+    {
+      "Identity": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\e719d23a-7c89-4f77-b54c-715104f5f159_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "SourceId": "Bim.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\",
+      "BasePath": "_content/Bim.Server",
+      "RelativePath": "uploads/e719d23a-7c89-4f77-b54c-715104f5f159_Door-Folding-Hawa-Variotec-Glass-Parallel#[.{fingerprint}]?.ifc",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "02i849le48",
+      "Integrity": "mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\e719d23a-7c89-4f77-b54c-715104f5f159_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc"
+    },
+    {
+      "Identity": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\e9d0d0b7-4747-4ca7-867c-a7fdbb47d3d3_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "SourceId": "Bim.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\",
+      "BasePath": "_content/Bim.Server",
+      "RelativePath": "uploads/e9d0d0b7-4747-4ca7-867c-a7fdbb47d3d3_Door-Folding-Hawa-Variotec-Glass-Parallel#[.{fingerprint}]?.ifc",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "02i849le48",
+      "Integrity": "mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\e9d0d0b7-4747-4ca7-867c-a7fdbb47d3d3_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc"
+    },
+    {
+      "Identity": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\ec5b7b61-6488-4f08-9a63-24cfa2f96c96_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "SourceId": "Bim.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\",
+      "BasePath": "_content/Bim.Server",
+      "RelativePath": "uploads/ec5b7b61-6488-4f08-9a63-24cfa2f96c96_Door-Folding-Hawa-Variotec-Glass-Parallel#[.{fingerprint}]?.ifc",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "02i849le48",
+      "Integrity": "mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\ec5b7b61-6488-4f08-9a63-24cfa2f96c96_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc"
+    },
+    {
+      "Identity": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\f2449844-3175-481f-9057-9ded7af8553d_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "SourceId": "Bim.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\",
+      "BasePath": "_content/Bim.Server",
+      "RelativePath": "uploads/f2449844-3175-481f-9057-9ded7af8553d_Door-Folding-Hawa-Variotec-Glass-Parallel (1)#[.{fingerprint}]?.ifc",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "02i849le48",
+      "Integrity": "mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\f2449844-3175-481f-9057-9ded7af8553d_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc"
+    },
+    {
+      "Identity": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\f2fbe6f6-591e-4f21-8994-92e9fbcfa26a_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "SourceId": "Bim.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\",
+      "BasePath": "_content/Bim.Server",
+      "RelativePath": "uploads/f2fbe6f6-591e-4f21-8994-92e9fbcfa26a_Door-Folding-Hawa-Variotec-Glass-Parallel#[.{fingerprint}]?.ifc",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "02i849le48",
+      "Integrity": "mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\f2fbe6f6-591e-4f21-8994-92e9fbcfa26a_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc"
+    },
+    {
+      "Identity": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\fa6e83e4-1605-4697-95e4-c9d4b75dcf76_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "SourceId": "Bim.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\",
+      "BasePath": "_content/Bim.Server",
+      "RelativePath": "uploads/fa6e83e4-1605-4697-95e4-c9d4b75dcf76_Door-Folding-Hawa-Variotec-Glass-Parallel#[.{fingerprint}]?.ifc",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "02i849le48",
+      "Integrity": "mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\fa6e83e4-1605-4697-95e4-c9d4b75dcf76_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc"
+    },
+    {
+      "Identity": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\wasm\\web-ifc-mt.worker.js",
+      "SourceId": "Bim.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\",
+      "BasePath": "_content/Bim.Server",
+      "RelativePath": "wasm/web-ifc-mt.worker#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "30k87ck5i2",
+      "Integrity": "vVGY23rbxgaidJ5EayNAplSt12qqczmFDQqkUHtpGH8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\wasm\\web-ifc-mt.worker.js"
+    },
+    {
+      "Identity": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\wasm\\web-ifc.wasm",
+      "SourceId": "Bim.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\",
+      "BasePath": "_content/Bim.Server",
+      "RelativePath": "wasm/web-ifc#[.{fingerprint}]?.wasm",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "3336965fpz",
+      "Integrity": "H+YAVcurpJ1aTai1Aghz1l2YQG4atfei7w56x/4tw2A=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\wasm\\web-ifc.wasm"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "uploads/09b395d7-df09-4fc8-a89d-c0734575a9a3_Door-Folding-Hawa-Variotec-Glass-Parallel (1).02i849le48.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\09b395d7-df09-4fc8-a89d-c0734575a9a3_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 23 Apr 2025 14:16:17 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "02i849le48"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/09b395d7-df09-4fc8-a89d-c0734575a9a3_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/09b395d7-df09-4fc8-a89d-c0734575a9a3_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\09b395d7-df09-4fc8-a89d-c0734575a9a3_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 23 Apr 2025 14:16:17 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/120228d6-e31f-4732-9dbb-c16194581af9_Door-Folding-Hawa-Variotec-Glass-Parallel (1).02i849le48.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\120228d6-e31f-4732-9dbb-c16194581af9_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 13:50:58 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "02i849le48"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/120228d6-e31f-4732-9dbb-c16194581af9_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/120228d6-e31f-4732-9dbb-c16194581af9_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\120228d6-e31f-4732-9dbb-c16194581af9_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 13:50:58 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/1869ea5b-7e96-4c86-bb6e-8d6427d65ddb_Door-Folding-Hawa-Variotec-Glass-Parallel.02i849le48.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\1869ea5b-7e96-4c86-bb6e-8d6427d65ddb_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 14:12:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "02i849le48"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/1869ea5b-7e96-4c86-bb6e-8d6427d65ddb_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/1869ea5b-7e96-4c86-bb6e-8d6427d65ddb_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\1869ea5b-7e96-4c86-bb6e-8d6427d65ddb_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 14:12:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/210f3504-ff52-4c93-ae06-baa45ed4f934_Door-Folding-Hawa-Variotec-Glass-Parallel (1).02i849le48.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\210f3504-ff52-4c93-ae06-baa45ed4f934_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 14:10:11 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "02i849le48"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/210f3504-ff52-4c93-ae06-baa45ed4f934_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/210f3504-ff52-4c93-ae06-baa45ed4f934_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\210f3504-ff52-4c93-ae06-baa45ed4f934_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 14:10:11 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/252de5c2-3ded-4fdb-bca6-83da6dade8e3_Door-Folding-Hawa-Variotec-Glass-Parallel.02i849le48.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\252de5c2-3ded-4fdb-bca6-83da6dade8e3_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 14:43:21 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "02i849le48"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/252de5c2-3ded-4fdb-bca6-83da6dade8e3_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/252de5c2-3ded-4fdb-bca6-83da6dade8e3_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\252de5c2-3ded-4fdb-bca6-83da6dade8e3_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 14:43:21 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/2641d1a5-b82f-41c7-b8ac-fd8c061c2513_hsw60-ifc.i9i707kemb.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\2641d1a5-b82f-41c7-b8ac-fd8c061c2513_hsw60-ifc.ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "18683"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ymvJ0LSh2+i0YEz0DC2Mmt1yJwwyPsuxjm0Xp6Zwbxk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 23 Apr 2025 14:12:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "i9i707kemb"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/2641d1a5-b82f-41c7-b8ac-fd8c061c2513_hsw60-ifc.ifc"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ymvJ0LSh2+i0YEz0DC2Mmt1yJwwyPsuxjm0Xp6Zwbxk="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/2641d1a5-b82f-41c7-b8ac-fd8c061c2513_hsw60-ifc.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\2641d1a5-b82f-41c7-b8ac-fd8c061c2513_hsw60-ifc.ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "18683"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ymvJ0LSh2+i0YEz0DC2Mmt1yJwwyPsuxjm0Xp6Zwbxk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 23 Apr 2025 14:12:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ymvJ0LSh2+i0YEz0DC2Mmt1yJwwyPsuxjm0Xp6Zwbxk="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/3a08d612-0bf7-47ae-b352-d77f9cc73ee6_Door-Folding-Hawa-Variotec-Glass-Parallel (1).02i849le48.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\3a08d612-0bf7-47ae-b352-d77f9cc73ee6_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 13:57:38 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "02i849le48"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/3a08d612-0bf7-47ae-b352-d77f9cc73ee6_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/3a08d612-0bf7-47ae-b352-d77f9cc73ee6_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\3a08d612-0bf7-47ae-b352-d77f9cc73ee6_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 13:57:38 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/4630c8ee-5b0c-483f-82ac-d3fe4dfb09eb_Door-Folding-Hawa-Variotec-Glass-Parallel (1).02i849le48.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\4630c8ee-5b0c-483f-82ac-d3fe4dfb09eb_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 10:29:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "02i849le48"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/4630c8ee-5b0c-483f-82ac-d3fe4dfb09eb_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/4630c8ee-5b0c-483f-82ac-d3fe4dfb09eb_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\4630c8ee-5b0c-483f-82ac-d3fe4dfb09eb_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 10:29:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/4edf7084-7db7-4313-8663-317035bc1a29_Door-Folding-Hawa-Variotec-Glass-Parallel.02i849le48.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\4edf7084-7db7-4313-8663-317035bc1a29_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 14:35:11 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "02i849le48"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/4edf7084-7db7-4313-8663-317035bc1a29_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/4edf7084-7db7-4313-8663-317035bc1a29_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\4edf7084-7db7-4313-8663-317035bc1a29_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 14:35:11 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/4ffaf9e3-9731-4c97-8f71-b3653151d616_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\4ffaf9e3-9731-4c97-8f71-b3653151d616_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "130577"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Gv12HOvulcAVX9E+gOT9pTIL3hLLo4HVmhdJCsaUVDg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 14:56:03 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Gv12HOvulcAVX9E+gOT9pTIL3hLLo4HVmhdJCsaUVDg="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/4ffaf9e3-9731-4c97-8f71-b3653151d616_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.iywpq0zwnr.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\4ffaf9e3-9731-4c97-8f71-b3653151d616_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "130577"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Gv12HOvulcAVX9E+gOT9pTIL3hLLo4HVmhdJCsaUVDg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 14:56:03 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "iywpq0zwnr"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/4ffaf9e3-9731-4c97-8f71-b3653151d616_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.ifc"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Gv12HOvulcAVX9E+gOT9pTIL3hLLo4HVmhdJCsaUVDg="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/6a594246-95ab-482a-9dbf-9fa318d286ff_Door-Folding-Hawa-Variotec-Glass-Parallel (1).02i849le48.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\6a594246-95ab-482a-9dbf-9fa318d286ff_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 13:40:53 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "02i849le48"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/6a594246-95ab-482a-9dbf-9fa318d286ff_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/6a594246-95ab-482a-9dbf-9fa318d286ff_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\6a594246-95ab-482a-9dbf-9fa318d286ff_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 13:40:53 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/6e33264a-f30c-4535-9938-4b0de54516ca_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\6e33264a-f30c-4535-9938-4b0de54516ca_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "130577"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Gv12HOvulcAVX9E+gOT9pTIL3hLLo4HVmhdJCsaUVDg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 14:28:05 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Gv12HOvulcAVX9E+gOT9pTIL3hLLo4HVmhdJCsaUVDg="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/6e33264a-f30c-4535-9938-4b0de54516ca_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.iywpq0zwnr.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\6e33264a-f30c-4535-9938-4b0de54516ca_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "130577"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Gv12HOvulcAVX9E+gOT9pTIL3hLLo4HVmhdJCsaUVDg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 14:28:05 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "iywpq0zwnr"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/6e33264a-f30c-4535-9938-4b0de54516ca_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.ifc"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Gv12HOvulcAVX9E+gOT9pTIL3hLLo4HVmhdJCsaUVDg="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/79f9de81-dd9a-4350-bcba-5e6ec96b97aa_Door-Folding-Hawa-Variotec-Glass-Parallel (1).02i849le48.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\79f9de81-dd9a-4350-bcba-5e6ec96b97aa_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 14:48:34 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "02i849le48"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/79f9de81-dd9a-4350-bcba-5e6ec96b97aa_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/79f9de81-dd9a-4350-bcba-5e6ec96b97aa_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\79f9de81-dd9a-4350-bcba-5e6ec96b97aa_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 14:48:34 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/7a5c2eb4-255e-4284-84b9-832bf335f8ed_hsw60-ifc.i9i707kemb.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\7a5c2eb4-255e-4284-84b9-832bf335f8ed_hsw60-ifc.ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "18683"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ymvJ0LSh2+i0YEz0DC2Mmt1yJwwyPsuxjm0Xp6Zwbxk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 14:09:28 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "i9i707kemb"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/7a5c2eb4-255e-4284-84b9-832bf335f8ed_hsw60-ifc.ifc"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ymvJ0LSh2+i0YEz0DC2Mmt1yJwwyPsuxjm0Xp6Zwbxk="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/7a5c2eb4-255e-4284-84b9-832bf335f8ed_hsw60-ifc.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\7a5c2eb4-255e-4284-84b9-832bf335f8ed_hsw60-ifc.ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "18683"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ymvJ0LSh2+i0YEz0DC2Mmt1yJwwyPsuxjm0Xp6Zwbxk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 14:09:28 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ymvJ0LSh2+i0YEz0DC2Mmt1yJwwyPsuxjm0Xp6Zwbxk="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/7cbee169-6049-4e4d-9425-53f0ea99be0c_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\7cbee169-6049-4e4d-9425-53f0ea99be0c_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "130577"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Gv12HOvulcAVX9E+gOT9pTIL3hLLo4HVmhdJCsaUVDg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 14:02:16 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Gv12HOvulcAVX9E+gOT9pTIL3hLLo4HVmhdJCsaUVDg="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/7cbee169-6049-4e4d-9425-53f0ea99be0c_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.iywpq0zwnr.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\7cbee169-6049-4e4d-9425-53f0ea99be0c_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "130577"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Gv12HOvulcAVX9E+gOT9pTIL3hLLo4HVmhdJCsaUVDg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 14:02:16 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "iywpq0zwnr"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/7cbee169-6049-4e4d-9425-53f0ea99be0c_Sliding_Door-Hawa-Junior_80_B_with_Wall_Kit_3.5in_Wall_Kit.ifc"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Gv12HOvulcAVX9E+gOT9pTIL3hLLo4HVmhdJCsaUVDg="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/8a95bae1-d4c4-4d02-a124-0a563bf4c1e3_Door-Folding-Hawa-Variotec-Glass-Parallel.02i849le48.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\8a95bae1-d4c4-4d02-a124-0a563bf4c1e3_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 11:02:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "02i849le48"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/8a95bae1-d4c4-4d02-a124-0a563bf4c1e3_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/8a95bae1-d4c4-4d02-a124-0a563bf4c1e3_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\8a95bae1-d4c4-4d02-a124-0a563bf4c1e3_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 11:02:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/9b7962d8-ea75-4e19-9831-9976d0820803_Door-Folding-Hawa-Variotec-Glass-Parallel.02i849le48.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\9b7962d8-ea75-4e19-9831-9976d0820803_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 23 Apr 2025 14:12:18 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "02i849le48"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/9b7962d8-ea75-4e19-9831-9976d0820803_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/9b7962d8-ea75-4e19-9831-9976d0820803_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\9b7962d8-ea75-4e19-9831-9976d0820803_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 23 Apr 2025 14:12:18 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/aa81e77a-3019-4509-ae97-ced4aa4e873f_Door-Folding-Hawa-Variotec-Glass-Parallel (1).02i849le48.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\aa81e77a-3019-4509-ae97-ced4aa4e873f_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 23 Apr 2025 16:34:32 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "02i849le48"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/aa81e77a-3019-4509-ae97-ced4aa4e873f_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/aa81e77a-3019-4509-ae97-ced4aa4e873f_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\aa81e77a-3019-4509-ae97-ced4aa4e873f_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 23 Apr 2025 16:34:32 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/aaedcf3f-2c5a-4aca-9bac-9c1b9cae79a4_Door-Folding-Hawa-Variotec-Glass-Parallel (1).02i849le48.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\aaedcf3f-2c5a-4aca-9bac-9c1b9cae79a4_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 10:58:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "02i849le48"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/aaedcf3f-2c5a-4aca-9bac-9c1b9cae79a4_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/aaedcf3f-2c5a-4aca-9bac-9c1b9cae79a4_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\aaedcf3f-2c5a-4aca-9bac-9c1b9cae79a4_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 10:58:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/b43d596f-a5b7-4d94-b245-54be7491c1cb_Door-Folding-Hawa-Variotec-Glass-Parallel.02i849le48.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\b43d596f-a5b7-4d94-b245-54be7491c1cb_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 13:58:51 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "02i849le48"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/b43d596f-a5b7-4d94-b245-54be7491c1cb_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/b43d596f-a5b7-4d94-b245-54be7491c1cb_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\b43d596f-a5b7-4d94-b245-54be7491c1cb_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 13:58:51 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/c69bfb4e-abb0-451a-b797-1cc9ac27fe5f_Door-Folding-Hawa-Variotec-Glass-Parallel.02i849le48.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\c69bfb4e-abb0-451a-b797-1cc9ac27fe5f_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 13:51:40 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "02i849le48"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/c69bfb4e-abb0-451a-b797-1cc9ac27fe5f_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/c69bfb4e-abb0-451a-b797-1cc9ac27fe5f_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\c69bfb4e-abb0-451a-b797-1cc9ac27fe5f_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 13:51:40 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/c9cc0f3b-4f61-45f7-8b13-d38733014190_Door-Folding-Hawa-Variotec-Glass-Parallel.02i849le48.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\c9cc0f3b-4f61-45f7-8b13-d38733014190_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 23 Apr 2025 14:19:18 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "02i849le48"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/c9cc0f3b-4f61-45f7-8b13-d38733014190_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/c9cc0f3b-4f61-45f7-8b13-d38733014190_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\c9cc0f3b-4f61-45f7-8b13-d38733014190_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 23 Apr 2025 14:19:18 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/cce862fa-5931-40e1-b1c5-3164f7b4d341_Door-Folding-Hawa-Variotec-Glass-Parallel (1).02i849le48.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\cce862fa-5931-40e1-b1c5-3164f7b4d341_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 10:18:51 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "02i849le48"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/cce862fa-5931-40e1-b1c5-3164f7b4d341_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/cce862fa-5931-40e1-b1c5-3164f7b4d341_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\cce862fa-5931-40e1-b1c5-3164f7b4d341_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 10:18:51 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/d70a1d19-1815-40c7-8b47-b33d9b105092_Door-Folding-Hawa-Variotec-Glass-Parallel.02i849le48.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\d70a1d19-1815-40c7-8b47-b33d9b105092_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 13:55:41 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "02i849le48"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/d70a1d19-1815-40c7-8b47-b33d9b105092_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/d70a1d19-1815-40c7-8b47-b33d9b105092_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\d70a1d19-1815-40c7-8b47-b33d9b105092_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 13:55:41 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/e719d23a-7c89-4f77-b54c-715104f5f159_Door-Folding-Hawa-Variotec-Glass-Parallel.02i849le48.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\e719d23a-7c89-4f77-b54c-715104f5f159_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 14:41:18 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "02i849le48"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/e719d23a-7c89-4f77-b54c-715104f5f159_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/e719d23a-7c89-4f77-b54c-715104f5f159_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\e719d23a-7c89-4f77-b54c-715104f5f159_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 14:41:18 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/e9d0d0b7-4747-4ca7-867c-a7fdbb47d3d3_Door-Folding-Hawa-Variotec-Glass-Parallel.02i849le48.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\e9d0d0b7-4747-4ca7-867c-a7fdbb47d3d3_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 14:42:54 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "02i849le48"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/e9d0d0b7-4747-4ca7-867c-a7fdbb47d3d3_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/e9d0d0b7-4747-4ca7-867c-a7fdbb47d3d3_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\e9d0d0b7-4747-4ca7-867c-a7fdbb47d3d3_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 14:42:54 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/ec5b7b61-6488-4f08-9a63-24cfa2f96c96_Door-Folding-Hawa-Variotec-Glass-Parallel.02i849le48.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\ec5b7b61-6488-4f08-9a63-24cfa2f96c96_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 23 Apr 2025 16:26:48 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "02i849le48"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/ec5b7b61-6488-4f08-9a63-24cfa2f96c96_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/ec5b7b61-6488-4f08-9a63-24cfa2f96c96_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\ec5b7b61-6488-4f08-9a63-24cfa2f96c96_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 23 Apr 2025 16:26:48 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/f2449844-3175-481f-9057-9ded7af8553d_Door-Folding-Hawa-Variotec-Glass-Parallel (1).02i849le48.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\f2449844-3175-481f-9057-9ded7af8553d_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 10:24:14 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "02i849le48"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/f2449844-3175-481f-9057-9ded7af8553d_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/f2449844-3175-481f-9057-9ded7af8553d_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\f2449844-3175-481f-9057-9ded7af8553d_Door-Folding-Hawa-Variotec-Glass-Parallel (1).ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 10:24:14 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/f2fbe6f6-591e-4f21-8994-92e9fbcfa26a_Door-Folding-Hawa-Variotec-Glass-Parallel.02i849le48.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\f2fbe6f6-591e-4f21-8994-92e9fbcfa26a_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 13:39:15 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "02i849le48"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/f2fbe6f6-591e-4f21-8994-92e9fbcfa26a_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/f2fbe6f6-591e-4f21-8994-92e9fbcfa26a_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\f2fbe6f6-591e-4f21-8994-92e9fbcfa26a_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 13:39:15 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/fa6e83e4-1605-4697-95e4-c9d4b75dcf76_Door-Folding-Hawa-Variotec-Glass-Parallel.02i849le48.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\fa6e83e4-1605-4697-95e4-c9d4b75dcf76_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 14:04:41 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "02i849le48"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/fa6e83e4-1605-4697-95e4-c9d4b75dcf76_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/fa6e83e4-1605-4697-95e4-c9d4b75dcf76_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\uploads\\fa6e83e4-1605-4697-95e4-c9d4b75dcf76_Door-Folding-Hawa-Variotec-Glass-Parallel.ifc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2923792"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 14:04:41 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-mNorsorwNomYXOs1DUI2O6SihQTMB9AK1Uo/HmCig2A="
+        }
+      ]
+    },
+    {
+      "Route": "wasm/web-ifc-mt.worker.30k87ck5i2.js",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\wasm\\web-ifc-mt.worker.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2239"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"vVGY23rbxgaidJ5EayNAplSt12qqczmFDQqkUHtpGH8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 23 Apr 2025 13:37:30 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "30k87ck5i2"
+        },
+        {
+          "Name": "label",
+          "Value": "wasm/web-ifc-mt.worker.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-vVGY23rbxgaidJ5EayNAplSt12qqczmFDQqkUHtpGH8="
+        }
+      ]
+    },
+    {
+      "Route": "wasm/web-ifc-mt.worker.js",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\wasm\\web-ifc-mt.worker.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2239"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"vVGY23rbxgaidJ5EayNAplSt12qqczmFDQqkUHtpGH8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 23 Apr 2025 13:37:30 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-vVGY23rbxgaidJ5EayNAplSt12qqczmFDQqkUHtpGH8="
+        }
+      ]
+    },
+    {
+      "Route": "wasm/web-ifc.3336965fpz.wasm",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\wasm\\web-ifc.wasm",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1141095"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/wasm"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"H+YAVcurpJ1aTai1Aghz1l2YQG4atfei7w56x/4tw2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 23 Apr 2025 15:17:12 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "3336965fpz"
+        },
+        {
+          "Name": "label",
+          "Value": "wasm/web-ifc.wasm"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-H+YAVcurpJ1aTai1Aghz1l2YQG4atfei7w56x/4tw2A="
+        }
+      ]
+    },
+    {
+      "Route": "wasm/web-ifc.wasm",
+      "AssetFile": "C:\\Users\\MKhalladi\\Desktop\\SmartBim1\\Bim.Server\\Bim.Server\\wwwroot\\wasm\\web-ifc.wasm",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1141095"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/wasm"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"H+YAVcurpJ1aTai1Aghz1l2YQG4atfei7w56x/4tw2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 23 Apr 2025 15:17:12 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-H+YAVcurpJ1aTai1Aghz1l2YQG4atfei7w56x/4tw2A="
+        }
+      ]
+    }
+  ]
+}
