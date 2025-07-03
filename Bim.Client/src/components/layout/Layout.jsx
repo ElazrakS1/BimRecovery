@@ -1,80 +1,88 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Header from '../header/Header';
 import Sidebar from '../sidebar/Sidebar';
+import UserProfile from '../users/UserProfile';
+import { AuthContext } from '../../context/AuthContext';
 import './Layout.css';
 
 const Layout = ({ children }) => {
-  const [userData, setUserData] = useState(null);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const { isAuthenticated, userData: authUserData, checkAuth } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
 
   // Fonction pour déterminer le titre de la page
   const getPageTitle = (pathname) => {
-    switch(pathname) {
-      case '/':
-      case '/dashboard':
-        return 'Dashboard';
-      case '/maquettes':
-        return 'Maquettes';
-      case '/projects':
-        return 'Projets';
-      case '/settings':
-        return 'Paramètres';
-      case '/profile':
-        return 'Profile';
-      default:
-        return 'Smart BIM';
+    if (pathname === '/' || pathname === '/dashboard') {
+      return 'Dashboard';
+    } else if (pathname === '/maquettes') {
+      return 'Maquettes';
+    } else if (pathname === '/projects') {
+      return 'Projets';
+    } else if (pathname.startsWith('/projects/')) {
+      return 'Détails du Projet';
+    } else if (pathname === '/settings') {
+      return 'Paramètres';
+    } else if (pathname === '/profile') {
+      return 'Profile';
+    } else if (pathname === '/tasks') {
+      return 'Tâches';
+    } else {
+      return 'Smart BIM';
     }
   };
 
   useEffect(() => {
-    const fetchUserData = async () => {
+    const verifyAuth = async () => {
       try {
-        const token = localStorage.getItem('token') || sessionStorage.getItem('token');
-        if (!token) {
-          navigate('/login');
-          return;
-        }
-
-        const response = await fetch('https://localhost:7258/api/auth/me', {
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
+        if (!isAuthenticated) {
+          const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+          if (!token) {
+            console.log('No authentication token found, redirecting to login');
+            navigate('/login');
+            return;
           }
-        });
 
-        if (!response.ok) throw new Error('Failed to fetch user data');
-        const data = await response.json();
-        setUserData(data);
+          const verified = await checkAuth();
+          if (!verified) {
+            console.log('Authentication verification failed, redirecting to login');
+            navigate('/login');
+          }
+        }
       } catch (error) {
-        console.error('Error fetching user data:', error);
+        console.error('Auth verification error:', error);
         navigate('/login');
       }
     };
 
-    fetchUserData();
-  }, [navigate]);
+    verifyAuth();
+  }, [isAuthenticated, navigate, checkAuth]);
 
-  const handleSidebarCollapse = (collapsed) => {
-    setSidebarCollapsed(collapsed);
-  };
-
+  if (!isAuthenticated || !authUserData) {
+    return null; // or a loading spinner
+  }
   return (
-    <div className="app-container">
+    <div className="layout">
       <Header 
-        title={getPageTitle(location.pathname)}
-        userData={userData} 
-      />
-      <div className={`content-wrapper ${sidebarCollapsed ? 'sidebar-collapsed' : ''}`}>
-        <Sidebar 
-          userData={userData} 
-          onCollapse={handleSidebarCollapse}
-          collapsed={sidebarCollapsed}
-        />
-        <main className="main-content">
-          {children}
+        pageTitle={getPageTitle(location.pathname)}
+        userData={authUserData}
+        sidebarCollapsed={sidebarCollapsed}
+        onToggleSidebar={() => setSidebarCollapsed(!sidebarCollapsed)}
+      />      <div className="content-wrapper">
+        <Sidebar collapsed={sidebarCollapsed} userData={authUserData} />
+        <main className={`main-content ${sidebarCollapsed ? 'expanded' : ''}`}>
+          {location.pathname === '/profile' ? (
+            <UserProfile />
+          ) : (
+            <>
+              {/* Only show the user profile on settings page */}
+              {location.pathname === '/settings' && (
+                <UserProfile />
+              )}
+              {children}
+            </>
+          )}
         </main>
       </div>
     </div>

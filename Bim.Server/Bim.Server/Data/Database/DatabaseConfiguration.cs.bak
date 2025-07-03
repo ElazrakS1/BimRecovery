@@ -1,0 +1,86 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Configuration;
+
+namespace Bim.Server.Data.Database
+{
+    /// <summary>
+    /// Configuration and factory for database contexts.
+    /// Implements both runtime factory (for DI) and design-time factory (for EF Tools).
+    /// </summary>
+    public class DatabaseConfiguration : 
+        IDesignTimeDbContextFactory<ApplicationDbContext>,
+        IDbContextFactory<ApplicationDbContext>
+    {        private readonly DbContextOptions<ApplicationDbContext>? _options;
+
+        /// <summary>
+        /// Constructor for runtime use with dependency injection
+        /// </summary>
+        public DatabaseConfiguration(string connectionString)
+        {
+            _options = CreateOptions(connectionString);
+        }
+
+        /// <summary>
+        /// Constructor for design-time use with EF Tools
+        /// </summary>
+        public DatabaseConfiguration()
+        {
+            // This will be used by EF Tools
+        }
+
+        public ApplicationDbContext CreateDbContext()
+        {
+            return CreateDbContext(Array.Empty<string>());
+        }
+
+        public ApplicationDbContext CreateDbContext(string[] args)
+        {
+            if (_options != null)
+            {
+                return new ApplicationDbContext(_options);
+            }
+
+            // For design-time factory usage, read from configuration
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json")
+                .AddJsonFile("appsettings.Development.json", optional: true)
+                .Build();
+
+            var connectionString = configuration.GetConnectionString("DefaultConnection")
+                ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+
+            var options = CreateOptions(connectionString);
+            return new ApplicationDbContext(options);
+        }
+
+        private static DbContextOptions<ApplicationDbContext> CreateOptions(string connectionString)
+        {
+            var builder = new DbContextOptionsBuilder<ApplicationDbContext>();
+            builder.UseSqlServer(connectionString, options => 
+            {
+                options.EnableRetryOnFailure();
+                options.CommandTimeout(30);
+            });
+            
+            return builder.Options;
+        }
+
+        /// <summary>
+        /// Extension method to register database services
+        /// </summary>
+        public static void AddDatabaseServices(IServiceCollection services, string connectionString)
+        {
+            // Create the configuration
+            var config = new DatabaseConfiguration(connectionString);
+            
+            // Register the DbContext
+            services.AddDbContext<ApplicationDbContext>(options => 
+                options.UseSqlServer(connectionString));
+
+            // Register the factory
+            services.AddSingleton<IDbContextFactory<ApplicationDbContext>>(config);
+        }
+    }
+}

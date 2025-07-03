@@ -1,9 +1,11 @@
+/* eslint-disable react-refresh/only-export-components */
 import React, { createContext, useState, useEffect } from 'react';
 
 export const LanguageContext = createContext();
 
 const translations = {
   fr: {
+    interoperability: 'Interopérabilité et Intégration',
     search: 'Rechercher...',
     notifications: 'Notifications',
     markAllRead: 'Tout marquer comme lu',
@@ -65,6 +67,7 @@ const translations = {
     somethingWentWrong: 'Une erreur est survenue'
   },
   en: {
+    interoperability: 'Interoperability and Integration',
     search: 'Search...',
     notifications: 'Notifications',
     markAllRead: 'Mark all as read',

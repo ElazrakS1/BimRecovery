@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnostic - Se souvenir de moi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6356e5;
+            --primary-dark: #1e1b4b;
+            --primary-medium: #4338ca;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-medium) 100%);
+            min-height: 100vh;
+        }
+
+        .diagnostic-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .diagnostic-title {
+            color: var(--primary-dark);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .test-section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 2px solid var(--primary);
+            border-radius: 10px;
+        }
+
+        .test-section h3 {
+            margin: 0 0 20px 0;
+            color: var(--primary-dark);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 10px;
+        }
+
+        .viewport-info {
+            background: rgba(99, 86, 229, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        /* CSS EXACT DE VOTRE Login.css */
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            font-size: 14px;
+            border: 2px dashed #e74c3c;
+            padding: 10px;
+            background: rgba(231, 76, 60, 0.1);
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-medium);
+            font-weight: 500;
+            border: 1px solid #10b981;
+            padding: 5px;
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .remember-me input[type="checkbox"] {
+            width: auto;
+            height: auto;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            transform: none;
+            background: transparent;
+            border: 2px solid var(--primary);
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .remember-me input[type="checkbox"]:checked {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .remember-me label {
+            color: var(--primary-medium);
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+            position: relative;
+            transform: none;
+            opacity: 1 !important;
+            visibility: visible !important;
+            background: transparent;
+            margin: 0;
+            padding: 0;
+            border: 1px solid #f39c12;
+            padding: 2px;
+            background: rgba(243, 156, 18, 0.1);
+        }
+
+        .forgot-password {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid #9b59b6;
+            padding: 5px;
+            background: rgba(155, 89, 182, 0.1);
+        }
+
+        .forgot-password:hover {
+            color: var(--primary-medium);
+            text-decoration: underline;
+        }
+
+        /* Test avec différentes largeurs */
+        .width-test {
+            border: 2px solid #3498db;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(52, 152, 219, 0.1);
+        }
+
+        .width-test h4 {
+            margin: 0 0 10px 0;
+            color: #3498db;
+        }
+
+        /* Media queries EXACTES de Login.css */
+        @media (max-width: 992px) {
+            .form-options-992 {
+                background: rgba(255, 193, 7, 0.2);
+                border: 2px solid #ffc107;
+            }
+            .form-options-992::before {
+                content: "Media Query 992px activée";
+                color: #ffc107;
+                font-weight: bold;
+                display: block;
+                margin-bottom: 10px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .form-options {
+                flex-direction: row !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+                gap: 10px !important;
+                font-size: 12px !important;
+                background: rgba(46, 204, 113, 0.2) !important;
+                border: 3px solid #2ecc71 !important;
+            }
+            
+            .form-options::before {
+                content: "Media Query 576px ACTIVÉE - Force flex-direction: row";
+                color: #2ecc71;
+                font-weight: bold;
+                display: block;
+                margin-bottom: 10px;
+                font-size: 11px;
+            }
+            
+            .remember-me {
+                font-size: 12px !important;
+            }
+            
+            .remember-me label {
+                font-size: 12px !important;
+            }
+            
+            .forgot-password {
+                font-size: 12px !important;
+            }
+        }
+
+        /* Test encore plus petit */
+        @media (max-width: 320px) {
+            .form-options::before {
+                content: "Media Query 320px ACTIVÉE - Ultra petit écran";
+                color: #e74c3c;
+            }
+        }
+
+        .debug-info {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 12px;
+            margin-top: 10px;
+            border: 1px solid #dee2e6;
+        }
+    </style>
+</head>
+<body>
+    <div class="diagnostic-container">
+        <h1 class="diagnostic-title">🔍 Diagnostic - Se souvenir de moi</h1>
+        
+        <div class="viewport-info">
+            <strong>Largeur actuelle:</strong> <span id="viewport-width"></span>px |
+            <strong>Hauteur:</strong> <span id="viewport-height"></span>px |
+            <strong>État:</strong> <span id="responsive-state"></span>
+        </div>
+
+        <div class="test-section">
+            <h3>Test 1: Structure EXACTE de Login.jsx</h3>
+            <div class="form-options">
+                <div class="remember-me">
+                    <input type="checkbox" id="remember1" />
+                    <label for="remember1">Se souvenir de moi</label>
+                </div>
+                <a href="#" class="forgot-password">Mot de passe oublié ?</a>
+            </div>
+            <div class="debug-info">
+                Conteneur form-options avec bordure rouge pointillée pour visualisation
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h3>Test 2: Différentes largeurs forcées</h3>
+            
+            <div class="width-test" style="width: 600px;">
+                <h4>Largeur 600px (Desktop)</h4>
+                <div class="form-options">
+                    <div class="remember-me">
+                        <input type="checkbox" id="remember2" />
+                        <label for="remember2">Se souvenir de moi</label>
+                    </div>
+                    <a href="#" class="forgot-password">Mot de passe oublié ?</a>
+                </div>
+            </div>
+
+            <div class="width-test" style="width: 400px;">
+                <h4>Largeur 400px (Tablette)</h4>
+                <div class="form-options">
+                    <div class="remember-me">
+                        <input type="checkbox" id="remember3" />
+                        <label for="remember3">Se souvenir de moi</label>
+                    </div>
+                    <a href="#" class="forgot-password">Mot de passe oublié ?</a>
+                </div>
+            </div>
+
+            <div class="width-test" style="width: 300px;">
+                <h4>Largeur 300px (Mobile)</h4>
+                <div class="form-options">
+                    <div class="remember-me">
+                        <input type="checkbox" id="remember4" />
+                        <label for="remember4">Se souvenir de moi</label>
+                    </div>
+                    <a href="#" class="forgot-password">Mot de passe oublié ?</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h3>Test 3: Informations CSS en temps réel</h3>
+            <div id="css-debug"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>Instructions de test</h3>
+            <ul>
+                <li>📱 <strong>Redimensionnez la fenêtre</strong> pour tester différentes largeurs</li>
+                <li>🔍 <strong>Inspectez les bordures colorées</strong> pour voir la structure</li>
+                <li>📏 <strong>Notez les changements CSS</strong> selon la largeur d'écran</li>
+                <li>⚡ <strong>Les media queries</strong> doivent s'activer automatiquement</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function updateViewportInfo() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            document.getElementById('viewport-width').textContent = width;
+            document.getElementById('viewport-height').textContent = height;
+            
+            let state = 'Desktop (> 992px)';
+            if (width <= 320) {
+                state = 'Ultra Mobile (≤ 320px)';
+            } else if (width <= 576) {
+                state = 'Mobile (≤ 576px)';
+            } else if (width <= 992) {
+                state = 'Tablette (≤ 992px)';
+            }
+            
+            document.getElementById('responsive-state').textContent = state;
+            
+            // Debug CSS
+            const formOptions = document.querySelector('.form-options');
+            const computedStyle = window.getComputedStyle(formOptions);
+            
+            document.getElementById('css-debug').innerHTML = `
+                <strong>CSS Computed pour .form-options:</strong><br>
+                display: ${computedStyle.display}<br>
+                flex-direction: ${computedStyle.flexDirection}<br>
+                justify-content: ${computedStyle.justifyContent}<br>
+                align-items: ${computedStyle.alignItems}<br>
+                gap: ${computedStyle.gap}<br>
+                font-size: ${computedStyle.fontSize}<br>
+                width: ${computedStyle.width}<br>
+                <br>
+                <strong>Breakpoints atteints:</strong><br>
+                • 992px: ${width <= 992 ? '✅ OUI' : '❌ NON'}<br>
+                • 576px: ${width <= 576 ? '✅ OUI' : '❌ NON'}<br>
+                • 320px: ${width <= 320 ? '✅ OUI' : '❌ NON'}
+            `;
+        }
+
+        // Mettre à jour les infos au chargement et au redimensionnement
+        updateViewportInfo();
+        window.addEventListener('resize', updateViewportInfo);
+
+        // Mettre à jour toutes les 500ms pour capturer les changements
+        setInterval(updateViewportInfo, 500);
+
+        // Test des checkboxes
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                console.log(`Checkbox ${this.id}:`, this.checked);
+            });
+        });
+    </script>
+</body>
+</html>

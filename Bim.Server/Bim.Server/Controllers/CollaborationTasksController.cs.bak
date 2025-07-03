@@ -1,0 +1,595 @@
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
+using Bim.Server.Data;
+using Bim.Server.Models.DTOs;
+using Bim.Server.Services;
+
+namespace Bim.Server.Controllers
+{
+    [Authorize]
+    [ApiController]
+    [Route("api/[controller]")]
+    public class CollaborationTasksController : ControllerBase
+    {        private readonly ApplicationDbContext _context;
+        // private readonly INotificationService _notificationService;
+        private readonly ILogger<CollaborationTasksController> _logger;
+
+        public CollaborationTasksController(
+            ApplicationDbContext context,
+            // INotificationService notificationService,
+            ILogger<CollaborationTasksController> logger)
+        {
+            _context = context;
+            // _notificationService = notificationService;
+            _logger = logger;
+        }
+
+        /// <summary>
+        /// Obtenir toutes les tâches d'un projet
+        /// </summary>
+        [HttpGet("project/{projectId}")]
+        public async Task<ActionResult<List<TaskDto>>> GetProjectTasks(int projectId)
+        {
+            try
+            {
+                var tasks = await _context.Tasks
+                    .Where(t => t.ProjectId == projectId)
+                    .Include(t => t.Project)
+                    .Include(t => t.CreatedBy)
+                    .Include(t => t.AssignedTo)
+                    .Include(t => t.Comments)
+                        .ThenInclude(c => c.Author)
+                    .OrderByDescending(t => t.CreatedAt)
+                    .Select(t => new TaskDto
+                    {
+                        Id = t.Id,
+                        Title = t.Title,
+                        Description = t.Description,
+                        ProjectId = t.ProjectId,
+                        ProjectName = t.Project.Name,
+                        CreatedById = t.CreatedById,
+                        CreatedByName = $"{t.CreatedBy.FirstName} {t.CreatedBy.LastName}".Trim(),
+                        AssignedToId = t.AssignedToId,
+                        AssignedToName = t.AssignedTo != null ? $"{t.AssignedTo.FirstName} {t.AssignedTo.LastName}".Trim() : null,
+                        AssignedToEmail = t.AssignedTo != null ? t.AssignedTo.Email : null,
+                        Status = t.Status,
+                        Priority = t.Priority,
+                        CreatedAt = t.CreatedAt,
+                        UpdatedAt = t.UpdatedAt,
+                        DueDate = t.DueDate,
+                        CompletedAt = t.CompletedAt,
+                        RelatedAnnotationId = t.RelatedAnnotationId,
+                        TargetElementId = t.TargetElementId,
+                        PositionX = t.PositionX,
+                        PositionY = t.PositionY,
+                        PositionZ = t.PositionZ,
+                        Tags = t.Tags,
+                        Progress = t.Progress,
+                        Comments = t.Comments.Select(c => new TaskCommentDto
+                        {
+                            Id = c.Id,
+                            Content = c.Content,
+                            TaskId = c.TaskId,
+                            AuthorId = c.AuthorId,
+                            AuthorName = $"{c.Author.FirstName} {c.Author.LastName}".Trim(),
+                            AuthorEmail = c.Author.Email ?? "",
+                            CreatedAt = c.CreatedAt,
+                            UpdatedAt = c.UpdatedAt,
+                            ParentCommentId = c.ParentCommentId
+                        }).ToList()
+                    })
+                    .ToListAsync();
+
+                return Ok(tasks);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error retrieving tasks for project {ProjectId}", projectId);
+                return StatusCode(500, new { message = "Erreur lors de la récupération des tâches" });
+            }
+        }
+
+        /// <summary>
+        /// Obtenir les tâches assignées à l'utilisateur connecté
+        /// </summary>
+        [HttpGet("my-tasks")]
+        public async Task<ActionResult<List<TaskDto>>> GetMyTasks()
+        {
+            try
+            {
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                if (string.IsNullOrEmpty(userId))
+                {
+                    return Unauthorized();
+                }
+
+                var tasks = await _context.Tasks
+                    .Where(t => t.AssignedToId == userId)
+                    .Include(t => t.Project)
+                    .Include(t => t.CreatedBy)
+                    .Include(t => t.AssignedTo)
+                    .Include(t => t.Comments)
+                        .ThenInclude(c => c.Author)
+                    .OrderByDescending(t => t.CreatedAt)
+                    .Select(t => new TaskDto
+                    {
+                        Id = t.Id,
+                        Title = t.Title,
+                        Description = t.Description,
+                        ProjectId = t.ProjectId,
+                        ProjectName = t.Project.Name,
+                        CreatedById = t.CreatedById,
+                        CreatedByName = $"{t.CreatedBy.FirstName} {t.CreatedBy.LastName}".Trim(),
+                        AssignedToId = t.AssignedToId,
+                        AssignedToName = t.AssignedTo != null ? $"{t.AssignedTo.FirstName} {t.AssignedTo.LastName}".Trim() : null,
+                        AssignedToEmail = t.AssignedTo != null ? t.AssignedTo.Email : null,
+                        Status = t.Status,
+                        Priority = t.Priority,
+                        CreatedAt = t.CreatedAt,
+                        UpdatedAt = t.UpdatedAt,
+                        DueDate = t.DueDate,
+                        CompletedAt = t.CompletedAt,
+                        RelatedAnnotationId = t.RelatedAnnotationId,
+                        TargetElementId = t.TargetElementId,
+                        PositionX = t.PositionX,
+                        PositionY = t.PositionY,
+                        PositionZ = t.PositionZ,
+                        Tags = t.Tags,
+                        Progress = t.Progress,
+                        Comments = t.Comments.Select(c => new TaskCommentDto
+                        {
+                            Id = c.Id,
+                            Content = c.Content,
+                            TaskId = c.TaskId,
+                            AuthorId = c.AuthorId,
+                            AuthorName = $"{c.Author.FirstName} {c.Author.LastName}".Trim(),
+                            AuthorEmail = c.Author.Email ?? "",
+                            CreatedAt = c.CreatedAt,
+                            UpdatedAt = c.UpdatedAt,
+                            ParentCommentId = c.ParentCommentId
+                        }).ToList()
+                    })
+                    .ToListAsync();
+
+                return Ok(tasks);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error retrieving user tasks");
+                return StatusCode(500, new { message = "Erreur lors de la récupération de vos tâches" });
+            }
+        }
+
+        /// <summary>
+        /// Obtenir une tâche spécifique
+        /// </summary>
+        [HttpGet("{id}")]
+        public async Task<ActionResult<TaskDto>> GetTask(int id)
+        {
+            try
+            {
+                var task = await _context.Tasks
+                    .Include(t => t.Project)
+                    .Include(t => t.CreatedBy)
+                    .Include(t => t.AssignedTo)
+                    .Include(t => t.Comments)
+                        .ThenInclude(c => c.Author)
+                    .Where(t => t.Id == id)
+                    .Select(t => new TaskDto
+                    {
+                        Id = t.Id,
+                        Title = t.Title,
+                        Description = t.Description,
+                        ProjectId = t.ProjectId,
+                        ProjectName = t.Project.Name,
+                        CreatedById = t.CreatedById,
+                        CreatedByName = $"{t.CreatedBy.FirstName} {t.CreatedBy.LastName}".Trim(),
+                        AssignedToId = t.AssignedToId,
+                        AssignedToName = t.AssignedTo != null ? $"{t.AssignedTo.FirstName} {t.AssignedTo.LastName}".Trim() : null,
+                        AssignedToEmail = t.AssignedTo != null ? t.AssignedTo.Email : null,
+                        Status = t.Status,
+                        Priority = t.Priority,
+                        CreatedAt = t.CreatedAt,
+                        UpdatedAt = t.UpdatedAt,
+                        DueDate = t.DueDate,
+                        CompletedAt = t.CompletedAt,
+                        RelatedAnnotationId = t.RelatedAnnotationId,
+                        TargetElementId = t.TargetElementId,
+                        PositionX = t.PositionX,
+                        PositionY = t.PositionY,
+                        PositionZ = t.PositionZ,
+                        Tags = t.Tags,
+                        Progress = t.Progress,
+                        Comments = t.Comments.OrderBy(c => c.CreatedAt).Select(c => new TaskCommentDto
+                        {
+                            Id = c.Id,
+                            Content = c.Content,
+                            TaskId = c.TaskId,
+                            AuthorId = c.AuthorId,
+                            AuthorName = $"{c.Author.FirstName} {c.Author.LastName}".Trim(),
+                            AuthorEmail = c.Author.Email ?? "",
+                            CreatedAt = c.CreatedAt,
+                            UpdatedAt = c.UpdatedAt,
+                            ParentCommentId = c.ParentCommentId
+                        }).ToList()
+                    })
+                    .FirstOrDefaultAsync();
+
+                if (task == null)
+                {
+                    return NotFound(new { message = "Tâche non trouvée" });
+                }
+
+                return Ok(task);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error retrieving task {TaskId}", id);
+                return StatusCode(500, new { message = "Erreur lors de la récupération de la tâche" });
+            }
+        }
+
+        /// <summary>
+        /// Créer une nouvelle tâche
+        /// </summary>
+        [HttpPost]
+        public async Task<ActionResult<TaskDto>> CreateTask([FromBody] CreateTaskDto createDto)
+        {
+            try
+            {
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                if (string.IsNullOrEmpty(userId))
+                {
+                    return Unauthorized();
+                }
+
+                // Vérifier que le projet existe
+                var project = await _context.Projects.FindAsync(createDto.ProjectId);
+                if (project == null)
+                {
+                    return NotFound(new { message = "Projet non trouvé" });
+                }
+
+                // Vérifier que l'utilisateur assigné existe (si spécifié)
+                if (!string.IsNullOrEmpty(createDto.AssignedToId))
+                {
+                    var assignedUser = await _context.Users.FindAsync(createDto.AssignedToId);
+                    if (assignedUser == null)
+                    {
+                        return BadRequest(new { message = "Utilisateur assigné non trouvé" });
+                    }
+                }
+
+                var task = new Models.Task
+                {
+                    Title = createDto.Title,
+                    Description = createDto.Description,
+                    ProjectId = createDto.ProjectId,
+                    CreatedById = userId,
+                    AssignedToId = createDto.AssignedToId,
+                    Priority = createDto.Priority,
+                    DueDate = createDto.DueDate,
+                    RelatedAnnotationId = createDto.RelatedAnnotationId,
+                    TargetElementId = createDto.TargetElementId,
+                    PositionX = createDto.PositionX,
+                    PositionY = createDto.PositionY,
+                    PositionZ = createDto.PositionZ,
+                    Tags = createDto.Tags,
+                    CreatedAt = DateTime.UtcNow,
+                    Status = "pending",
+                    Progress = 0
+                };
+
+                _context.Tasks.Add(task);
+                await _context.SaveChangesAsync();
+
+                // Charger la tâche avec les données complètes
+                var createdTask = await _context.Tasks
+                    .Include(t => t.Project)
+                    .Include(t => t.CreatedBy)
+                    .Include(t => t.AssignedTo)
+                    .Where(t => t.Id == task.Id)
+                    .Select(t => new TaskDto
+                    {
+                        Id = t.Id,
+                        Title = t.Title,
+                        Description = t.Description,
+                        ProjectId = t.ProjectId,
+                        ProjectName = t.Project.Name,
+                        CreatedById = t.CreatedById,
+                        CreatedByName = $"{t.CreatedBy.FirstName} {t.CreatedBy.LastName}".Trim(),
+                        AssignedToId = t.AssignedToId,
+                        AssignedToName = t.AssignedTo != null ? $"{t.AssignedTo.FirstName} {t.AssignedTo.LastName}".Trim() : null,
+                        AssignedToEmail = t.AssignedTo != null ? t.AssignedTo.Email : null,
+                        Status = t.Status,
+                        Priority = t.Priority,
+                        CreatedAt = t.CreatedAt,
+                        UpdatedAt = t.UpdatedAt,
+                        DueDate = t.DueDate,
+                        CompletedAt = t.CompletedAt,
+                        RelatedAnnotationId = t.RelatedAnnotationId,
+                        TargetElementId = t.TargetElementId,
+                        PositionX = t.PositionX,
+                        PositionY = t.PositionY,
+                        PositionZ = t.PositionZ,
+                        Tags = t.Tags,
+                        Progress = t.Progress,
+                        Comments = new List<TaskCommentDto>()
+                    })
+                    .FirstAsync();
+
+                // Envoyer une notification si la tâche est assignée
+                if (!string.IsNullOrEmpty(createDto.AssignedToId))
+                {
+                    // await _notificationService.NotifyTaskAssignedAsync(task.Id, createDto.AssignedToId, userId);
+                }
+
+                _logger.LogInformation("Task created successfully: {TaskId} by user {UserId}", task.Id, userId);
+
+                return CreatedAtAction(nameof(GetTask), new { id = task.Id }, createdTask);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error creating task");
+                return StatusCode(500, new { message = "Erreur lors de la création de la tâche" });
+            }
+        }
+
+        /// <summary>
+        /// Mettre à jour une tâche
+        /// </summary>
+        [HttpPut("{id}")]
+        public async Task<ActionResult<TaskDto>> UpdateTask(int id, [FromBody] UpdateTaskDto updateDto)
+        {
+            try
+            {
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                if (string.IsNullOrEmpty(userId))
+                {
+                    return Unauthorized();
+                }
+
+                var task = await _context.Tasks
+                    .Include(t => t.Project)
+                    .Include(t => t.CreatedBy)
+                    .Include(t => t.AssignedTo)
+                    .FirstOrDefaultAsync(t => t.Id == id);
+
+                if (task == null)
+                {
+                    return NotFound(new { message = "Tâche non trouvée" });
+                }
+
+                // Sauvegarder les anciennes valeurs pour les notifications
+                var oldAssignedToId = task.AssignedToId;
+                var oldStatus = task.Status;
+
+                // Mettre à jour les champs fournis
+                if (!string.IsNullOrEmpty(updateDto.Title))
+                    task.Title = updateDto.Title;
+
+                if (!string.IsNullOrEmpty(updateDto.Description))
+                    task.Description = updateDto.Description;
+
+                if (updateDto.AssignedToId != null)
+                {
+                    if (!string.IsNullOrEmpty(updateDto.AssignedToId))
+                    {
+                        var assignedUser = await _context.Users.FindAsync(updateDto.AssignedToId);
+                        if (assignedUser == null)
+                        {
+                            return BadRequest(new { message = "Utilisateur assigné non trouvé" });
+                        }
+                    }
+                    task.AssignedToId = string.IsNullOrEmpty(updateDto.AssignedToId) ? null : updateDto.AssignedToId;
+                }
+
+                if (!string.IsNullOrEmpty(updateDto.Status))
+                {
+                    task.Status = updateDto.Status;
+                    if (updateDto.Status == "completed" && task.CompletedAt == null)
+                    {
+                        task.CompletedAt = DateTime.UtcNow;
+                        task.Progress = 100;
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(updateDto.Priority))
+                    task.Priority = updateDto.Priority;
+
+                if (updateDto.DueDate.HasValue)
+                    task.DueDate = updateDto.DueDate.Value;
+
+                if (updateDto.Progress.HasValue)
+                    task.Progress = Math.Max(0, Math.Min(100, updateDto.Progress.Value));
+
+                if (!string.IsNullOrEmpty(updateDto.Tags))
+                    task.Tags = updateDto.Tags;
+
+                task.UpdatedAt = DateTime.UtcNow;
+
+                await _context.SaveChangesAsync();
+
+                // Envoyer des notifications si nécessaire
+                if (oldAssignedToId != task.AssignedToId && !string.IsNullOrEmpty(task.AssignedToId))
+                {
+                    // await _notificationService.NotifyTaskAssignedAsync(task.Id, task.AssignedToId, userId);
+                }
+                else if (oldStatus != task.Status)
+                {
+                    if (task.Status == "completed")
+                    {
+                        // await _notificationService.NotifyTaskCompletedAsync(task.Id, userId);
+                    }
+                    else if (!string.IsNullOrEmpty(task.AssignedToId))
+                    {
+                        // await _notificationService.NotifyTaskUpdatedAsync(task.Id, userId, task.AssignedToId);
+                    }
+                }
+
+                // Retourner la tâche mise à jour
+                var updatedTask = await _context.Tasks
+                    .Include(t => t.Project)
+                    .Include(t => t.CreatedBy)
+                    .Include(t => t.AssignedTo)
+                    .Include(t => t.Comments)
+                        .ThenInclude(c => c.Author)
+                    .Where(t => t.Id == id)
+                    .Select(t => new TaskDto
+                    {
+                        Id = t.Id,
+                        Title = t.Title,
+                        Description = t.Description,
+                        ProjectId = t.ProjectId,
+                        ProjectName = t.Project.Name,
+                        CreatedById = t.CreatedById,
+                        CreatedByName = $"{t.CreatedBy.FirstName} {t.CreatedBy.LastName}".Trim(),
+                        AssignedToId = t.AssignedToId,
+                        AssignedToName = t.AssignedTo != null ? $"{t.AssignedTo.FirstName} {t.AssignedTo.LastName}".Trim() : null,
+                        AssignedToEmail = t.AssignedTo != null ? t.AssignedTo.Email : null,
+                        Status = t.Status,
+                        Priority = t.Priority,
+                        CreatedAt = t.CreatedAt,
+                        UpdatedAt = t.UpdatedAt,
+                        DueDate = t.DueDate,
+                        CompletedAt = t.CompletedAt,
+                        RelatedAnnotationId = t.RelatedAnnotationId,
+                        TargetElementId = t.TargetElementId,
+                        PositionX = t.PositionX,
+                        PositionY = t.PositionY,
+                        PositionZ = t.PositionZ,
+                        Tags = t.Tags,
+                        Progress = t.Progress,
+                        Comments = t.Comments.OrderBy(c => c.CreatedAt).Select(c => new TaskCommentDto
+                        {
+                            Id = c.Id,
+                            Content = c.Content,
+                            TaskId = c.TaskId,
+                            AuthorId = c.AuthorId,
+                            AuthorName = $"{c.Author.FirstName} {c.Author.LastName}".Trim(),
+                            AuthorEmail = c.Author.Email ?? "",
+                            CreatedAt = c.CreatedAt,
+                            UpdatedAt = c.UpdatedAt,
+                            ParentCommentId = c.ParentCommentId
+                        }).ToList()
+                    })
+                    .FirstAsync();
+
+                _logger.LogInformation("Task updated successfully: {TaskId} by user {UserId}", id, userId);
+
+                return Ok(updatedTask);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error updating task {TaskId}", id);
+                return StatusCode(500, new { message = "Erreur lors de la mise à jour de la tâche" });
+            }
+        }
+
+        /// <summary>
+        /// Supprimer une tâche
+        /// </summary>
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteTask(int id)
+        {
+            try
+            {
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                if (string.IsNullOrEmpty(userId))
+                {
+                    return Unauthorized();
+                }
+
+                var task = await _context.Tasks.FindAsync(id);
+                if (task == null)
+                {
+                    return NotFound(new { message = "Tâche non trouvée" });
+                }
+
+                // Vérifier que l'utilisateur est le créateur ou un admin
+                var userRoles = User.FindAll(ClaimTypes.Role).Select(c => c.Value);
+                if (task.CreatedById != userId && !userRoles.Contains("Admin"))
+                {
+                    return Forbid("Vous n'êtes pas autorisé à supprimer cette tâche");
+                }
+
+                _context.Tasks.Remove(task);
+                await _context.SaveChangesAsync();
+
+                _logger.LogInformation("Task deleted successfully: {TaskId} by user {UserId}", id, userId);
+
+                return Ok(new { message = "Tâche supprimée avec succès" });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error deleting task {TaskId}", id);
+                return StatusCode(500, new { message = "Erreur lors de la suppression de la tâche" });
+            }
+        }
+
+        /// <summary>
+        /// Ajouter un commentaire à une tâche
+        /// </summary>
+        [HttpPost("{taskId}/comments")]
+        public async Task<ActionResult<TaskCommentDto>> AddTaskComment(int taskId, [FromBody] CreateTaskCommentDto createDto)
+        {
+            try
+            {
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                if (string.IsNullOrEmpty(userId))
+                {
+                    return Unauthorized();
+                }
+
+                // Vérifier que la tâche existe
+                var task = await _context.Tasks.FindAsync(taskId);
+                if (task == null)
+                {
+                    return NotFound(new { message = "Tâche non trouvée" });
+                }
+
+                var comment = new TaskComment
+                {
+                    Content = createDto.Content,
+                    TaskId = taskId,
+                    AuthorId = userId,
+                    ParentCommentId = createDto.ParentCommentId,
+                    CreatedAt = DateTime.UtcNow
+                };
+
+                _context.TaskComments.Add(comment);
+                await _context.SaveChangesAsync();
+
+                // Charger le commentaire avec les données de l'auteur
+                var createdComment = await _context.TaskComments
+                    .Include(c => c.Author)
+                    .Where(c => c.Id == comment.Id)
+                    .Select(c => new TaskCommentDto
+                    {
+                        Id = c.Id,
+                        Content = c.Content,
+                        TaskId = c.TaskId,
+                        AuthorId = c.AuthorId,
+                        AuthorName = $"{c.Author.FirstName} {c.Author.LastName}".Trim(),
+                        AuthorEmail = c.Author.Email ?? "",
+                        CreatedAt = c.CreatedAt,
+                        UpdatedAt = c.UpdatedAt,
+                        ParentCommentId = c.ParentCommentId,
+                        Replies = new List<TaskCommentDto>()
+                    })
+                    .FirstAsync();
+
+                _logger.LogInformation("Task comment created successfully: {CommentId} by user {UserId}", comment.Id, userId);
+
+                return Ok(createdComment);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error creating task comment");
+                return StatusCode(500, new { message = "Erreur lors de l'ajout du commentaire" });
+            }
+        }
+    }
+}

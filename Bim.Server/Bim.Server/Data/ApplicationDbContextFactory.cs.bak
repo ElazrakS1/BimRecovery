@@ -1,0 +1,21 @@
+using Microsoft.EntityFrameworkCore;
+
+namespace Bim.Server.Data
+{
+    public class ApplicationDbContextFactory
+    {
+        private readonly DbContextOptions<ApplicationDbContext> _options;
+
+        public ApplicationDbContextFactory(string connectionString)
+        {
+            var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
+            optionsBuilder.UseSqlServer(connectionString);
+            _options = optionsBuilder.Options;
+        }
+
+        public ApplicationDbContext CreateDbContext()
+        {
+            return new ApplicationDbContext(_options);
+        }
+    }
+}

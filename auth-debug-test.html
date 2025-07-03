@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIM Recovery - Authentication Debug Test</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 5px;
+            border-left: 4px solid #ccc;
+        }
+        .success {
+            background-color: #d4edda;
+            border-left-color: #28a745;
+            color: #155724;
+        }
+        .error {
+            background-color: #f8d7da;
+            border-left-color: #dc3545;
+            color: #721c24;
+        }
+        .warning {
+            background-color: #fff3cd;
+            border-left-color: #ffc107;
+            color: #856404;
+        }
+        .info {
+            background-color: #d1ecf1;
+            border-left-color: #17a2b8;
+            color: #0c5460;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        button:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+        }
+        .auth-form {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .auth-form input {
+            width: 200px;
+            padding: 8px;
+            margin: 5px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+        pre {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            border: 1px solid #e9ecef;
+            font-size: 12px;
+        }
+        .token-display {
+            word-break: break-all;
+            font-family: monospace;
+            background-color: #f1f3f4;
+            padding: 10px;
+            border-radius: 3px;
+            max-height: 100px;
+            overflow-y: auto;
+        }
+        .endpoint-test {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .status-success { background-color: #28a745; }
+        .status-error { background-color: #dc3545; }
+        .status-warning { background-color: #ffc107; }
+        .status-pending { background-color: #6c757d; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔐 BIM Recovery - Authentication Debug Test</h1>
+        <p>This tool helps debug the authentication flow for collaborative features.</p>
+        
+        <!-- Authentication Section -->
+        <div class="test-section info">
+            <h2>Step 1: Authentication</h2>
+            <div class="auth-form">
+                <div>
+                    <label>Email:</label>
+                    <input type="email" id="email" value="admin@example.com" placeholder="Email">
+                </div>
+                <div>
+                    <label>Password:</label>
+                    <input type="password" id="password" value="Admin@123456" placeholder="Password">
+                </div>
+                <button onclick="testLogin()">🔑 Login</button>
+                <button onclick="clearAuth()">🗑️ Clear Auth</button>
+            </div>
+            <div id="auth-status" class="test-section">
+                <p>Status: <span id="auth-indicator">Not authenticated</span></p>
+                <div id="token-display" class="token-display" style="display: none;"></div>
+            </div>
+        </div>
+
+        <!-- Server Status -->
+        <div class="test-section">
+            <h2>Step 2: Server Status</h2>
+            <button onclick="checkServerStatus()">🖥️ Check Server Status</button>
+            <div id="server-status"></div>
+        </div>
+
+        <!-- Endpoint Testing -->
+        <div class="test-section">
+            <h2>Step 3: Endpoint Testing</h2>
+            <button onclick="testAllEndpoints()">🧪 Test All Endpoints</button>
+            <button onclick="testWithAuth()">🔐 Test With Authentication</button>
+            <div id="endpoint-results"></div>
+        </div>
+
+        <!-- Comparison Testing -->
+        <div class="test-section">
+            <h2>Step 4: Comparison Test</h2>
+            <p>Compare working endpoints vs collaborative endpoints</p>
+            <button onclick="compareEndpoints()">⚖️ Compare Working vs Collaborative</button>
+            <div id="comparison-results"></div>
+        </div>
+
+        <!-- Debug Information -->
+        <div class="test-section">
+            <h2>Debug Information</h2>
+            <div id="debug-info"></div>
+        </div>
+    </div>
+
+    <script>
+        const BASE_URL = 'http://localhost:5258';
+        let authToken = null;
+
+        function log(message, type = 'info') {
+            const debugDiv = document.getElementById('debug-info');
+            const timestamp = new Date().toISOString().substr(11, 8);
+            const logEntry = document.createElement('div');
+            logEntry.className = `test-section ${type}`;
+            logEntry.innerHTML = `<small>[${timestamp}]</small> ${message}`;
+            debugDiv.appendChild(logEntry);
+            debugDiv.scrollTop = debugDiv.scrollHeight;
+        }
+
+        function updateAuthStatus(token = null) {
+            const indicator = document.getElementById('auth-indicator');
+            const tokenDisplay = document.getElementById('token-display');
+            
+            if (token) {
+                authToken = token;
+                localStorage.setItem('token', token);
+                indicator.innerHTML = '<span class="status-indicator status-success"></span>Authenticated';
+                tokenDisplay.style.display = 'block';
+                tokenDisplay.textContent = token;
+                log('Authentication successful', 'success');
+            } else {
+                authToken = null;
+                localStorage.removeItem('token');
+                indicator.innerHTML = '<span class="status-indicator status-error"></span>Not authenticated';
+                tokenDisplay.style.display = 'none';
+                log('Authentication cleared', 'warning');
+            }
+        }
+
+        async function testLogin() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            log('Attempting login...', 'info');
+
+            try {
+                const response = await fetch(`${BASE_URL}/api/Auth/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.token) {
+                    updateAuthStatus(data.token);
+                    log(`Login successful for user: ${data.user?.email}`, 'success');
+                } else {
+                    log(`Login failed: ${data.message || 'Unknown error'}`, 'error');
+                    updateAuthStatus();
+                }
+            } catch (error) {
+                log(`Login error: ${error.message}`, 'error');
+                updateAuthStatus();
+            }
+        }
+
+        function clearAuth() {
+            updateAuthStatus();
+        }
+
+        async function checkServerStatus() {
+            const statusDiv = document.getElementById('server-status');
+            statusDiv.innerHTML = '<p>Checking server status...</p>';
+
+            const tests = [
+                { name: 'Swagger JSON', url: '/swagger/v1/swagger.json' },
+                { name: 'Swagger UI', url: '/swagger' },
+                { name: 'Health Check', url: '/api/Projects' }
+            ];
+
+            let results = '<h3>Server Status:</h3>';
+
+            for (const test of tests) {
+                try {
+                    const response = await fetch(`${BASE_URL}${test.url}`);
+                    const status = response.status;
+                    const statusClass = status < 400 ? 'status-success' : status < 500 ? 'status-warning' : 'status-error';
+                    results += `<div class="endpoint-test">
+                        <span class="status-indicator ${statusClass}"></span>
+                        <strong>${test.name}:</strong> ${status} ${response.statusText}
+                    </div>`;
+                } catch (error) {
+                    results += `<div class="endpoint-test">
+                        <span class="status-indicator status-error"></span>
+                        <strong>${test.name}:</strong> Error - ${error.message}
+                    </div>`;
+                }
+            }
+
+            statusDiv.innerHTML = results;
+        }
+
+        async function testAllEndpoints() {
+            const resultsDiv = document.getElementById('endpoint-results');
+            resultsDiv.innerHTML = '<p>Testing endpoints...</p>';
+
+            const endpoints = [
+                { name: 'CollaborationTasks (Base)', url: '/api/collaborationtasks', needsAuth: true },
+                { name: 'CollaborationTasks (Project)', url: '/api/collaborationtasks/project/1', needsAuth: true },
+                { name: 'CollaborationTasks (My Tasks)', url: '/api/collaborationtasks/my-tasks', needsAuth: true },
+                { name: 'Notifications', url: '/api/notifications', needsAuth: true },
+                { name: 'Projects (Working)', url: '/api/Projects', needsAuth: true }
+            ];
+
+            let results = '<h3>Endpoint Test Results:</h3>';
+
+            for (const endpoint of endpoints) {
+                try {
+                    const headers = {
+                        'Content-Type': 'application/json'
+                    };
+                    
+                    if (endpoint.needsAuth && authToken) {
+                        headers['Authorization'] = `Bearer ${authToken}`;
+                    }
+
+                    const response = await fetch(`${BASE_URL}${endpoint.url}`, { headers });
+                    const status = response.status;
+                    
+                    let statusClass = 'status-error';
+                    let interpretation = '';
+
+                    if (endpoint.needsAuth) {
+                        if (authToken) {
+                            if (status === 200) {
+                                statusClass = 'status-success';
+                                interpretation = '✅ Working with auth';
+                            } else if (status === 401) {
+                                statusClass = 'status-warning';
+                                interpretation = '⚠️ Auth token rejected';
+                            } else if (status === 404) {
+                                statusClass = 'status-error';
+                                interpretation = '❌ Route not found';
+                            } else {
+                                statusClass = 'status-warning';
+                                interpretation = `⚠️ Unexpected: ${status}`;
+                            }
+                        } else {
+                            if (status === 401) {
+                                statusClass = 'status-success';
+                                interpretation = '✅ Correctly requires auth';
+                            } else {
+                                statusClass = 'status-warning';
+                                interpretation = '⚠️ Should require auth';
+                            }
+                        }
+                    }
+
+                    const authInfo = authToken ? ' (with token)' : ' (no token)';
+                    results += `<div class="endpoint-test">
+                        <span class="status-indicator ${statusClass}"></span>
+                        <strong>${endpoint.name}${authInfo}:</strong> ${status} ${response.statusText}
+                        <br><small>${interpretation}</small>
+                    </div>`;
+
+                } catch (error) {
+                    results += `<div class="endpoint-test">
+                        <span class="status-indicator status-error"></span>
+                        <strong>${endpoint.name}:</strong> Error - ${error.message}
+                    </div>`;
+                }
+            }
+
+            resultsDiv.innerHTML = results;
+        }
+
+        async function testWithAuth() {
+            if (!authToken) {
+                log('Please login first!', 'error');
+                return;
+            }
+            await testAllEndpoints();
+        }
+
+        async function compareEndpoints() {
+            if (!authToken) {
+                log('Please login first to run comparison!', 'error');
+                return;
+            }
+
+            const resultsDiv = document.getElementById('comparison-results');
+            resultsDiv.innerHTML = '<p>Running comparison test...</p>';
+
+            // Test working endpoint vs collaborative endpoints
+            const tests = [
+                { name: 'Projects (Known Working)', url: '/api/Projects', type: 'working' },
+                { name: 'CollaborationTasks (Project)', url: '/api/collaborationtasks/project/1', type: 'collaborative' },
+                { name: 'Notifications', url: '/api/notifications', type: 'collaborative' }
+            ];
+
+            let results = '<h3>Comparison Results:</h3>';
+            
+            for (const test of tests) {
+                try {
+                    const response = await fetch(`${BASE_URL}${test.url}`, {
+                        headers: {
+                            'Authorization': `Bearer ${authToken}`,
+                            'Content-Type': 'application/json'
+                        }
+                    });
+
+                    const status = response.status;
+                    const responseHeaders = {};
+                    for (const [key, value] of response.headers.entries()) {
+                        responseHeaders[key] = value;
+                    }
+
+                    let bodyPreview = '';
+                    try {
+                        const text = await response.text();
+                        bodyPreview = text.substring(0, 200) + (text.length > 200 ? '...' : '');
+                    } catch (e) {
+                        bodyPreview = 'Could not read response body';
+                    }
+
+                    const typeClass = test.type === 'working' ? 'success' : (status === 200 ? 'success' : 'error');
+                    
+                    results += `<div class="endpoint-test ${typeClass}">
+                        <h4>${test.name} (${test.type})</h4>
+                        <p><strong>Status:</strong> ${status} ${response.statusText}</p>
+                        <p><strong>Headers:</strong></p>
+                        <pre>${JSON.stringify(responseHeaders, null, 2)}</pre>
+                        <p><strong>Body Preview:</strong></p>
+                        <pre>${bodyPreview}</pre>
+                    </div>`;
+
+                } catch (error) {
+                    results += `<div class="endpoint-test error">
+                        <h4>${test.name} (${test.type})</h4>
+                        <p><strong>Error:</strong> ${error.message}</p>
+                    </div>`;
+                }
+            }
+
+            resultsDiv.innerHTML = results;
+        }
+
+        // Initialize
+        window.addEventListener('load', () => {
+            const storedToken = localStorage.getItem('token');
+            if (storedToken) {
+                updateAuthStatus(storedToken);
+            }
+            log('Authentication debug tool loaded', 'info');
+        });
+    </script>
+</body>
+</html>

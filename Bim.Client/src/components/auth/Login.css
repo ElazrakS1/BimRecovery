@@ -1,3 +1,14 @@
+/* Variables CSS pour la cohérence avec le thème global */
+:root {
+  --primary: #6356e5;          /* Bleu-violet principal */
+  --primary-dark: #1e1b4b;     /* Bleu très sombre */
+  --primary-medium: #4338ca;   /* Bleu-violet moyen */
+  --primary-light: #ede9fe;    /* Bleu très clair */
+  --secondary: #10b981;        /* Vert moderne */
+  --secondary-dark: #059669;   /* Vert foncé */
+  --radius-lg: 12px;           /* Rayon de bordure large */
+}
+
 html, body {
   margin: 0;
   padding: 0;
@@ -13,6 +24,35 @@ html, body {
   position: relative;
   margin: 0;
   padding: 0;
+}
+
+/* Styles spécifiques pour la page forgot-password */
+.forgot-password-page .login-content-wrapper {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 0; /* Retirer le padding pour un meilleur centrage */
+}
+
+.forgot-password-page .forgot-password-content {
+  width: 100%;
+  max-width: 1200px; /* Limiter la largeur maximale */
+  margin: 0 auto; /* Centrer le contenu */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Règle spéciale pour la page forgot-password afin de désactiver les effets de flou */
+.forgot-password-content .background-overlay {
+  display: none; /* Désactiver l'overlay pour la page mot de passe oublié */
+}
+
+/* Ajuster le z-index de la page forgot-password pour être au-dessus des overlays */
+.forgot-password-content {
+  position: relative;
+  z-index: 50 !important;
+  background: none !important;
 }
 
 .background-slideshow {
@@ -49,12 +89,14 @@ html, body {
   width: 100%;
   height: 100%;
   background: linear-gradient(180deg, 
-    rgba(26, 41, 64, 0.3) 0%, 
-    rgba(26, 41, 64, 0.6) 50%,
-    rgba(44, 62, 80, 0.7) 100%
-  );
+    rgba(30, 27, 75, 0.2) 0%, 
+    rgba(67, 56, 202, 0.35) 50%,
+    rgba(99, 86, 229, 0.45) 100%
+  ); /* Dégradé plus clair pour voir l'arrière-plan */
   z-index: 1;
-  backdrop-filter: blur(2px);
+  /* Suppression de l'effet de flou qui peut causer des problèmes */
+  backdrop-filter: none;
+  pointer-events: none; /* Permettre l'interaction avec les éléments en dessous */
 }
 
 .login-container::before {
@@ -65,8 +107,8 @@ html, body {
   right: 0;
   bottom: 0;
   background: 
-    linear-gradient(90deg, rgba(52, 152, 219, 0.05) 1px, transparent 1px),
-    linear-gradient(0deg, rgba(52, 152, 219, 0.05) 1px, transparent 1px);
+    linear-gradient(90deg, rgba(99, 86, 229, 0.12) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(99, 86, 229, 0.12) 1px, transparent 1px);
   background-size: 50px 50px;
   transform-origin: center center -1000px;
   animation: gridRotate 20s linear infinite;
@@ -89,9 +131,9 @@ html, body {
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath fill='rgba(52, 152, 219, 0.05)' d='M0,0 L200,0 L200,200 L0,200 Z M20,20 L180,20 L180,180 L20,180 Z'/%3E%3Cpath fill='rgba(52, 152, 219, 0.03)' d='M40,40 L160,40 L160,160 L40,160 Z M60,60 L140,60 L140,140 L60,140 Z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath fill='rgba(132, 112, 243, 0.12)' d='M0,0 L200,0 L200,200 L0,200 Z M20,20 L180,20 L180,180 L20,180 Z'/%3E%3Cpath fill='rgba(132, 112, 243, 0.08)' d='M40,40 L160,40 L160,160 L40,160 Z M60,60 L140,60 L140,140 L60,140 Z'/%3E%3C/svg%3E");
   background-size: 200px 200px;
-  opacity: 0.3;
+  opacity: 0.6;
   z-index: 0;
   animation: floatingBuildings 10s ease-in-out infinite;
 }
@@ -99,11 +141,11 @@ html, body {
 @keyframes floatingBuildings {
   0%, 100% {
     transform: translateY(0) translateZ(0) rotateX(0);
-    opacity: 0.3;
+    opacity: 0.6;
   }
   50% {
     transform: translateY(-20px) translateZ(50px) rotateX(5deg);
-    opacity: 0.5;
+    opacity: 0.8;
   }
 }
 
@@ -121,8 +163,8 @@ html, body {
   position: absolute;
   width: 100px;
   height: 100px;
-  background: linear-gradient(45deg, rgba(52, 152, 219, 0.1), rgba(52, 152, 219, 0));
-  border: 1px solid rgba(52, 152, 219, 0.1);
+  background: linear-gradient(45deg, rgba(99, 86, 229, 0.15), rgba(99, 86, 229, 0.05));
+  border: 1px solid rgba(99, 86, 229, 0.2);
   transform-style: preserve-3d;
   animation: float 15s ease-in-out infinite;
 }
@@ -168,15 +210,19 @@ html, body {
 .login-info-section {
   flex: 1;
   padding: 60px;
-  background: rgba(26, 41, 64, 0.75);
+  background: linear-gradient(135deg, 
+    rgba(30, 27, 75, 0.75) 0%, 
+    rgba(67, 56, 202, 0.65) 50%,
+    rgba(99, 86, 229, 0.75) 100%
+  );
   color: white;
   display: flex;
   flex-direction: column;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 20px 50px rgba(99, 86, 229, 0.3);
   border-radius: 20px 0 0 20px;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(6px);
   transform-style: preserve-3d;
   animation: sectionFloat 8s ease-in-out infinite;
 }
@@ -198,10 +244,10 @@ html, body {
   right: 0;
   bottom: 0;
   background: 
-    radial-gradient(circle at 50% 50%, rgba(52, 152, 219, 0.1) 0%, transparent 60%),
+    radial-gradient(circle at 50% 50%, rgba(99, 86, 229, 0.15) 0%, transparent 60%),
     repeating-linear-gradient(45deg, 
-      rgba(52, 152, 219, 0.03) 0px, 
-      rgba(52, 152, 219, 0.03) 2px,
+      rgba(99, 86, 229, 0.08) 0px, 
+      rgba(99, 86, 229, 0.08) 2px,
       transparent 2px,
       transparent 10px
     );
@@ -284,42 +330,68 @@ html, body {
   width: 50px;
   height: 50px;
   border-radius: 12px;
-  background: rgba(52, 152, 219, 0.3);
+  background: rgba(99, 86, 229, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
   backdrop-filter: blur(5px);
+  position: relative;
+  animation: pulse 2s ease-in-out infinite;
 }
 
 .feature-icon::before {
   content: '';
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    45deg,
-    transparent,
-    rgba(52, 152, 219, 0.3),
-    transparent
-  );
-  animation: shine 3s ease-in-out infinite;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.3;
+  }
 }
 
 @keyframes shine {
   0% {
-    transform: rotate(0) translate(-50%, -50%);
+    transform: rotate(-45deg) translate(-150%, -150%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
   }
   100% {
-    transform: rotate(360deg) translate(-50%, -50%);
+    transform: rotate(-45deg) translate(150%, 150%);
+    opacity: 0;
   }
 }
 
 .feature-icon i {
   font-size: 24px;
-  color: #3498db;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 20;
 }
 
 .feature-text h3 {
@@ -344,7 +416,7 @@ html, body {
   align-items: center;
   padding: 40px;
   background: rgba(255, 255, 255, 0.97);
-  box-shadow: 0 20px 50px rgba(243, 3, 3, 0.87);
+  box-shadow: 0 20px 50px rgba(99, 86, 229, 0.25);
   border-radius: 0 20px 20px 0;
   position: relative;
   z-index: 2;
@@ -357,7 +429,7 @@ html, body {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle at center, rgba(52, 152, 219, 0.1) 0%, transparent 70%);
+  background: radial-gradient(circle at center, rgba(99, 86, 229, 0.1) 0%, transparent 70%);
   animation: glowPulse 4s ease-in-out infinite;
 }
 
@@ -415,190 +487,286 @@ html, body {
   margin-bottom: 2rem;
 }
 
-/* Fix for the icons in input fields */
-.form-group .input-icon {
+/* Fix for the icons in input fields - Solution finale pour la structure JSX réelle */
+/* IMPORTANT: Exclure les labels des checkboxes et autres éléments */
+.login-form-section .form-group label:not([for="remember"]) {
   position: absolute;
   top: 50%;
-  left: 1rem;
+  left: 12px;
   transform: translateY(-50%);
-  color: rgba(255, 255, 255, 0.5);
-  pointer-events: none; /* Prevents the icon from interfering with text input */
+  color: rgba(99, 86, 229, 0.3);
+  pointer-events: none;
   transition: all 0.3s ease;
-  font-size: 1rem;
-  z-index: 2; /* Ensure the icon appears above the input field */
+  font-size: 0.85rem;
+  z-index: 1;
+  background: transparent;
+  font-weight: 400;
 }
 
-.form-group input {
-  width: 100%;
-  padding: 1rem 1rem 1rem 3rem; /* Left padding increased to make room for the icon */
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 12px;
-  color: white;
-  font-size: 1rem;
+/* Les icônes dans les labels (sauf checkbox) */
+.login-form-section .form-group label:not([for="remember"]) i {
+  color: rgba(99, 86, 229, 0.3);
+  font-size: 0.85rem;
   transition: all 0.3s ease;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-  position: relative;
+}
+
+/* FORCE: Label et icône s'estompent complètement quand l'utilisateur a le focus ET quand il y a du contenu */
+.login-form-section .form-group input:focus ~ label:not([for="remember"]),
+.login-form-section .form-group input:not(:placeholder-shown) ~ label:not([for="remember"]) {
+  opacity: 0 !important;
+  transform: translateY(-50%) translateX(-5px) !important;
+  visibility: hidden !important;
+}
+
+.login-form-section .form-group input:focus ~ label:not([for="remember"]) i,
+.login-form-section .form-group input:not(:placeholder-shown) ~ label:not([for="remember"]) i {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* Le label reste visible seulement quand le champ est vide et sans focus */
+.login-form-section .form-group input:placeholder-shown:not(:focus) ~ label:not([for="remember"]) {
+  opacity: 1 !important;
+  transform: translateY(-50%) !important;
+  visibility: visible !important;
+}
+
+.login-form-section .form-group input:placeholder-shown:not(:focus) ~ label:not([for="remember"]) i {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Compatibilité avec l'ancienne structure .input-icon si elle existe */
+.login-form-section .form-group .input-icon {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  color: rgba(99, 86, 229, 0.3);
+  pointer-events: none;
+  transition: all 0.3s ease;
+  font-size: 0.85rem;
   z-index: 1;
 }
 
-/* Fix for password toggle icon */
+.login-form-section .form-group input:focus ~ .input-icon,
+.login-form-section .form-group input:not(:placeholder-shown) ~ .input-icon {
+  opacity: 0 !important;
+  transform: translateY(-50%) translateX(-5px) !important;
+  visibility: hidden !important;
+}
+
+.login-form-section .form-group input:placeholder-shown:not(:focus) ~ .input-icon {
+  opacity: 1 !important;
+  transform: translateY(-50%) !important;
+  visibility: visible !important;
+}
+
+/* Fix for password toggle icon - Même comportement que les autres icônes */
 .password-toggle-icon {
   position: absolute;
   top: 50%;
-  right: 1rem;
+  right: 12px;
   transform: translateY(-50%);
   background: none;
   border: none;
-  padding: 0;
-  color: rgba(255, 255, 255, 0.5);
+  padding: 6px;
+  color: rgba(99, 86, 229, 0.4);
   cursor: pointer;
   transition: all 0.3s ease;
-  z-index: 3; /* Ensure it's above both input and icon */
+  z-index: 3;
+  font-size: 0.85rem;
 }
 
-.form-group label {
-  position: absolute;
-  left: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #95a5a6;
+.password-toggle-icon:hover {
+  color: rgba(99, 86, 229, 0.7);
+}
+
+/* L'icône toggle reste toujours visible car elle est interactive */
+.form-group input:focus ~ .password-toggle-icon {
+  color: rgba(99, 86, 229, 0.6);
 }
 
 .form-group input {
-  padding: 12px 12px 12px 40px;
   width: 100%;
-  border: 1px solid #ddd;
-  border-radius: 6px;
+  padding: 14px 50px 14px 35px;
+  background: rgba(255, 255, 255, 1);
+  border: 2px solid rgba(99, 86, 229, 0.15);
+  border-radius: 10px;
+  color: #1a202c;
   font-size: 15px;
-  transition: all 0.3s;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(99, 86, 229, 0.08);
+}
+
+.form-group input::placeholder {
+  color: rgba(99, 86, 229, 0.45);
+  font-weight: 400;
 }
 
 .form-group input:focus {
-  border-color: #3498db;
+  border-color: var(--primary);
   outline: none;
-  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
-  
+  box-shadow: 0 0 0 3px rgba(99, 86, 229, 0.1);
+  background: rgba(255, 255, 255, 1);
 }
 
-.password-toggle-icon {
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  padding: 0px;
-  cursor: pointer;
-  color: #95a5a6;
-}
+/* ANCIEN CSS LABEL SUPPRIMÉ - Remplacé par la nouvelle solution ci-dessus */
 
-.form-options {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 25px;
-  font-size: 14px;
-}
-
-.remember-me {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: #555;
-}
-
-.forgot-password {
-  color: #3498db;
-  text-decoration: none;
-}
-
-.forgot-password:hover {
-  text-decoration: underline;
-}
-
+/* ===== BOUTON DE CONNEXION ===== */
 .login-button {
   width: 100%;
-  padding: 14px;
-  background: linear-gradient(135deg, #3498db, #2980b9);
+  padding: 16px;
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--radius-lg);
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(99, 86, 229, 0.25);
+  margin-bottom: 20px;
 }
 
-.login-button::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.3) 0%, transparent 60%);
-  transform: translate(-50%, -50%);
-  animation: buttonGlow 3s ease-in-out infinite;
+.login-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(99, 86, 229, 0.4);
+  background: linear-gradient(135deg, var(--primary), var(--primary-medium));
 }
 
-@keyframes buttonGlow {
-  0%, 100% {
-    opacity: 0.5;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  50% {
-    opacity: 0.8;
-    transform: translate(-50%, -50%) scale(1.2);
-  }
-}
-
-.login-button:hover {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 
-    0 10px 20px rgba(41, 128, 185, 0.3),
-    0 0 20px rgba(52, 152, 219, 0.5);
+.login-button:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 4px 20px rgba(99, 86, 229, 0.25);
 }
 
 .login-button:disabled {
-  background: #95a5a6;
+  opacity: 0.6;
   cursor: not-allowed;
   transform: none;
+  background: linear-gradient(135deg, #9ca3af, #6b7280);
 }
 
-.error-message {
-  background-color: #fdecea;
-  color: #e74c3c;
-  padding: 12px;
-  border-radius: 6px;
-  margin-bottom: 20px;
-  font-size: 14px;
-  border-left: 4px solid #e74c3c;
+/* ===== SECTION FORCE - SE SOUVENIR DE MOI SUR UNE LIGNE ===== */
+/* Cette section garantit que form-options reste toujours sur une ligne */
+
+.form-options {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+  white-space: nowrap !important;
+  gap: 15px !important;
+  margin-bottom: 25px;
 }
 
-.success-message {
-  background-color: #e8f8f5;
-  color: #2ecc71;
-  padding: 12px;
-  border-radius: 6px;
-  margin-bottom: 20px;
-  font-size: 14px;
-  border-left: 4px solid #2ecc71;
+.remember-me {
+  flex-shrink: 0 !important;
+  white-space: nowrap !important;
+}
+
+.forgot-password {
+  flex-shrink: 0 !important;
+  white-space: nowrap !important;
+  background: none;
+  border: none;
+  color: var(--primary);
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  font-size: inherit;
+  font-weight: inherit;
+  font-family: inherit;
+}
+
+/* Force spécifique pour tous les breakpoints */
+@media (max-width: 1200px) {
+  .form-options {
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    gap: 12px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .form-options {
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    gap: 10px !important;
+    font-size: 12px !important;
+  }
+  
+  .remember-me {
+    font-size: 12px !important;
+  }
+  
+  .remember-me label {
+    font-size: 12px !important;
+  }
+  
+  .forgot-password {
+    font-size: 12px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-options {
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    gap: 8px !important;
+    font-size: 11px !important;
+  }
+  
+  .remember-me {
+    font-size: 11px !important;
+    gap: 4px !important;
+  }
+  
+  .remember-me label {
+    font-size: 11px !important;
+  }
+  
+  .forgot-password {
+    font-size: 11px !important;
+  }
+}
+
+@media (max-width: 320px) {
+  .form-options {
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    gap: 6px !important;
+    font-size: 10px !important;
+  }
+  
+  .remember-me {
+    font-size: 10px !important;
+    gap: 2px !important;
+  }
+  
+  .remember-me label {
+    font-size: 10px !important;
+  }
+  
+  .forgot-password {
+    font-size: 10px !important;
+  }
 }
 
 .login-footer {
   margin-top: 30px;
   text-align: center;
-  color: #7f8c8d;
+  color: var(--primary-medium);
   font-size: 13px;
 }
 
 .admin-note {
   font-style: italic;
   margin-top: 10px;
-  color: #95a5a6;
+  color: var(--primary);
+  font-weight: 500;
 }
 
 @media (max-width: 992px) {
@@ -631,15 +799,38 @@ html, body {
   .login-form-section {
     padding: 20px;
   }
-  
-  .login-card {
+    .login-card {
     padding: 20px;
     box-shadow: none;
   }
   
   .form-options {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+  }
+  
+  .remember-me {
+    font-size: 12px;
+  }
+  
+  .forgot-password {
+    font-size: 12px;
   }
 }
+
+/* Règle spéciale pour la page forgot-password afin de désactiver les effets de flou */
+.forgot-password-content .background-overlay {
+  display: none; /* Désactiver l'overlay pour la page mot de passe oublié */
+}
+
+/* Ajuster le z-index de la page forgot-password pour être au-dessus des overlays */
+.forgot-password-content {
+  position: relative;
+  z-index: 50 !important;
+  background: none !important;
+}
+
+

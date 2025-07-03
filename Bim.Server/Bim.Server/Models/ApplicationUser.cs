@@ -20,9 +20,11 @@ namespace Bim.Server.Models
         public string? Position { get; set; }
         
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-        
-        public DateTime? LastLogin { get; set; }
+          public DateTime? LastLogin { get; set; }
         
         public bool IsActive { get; set; } = true;
+        
+        // Notification preferences stored as JSON
+        public string? NotificationPreferences { get; set; }
     }
 }

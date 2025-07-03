@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIM Recovery - Collaborative Features Endpoint Test</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .test-result {
+            margin: 15px 0;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #ccc;
+        }
+        .success {
+            background-color: #d4edda;
+            border-left-color: #28a745;
+            color: #155724;
+        }
+        .error {
+            background-color: #f8d7da;
+            border-left-color: #dc3545;
+            color: #721c24;
+        }
+        .warning {
+            background-color: #fff3cd;
+            border-left-color: #ffc107;
+            color: #856404;
+        }
+        .info {
+            background-color: #d1ecf1;
+            border-left-color: #17a2b8;
+            color: #0c5460;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        #results {
+            margin-top: 20px;
+        }
+        .status-code {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        pre {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            border: 1px solid #e9ecef;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏗️ BIM Recovery - Collaborative Features Test</h1>
+        <p>This test validates that the formatting fixes resolved the endpoint registration and Swagger generation issues.</p>
+        
+        <button onclick="runAllTests()">🧪 Run All Tests</button>
+        
+        <div id="results"></div>
+    </div>
+
+    <script>
+        const BASE_URL = 'http://localhost:5258';
+        const resultsDiv = document.getElementById('results');
+
+        function addResult(testName, status, message, type = 'info') {
+            const resultDiv = document.createElement('div');
+            resultDiv.className = `test-result ${type}`;
+            resultDiv.innerHTML = `
+                <h3>${testName}</h3>
+                <p><span class="status-code">Status: ${status}</span></p>
+                <p>${message}</p>
+            `;
+            resultsDiv.appendChild(resultDiv);
+        }
+
+        function clearResults() {
+            resultsDiv.innerHTML = '';
+        }
+
+        async function testSwaggerEndpoint() {
+            try {
+                const response = await fetch(`${BASE_URL}/swagger/v1/swagger.json`);
+                if (response.ok) {
+                    addResult(
+                        '1. 📄 Swagger JSON Endpoint', 
+                        `${response.status} ${response.statusText}`,
+                        '✅ <strong>FIXED!</strong> Swagger JSON endpoint is working. The formatting fixes resolved the 500 Internal Server Error.',
+                        'success'
+                    );
+                } else {
+                    addResult(
+                        '1. 📄 Swagger JSON Endpoint', 
+                        `${response.status} ${response.statusText}`,
+                        '❌ Swagger JSON endpoint still failing',
+                        'error'
+                    );
+                }
+            } catch (error) {
+                addResult(
+                    '1. 📄 Swagger JSON Endpoint', 
+                    'Error',
+                    `❌ Network error: ${error.message}`,
+                    'error'
+                );
+            }
+        }
+
+        async function testCollaborationTasksBase() {
+            try {
+                const response = await fetch(`${BASE_URL}/api/collaborationtasks`);
+                if (response.status === 401) {
+                    addResult(
+                        '2. 📋 CollaborationTasks Base Endpoint', 
+                        `${response.status} ${response.statusText}`,
+                        '✅ Endpoint found and working! Returns 401 Unauthorized as expected (authentication required).',
+                        'success'
+                    );
+                } else if (response.status === 404) {
+                    addResult(
+                        '2. 📋 CollaborationTasks Base Endpoint', 
+                        `${response.status} ${response.statusText}`,
+                        '❌ Endpoint not found - route registration issue persists',
+                        'error'
+                    );
+                } else {
+                    addResult(
+                        '2. 📋 CollaborationTasks Base Endpoint', 
+                        `${response.status} ${response.statusText}`,
+                        `⚠️ Unexpected status code`,
+                        'warning'
+                    );
+                }
+            } catch (error) {
+                addResult(
+                    '2. 📋 CollaborationTasks Base Endpoint', 
+                    'Error',
+                    `❌ Network error: ${error.message}`,
+                    'error'
+                );
+            }
+        }
+
+        async function testProjectTasksEndpoint() {
+            try {
+                const response = await fetch(`${BASE_URL}/api/collaborationtasks/project/1`);
+                if (response.status === 401) {
+                    addResult(
+                        '3. 🎯 Project Tasks Endpoint (Critical Fix)', 
+                        `${response.status} ${response.statusText}`,
+                        '✅ <strong>CRITICAL ISSUE RESOLVED!</strong> This endpoint was returning 404 Not Found, now returns 401 Unauthorized (expected). The formatting fixes successfully resolved the route registration issue!',
+                        'success'
+                    );
+                } else if (response.status === 404) {
+                    addResult(
+                        '3. 🎯 Project Tasks Endpoint (Critical Fix)', 
+                        `${response.status} ${response.statusText}`,
+                        '❌ Still returning 404 Not Found - route registration issue persists',
+                        'error'
+                    );
+                } else {
+                    addResult(
+                        '3. 🎯 Project Tasks Endpoint (Critical Fix)', 
+                        `${response.status} ${response.statusText}`,
+                        `⚠️ Unexpected status code`,
+                        'warning'
+                    );
+                }
+            } catch (error) {
+                addResult(
+                    '3. 🎯 Project Tasks Endpoint (Critical Fix)', 
+                    'Error',
+                    `❌ Network error: ${error.message}`,
+                    'error'
+                );
+            }
+        }
+
+        async function testNotificationsEndpoint() {
+            try {
+                const response = await fetch(`${BASE_URL}/api/notifications`);
+                if (response.status === 401) {
+                    addResult(
+                        '4. 🔔 Notifications Endpoint', 
+                        `${response.status} ${response.statusText}`,
+                        '✅ Endpoint found and working! Returns 401 Unauthorized as expected.',
+                        'success'
+                    );
+                } else if (response.status === 404) {
+                    addResult(
+                        '4. 🔔 Notifications Endpoint', 
+                        `${response.status} ${response.statusText}`,
+                        '❌ Endpoint not found - route registration issue',
+                        'error'
+                    );
+                } else {
+                    addResult(
+                        '4. 🔔 Notifications Endpoint', 
+                        `${response.status} ${response.statusText}`,
+                        `⚠️ Unexpected status code`,
+                        'warning'
+                    );
+                }
+            } catch (error) {
+                addResult(
+                    '4. 🔔 Notifications Endpoint', 
+                    'Error',
+                    `❌ Network error: ${error.message}`,
+                    'error'
+                );
+            }
+        }
+
+        async function testMyTasksEndpoint() {
+            try {
+                const response = await fetch(`${BASE_URL}/api/collaborationtasks/my-tasks`);
+                if (response.status === 401) {
+                    addResult(
+                        '5. 👤 My Tasks Endpoint', 
+                        `${response.status} ${response.statusText}`,
+                        '✅ Endpoint found and working! Returns 401 Unauthorized as expected.',
+                        'success'
+                    );
+                } else if (response.status === 404) {
+                    addResult(
+                        '5. 👤 My Tasks Endpoint', 
+                        `${response.status} ${response.statusText}`,
+                        '❌ Endpoint not found - route registration issue',
+                        'error'
+                    );
+                } else {
+                    addResult(
+                        '5. 👤 My Tasks Endpoint', 
+                        `${response.status} ${response.statusText}`,
+                        `⚠️ Unexpected status code`,
+                        'warning'
+                    );
+                }
+            } catch (error) {
+                addResult(
+                    '5. 👤 My Tasks Endpoint', 
+                    'Error',
+                    `❌ Network error: ${error.message}`,
+                    'error'
+                );
+            }
+        }
+
+        async function runAllTests() {
+            clearResults();
+            
+            const summaryDiv = document.createElement('div');
+            summaryDiv.className = 'test-result info';
+            summaryDiv.innerHTML = `
+                <h3>🚀 Running Collaborative Features Tests...</h3>
+                <p>Testing all endpoints to verify that the formatting fixes resolved the issues.</p>
+            `;
+            resultsDiv.appendChild(summaryDiv);
+
+            await testSwaggerEndpoint();
+            await testCollaborationTasksBase();
+            await testProjectTasksEndpoint();
+            await testNotificationsEndpoint();
+            await testMyTasksEndpoint();
+
+            // Add summary
+            const finalSummary = document.createElement('div');
+            finalSummary.className = 'test-result info';
+            finalSummary.innerHTML = `
+                <h3>📊 Test Results Summary</h3>
+                <p><strong>Expected Results:</strong> All endpoints should return <code>401 Unauthorized</code> when accessed without authentication tokens.</p>
+                <p><strong>Success Indicators:</strong></p>
+                <ul>
+                    <li>✅ Swagger JSON endpoint returns 200 OK (was 500 Internal Server Error)</li>
+                    <li>✅ All API endpoints return 401 Unauthorized (not 404 Not Found)</li>
+                    <li>✅ Route registration is working properly</li>
+                </ul>
+                <p><strong>Next Steps:</strong> If all tests pass, the collaborative features are ready for authentication testing!</p>
+            `;
+            resultsDiv.appendChild(finalSummary);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+/* CORRECTION FORCE - Se souvenir de moi sur une ligne */
+
+/* Force absolue pour form-options */
+.form-options {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+  margin-bottom: 25px;
+  font-size: 14px;
+  min-height: 40px;
+}
+
+/* Force pour remember-me */
+.remember-me {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  color: var(--primary-medium);
+  font-weight: 500;
+  flex-shrink: 0 !important;
+  white-space: nowrap !important;
+}
+
+/* Force pour forgot-password */
+.forgot-password {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  flex-shrink: 0 !important;
+  white-space: nowrap !important;
+}
+
+/* Media queries avec force absolue */
+@media (max-width: 992px) {
+  .form-options {
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 10px !important;
+    font-size: 13px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .form-options {
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 8px !important;
+    font-size: 12px !important;
+  }
+  
+  .remember-me {
+    font-size: 12px !important;
+  }
+  
+  .remember-me label {
+    font-size: 12px !important;
+  }
+  
+  .forgot-password {
+    font-size: 12px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .form-options {
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 6px !important;
+    font-size: 11px !important;
+    padding: 0 !important;
+  }
+  
+  .remember-me {
+    font-size: 11px !important;
+    gap: 6px !important;
+  }
+  
+  .remember-me label {
+    font-size: 11px !important;
+  }
+  
+  .forgot-password {
+    font-size: 11px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-options {
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 4px !important;
+    font-size: 10px !important;
+  }
+  
+  .remember-me {
+    font-size: 10px !important;
+    gap: 4px !important;
+  }
+  
+  .remember-me label {
+    font-size: 10px !important;
+  }
+  
+  .forgot-password {
+    font-size: 10px !important;
+  }
+}
+
+@media (max-width: 320px) {
+  .form-options {
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 2px !important;
+    font-size: 9px !important;
+  }
+  
+  .remember-me {
+    font-size: 9px !important;
+    gap: 2px !important;
+  }
+  
+  .remember-me label {
+    font-size: 9px !important;
+  }
+  
+  .forgot-password {
+    font-size: 9px !important;
+  }
+}

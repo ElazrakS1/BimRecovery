@@ -1,0 +1,17 @@
+.notificationsContainer {
+    position: fixed;
+    top: 90px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 320px;
+    pointer-events: none; /* Permet de cliquer à travers le conteneur */
+}
+
+.notificationsContainer > * {
+    pointer-events: auto; /* Réactive les événements pour les notifications elles-mêmes */
+}
+
+

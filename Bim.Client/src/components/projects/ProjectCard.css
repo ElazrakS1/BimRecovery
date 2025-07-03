@@ -6,6 +6,11 @@
     transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
     position: relative;
     overflow: hidden;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .project-card::before {
@@ -39,6 +44,7 @@
     align-items: flex-start;
     margin-bottom: 1.5rem;
     position: relative;
+    width: 100%;
 }
 
 .project-header h3 {
@@ -48,6 +54,10 @@
     margin: 0;
     flex: 1;
     line-height: 1.4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-right: 0.5rem;
 }
 
 .project-actions {
@@ -106,6 +116,7 @@
     margin-bottom: 1.5rem;
     display: -webkit-box;
     -webkit-line-clamp: 3;
+    line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -116,6 +127,7 @@
     gap: 0.75rem;
     padding-top: 1rem;
     border-top: 1px solid var(--color-background);
+    margin-top: auto;
 }
 
 .metadata-item {
@@ -193,14 +205,88 @@
 }
 
 .error-message {
-    margin-top: 1rem;
-    padding: 0.75rem 1rem;
-    background: rgba(244, 67, 54, 0.1);
-    border: 1px solid rgba(244, 67, 54, 0.2);
-    border-radius: 8px;
-    color: var(--color-danger);
-    font-size: 0.875rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #dc2626;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
 }
+
+.error-message i.fa-exclamation-circle {
+  margin-right: 0.75rem;
+  font-size: 1rem;
+  color: #dc2626;
+}
+
+.close-error-button {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #dc2626;
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.close-error-button:hover {
+  opacity: 1;
+}
+
+/* Styles pour les boutons de statut */
+.action-button.status-active {
+    background-color: rgba(76, 175, 80, 0.1);
+    color: #4CAF50;
+}
+
+.action-button.status-active:hover {
+    background-color: rgba(76, 175, 80, 0.2);
+}
+
+.action-button.status-pending {
+    background-color: rgba(99, 86, 229, 0.1);
+    color: #6356e5;
+}
+
+.action-button.status-pending:hover {
+    background-color: rgba(255, 193, 7, 0.2);
+}
+
+/* Badge de statut du projet */
+.project-status-badge {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.project-status-badge.status-actif {
+    background-color: rgba(76, 175, 80, 0.1);
+    color: #4CAF50;
+    border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.project-status-badge.status-en-attente {
+    background-color: rgba(99, 86, 229, 0.1);
+    color: #6356e5;
+    border: 1px solid rgba(99, 86, 229, 0.3);
+}
+
+

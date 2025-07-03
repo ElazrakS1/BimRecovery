@@ -18,9 +18,34 @@ using MailKit.Net.Smtp;
 using MailKit.Security;
 using MimeKit;
 using System.Net;
+using System.Security.Claims;
 
 namespace Bim.Server.Controllers
 {
+    // Modèles pour les requêtes
+    public class ShareProjectRequest
+    {
+        [Required]
+        public required string EmailTo { get; set; }
+        
+        [Required]
+        public required string ProjectUrl { get; set; }
+    }
+    
+    // Modèle pour la mise à jour du statut
+    public class ProjectStatusUpdateModel
+    {
+        public string Status { get; set; } = string.Empty;
+    }
+
+    public class CreateProjectRequest
+    {
+        [Required(ErrorMessage = "Le nom du projet est requis")]
+        public string Name { get; set; } = string.Empty;
+        
+        public string? Description { get; set; }
+    }
+
     [Authorize]
     [ApiController]
     [Route("api/[controller]")]
@@ -43,468 +68,63 @@ namespace Bim.Server.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Project>>> GetProjects()
+        [HttpGet]        
+        public async Task<ActionResult<IEnumerable<object>>> GetProjects()
         {
-            return await _context.Projects
-                .Include(p => p.IFCFiles)
-                .ToListAsync();
+            try
+            {
+                _logger.LogInformation("Récupération des projets");
+                
+                var projects = await _context.Projects
+                    .Include(p => p.IFCFiles)
+                    .ToListAsync();
+                
+                _logger.LogInformation("Projets trouvés: {Count}", projects.Count);
+                
+                var result = new List<object>();
+                
+                // S'assurer que tous les projets ont un statut défini
+                foreach (var project in projects)
+                {
+                    // Si la propriété Status est nulle ou vide, on définit une valeur par défaut
+                    if (string.IsNullOrEmpty(project.Status))
+                    {
+                        project.Status = "En attente";
+                        await _context.SaveChangesAsync();
+                        _logger.LogInformation("Statut mis à jour pour le projet {ProjectId}", project.Id);
+                    }
+                
+                    // Formater les données pour le frontend (utiliser des noms de propriétés en minuscules)
+                    result.Add(new
+                    {
+                        id = project.Id,
+                        name = project.Name,
+                        description = project.Description,
+                        createdDate = project.CreatedDate,
+                        lastModifiedDate = project.LastModifiedDate,
+                        status = project.Status,
+                        files = project.IFCFiles?.Select(f => new
+                        {
+                            id = f.Id,
+                            fileName = f.FileName,
+                            filePath = f.FilePath,
+                            uploadDate = f.UploadDate
+                        }).ToList(),
+                        createdById = project.CreatedById
+                    });
+                }
+                
+                return Ok(result);
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError(ex, "Erreur lors de la récupération des projets");
+                return StatusCode(500, new { message = "Erreur lors de la récupération des projets" });
+            }
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Project>> GetProject(int id)
-        {
-            var project = await _context.Projects
-                .Include(p => p.IFCFiles)
-                .FirstOrDefaultAsync(p => p.Id == id);
-
-            if (project == null)
-            {
-                return NotFound();
-            }
-
-            return project;
-        }
-
-        [HttpPost]
-        public async Task<ActionResult<Project>> CreateProject(Project project)
-        {
-            try
-            {
-                // Validation explicite
-                if (project == null)
-                {
-                    return BadRequest(new { message = "Les données du projet sont requises" });
-                }
-
-                if (string.IsNullOrWhiteSpace(project.Name))
-                {
-                    return BadRequest(new { message = "Le nom du projet est requis" });
-                }
-
-                // Nettoyer les données
-                project.Name = project.Name.Trim();
-                project.Description = project.Description?.Trim() ?? string.Empty;
-                project.CreatedDate = DateTime.UtcNow;
-                
-                // Initialisation explicite de la collection
-                project.IFCFiles = new List<IFCFile>();
-                
-                // Obtenir l'ID de l'utilisateur connecté
-                var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
-                
-                // Si l'utilisateur est authentifié, associer l'utilisateur au projet
-                if (!string.IsNullOrEmpty(userId))
-                {
-                    project.CreatedById = userId;
-                }
-                // Si la relation CreatedById est obligatoire mais qu'aucun utilisateur n'est connecté
-                else if (_context.Model.FindEntityType(typeof(Project))?.FindProperty("CreatedById")?.IsNullable == false)
-                {
-                    // Si la colonne CreatedById n'est pas nullable, nous devons retourner une erreur
-                    return BadRequest(new { message = "Utilisateur non authentifié. La création de projet nécessite une authentification." });
-                }
-                
-                // Vérifier si un projet avec le même nom existe déjà
-                var projectExists = await _context.Projects.AnyAsync(p => p.Name == project.Name);
-                if (projectExists)
-                {
-                    return BadRequest(new { message = "Un projet avec ce nom existe déjà" });
-                }
-                
-                // Création du répertoire uploads si nécessaire
-                var uploadsPath = Path.Combine(_environment.WebRootPath, "uploads");
-                if (!Directory.Exists(uploadsPath))
-                {
-                    Directory.CreateDirectory(uploadsPath);
-                }
-                
-                // Traçage des opérations
-                _logger.LogInformation("Tentative de création du projet: {ProjectName}, Créateur: {UserId}", project.Name, userId ?? "Anonymous");
-                
-                // Ajout du projet à la base de données
-                _context.Projects.Add(project);
-                
-                try
-                {
-                    await _context.SaveChangesAsync();
-                    _logger.LogInformation("Projet créé avec succès: {ProjectId}, {ProjectName}, CreatedById: {UserId}", project.Id, project.Name, project.CreatedById);
-                    return CreatedAtAction(nameof(GetProject), new { id = project.Id }, project);
-                }
-                catch (DbUpdateException dbEx)
-                {
-                    _logger.LogError(dbEx, "Erreur de base de données lors de la création du projet: {Message}", 
-                        dbEx.InnerException?.Message ?? dbEx.Message);
-                    
-                    // Messages d'erreur spécifiques pour les problèmes de base de données courants
-                    var errorMessage = "Erreur de base de données lors de la création du projet";
-                    
-                    if (dbEx.InnerException?.Message.Contains("FK_Projects_Users_CreatedById") == true)
-                    {
-                        return BadRequest(new { message = "L'utilisateur associé au projet n'existe pas. Veuillez vous reconnecter." });
-                    }
-                    
-                    if (dbEx.InnerException?.Message.Contains("duplicate") == true || 
-                        dbEx.InnerException?.Message.Contains("unique constraint") == true)
-                    {
-                        return BadRequest(new { message = "Un projet avec ce nom existe déjà" });
-                    }
-                    
-                    return StatusCode(500, new { 
-                        message = errorMessage, 
-                        error = dbEx.InnerException?.Message ?? dbEx.Message,
-                        stackTrace = _environment.IsDevelopment() ? dbEx.StackTrace : null
-                    });
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Exception non gérée lors de la création du projet: {Message}", ex.Message);
-                return StatusCode(500, new { 
-                    message = "Une erreur inattendue s'est produite lors de la création du projet", 
-                    error = ex.Message,
-                    stackTrace = _environment.IsDevelopment() ? ex.StackTrace : null
-                });
-            }
-        }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateProject(int id, Project project)
-        {
-            if (id != project.Id)
-            {
-                return BadRequest();
-            }
-
-            project.LastModifiedDate = DateTime.UtcNow;
-            _context.Entry(project).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ProjectExists(id))
-                {
-                    return NotFound();
-                }
-                throw;
-            }
-
-            return NoContent();
-        }
-
-        [HttpPost("{id}/files")]
-        public async Task<ActionResult<IFCFile>> AddFileToProject(int id, IFormFile file)
-        {
-            try
-            {
-                var project = await _context.Projects.FindAsync(id);
-                if (project == null)
-                {
-                    return NotFound("Project not found");
-                }
-
-                if (file == null || file.Length == 0)
-                {
-                    return BadRequest("No file uploaded");
-                }
-
-                if (!file.FileName.EndsWith(".ifc", StringComparison.OrdinalIgnoreCase))
-                {
-                    return BadRequest("Only IFC files are allowed");
-                }
-
-                // Generate unique filename
-                var fileName = $"{Guid.NewGuid()}_{file.FileName}";
-                var relativePath = Path.Combine("uploads", fileName);
-                var absolutePath = Path.Combine(_environment.WebRootPath, relativePath);
-
-                // Create uploads directory if it doesn't exist
-                var uploadsPath = Path.Combine(_environment.WebRootPath, "uploads");
-                if (!Directory.Exists(uploadsPath))
-                {
-                    Directory.CreateDirectory(uploadsPath);
-                }
-
-                // Save file
-                using (var stream = new FileStream(absolutePath, FileMode.Create))
-                {
-                    await file.CopyToAsync(stream);
-                }
-
-                // Extract IFC schema version from file name or default to "IFC2X3"
-                var schemaVersion = ExtractSchemaVersion(file.FileName);
-
-                // Create IFC file record
-                var ifcFile = new IFCFile
-                {
-                    FileName = file.FileName,
-                    FilePath = relativePath,
-                    FileSize = file.Length,
-                    UploadDate = DateTime.UtcNow,
-                    ProjectId = project.Id,
-                    Project = project,
-                    ProjectName = project.Name,
-                    Description = $"IFC file uploaded for project {project.Name}",
-                    IfcSchemaVersion = schemaVersion,
-                    IfcProjectName = project.Name,
-                    IfcProjectDescription = project.Description,
-                    Author = User.Identity?.Name ?? "Unknown",
-                    Organization = "SmartBIM"
-                };
-
-                _context.IFCFiles.Add(ifcFile);
-                await _context.SaveChangesAsync();
-
-                return CreatedAtAction(nameof(GetProject), new { id = project.Id }, ifcFile);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new { message = "Error uploading file", error = ex.Message });
-            }
-        }
-
-        [HttpGet("{projectId}/ifc-pdf")]
-        public async Task<IActionResult> GetIFCAsPdf(int projectId)
-        {
-            try
-            {
-                var project = await _context.Projects
-                    .Include(p => p.IFCFiles)
-                    .FirstOrDefaultAsync(p => p.Id == projectId);
-
-                if (project == null || !project.IFCFiles.Any())
-                {
-                    return NotFound("Project not found or no IFC files available");
-                }
-
-                using (var memoryStream = new MemoryStream())
-                {
-                    using (var pdfWriter = new PdfWriter(memoryStream))
-                    using (var pdfDocument = new PdfDocument(pdfWriter))
-                    using (var document = new Document(pdfDocument))
-                    {
-                        // Set up fonts
-                        var helvetica = PdfFontFactory.CreateFont(StandardFonts.HELVETICA);
-                        var helveticaBold = PdfFontFactory.CreateFont(StandardFonts.HELVETICA_BOLD);
-
-                        // Add document title
-                        document.Add(new Paragraph($"IFC Report - {project.Name}")
-                            .SetFont(helveticaBold)
-                            .SetFontSize(16)
-                            .SetTextAlignment(TextAlignment.CENTER)
-                            .SetMarginBottom(20));
-
-                        // Add project metadata table
-                        var metadataTable = new Table(2).UseAllAvailableWidth();
-                        AddMetadataRow(metadataTable, "Project Name", project.Name, helveticaBold, helvetica);
-                        AddMetadataRow(metadataTable, "Created Date", project.CreatedDate.ToString("yyyy-MM-dd HH:mm:ss"), helveticaBold, helvetica);
-                        AddMetadataRow(metadataTable, "Number of IFC Files", project.IFCFiles.Count.ToString(), helveticaBold, helvetica);
-                        document.Add(metadataTable);
-                        document.Add(new Paragraph("\n"));
-
-                        foreach (var ifcFile in project.IFCFiles)
-                        {
-                            document.Add(new Paragraph($"File: {ifcFile.FileName}")
-                                .SetFont(helveticaBold)
-                                .SetFontSize(14)
-                                .SetMarginTop(15));
-
-                            var filePath = Path.Combine(_environment.ContentRootPath, "Uploads", ifcFile.FilePath);
-                            if (!System.IO.File.Exists(filePath))
-                            {
-                                document.Add(new Paragraph("File not found on server")
-                                    .SetFont(helvetica)
-                                    .SetFontColor(ColorConstants.RED));
-                                continue;
-                            }
-
-                            const int chunkSize = 500;
-                            var lines = new List<string>(chunkSize);
-                            var lineCount = 0;
-
-                            using (var fileStream = new StreamReader(filePath))
-                            {
-                                string? line;
-                                while ((line = await fileStream.ReadLineAsync()) is not null)
-                                {
-                                    lines.Add(line);
-                                    lineCount++;
-
-                                    if (lines.Count >= chunkSize)
-                                    {
-                                        // Process chunk
-                                        document.Add(new Paragraph(string.Join("\n", lines))
-                                            .SetFont(helvetica)
-                                            .SetFontSize(9));
-                                        lines.Clear();
-
-                                        // Force garbage collection for large files
-                                        if (lineCount % (chunkSize * 10) == 0)
-                                        {
-                                            GC.Collect();
-                                        }
-                                    }
-                                }
-
-                                // Process remaining lines
-                                if (lines.Any())
-                                {
-                                    document.Add(new Paragraph(string.Join("\n", lines))
-                                        .SetFont(helvetica)
-                                        .SetFontSize(9));
-                                }
-                            }
-
-                            document.Add(new Paragraph($"Total lines processed: {lineCount}")
-                                .SetFont(helvetica)
-                                .SetFontSize(10)
-                                .SetMarginTop(10));
-                        }
-                    }
-
-                    var pdfBytes = memoryStream.ToArray();
-                    return File(pdfBytes, "application/pdf", $"IFC_Report_{project.Name}_{DateTime.Now:yyyyMMdd}.pdf");
-                }
-            }
-            catch (OutOfMemoryException ex)
-            {
-                _logger.LogError(ex, "Out of memory while generating PDF");
-                return StatusCode(500, "The file is too large to process. Please try with a smaller file.");
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error generating PDF");
-                return StatusCode(500, "An error occurred while generating the PDF");
-            }
-        }
-
-        [HttpPost]
-        [Route("{projectId:int}/files/{fileId:int}/convert-xml")]
-        public async Task<IActionResult> ConvertToXml(int projectId, int fileId)
-        {
-            try
-            {
-                var ifcFile = await _context.IFCFiles
-                    .FirstOrDefaultAsync(f => f.Id == fileId && f.ProjectId == projectId);
-
-                if (ifcFile == null)
-                {
-                    return NotFound("IFC file not found");
-                }
-
-                var ifcFilePath = Path.Combine(_environment.WebRootPath, ifcFile.FilePath);
-                if (!System.IO.File.Exists(ifcFilePath))
-                {
-                    return NotFound("IFC file not found on disk");
-                }
-
-                // Create XML document
-                var xmlDoc = new XDocument(
-                    new XElement("IFCFile",
-                        new XElement("Metadata",
-                            new XElement("FileName", ifcFile.FileName),
-                            new XElement("ProjectName", ifcFile.ProjectName),
-                            new XElement("UploadDate", ifcFile.UploadDate),
-                            new XElement("SchemaVersion", ifcFile.IfcSchemaVersion),
-                            new XElement("Author", ifcFile.Author),
-                            new XElement("Organization", ifcFile.Organization)
-                        ),
-                        new XElement("Content", await System.IO.File.ReadAllTextAsync(ifcFilePath))
-                    )
-                );
-
-                // Convert to string and return as XML file
-                var xmlString = xmlDoc.ToString();
-                var xmlBytes = System.Text.Encoding.UTF8.GetBytes(xmlString);
-                var xmlFileName = Path.ChangeExtension(ifcFile.FileName, ".xml");
-
-                return File(xmlBytes, "application/xml", xmlFileName);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new { message = "Error converting IFC to XML", error = ex.Message });
-            }
-        }
-
-        [HttpPost("{id}/share")]
-        public async Task<IActionResult> ShareProjectByEmail(int id, [FromBody] ShareProjectRequest request)
-        {
-            try
-            {
-                if (request == null || string.IsNullOrEmpty(request.EmailTo) || string.IsNullOrEmpty(request.ProjectUrl))
-                {
-                    return BadRequest("Email and project URL are required");
-                }
-
-                var project = await _context.Projects
-                    .Include(p => p.IFCFiles)
-                    .FirstOrDefaultAsync(p => p.Id == id);
-
-                if (project == null)
-                {
-                    return NotFound("Projet non trouvé");
-                }
-
-                var smtpSettings = _configuration.GetSection("SmtpSettings");
-                var host = smtpSettings["Host"] ?? throw new InvalidOperationException("SMTP host not configured");
-                var port = int.Parse(smtpSettings["Port"] ?? "587");
-                var email = smtpSettings["Email"] ?? throw new InvalidOperationException("SMTP email not configured");
-                var password = smtpSettings["Password"] ?? throw new InvalidOperationException("SMTP password not configured");
-                var displayName = smtpSettings["DisplayName"] ?? "SmartBIM";
-
-                var message = new MimeMessage();
-                message.From.Add(new MailboxAddress(displayName, email));
-                message.To.Add(new MailboxAddress("", request.EmailTo));
-                message.Subject = $"Partage du projet : {project.Name}";
-
-                var builder = new BodyBuilder
-                {
-                    HtmlBody = $@"
-                        <h2>Un projet a été partagé avec vous</h2>
-                        <p>Nom du projet : {project.Name}</p>
-                        <p>Description : {project.Description}</p>
-                        <p>Nombre de fichiers : {project.IFCFiles?.Count ?? 0}</p>
-                        <p>Pour accéder au projet, <a href='{request.ProjectUrl}'>cliquez ici</a></p>"
-                };
-
-                message.Body = builder.ToMessageBody();
-
-                using var client = new SmtpClient();
-                await client.ConnectAsync(host, port, SecureSocketOptions.StartTls);
-                await client.AuthenticateAsync(email, password);
-                await client.SendAsync(message);
-                await client.DisconnectAsync(true);
-
-                return Ok(new { message = "Email envoyé avec succès" });
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Erreur lors de l'envoi de l'email: {Message}", ex.Message);
-                var errorMessage = ex.Message.Contains("5.7.0") 
-                    ? "Erreur d'authentification SMTP. Veuillez vérifier les paramètres de connexion et le mot de passe d'application."
-                    : "Une erreur s'est produite lors de l'envoi de l'email";
-                
-                return StatusCode(500, new { 
-                    message = errorMessage,
-                    error = ex.Message 
-                });
-            }
-        }
-
-        public class ShareProjectRequest
-        {
-            [Required]
-            public required string EmailTo { get; set; }
-            
-            [Required]
-            public required string ProjectUrl { get; set; }
-        }
-
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteProject(int id)
+        public async Task<ActionResult<object>> GetProject(int id)
         {
             var project = await _context.Projects
                 .Include(p => p.IFCFiles)
@@ -517,70 +137,514 @@ namespace Bim.Server.Controllers
 
             try
             {
-                // Supprimer les fichiers IFC physiquement
-                foreach (var ifcFile in project.IFCFiles)
+                // Si la propriété Status est nulle ou vide, on définit une valeur par défaut
+                if (string.IsNullOrEmpty(project.Status))
                 {
-                    var filePath = Path.Combine(_environment.WebRootPath, ifcFile.FilePath);
-                    if (System.IO.File.Exists(filePath))
-                    {
-                        System.IO.File.Delete(filePath);
-                    }
+                    project.Status = "En attente";
+                    await _context.SaveChangesAsync();
+                    _logger.LogInformation("Statut mis à jour pour le projet {ProjectId}", project.Id);
+                }
 
-                    // Supprimer aussi le PDF s'il existe
-                    var pdfPath = Path.Combine(_environment.WebRootPath, "pdfs", 
-                        Path.ChangeExtension(Path.GetFileName(ifcFile.FilePath), ".pdf"));
-                    if (System.IO.File.Exists(pdfPath))
+                var result = new
+                {
+                    id = project.Id,
+                    name = project.Name,
+                    description = project.Description,
+                    createdDate = project.CreatedDate,
+                    lastModifiedDate = project.LastModifiedDate,
+                    status = project.Status,
+                    files = project.IFCFiles?.Select(f => new
                     {
-                        System.IO.File.Delete(pdfPath);
+                        id = f.Id,
+                        fileName = f.FileName,
+                        filePath = f.FilePath,
+                        uploadDate = f.UploadDate
+                    }).ToList(),
+                    createdById = project.CreatedById
+                };
+                
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error retrieving project {ProjectId}: {Message}", id, ex.Message);
+                return StatusCode(500, new { 
+                    message = "An error occurred while retrieving the project", 
+                    error = ex.Message,
+                    details = _environment.IsDevelopment() ? ex.ToString() : null
+                });
+            }
+        }
+
+        // Endpoint pour mettre à jour le statut d'un projet (actif/en attente)
+        [HttpPut("{id}/status")]
+        public async Task<ActionResult<Project>> UpdateProjectStatus(int id, [FromBody] ProjectStatusUpdateModel model)
+        {
+            _logger.LogInformation("Updating project status: Project ID = {ProjectId}, New Status = {Status}", id, model.Status);
+            
+            var project = await _context.Projects
+                .FirstOrDefaultAsync(p => p.Id == id);
+
+            if (project == null)
+            {
+                _logger.LogWarning("Project not found: {ProjectId}", id);
+                return NotFound(new { message = "Projet non trouvé" });
+            }
+            
+            // Validation du statut
+            if (string.IsNullOrWhiteSpace(model.Status))
+            {
+                _logger.LogWarning("Invalid status update attempt: Status is empty, Project ID = {ProjectId}", id);
+                return BadRequest(new { message = "Le statut ne peut pas être vide" });
+            }
+            
+            // Mettre à jour le statut
+            project.Status = model.Status;
+            project.LastModifiedDate = DateTime.UtcNow;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+                _logger.LogInformation("Project status updated successfully: Project ID = {ProjectId}, New Status = {Status}", id, model.Status);
+                return Ok(project);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error updating project status: Project ID = {ProjectId}, Status = {Status}", id, model.Status);
+                return StatusCode(500, new { message = "Une erreur s'est produite lors de la mise à jour du statut" });
+            }
+        }        [HttpPost("{id}/files")]
+        public async Task<ActionResult<IFCFile>> UploadFile(int id, IFormFile file)
+        {
+            string? tempFilePath = null;
+            
+            try
+            {
+                _logger.LogInformation("Starting file upload for project {ProjectId}, thread: {ThreadId}", 
+                    id, Thread.CurrentThread.ManagedThreadId);
+
+                if (file == null)
+                {
+                    _logger.LogWarning("No file was provided for project {ProjectId}", id);
+                    return BadRequest(new { message = "Aucun fichier n'a été fourni" });
+                }
+
+                _logger.LogInformation("File details - Name: {FileName}, Size: {FileSize} MB, ContentType: {ContentType}", 
+                    file.FileName, Math.Round(file.Length / (1024.0 * 1024.0), 2), file.ContentType);
+
+                // Récupérer le projet avec ses fichiers pour vérifier les doublons
+                var project = await _context.Projects
+                    .Include(p => p.IFCFiles)
+                    .FirstOrDefaultAsync(p => p.Id == id);
+
+                if (project == null)
+                {
+                    _logger.LogWarning("Project not found: {ProjectId}", id);
+                    return NotFound(new { message = "Projet non trouvé" });
+                }
+
+                // Vérification stricte des doublons
+                if (project.IFCFiles != null && 
+                    project.IFCFiles.Any(f => f.FileName.Equals(file.FileName, StringComparison.OrdinalIgnoreCase)))
+                {
+                    _logger.LogWarning("File with name {FileName} already exists in project {ProjectId}", file.FileName, id);
+                    return BadRequest(new { 
+                        message = $"Un fichier nommé '{file.FileName}' existe déjà dans ce projet. " +
+                                 "Veuillez renommer le fichier avant de le télécharger." 
+                    });
+                }
+
+                // Validation du fichier
+                if (file.Length == 0)
+                {
+                    _logger.LogWarning("Empty file uploaded for project {ProjectId}", id);
+                    return BadRequest(new { message = "Le fichier est vide" });
+                }
+
+                if (!file.FileName.ToLower().EndsWith(".ifc"))
+                {
+                    _logger.LogWarning("Invalid file type uploaded for project {ProjectId}: {FileName}", id, file.FileName);
+                    return BadRequest(new { message = "Seuls les fichiers IFC sont autorisés" });
+                }
+
+                // Vérification de la taille du fichier (max 1GB)
+                const long maxFileSize = 1_073_741_824L; // Exactly 1GB in bytes
+                if (file.Length > maxFileSize)
+                {
+                    _logger.LogWarning("File size {FileSize} bytes exceeds maximum allowed size of {MaxSize} bytes", 
+                        file.Length, maxFileSize);
+                    return BadRequest(new { message = "La taille du fichier ne doit pas dépasser 1 GB" });
+                }
+
+                // Création et vérification du répertoire uploads
+                var uploadsPath = Path.Combine(_environment.WebRootPath, "uploads");
+                try {
+                    Directory.CreateDirectory(uploadsPath);
+                    // Vérifier si le répertoire est accessible en écriture
+                    var testFile = Path.Combine(uploadsPath, ".write_test");
+                    System.IO.File.WriteAllText(testFile, "test");
+                    System.IO.File.Delete(testFile);
+                }
+                catch (Exception ex) {
+                    _logger.LogError(ex, "Failed to verify uploads directory access: {Path}", uploadsPath);
+                    return StatusCode(500, new { 
+                        message = "Erreur de configuration du serveur - Le répertoire de téléchargement n'est pas accessible" 
+                    });
+                }
+
+                // Génération d'un nom de fichier unique avec timestamp
+                var uniqueFileName = $"{DateTime.UtcNow:yyyyMMdd}_{Guid.NewGuid()}_{file.FileName}";
+                var finalFilePath = Path.Combine(uploadsPath, uniqueFileName);
+                tempFilePath = Path.Combine(uploadsPath, $"temp_{uniqueFileName}");
+
+                // Sauvegarde dans un fichier temporaire d'abord
+                using (var stream = new FileStream(tempFilePath, FileMode.Create))
+                {
+                    _logger.LogInformation("Saving file to temporary location: {TempPath}", tempFilePath);
+                    await file.CopyToAsync(stream);
+                }
+
+                // Vérification du fichier temporaire
+                var fileInfo = new FileInfo(tempFilePath);
+                if (!fileInfo.Exists || fileInfo.Length != file.Length)
+                {
+                    throw new IOException($"File verification failed after upload. Expected: {file.Length}, actual: {fileInfo.Length}");
+                }
+
+                // Déplacement vers l'emplacement final
+                System.IO.File.Move(tempFilePath, finalFilePath, true);
+                _logger.LogInformation("File moved to final location: {FilePath}", finalFilePath);
+
+                // Création de l'enregistrement dans la base de données
+                var ifcFile = new IFCFile
+                {
+                    FileName = file.FileName,
+                    FilePath = uniqueFileName,
+                    ProjectId = id,
+                    FileSize = file.Length,
+                    UploadDate = DateTime.UtcNow,
+                    ProjectName = project.Name,
+                    Description = $"Uploaded on {DateTime.UtcNow:yyyy-MM-dd HH:mm:ss}"
+                };
+
+                _context.IFCFiles.Add(ifcFile);
+
+                // Mise à jour de la date de modification du projet
+                project.LastModifiedDate = DateTime.UtcNow;
+                
+                await _context.SaveChangesAsync();
+
+                _logger.LogInformation("File successfully uploaded and recorded for project {ProjectId}: {FileName}", 
+                    id, file.FileName);
+
+                return Ok(new
+                {
+                    id = ifcFile.Id,
+                    fileName = ifcFile.FileName,
+                    filePath = ifcFile.FilePath,
+                    uploadDate = ifcFile.UploadDate,
+                    fileSize = ifcFile.FileSize
+                });
+            }
+            catch (IOException ex)
+            {
+                _logger.LogError(ex, "IO Error during file upload for project {ProjectId}: {Message}", id, ex.Message);
+                return StatusCode(500, new { 
+                    message = "Erreur lors de l'enregistrement du fichier",
+                    details = _environment.IsDevelopment() ? ex.Message : null 
+                });
+            }
+            catch (DbUpdateException ex)
+            {
+                _logger.LogError(ex, "Database error during file upload for project {ProjectId}: {Message}", id, ex.Message);
+                return StatusCode(500, new { 
+                    message = "Erreur lors de l'enregistrement des informations du fichier",
+                    details = _environment.IsDevelopment() ? ex.Message : null 
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Unexpected error during file upload for project {ProjectId}: {Message}", id, ex.Message);
+                return StatusCode(500, new { 
+                    message = "Une erreur inattendue s'est produite lors du téléchargement du fichier",
+                    details = _environment.IsDevelopment() ? ex.Message : null 
+                });
+            }
+            finally
+            {
+                // Nettoyage : suppression du fichier temporaire s'il existe
+                if (!string.IsNullOrEmpty(tempFilePath) && System.IO.File.Exists(tempFilePath))
+                {
+                    try
+                    {
+                        System.IO.File.Delete(tempFilePath);
+                        _logger.LogInformation("Temporary file cleaned up: {TempPath}", tempFilePath);
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogWarning(ex, "Failed to cleanup temporary file: {TempPath}", tempFilePath);
+                    }
+                }
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteProject(int id)
+        {
+            try
+            {
+                _logger.LogInformation("Attempting to delete project {ProjectId}", id);
+                
+                var project = await _context.Projects
+                    .Include(p => p.IFCFiles)
+                    .FirstOrDefaultAsync(p => p.Id == id);
+
+                if (project == null)
+                {
+                    _logger.LogWarning("Project not found for deletion: {ProjectId}", id);
+                    return NotFound(new { message = "Projet non trouvé" });
+                }
+
+                // Delete associated files from the file system
+                if (project.IFCFiles != null)
+                {
+                    foreach (var file in project.IFCFiles)
+                    {
+                        var filePath = Path.Combine(_environment.WebRootPath, "uploads", file.FilePath);
+                        if (System.IO.File.Exists(filePath))
+                        {
+                            try
+                            {
+                                System.IO.File.Delete(filePath);
+                                _logger.LogInformation("Deleted file: {FilePath}", filePath);
+                            }
+                            catch (Exception ex)
+                            {
+                                _logger.LogError(ex, "Error deleting file {FilePath}", filePath);
+                                // Continue with deletion even if file delete fails
+                            }
+                        }
                     }
                 }
 
                 _context.Projects.Remove(project);
                 await _context.SaveChangesAsync();
-
+                
+                _logger.LogInformation("Project {ProjectId} successfully deleted", id);
                 return Ok(new { message = "Projet supprimé avec succès" });
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { message = "Erreur lors de la suppression du projet", error = ex.Message });
+                _logger.LogError(ex, "Error deleting project {ProjectId}", id);
+                return StatusCode(500, new { 
+                    message = "Une erreur s'est produite lors de la suppression du projet",
+                    details = _environment.IsDevelopment() ? ex.Message : null 
+                });
             }
         }
 
         [HttpDelete("{projectId}/files/{fileId}")]
-        public async Task<IActionResult> DeleteFile(int projectId, int fileId)
+        public async Task<ActionResult> DeleteFile(int projectId, int fileId)
         {
             try
             {
-                var ifcFile = await _context.IFCFiles
+                _logger.LogInformation("Attempting to delete file {FileId} from project {ProjectId}", fileId, projectId);
+                
+                var file = await _context.IFCFiles
                     .FirstOrDefaultAsync(f => f.Id == fileId && f.ProjectId == projectId);
 
-                if (ifcFile == null)
+                if (file == null)
                 {
-                    return NotFound("IFC file not found");
+                    _logger.LogWarning("File not found: FileId = {FileId}, ProjectId = {ProjectId}", fileId, projectId);
+                    return NotFound(new { message = "Fichier non trouvé" });
                 }
 
-                var filePath = Path.Combine(_environment.WebRootPath, ifcFile.FilePath);
+                // Delete the physical file
+                var filePath = Path.Combine(_environment.WebRootPath, "uploads", file.FilePath);
                 if (System.IO.File.Exists(filePath))
                 {
-                    System.IO.File.Delete(filePath);
+                    try
+                    {
+                        System.IO.File.Delete(filePath);
+                        _logger.LogInformation("Deleted physical file: {FilePath}", filePath);
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogError(ex, "Error deleting physical file {FilePath}", filePath);
+                        // Continue with database deletion even if file delete fails
+                    }
                 }
 
-                // Delete PDF if it exists
-                var pdfPath = Path.Combine(_environment.WebRootPath, "pdfs", 
-                    Path.ChangeExtension(Path.GetFileName(ifcFile.FilePath), ".pdf"));
-                if (System.IO.File.Exists(pdfPath))
-                {
-                    System.IO.File.Delete(pdfPath);
-                }
-
-                _context.IFCFiles.Remove(ifcFile);
+                _context.IFCFiles.Remove(file);
                 await _context.SaveChangesAsync();
-
-                return Ok(new { message = "File deleted successfully" });
+                
+                _logger.LogInformation("File {FileId} successfully deleted from project {ProjectId}", fileId, projectId);
+                return Ok(new { message = "Fichier supprimé avec succès" });
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { message = "Error deleting file", error = ex.Message });
+                _logger.LogError(ex, "Error deleting file {FileId} from project {ProjectId}", fileId, projectId);
+                return StatusCode(500, new { 
+                    message = "Une erreur s'est produite lors de la suppression du fichier",
+                    details = _environment.IsDevelopment() ? ex.Message : null 
+                });
+            }
+        }
+
+        [HttpGet("{projectId}/files/{fileId}/xml")]
+        public async Task<ActionResult> ConvertToXml(int projectId, int fileId)
+        {
+            try
+            {
+                _logger.LogInformation("Starting XML conversion: ProjectId = {ProjectId}, FileId = {FileId}", 
+                    projectId, fileId);
+
+                var file = await _context.IFCFiles
+                    .FirstOrDefaultAsync(f => f.Id == fileId && f.ProjectId == projectId);
+
+                if (file == null)
+                {
+                    _logger.LogWarning("File not found for XML conversion: FileId = {FileId}", fileId);
+                    return NotFound(new { message = "Fichier non trouvé" });
+                }
+
+                var ifcFilePath = Path.Combine(_environment.WebRootPath, "uploads", file.FilePath);
+                if (!System.IO.File.Exists(ifcFilePath))
+                {
+                    _logger.LogError("Physical IFC file not found: {FilePath}", ifcFilePath);
+                    return NotFound(new { message = "Fichier IFC non trouvé sur le serveur" });
+                }
+
+                // Generate XML filename
+                var xmlFileName = Path.GetFileNameWithoutExtension(file.FileName) + ".xml";
+                var xmlFilePath = Path.Combine(_environment.WebRootPath, "uploads", 
+                    $"{DateTime.UtcNow:yyyyMMdd}_{Guid.NewGuid()}_{xmlFileName}");
+
+                // TODO: Implement actual IFC to XML conversion here
+                // For now, create a simple XML with file metadata
+                var xmlDoc = new XDocument(
+                    new XElement("IFCFile",
+                        new XElement("FileName", file.FileName),
+                        new XElement("FileSize", file.FileSize),
+                        new XElement("UploadDate", file.UploadDate),
+                        new XElement("SchemaVersion", ExtractSchemaVersion(file.FileName))
+                    )
+                );
+
+                xmlDoc.Save(xmlFilePath);
+                _logger.LogInformation("XML file created: {XmlPath}", xmlFilePath);
+
+                // Return the XML file
+                var xmlBytes = System.IO.File.ReadAllBytes(xmlFilePath);
+                try
+                {
+                    System.IO.File.Delete(xmlFilePath); // Clean up temporary file
+                }
+                catch
+                {
+                    // Ignore cleanup errors
+                }
+
+                return File(xmlBytes, "application/xml", xmlFileName);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error during XML conversion: FileId = {FileId}", fileId);
+                return StatusCode(500, new { 
+                    message = "Une erreur s'est produite lors de la conversion en XML",
+                    details = _environment.IsDevelopment() ? ex.Message : null 
+                });
+            }
+        }
+
+        [HttpGet("{projectId}/files/{fileId}/pdf")]
+        public async Task<ActionResult> ConvertToPdf(int projectId, int fileId)
+        {
+            try
+            {
+                _logger.LogInformation("Starting PDF conversion: ProjectId = {ProjectId}, FileId = {FileId}", 
+                    projectId, fileId);
+
+                var file = await _context.IFCFiles
+                    .Include(f => f.Project)
+                    .FirstOrDefaultAsync(f => f.Id == fileId && f.ProjectId == projectId);
+
+                if (file == null)
+                {
+                    _logger.LogWarning("File not found for PDF conversion: FileId = {FileId}", fileId);
+                    return NotFound(new { message = "Fichier non trouvé" });
+                }
+
+                var ifcFilePath = Path.Combine(_environment.WebRootPath, "uploads", file.FilePath);
+                if (!System.IO.File.Exists(ifcFilePath))
+                {
+                    _logger.LogError("Physical IFC file not found: {FilePath}", ifcFilePath);
+                    return NotFound(new { message = "Fichier IFC non trouvé sur le serveur" });
+                }
+
+                // Generate PDF filename
+                var pdfFileName = Path.GetFileNameWithoutExtension(file.FileName) + ".pdf";
+                var pdfFilePath = Path.Combine(_environment.WebRootPath, "uploads", 
+                    $"{DateTime.UtcNow:yyyyMMdd}_{Guid.NewGuid()}_{pdfFileName}");
+
+                // Create PDF document
+                using (var pdfWriter = new PdfWriter(pdfFilePath))
+                using (var pdf = new PdfDocument(pdfWriter))
+                using (var document = new Document(pdf))
+                {
+                    // Set fonts
+                    var labelFont = PdfFontFactory.CreateFont(StandardFonts.HELVETICA_BOLD);
+                    var valueFont = PdfFontFactory.CreateFont(StandardFonts.HELVETICA);
+
+                    // Add title
+                    document.Add(new Paragraph("IFC File Report")
+                        .SetFont(labelFont)
+                        .SetFontSize(20)
+                        .SetTextAlignment(TextAlignment.CENTER)
+                        .SetMarginBottom(20));
+
+                    // Create metadata table
+                    var table = new Table(2)
+                        .SetWidth(UnitValue.CreatePercentValue(100))
+                        .SetMarginBottom(20);
+
+                    // Add metadata
+                    AddMetadataRow(table, "Project Name", file.Project?.Name ?? "N/A", labelFont, valueFont);
+                    AddMetadataRow(table, "File Name", file.FileName, labelFont, valueFont);
+                    AddMetadataRow(table, "Upload Date", file.UploadDate.ToString("yyyy-MM-dd HH:mm:ss"), labelFont, valueFont);
+                    AddMetadataRow(table, "File Size", $"{Math.Round(file.FileSize / 1024.0 / 1024.0, 2)} MB", labelFont, valueFont);
+                    AddMetadataRow(table, "Schema Version", ExtractSchemaVersion(file.FileName), labelFont, valueFont);
+
+                    document.Add(table);
+
+                    // TODO: Add more IFC-specific information here
+                    document.Add(new Paragraph("Note: This is a basic PDF report. For full IFC visualization, please use an IFC viewer.")
+                        .SetFont(valueFont)
+                        .SetFontSize(10)
+                        .SetTextAlignment(TextAlignment.CENTER)
+                        .SetMarginTop(20));
+                }
+
+                // Return the PDF file
+                var pdfBytes = System.IO.File.ReadAllBytes(pdfFilePath);
+                try
+                {
+                    System.IO.File.Delete(pdfFilePath); // Clean up temporary file
+                }
+                catch
+                {
+                    // Ignore cleanup errors
+                }
+
+                return File(pdfBytes, "application/pdf", pdfFileName);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error during PDF conversion: FileId = {FileId}", fileId);
+                return StatusCode(500, new { 
+                    message = "Une erreur s'est produite lors de la conversion en PDF",
+                    details = _environment.IsDevelopment() ? ex.Message : null 
+                });
             }
         }
 
@@ -610,6 +674,58 @@ namespace Bim.Server.Controllers
                     .SetFont(valueFont)
                     .SetFontSize(11))
                 .SetPadding(5));
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<Project>> CreateProject([FromBody] CreateProjectRequest request)
+        {
+            try
+            {
+                _logger.LogInformation("Creating new project: {ProjectName}", request.Name);
+
+                if (string.IsNullOrWhiteSpace(request.Name))
+                {
+                    _logger.LogWarning("Project creation failed: Name is required");
+                    return BadRequest(new { message = "Le nom du projet est requis" });
+                }
+
+                var project = new Project
+                {
+                    Name = request.Name,
+                    Description = request.Description ?? string.Empty,
+                    CreatedDate = DateTime.UtcNow,
+                    LastModifiedDate = DateTime.UtcNow,
+                    Status = "En attente",
+                    CreatedById = User.FindFirst(ClaimTypes.NameIdentifier)?.Value
+                };
+
+                // Add the project to the context
+                _context.Projects.Add(project);
+                await _context.SaveChangesAsync();
+
+                _logger.LogInformation("Project created successfully: {ProjectId}", project.Id);
+
+                // Return the created project
+                return Ok(new
+                {
+                    id = project.Id,
+                    name = project.Name,
+                    description = project.Description,
+                    createdDate = project.CreatedDate,
+                    lastModifiedDate = project.LastModifiedDate,
+                    status = project.Status,
+                    files = new List<object>(), // New project has no files
+                    createdById = project.CreatedById
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error creating project: {Message}", ex.Message);
+                return StatusCode(500, new { 
+                    message = "Erreur lors de la création du projet",
+                    details = _environment.IsDevelopment() ? ex.Message : null
+                });
+            }
         }
     }
 }

@@ -19,6 +19,8 @@ namespace Bim.Server.Models
 
     public class ForgotPasswordModel
     {
+        [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "L'email est requis")]
+        [System.ComponentModel.DataAnnotations.EmailAddress(ErrorMessage = "Format d'email invalide")]
         public string Email { get; set; } = string.Empty;
     }
 

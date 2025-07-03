@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useRef, useState, useCallback, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import { IfcViewerAPI } from 'web-ifc-viewer';
 import * as THREE from 'three';
@@ -16,8 +16,12 @@ import {
 } from 'three';
 import { uploadIFCFile } from '../services/ifcService';
 import { getProjects, uploadFileToProject } from '../services/projectService';
+import { uploadModelScreenshot } from '../services/modelService';
 import ModelTreeView from './ModelTreeView';
 import ErrorBoundary from './ErrorBoundary';
+import AnnotationSystem from './Collaboration/AnnotationSystem';
+import { AuthContext } from '../context/AuthContext';
+import { checkWebGLCompatibility, createOptimalWebGLConfig } from '../utils/webgl-checker';
 import './IFCViewer.css';
 
 export default function IFCViewer() {
@@ -25,16 +29,19 @@ export default function IFCViewer() {
   const viewerRef = useRef(null);
   const tooltipRef = useRef(null);
   const location = useLocation();
+  const { userData } = useContext(AuthContext);
+  const isAdmin = userData?.roles?.includes('Admin');
   const [isUploading, setIsUploading] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isCapturingScreenshot, setIsCapturingScreenshot] = useState(false);
   const [error, setError] = useState(null);
   const [showClippingPlanes, setShowClippingPlanes] = useState(false);
   const [isViewerReady, setIsViewerReady] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   const [projects, setProjects] = useState([]);
   const [selectedProjectId, setSelectedProjectId] = useState('');
-  const [currentFile, setCurrentFile] = useState(null);
-  const [hoveredElement, setHoveredElement] = useState(null);
+  const [currentFile, setCurrentFile] = useState(null);const [hoveredElement, setHoveredElement] = useState(null);
+  const [selectedElement, setSelectedElement] = useState(null);
   const [horizontalClipPlane, setHorizontalClipPlane] = useState(null);
   const [verticalClipPlane, setVerticalClipPlane] = useState(null);
   const [horizontalClipValue, setHorizontalClipValue] = useState(0);
@@ -137,7 +144,6 @@ export default function IFCViewer() {
     containerRef.current.addEventListener('mousemove', handleMouseMove);
     containerRef.current.addEventListener('click', handleClick);
   }, [handleMouseMove, handleClick]);
-
   const resetScene = useCallback(() => {
     if (viewerRef.current?.context?.getCamera()) {
       viewerRef.current.context.getCamera().position.set(10, 10, 10);
@@ -146,6 +152,45 @@ export default function IFCViewer() {
         containerRef.current.clientWidth,
         containerRef.current.clientHeight
       );
+    }
+  }, []);
+  
+  const fitModelToView = useCallback(() => {
+    if (viewerRef.current?.context) {
+      try {
+        // Essayer d'utiliser la fonction fitToSphere des contrôles de caméra
+        if (viewerRef.current.context.ifcCamera.cameraControls.fitToSphere) {
+          viewerRef.current.context.ifcCamera.cameraControls.fitToSphere();
+          return;
+        }
+        
+        // Si fitToSphere n'est pas disponible, centrer manuellement sur le modèle
+        if (viewerRef.current.IFC.context.items.ifcModels.length > 0) {
+          const model = viewerRef.current.IFC.context.items.ifcModels[0];
+          const box = new THREE.Box3().setFromObject(model);
+          const center = box.getCenter(new THREE.Vector3());
+          const size = box.getSize(new THREE.Vector3());
+          
+          // Calculer une distance appropriée basée sur la taille du modèle
+          const maxDim = Math.max(size.x, size.y, size.z);
+          const distance = maxDim * 2;
+          
+          // Positionner la caméra pour voir tout le modèle
+          viewerRef.current.context.getCamera().position.set(
+            center.x + distance,
+            center.y + distance,
+            center.z + distance
+          );
+          viewerRef.current.context.getCamera().lookAt(center);
+          
+          // Mettre à jour les contrôles
+          if (viewerRef.current.context.ifcCamera.cameraControls.update) {
+            viewerRef.current.context.ifcCamera.cameraControls.update();
+          }
+        }
+      } catch (error) {
+        console.error('Error fitting model to view:', error);
+      }
     }
   }, []);
 
@@ -288,9 +333,7 @@ export default function IFCViewer() {
 
   useEffect(() => {
     let viewer = null;
-    const container = containerRef.current;
-
-    const init = async () => {
+    const container = containerRef.current;    const init = async () => {
       if (viewer || !container) return;
 
       try {
@@ -304,33 +347,80 @@ export default function IFCViewer() {
         document.body.appendChild(tooltip);
         tooltipRef.current = tooltip;
 
-        const baseUrl = window.location.origin;
-
-        // Create viewer with improved settings
-        viewer = new IfcViewerAPI({
-          container,
-          backgroundColor: new Color(0xffffff),
-          wasmPath: `${baseUrl}/wasm/`,
-          webWorkerPath: `${baseUrl}/wasm/web-ifc-mt.worker.js`,
-          preselectMaterial: {
-            opacity: 0,
-            transparent: true,
-            color: new Color(0x3B82F6),
-          },
-          defaultMaterial: {
-            transparent: false,
-            metalness: 0.1,
-            roughness: 0.8,
-            side: 2,
-          }
-        });
-
-        // Initialize IFC viewer components
-        await viewer.IFC.setWasmPath(`${baseUrl}/wasm/`);
+        // Check WebGL compatibility first
+        const webglInfo = checkWebGLCompatibility();
+        if (!webglInfo.supported) {
+          throw new Error(`WebGL is not supported in your browser. Details: ${webglInfo.error || 'Unknown error'}`);
+        }
         
-        // Ensure proper WebGL context
-        viewer.context.getRenderer().setPixelRatio(window.devicePixelRatio);
-        viewer.context.getRenderer().setSize(container.clientWidth, container.clientHeight);
+        console.log('WebGL compatibility check passed:', webglInfo);
+        
+        // Get optimal WebGL config based on device capabilities
+        const webglConfig = createOptimalWebGLConfig(container);
+
+        const baseUrl = window.location.origin;try {
+          // Configure WebGL context attributes first
+          const canvas = document.createElement('canvas');
+          container.appendChild(canvas);
+          
+          // Create WebGL context with specific attributes to avoid shader issues
+          const contextAttributes = {
+            alpha: true,
+            antialias: true,
+            preserveDrawingBuffer: true,
+            stencil: false,
+            powerPreference: 'high-performance'
+          };
+          
+          // Pre-initialize WebGL context to check compatibility
+          const gl = canvas.getContext('webgl2', contextAttributes) || 
+                     canvas.getContext('webgl', contextAttributes) || 
+                     canvas.getContext('experimental-webgl', contextAttributes);
+                     
+          if (!gl) {
+            throw new Error('WebGL not supported. Please use a WebGL-compatible browser.');
+          }
+          
+          // Create viewer with improved settings
+          viewer = new IfcViewerAPI({
+            container,
+            backgroundColor: new Color(0xffffff),
+            wasmPath: `${baseUrl}/wasm/`,
+            webWorkerPath: `${baseUrl}/wasm/web-ifc-mt.worker.js`,
+            preselectMaterial: {
+              opacity: 0,
+              transparent: true,
+              color: new Color(0x3B82F6),
+            },
+            defaultMaterial: {
+              transparent: false,
+              metalness: 0.1,
+              roughness: 0.8,
+              side: DoubleSide, // Use constant instead of number
+            },
+            // Add WebGL renderer parameters
+            renderer: {
+              antialias: true,
+              alpha: true,
+              preserveDrawingBuffer: true
+            }
+          });
+
+          // Initialize IFC viewer components
+          await viewer.IFC.setWasmPath(`${baseUrl}/wasm/`);
+          
+          // Ensure proper WebGL context
+          const renderer = viewer.context.getRenderer();
+          renderer.setPixelRatio(window.devicePixelRatio);
+          renderer.setSize(container.clientWidth, container.clientHeight);
+          
+          // Force shader compilation to detect issues early
+          renderer.compile(viewer.context.getScene(), viewer.context.getCamera());
+        } catch (initError) {
+          console.error("WebGL initialization error:", initError);
+          setError(`WebGL initialization failed: ${initError.message}`);
+          throw initError;
+        }
         
         // Configure viewer settings
         viewer.IFC.selector.preselection = false;
@@ -349,9 +439,7 @@ export default function IFCViewer() {
       }
     };
 
-    init();
-
-    return () => {
+    init();    return () => {
       if (viewerRef.current) {
         try {
           // Remove event listeners
@@ -364,10 +452,53 @@ export default function IFCViewer() {
           // Clear scene first
           clearScene();
           
-          // Dispose of renderer and WebGL context
-          const renderer = viewerRef.current.context.getRenderer();
-          renderer.dispose();
-          renderer.forceContextLoss();
+          // Properly dispose of WebGL resources
+          if (viewerRef.current.context) {
+            // Stop any ongoing animations
+            if (viewerRef.current.context.ifcCamera?.cameraControls) {
+              viewerRef.current.context.ifcCamera.cameraControls.dispose();
+            }
+            
+            // Get the renderer and scene
+            const renderer = viewerRef.current.context.getRenderer();
+            const scene = viewerRef.current.context.getScene();
+            
+            // Dispose of materials and geometries
+            scene.traverse((object) => {
+              if (object.isMesh) {
+                if (object.geometry) {
+                  object.geometry.dispose();
+                }
+                
+                if (object.material) {
+                  if (Array.isArray(object.material)) {
+                    object.material.forEach(material => {
+                      if (material.map) material.map.dispose();
+                      if (material.lightMap) material.lightMap.dispose();
+                      if (material.bumpMap) material.bumpMap.dispose();
+                      if (material.normalMap) material.normalMap.dispose();
+                      if (material.specularMap) material.specularMap.dispose();
+                      if (material.envMap) material.envMap.dispose();
+                      material.dispose();
+                    });
+                  } else {
+                    if (object.material.map) object.material.map.dispose();
+                    if (object.material.lightMap) object.material.lightMap.dispose();
+                    if (object.material.bumpMap) object.material.bumpMap.dispose();
+                    if (object.material.normalMap) object.material.normalMap.dispose();
+                    if (object.material.specularMap) object.material.specularMap.dispose();
+                    if (object.material.envMap) object.material.envMap.dispose();
+                    object.material.dispose();
+                  }
+                }
+              }
+            });
+            
+            // Dispose of the renderer and WebGL context
+            renderer.renderLists.dispose();
+            renderer.dispose();
+            renderer.forceContextLoss();
+          }
           
           // Clear viewer reference
           viewerRef.current = null;
@@ -564,9 +695,49 @@ export default function IFCViewer() {
     setShowClippingPlanes(!showClippingPlanes);
   };
 
+  const captureScreenshot = useCallback(async () => {
+    if (!viewerRef.current || !currentFile?.id) return;
+
+    try {
+      setIsCapturingScreenshot(true);
+
+      // Temporarily hide any UI elements that shouldn't be in the screenshot
+      if (tooltipRef.current) {
+        tooltipRef.current.style.display = 'none';
+      }
+
+      // Get the WebGL canvas
+      const canvas = viewerRef.current.context.getRenderer().domElement;
+
+      // Ensure the model is properly centered and visible
+      fitModelToView();
+
+      // Wait a moment for the view to stabilize
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      // Capture the canvas content
+      const base64Image = canvas.toDataURL('image/png');
+
+      // Upload the screenshot
+      await uploadModelScreenshot(currentFile.id, base64Image);
+
+      // Show success message
+      console.log('Screenshot captured and uploaded successfully');
+
+      // Restore UI elements
+      if (tooltipRef.current) {
+        tooltipRef.current.style.display = 'block';
+      }
+    } catch (error) {
+      console.error('Error capturing screenshot:', error);
+      setError('Failed to capture screenshot');
+    } finally {
+      setIsCapturingScreenshot(false);
+    }
+  }, [currentFile?.id, fitModelToView]);
+
   return (
-    <div className="viewer-wrapper">
-      <aside className="viewer-sidebar">
+    <div className="viewer-wrapper">      <aside className="viewer-sidebar">
         <div className="viewer-tools">
           <div className="file-upload-container">
             <label className="file-upload-label">
@@ -581,71 +752,20 @@ export default function IFCViewer() {
                 {isUploading ? 'Téléchargement en cours...' : 'Glissez un fichier IFC ici ou cliquez pour sélectionner'}
               </span>
             </label>
-
-            {!isViewerReady && (
-              <div className="status-message loading">Initialisation du viewer...</div>
-            )}
-            {isUploading && (
-              <div className="status-message loading">Téléchargement du fichier...</div>
-            )}
-            {isLoading && (
-              <div className="status-message loading">Chargement du modèle...</div>
-            )}
-            {error && (
-              <div className="status-message error">{error}</div>
-            )}
-
-            <div className="clipping-planes-container">
-              <button
-                onClick={toggleClippingPlanes}
-                disabled={!isViewerReady}
-                className={`create-plane-button ${showClippingPlanes ? 'active' : ''}`}
-              >
-                {showClippingPlanes ? 'Désactiver les plans de coupe' : 'Activer les plans de coupe'}
-              </button>
-
-              {showClippingPlanes && (
-                <>
-                  <div className="plane-instructions">
-                    Déplacez les curseurs pour ajuster les plans de coupe
-                  </div>
-                  <div className="clip-plane-controls">
-                    <div className="clip-control">
-                      <label>Plan horizontal</label>
-                      <input
-                        type="range"
-                        min="-10"
-                        max="10"
-                        step="0.1"
-                        value={horizontalClipValue}
-                        onChange={(e) => {
-                          const value = parseFloat(e.target.value);
-                          setHorizontalClipValue(value);
-                          updateClipPlane(horizontalClipPlane, value);
-                        }}
-                      />
-                    </div>
-                    <div className="clip-control">
-                      <label>Plan vertical</label>
-                      <input
-                        type="range"
-                        min="-10"
-                        max="10"
-                        step="0.1"
-                        value={verticalClipValue}
-                        onChange={(e) => {
-                          const value = parseFloat(e.target.value);
-                          setVerticalClipValue(value);
-                          updateClipPlane(verticalClipPlane, value);
-                        }}
-                      />
-                    </div>
-                  </div>
-                </>
-              )}
-            </div>
           </div>
 
+          {!isViewerReady && (
+            <div className="status-message loading">Initialisation du viewer...</div>
+          )}
+          {isUploading && (
+            <div className="status-message loading">Téléchargement du fichier...</div>
+          )}
+          {isLoading && (
+            <div className="status-message loading">Chargement du modèle...</div>
+          )}          {error && (
+            <div className="status-message error">{error}</div>
+          )}
+          
           {currentFile && (
             <div className="project-selection mt-4">
               <h3 className="tree-title">Ajouter à un projet</h3>
@@ -670,10 +790,91 @@ export default function IFCViewer() {
                 {isLoading ? 'Ajout en cours...' : 'Ajouter au projet'}
               </button>
             </div>
-          )}
-
-          <div className="tools-section">
+          )}<div className="tools-section">
             <h3 className="tree-title">Outils</h3>
+            <div className="tools-grid">              <button 
+                className={`tool-button ${showClippingPlanes ? 'active' : ''}`}
+                onClick={toggleClippingPlanes} 
+                disabled={!isViewerReady}
+              >
+                <i className="fas fa-cut"></i>
+                Plan de coupe
+              </button>
+              
+              {showClippingPlanes && (
+                <div className="clipping-planes-controls">
+                  <div className="clip-control">
+                    <label>Plan horizontal</label>
+                    <input
+                      type="range"
+                      min="-10"
+                      max="10"
+                      step="0.1"
+                      value={horizontalClipValue}
+                      onChange={(e) => {
+                        const value = parseFloat(e.target.value);
+                        setHorizontalClipValue(value);
+                        updateClipPlane(horizontalClipPlane, value);
+                      }}
+                    />
+                  </div>
+                  <div className="clip-control">
+                    <label>Plan vertical</label>
+                    <input
+                      type="range"
+                      min="-10"
+                      max="10"
+                      step="0.1"
+                      value={verticalClipValue}
+                      onChange={(e) => {
+                        const value = parseFloat(e.target.value);
+                        setVerticalClipValue(value);
+                        updateClipPlane(verticalClipPlane, value);
+                      }}
+                    />
+                  </div>
+                </div>
+              )}
+              <button 
+                className="tool-button" 
+                onClick={() => {
+                  if (viewerRef.current?.context) {
+                    resetScene();
+                  }
+                }}
+                disabled={!isViewerReady}
+              >
+                <i className="fas fa-sync-alt"></i>
+                Réinitialiser la vue
+              </button>
+              <button 
+                className="tool-button" 
+                onClick={() => {
+                  if (viewerRef.current?.IFC?.selector) {
+                    viewerRef.current.IFC.selector.unpickIfcItems();
+                    setSelectedElement(null);
+                  }
+                }}
+                disabled={!isViewerReady}
+              >
+                <i className="fas fa-mouse-pointer"></i>
+                Désélectionner
+              </button>              <button 
+                className="tool-button" 
+                onClick={fitModelToView}
+                disabled={!isViewerReady}
+              >
+                <i className="fas fa-expand"></i>
+                Ajuster la vue
+              </button>
+              <button 
+                className="tool-button" 
+                onClick={captureScreenshot}
+                disabled={isCapturingScreenshot || !isViewerReady}
+              >
+                {isCapturingScreenshot ? 'Capture en cours...' : 'Capturer l\'écran'}
+              </button>
+            </div>
           </div>
         </div>
 
@@ -687,10 +888,14 @@ export default function IFCViewer() {
             </ErrorBoundary>
           )}
         </div>
-      </aside>
-
-      <main className="viewer-container">
+      </aside>      <main className="viewer-container">
         <div ref={containerRef} className="w-full h-full" />
+        {isViewerReady && (
+          <AnnotationSystem 
+            viewer={viewerRef.current}
+            projectId={selectedProjectId}
+          />
+        )}
         {(isLoading || isUploading) && (
           <div className="loading-overlay">
             <div className="loading-spinner" />

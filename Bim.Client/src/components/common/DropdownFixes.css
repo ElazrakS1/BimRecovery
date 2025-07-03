@@ -1,0 +1,132 @@
+/**
+ * DropdownFixes.css
+ * Ce fichier contient des correctifs spécifiques pour tous les dropdowns de l'application
+ * afin d'assurer une cohérence visuelle et un bon alignement.
+ */
+
+/* Variables globales pour les dropdowns */
+:root {
+  --dropdown-min-width: 180px;
+  --dropdown-max-width: 260px;
+  --dropdown-z-index: 1100;
+  --dropdown-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --dropdown-border-radius: var(--border-radius-lg);
+  --dropdown-animation-duration: 0.2s;
+  
+  /* Hauteurs maximales pour une meilleure gestion sur différentes tailles d'écran */
+  --dropdown-max-height: 280px;
+  --dropdown-max-height-mobile: 60vh;
+  
+  /* Espacements internes cohérents */
+  --dropdown-header-padding: 0.6rem 0.75rem;
+  --dropdown-item-padding: 0.55rem 0.7rem;
+  --dropdown-footer-padding: 0.7rem;
+}
+
+/* Styles globaux pour tous les dropdowns */
+.dropdown {
+  position: absolute;
+  background: white;
+  border-radius: var(--dropdown-border-radius);
+  border: 1px solid rgba(3, 72, 113, 0.1);
+  box-shadow: var(--dropdown-shadow);
+  z-index: var(--dropdown-z-index);
+  overflow: hidden;
+  animation: dropdownFadeIn var(--dropdown-animation-duration) ease;
+}
+
+/* Position des dropdowns */
+.dropdown-top {
+  bottom: calc(100% + 0.5rem);
+  top: auto;
+}
+
+.dropdown-bottom {
+  top: calc(100% + 0.5rem);
+  bottom: auto;
+}
+
+.dropdown-left {
+  right: 0;
+  left: auto;
+}
+
+.dropdown-right {
+  left: 0;
+  right: auto;
+}
+
+.dropdown-center {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Entêtes des dropdowns */
+.dropdown-header {
+  padding: var(--dropdown-header-padding);
+  border-bottom: 1px solid rgba(3, 72, 113, 0.1);
+  background: var(--color-surface);
+}
+
+/* Contenus des dropdowns */
+.dropdown-content {
+  overflow-y: auto;
+  max-height: var(--dropdown-max-height);
+}
+
+/* Éléments de liste dans les dropdowns */
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: var(--dropdown-item-padding);
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.dropdown-item:hover {
+  background: var(--color-background);
+}
+
+/* Pieds de page des dropdowns */
+.dropdown-footer {
+  padding: var(--dropdown-footer-padding);
+  border-top: 1px solid rgba(3, 72, 113, 0.1);
+  background: var(--color-surface);
+}
+
+/* Animation des dropdowns */
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Adaptations pour mobile */
+@media screen and (max-width: 640px) {
+  .dropdown-mobile-fullwidth {
+    width: 100% !important;
+    max-width: 100% !important;
+    position: fixed !important;
+    left: 0 !important;
+    right: 0 !important;
+    border-radius: 0 !important;
+    top: var(--header-height) !important;
+    border: none !important;
+    border-top: 1px solid rgba(3, 72, 113, 0.1) !important;
+  }
+  
+  .dropdown-content {
+    max-height: var(--dropdown-max-height-mobile) !important;
+  }
+}
+
+

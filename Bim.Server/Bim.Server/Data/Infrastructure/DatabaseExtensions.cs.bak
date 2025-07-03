@@ -1,0 +1,16 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Bim.Server.Data;
+
+namespace Bim.Server.Data.Infrastructure
+{    public static class DatabaseExtensions
+    {
+        public static IServiceCollection AddBimDatabase(this IServiceCollection services, string connectionString)
+        {
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(connectionString));
+            
+            return services;
+        }
+    }
+}

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dropdown Debug Test</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            border-bottom: 3px solid #007acc;
+            padding-bottom: 10px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fafafa;
+        }
+        .test-button {
+            background-color: #007acc;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .test-button:hover {
+            background-color: #005a9e;
+        }
+        .result {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 5px;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+        }
+        .success {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        .error {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        .info {
+            background-color: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+        }
+        .user-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .user-card {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .user-card h4 {
+            margin: 0 0 10px 0;
+            color: #007acc;
+        }
+        .user-details {
+            font-size: 14px;
+            color: #666;
+        }
+        .loading {
+            color: #007acc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 User Dropdown Debug Test</h1>
+        <p>This tool tests the user endpoints to diagnose why users are not appearing in the task assignment dropdown.</p>
+        
+        <!-- API Configuration -->
+        <div class="test-section">
+            <h3>⚙️ API Configuration</h3>
+            <label for="apiUrl">API Base URL:</label>
+            <input type="text" id="apiUrl" value="https://localhost:7128" style="width: 300px; padding: 5px; margin: 5px;">
+            <br>
+            <label for="projectId">Project ID (for testing):</label>
+            <input type="number" id="projectId" value="1" style="width: 100px; padding: 5px; margin: 5px;">
+        </div>
+
+        <!-- Test 1: Available Users Endpoint -->
+        <div class="test-section">
+            <h3>1️⃣ Test Available Users Endpoint</h3>
+            <p>Tests: <code>/api/collaborationtasks/available-users</code></p>
+            <button class="test-button" onclick="testAvailableUsers()">Test Available Users</button>
+            <div id="availableUsersResult" class="result" style="display: none;"></div>
+        </div>
+
+        <!-- Test 2: Users Endpoint -->
+        <div class="test-section">
+            <h3>2️⃣ Test General Users Endpoint</h3>
+            <p>Tests: <code>/api/users</code></p>
+            <button class="test-button" onclick="testGeneralUsers()">Test Users Endpoint</button>
+            <div id="generalUsersResult" class="result" style="display: none;"></div>
+        </div>
+
+        <!-- Test 3: Auth Test -->
+        <div class="test-section">
+            <h3>3️⃣ Authentication Test</h3>
+            <p>Test if authentication is required and working</p>
+            <input type="email" id="testEmail" placeholder="Test email" value="admin@bimrecovery.com" style="padding: 5px; margin: 5px;">
+            <input type="password" id="testPassword" placeholder="Test password" value="Admin123!" style="padding: 5px; margin: 5px;">
+            <button class="test-button" onclick="testAuthentication()">Test Auth & Fetch Users</button>
+            <div id="authResult" class="result" style="display: none;"></div>
+        </div>
+
+        <!-- Test 4: Local Storage Check -->
+        <div class="test-section">
+            <h3>4️⃣ Local Storage Check</h3>
+            <p>Check current authentication tokens</p>
+            <button class="test-button" onclick="checkLocalStorage()">Check Stored Tokens</button>
+            <div id="storageResult" class="result" style="display: none;"></div>
+        </div>
+
+        <!-- User Display -->
+        <div class="test-section">
+            <h3>👥 Retrieved Users</h3>
+            <div id="userDisplay" class="user-list"></div>
+        </div>
+    </div>
+
+    <script>
+        const log = (elementId, message, type = 'info') => {
+            const element = document.getElementById(elementId);
+            element.style.display = 'block';
+            element.className = `result ${type}`;
+            element.textContent = message;
+        };
+
+        const getApiUrl = () => document.getElementById('apiUrl').value;
+
+        const getAuthHeaders = () => {
+            const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+            if (token) {
+                return {
+                    'Authorization': token.startsWith('Bearer ') ? token : `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                };
+            }
+            return { 'Content-Type': 'application/json' };
+        };
+
+        async function testAvailableUsers() {
+            log('availableUsersResult', '🔄 Testing available users endpoint...', 'loading');
+            
+            try {
+                const response = await fetch(`${getApiUrl()}/api/collaborationtasks/available-users`, {
+                    method: 'GET',
+                    headers: getAuthHeaders()
+                });
+
+                const responseText = await response.text();
+                let responseData;
+                
+                try {
+                    responseData = JSON.parse(responseText);
+                } catch (e) {
+                    responseData = responseText;
+                }
+
+                if (response.ok) {
+                    const message = `✅ SUCCESS!\nStatus: ${response.status}\nUsers found: ${Array.isArray(responseData) ? responseData.length : 'Unknown'}\n\nResponse:\n${JSON.stringify(responseData, null, 2)}`;
+                    log('availableUsersResult', message, 'success');
+                    displayUsers(responseData);
+                } else {
+                    const message = `❌ FAILED!\nStatus: ${response.status} ${response.statusText}\nResponse:\n${JSON.stringify(responseData, null, 2)}`;
+                    log('availableUsersResult', message, 'error');
+                }
+            } catch (error) {
+                log('availableUsersResult', `❌ ERROR!\n${error.message}\n\nStack:\n${error.stack}`, 'error');
+            }
+        }
+
+        async function testGeneralUsers() {
+            log('generalUsersResult', '🔄 Testing general users endpoint...', 'loading');
+            
+            try {
+                const response = await fetch(`${getApiUrl()}/api/users`, {
+                    method: 'GET',
+                    headers: getAuthHeaders()
+                });
+
+                const responseText = await response.text();
+                let responseData;
+                
+                try {
+                    responseData = JSON.parse(responseText);
+                } catch (e) {
+                    responseData = responseText;
+                }
+
+                const message = response.ok 
+                    ? `✅ SUCCESS!\nStatus: ${response.status}\nUsers found: ${Array.isArray(responseData) ? responseData.length : 'Unknown'}\n\nResponse:\n${JSON.stringify(responseData, null, 2)}`
+                    : `❌ FAILED!\nStatus: ${response.status} ${response.statusText}\nResponse:\n${JSON.stringify(responseData, null, 2)}`;
+                
+                log('generalUsersResult', message, response.ok ? 'success' : 'error');
+                
+                if (response.ok) {
+                    displayUsers(responseData);
+                }
+            } catch (error) {
+                log('generalUsersResult', `❌ ERROR!\n${error.message}`, 'error');
+            }
+        }
+
+        async function testAuthentication() {
+            log('authResult', '🔄 Testing authentication...', 'loading');
+            
+            const email = document.getElementById('testEmail').value;
+            const password = document.getElementById('testPassword').value;
+            
+            try {
+                // Try to login
+                const loginResponse = await fetch(`${getApiUrl()}/api/auth/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const loginData = await loginResponse.json();
+
+                if (loginResponse.ok && loginData.token) {
+                    // Store token
+                    localStorage.setItem('token', loginData.token);
+                    
+                    // Test users endpoint with token
+                    const usersResponse = await fetch(`${getApiUrl()}/api/collaborationtasks/available-users`, {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `Bearer ${loginData.token}`,
+                            'Content-Type': 'application/json'
+                        }
+                    });
+
+                    const usersData = await usersResponse.json();
+
+                    const message = `✅ AUTH SUCCESS!\nLogin Status: ${loginResponse.status}\nToken received: ${loginData.token.substring(0, 50)}...\n\nUsers Endpoint Status: ${usersResponse.status}\nUsers found: ${Array.isArray(usersData) ? usersData.length : 'Unknown'}\n\nUsers Data:\n${JSON.stringify(usersData, null, 2)}`;
+                    log('authResult', message, 'success');
+                    displayUsers(usersData);
+                } else {
+                    log('authResult', `❌ LOGIN FAILED!\nStatus: ${loginResponse.status}\nResponse: ${JSON.stringify(loginData, null, 2)}`, 'error');
+                }
+            } catch (error) {
+                log('authResult', `❌ AUTH ERROR!\n${error.message}`, 'error');
+            }
+        }
+
+        function checkLocalStorage() {
+            const token = localStorage.getItem('token');
+            const sessionToken = sessionStorage.getItem('token');
+            const userData = localStorage.getItem('user');
+            
+            const message = `🔍 STORAGE CHECK:\n\nLocalStorage token: ${token ? `${token.substring(0, 50)}...` : 'None'}\nSessionStorage token: ${sessionToken ? `${sessionToken.substring(0, 50)}...` : 'None'}\nUser data: ${userData || 'None'}\n\nActive headers:\n${JSON.stringify(getAuthHeaders(), null, 2)}`;
+            
+            log('storageResult', message, 'info');
+        }
+
+        function displayUsers(users) {
+            const container = document.getElementById('userDisplay');
+            
+            if (!Array.isArray(users) || users.length === 0) {
+                container.innerHTML = '<p style="color: #999; text-align: center;">No users to display</p>';
+                return;
+            }
+
+            container.innerHTML = users.map(user => `
+                <div class="user-card">
+                    <h4>${user.firstName || ''} ${user.lastName || ''}</h4>
+                    <div class="user-details">
+                        <p><strong>ID:</strong> ${user.id}</p>
+                        <p><strong>Email:</strong> ${user.email || 'N/A'}</p>
+                        <p><strong>Company:</strong> ${user.company || 'N/A'}</p>
+                        <p><strong>Position:</strong> ${user.position || 'N/A'}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Auto-check storage on load
+        window.onload = () => {
+            checkLocalStorage();
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scroll Test - BIM Recovery</title>
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* CSS Variables from the app */
+        :root {
+            --header-height: 72px;
+            --primary-color: #034871;
+            --color-background: #ffffff;
+            --border-radius-lg: 12px;
+            --shadow-elevation-1: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.98));
+        }
+
+        /* Header - Sticky positioning */
+        .header {
+            position: sticky;
+            top: 0;
+            height: var(--header-height);
+            background: var(--color-background);
+            border-bottom: 1px solid rgba(3, 72, 113, 0.1);
+            box-shadow: var(--shadow-elevation-1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            z-index: 1000;
+        }
+
+        .header h1 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .header-info {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Main content */
+        .main-content {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .content-section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: white;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-elevation-1);
+        }
+
+        .content-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .content-section p {
+            margin-bottom: 1rem;
+            color: #555;
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-elevation-1);
+            font-weight: 600;
+        }
+
+        /* Test sections with different heights */
+        .tall-section {
+            min-height: 100vh;
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .medium-section {
+            min-height: 60vh;
+            background: linear-gradient(135deg, #fff5f5, #fed7d7);
+        }
+
+        .small-section {
+            min-height: 40vh;
+            background: linear-gradient(225deg, #f0fff4, #c6f6d5);
+        }
+
+        /* Mobile responsiveness */
+        @media screen and (max-width: 640px) {
+            :root {
+                --header-height: 68px;
+            }
+            
+            .header {
+                padding: 0.6rem 1rem;
+            }
+            
+            .header h1 {
+                font-size: 1.25rem;
+            }
+            
+            .main-content {
+                padding: 1rem;
+            }
+            
+            .scroll-indicator {
+                bottom: 1rem;
+                right: 1rem;
+                padding: 0.75rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>BIM Recovery - Scroll Test</h1>
+        <div class="header-info">Sticky Header Test</div>
+    </header>
+
+    <main class="main-content">
+        <div class="content-section">
+            <h2>🧪 Scroll Test Instructions</h2>
+            <p>This page tests the sticky header and scroll functionality fixes:</p>
+            <ul>
+                <li><strong>Header should remain visible</strong> when scrolling (sticky position)</li>
+                <li><strong>Content should scroll normally</strong> without being cut off</li>
+                <li><strong>You should be able to scroll to the very bottom</strong> of this page</li>
+                <li><strong>Mobile responsive</strong> - header adapts on smaller screens</li>
+            </ul>
+        </div>
+
+        <div class="content-section tall-section">
+            <div>Section 1 - Full Viewport Height</div>
+        </div>
+
+        <div class="content-section medium-section">
+            <h2>Section 2 - Medium Height</h2>
+            <p>This section tests medium-height content scrolling. The header should remain sticky at the top while you scroll through this content.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+
+        <div class="content-section small-section">
+            <h2>Section 3 - Small Height</h2>
+            <p>Testing smaller content sections to ensure proper spacing and scroll behavior.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>Section 4 - Regular Content</h2>
+            <p>Multiple paragraphs to test content flow:</p>
+            <p>Paragraph 1: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p>Paragraph 2: Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+            <p>Paragraph 3: Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>Section 5 - More Content</h2>
+            <p>Additional content to test extended scrolling:</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>Section 6 - Additional Testing</h2>
+            <p>More content for comprehensive scroll testing:</p>
+            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>🎯 Final Test Section</h2>
+            <p><strong>If you can see this section clearly and scroll to the very bottom, the scroll fix is working!</strong></p>
+            <p>Key checks:</p>
+            <ul>
+                <li>✅ Header stays visible while scrolling</li>
+                <li>✅ All content is accessible via scroll</li>
+                <li>✅ No content is cut off at the bottom</li>
+                <li>✅ Smooth scrolling experience</li>
+            </ul>
+            <p style="margin-top: 2rem; padding: 1rem; background: #e8f5e8; border-radius: 8px; border-left: 4px solid #4caf50;">
+                <strong>✅ SUCCESS:</strong> If you can read this message, the scroll functionality is working correctly!
+            </p>
+        </div>
+    </main>
+
+    <div class="scroll-indicator" id="scrollIndicator">
+        Scroll: 0%
+    </div>
+
+    <script>
+        // Scroll indicator script
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.offsetHeight - window.innerHeight;
+            const scrollPercent = Math.round((scrollTop / docHeight) * 100);
+            
+            document.getElementById('scrollIndicator').textContent = `Scroll: ${scrollPercent}%`;
+        });
+
+        // Test results logging
+        console.log('🧪 Scroll Test Page Loaded');
+        console.log('Header height CSS variable:', getComputedStyle(document.documentElement).getPropertyValue('--header-height'));
+        console.log('Header position:', getComputedStyle(document.querySelector('.header')).position);
+        console.log('Page height:', document.body.offsetHeight + 'px');
+        console.log('Viewport height:', window.innerHeight + 'px');
+    </script>
+</body>
+</html>

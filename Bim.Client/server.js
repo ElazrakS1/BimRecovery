@@ -1,6 +1,6 @@
 import express from 'express';
 import { createServer } from 'vite';
-import { configureWasmMiddleware } from './src/middleware/wasm-middleware.js';
+import { configureWasmMiddleware } from './src/middleware/wasmWorkerMiddleware.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -9,16 +9,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 async function createDevServer() {
   const app = express();
 
-  // Configure CORS headers
-  app.use((req, res, next) => {
-    res.set({
-      'Cross-Origin-Embedder-Policy': 'require-corp',
-      'Cross-Origin-Opener-Policy': 'same-origin'
-    });
-    next();
-  });
-
-  // Configure WASM middleware before Vite
+  // Configure WASM and Worker middleware
   configureWasmMiddleware(app);
 
   // Initialize Vite in middleware mode

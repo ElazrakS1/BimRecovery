@@ -14,11 +14,58 @@
   overflow-y: auto;
 }
 
+/* Styles de scrollbar pour la gestion des utilisateurs */
+.user-management-content::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.user-management-content::-webkit-scrollbar-track {
+  background: rgba(241, 241, 241, 0.1);
+  border-radius: 4px;
+}
+
+.user-management-content::-webkit-scrollbar-thumb {
+  background: rgba(136, 136, 136, 0.5);
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.user-management-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(85, 85, 85, 0.8);
+}
+
+/* Dark mode styles for user management scrollbars */
+.dark .user-management-content::-webkit-scrollbar-track {
+  background: rgba(30, 30, 30, 0.2);
+}
+
+.dark .user-management-content::-webkit-scrollbar-thumb {
+  background: rgba(160, 160, 160, 0.5);
+}
+
+.dark .user-management-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(180, 180, 180, 0.8);
+}
+
+/* Firefox scrollbar styles */
+.user-management-content {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(136, 136, 136, 0.5) rgba(241, 241, 241, 0.1);
+}
+
+/* Firefox dark mode */
+.dark .user-management-content {
+  scrollbar-color: rgba(160, 160, 160, 0.5) rgba(30, 30, 30, 0.2);
+}
+
 .user-management-main {
   margin-top: 20px;
   margin-bottom: 20px;
   background-color: #ffffff;
   border-radius: 8px;
+  width: 100%;
+  box-sizing: border-box;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   padding: 20px;
 }
@@ -39,7 +86,7 @@
 }
 
 .btn-primary {
-  background-color: #3498db;
+  background-color: #6356e5;
   color: white;
   border: none;
   border-radius: 4px;
@@ -53,7 +100,7 @@
 }
 
 .btn-primary:hover {
-  background-color: #2980b9;
+  background-color: #4338ca;
 }
 
 .btn-primary:disabled {
@@ -89,7 +136,7 @@
 
 .loader {
   border: 5px solid #f3f3f3;
-  border-top: 5px solid #3498db;
+  border-top: 5px solid #6356e5;
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -106,6 +153,14 @@
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
+  table-layout: fixed; /* Garantit que les colonnes respectent les largeurs définies */
+}
+
+/* Container pour permettre le défilement horizontal si nécessaire */
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-bottom: 20px;
 }
 
 .users-table th,
@@ -113,6 +168,9 @@
   padding: 12px 15px;
   text-align: left;
   border-bottom: 1px solid #e0e0e0;
+  overflow: hidden; /* Cache le contenu qui dépasse */
+  text-overflow: ellipsis; /* Ajoute des points de suspension pour indiquer le texte tronqué */
+  white-space: nowrap; /* Empêche le texte de passer à la ligne */
 }
 
 .users-table th {
@@ -121,8 +179,86 @@
   background-color: #f8f9fa;
 }
 
+/* Définition des largeurs spécifiques pour chaque colonne */
+.users-table th:nth-child(1), /* Nom */
+.users-table td:nth-child(1) {
+  width: 20%;
+}
+
+.users-table th:nth-child(2), /* Email */
+.users-table td:nth-child(2) {
+  width: 25%;
+}
+
+.users-table th:nth-child(3), /* Entreprise */
+.users-table td:nth-child(3) {
+  width: 20%;
+}
+
+.users-table th:nth-child(4), /* Rôle */
+.users-table td:nth-child(4) {
+  width: 12%;
+}
+
+.users-table th:nth-child(5), /* Statut */
+.users-table td:nth-child(5) {
+  width: 12%;
+}
+
+.users-table th:nth-child(6), /* Actions */
+.users-table td:nth-child(6) {
+  width: 11%;
+}
+
 .users-table tr:hover {
   background-color: #f5f7f9;
+}
+
+/* Amélioration de l'apparence et du comportement des cellules du tableau */
+.users-table td[title]:hover {
+  cursor: help; /* Indique que l'élément a une info-bulle */
+}
+
+/* Amélioration des couleurs des badges de statut */
+.status-badge.active {
+  background-color: #10b981;
+  color: white;
+}
+
+.status-badge.inactive {
+  background-color: #94a3b8;
+  color: white;
+}
+
+/* Ajout de rayures légères pour faciliter la lecture des lignes */
+.users-table tbody tr:nth-child(even) {
+  background-color: #f9fafc;
+}
+
+/* Style responsive pour les petits écrans */
+@media (max-width: 768px) {
+  .users-table {
+    font-size: 14px;
+  }
+  
+  .users-table th,
+  .users-table td {
+    padding: 10px 8px;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr; /* Une seule colonne sur petits écrans */
+    gap: 16px;
+  }
+}
+
+/* Animation subtile sur les lignes au survol */
+.users-table tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+.users-table tbody tr:hover {
+  background-color: rgba(99, 86, 229, 0.05);
 }
 
 .user-form-container {
@@ -130,6 +266,8 @@
   padding: 30px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  box-sizing: border-box;
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
@@ -144,6 +282,8 @@
 
 .form-group {
   margin-bottom: 24px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .form-group label {
@@ -166,13 +306,14 @@
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 14px;
+  box-sizing: border-box;
 }
 
 .form-group input:focus,
 .form-group select:focus {
-  border-color: #3498db;
+  border-color: #6356e5;
   outline: none;
-  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+  box-shadow: 0 0 0 2px rgba(99, 86, 229, 0.2);
 }
 
 .form-group input.error {
@@ -228,12 +369,12 @@
 }
 
 .role-badge.user {
-  background-color: #3498db;
+  background-color: #6356e5;
   color: white;
 }
 
 .role-badge.manager {
-  background-color: #2ecc71;
+  background-color: #10b981;
   color: white;
 }
 
@@ -245,12 +386,12 @@
 }
 
 .status-badge.active {
-  background-color: #2ecc71;
+  background-color: #10b981;
   color: white;
 }
 
 .status-badge.inactive {
-  background-color: #95a5a6;
+  background-color: #94a3b8;
   color: white;
 }
 
@@ -272,12 +413,12 @@
 }
 
 .btn-icon.edit {
-  background-color: #f39c12;
+  background-color: #6356e5;
   color: white;
 }
 
 .btn-icon.activate {
-  background-color: #2ecc71;
+  background-color: #10b981;
   color: white;
 }
 
@@ -291,7 +432,7 @@
 }
 
 .btn-icon.edit:hover {
-  background-color: #d68910;
+  background-color: #4338ca;
 }
 
 .btn-icon.activate:hover {
@@ -301,3 +442,5 @@
 .btn-icon.deactivate:hover {
   background-color: #c0392b;
 }
+
+

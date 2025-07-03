@@ -1,0 +1,184 @@
+/* 
+ * Thème principal BIM Recovery basé sur le logo 12.png
+ * Couleurs : Dégradé bleu-violet (#2a1a5e → #8470f3) et blanc
+ */
+
+:root {
+  /* Variables de couleur basées sur le logo 12.png - Version foncée élégante */
+  --primary: #6356e5;          /* Bleu-violet foncé principal */
+  --primary-dark: #1e1b4b;     /* Bleu très sombre du dégradé */
+  --primary-medium: #4338ca;   /* Bleu-violet medium */
+  --primary-light: #ede9fe;    /* Bleu très clair */
+  --white: #ffffff;            /* Blanc pur */
+  --gray-light: #f8fafc;       /* Gris très clair */
+  --gray: #64748b;             /* Gris neutre */
+  --gray-dark: #1e293b;        /* Gris sombre */
+    /* Couleur complémentaire moderne */
+  --secondary: #10b981;        /* Vert émeraude moderne */
+  --secondary-dark: #059669;   /* Vert émeraude foncé */
+  --secondary-light: #ecfdf5;  /* Vert très clair */
+  
+  /* États */
+  --success: #10b981;          /* Vert succès moderne */
+  --warning: #f59e0b;          /* Orange attention */
+  --error: #dc2626;            /* Rouge erreur */
+  --info: #6356e5;             /* Bleu-violet information */
+  
+  /* Dégradés */
+  --gradient-primary: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-medium) 100%);
+  --gradient-secondary: linear-gradient(135deg, var(--secondary-dark) 0%, var(--secondary) 100%);
+  --gradient-subtle: linear-gradient(135deg, var(--primary-light) 0%, var(--white) 100%);
+  
+  /* Ombres */
+  --shadow: 0 4px 6px -1px rgba(132, 112, 243, 0.1), 0 2px 4px -1px rgba(132, 112, 243, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(132, 112, 243, 0.1), 0 4px 6px -2px rgba(132, 112, 243, 0.05);
+  --shadow-secondary: 0 4px 6px -1px rgba(16, 185, 129, 0.1), 0 2px 4px -1px rgba(16, 185, 129, 0.06);
+  
+  /* Transitions */
+  --transition: all 0.2s ease-in-out;
+}
+
+/* Classes utilitaires principales */
+.btn {
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  outline: none;
+  border: 2px solid transparent;
+}
+
+.btn:focus {
+  ring: 2px;
+  ring-offset: 2px;
+}
+
+.btn-primary {
+  background: var(--gradient-primary);
+  color: var(--white);
+  box-shadow: var(--shadow);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+}
+
+.btn-secondary:hover {
+  background: var(--primary);
+  color: var(--white);
+}
+
+.card {
+  @apply bg-white rounded-xl p-6 transition-all duration-200;
+  box-shadow: var(--shadow);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.input {
+  @apply w-full px-3 py-2 border-2 rounded-lg transition-all duration-200 focus:outline-none;
+  border-color: rgba(132, 112, 243, 0.2);
+}
+
+.input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(132, 112, 243, 0.1);
+}
+
+/* Texte avec dégradé */
+.text-gradient {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Navigation */
+.nav {
+  background: var(--gradient-primary);
+}
+
+.nav-item {
+  @apply px-3 py-2 rounded-md text-white transition-all duration-200;
+}
+
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-item.active {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Badges */
+.badge {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  background: var(--primary);
+  color: var(--white);
+}
+
+.badge-outline {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border-2;
+  color: var(--primary);
+  border-color: var(--primary);
+  background: transparent;
+}
+
+/* Alertes */
+.alert {
+  @apply p-4 rounded-lg border-l-4;
+}
+
+.alert-info {
+  background: var(--primary-light);
+  border-color: var(--primary);
+  color: var(--primary-dark);
+}
+
+.alert-success {
+  @apply bg-green-50 border-green-400 text-green-800;
+}
+
+.alert-warning {
+  @apply bg-violet-50 border-violet-400 text-violet-800;
+}
+
+.alert-error {
+  @apply bg-red-50 border-red-400 text-red-800;
+}
+
+/* Effet de verre */
+.glass {
+  background: rgba(132, 112, 243, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(132, 112, 243, 0.2);
+}
+
+/* Spinner */
+.spinner {
+  @apply inline-block w-6 h-6 border-2 border-current border-r-transparent rounded-full animate-spin;
+  color: var(--primary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .btn {
+    @apply px-3 py-2 text-sm;
+  }
+  
+  .card {
+    @apply p-4;
+  }
+}
+
+

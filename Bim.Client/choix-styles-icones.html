@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choix d'Effets pour les Icônes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 2rem;
+            background: linear-gradient(135deg, 
+                rgba(30, 27, 75, 0.9) 0%, 
+                rgba(67, 56, 202, 0.8) 50%,
+                rgba(99, 86, 229, 0.9) 100%
+            );
+            color: white;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: white;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .option-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .option-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: white;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+
+        /* Style 1 : Lueur douce */
+        .style1-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: rgba(99, 86, 229, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            backdrop-filter: blur(5px);
+            position: relative;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .style1-icon:hover {
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+            transform: scale(1.1);
+        }
+
+        .style1-icon i {
+            font-size: 24px;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Style 2 : Pulsation subtile */
+        .style2-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: rgba(99, 86, 229, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            backdrop-filter: blur(5px);
+            position: relative;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+            }
+        }
+
+        .style2-icon i {
+            font-size: 24px;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Style 3 : Bordure animée */
+        .style3-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: rgba(99, 86, 229, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            backdrop-filter: blur(5px);
+            position: relative;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+        }
+
+        .style3-icon::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, 
+                rgba(255, 255, 255, 0.6),
+                rgba(99, 86, 229, 0.8),
+                rgba(255, 255, 255, 0.6)
+            );
+            border-radius: 14px;
+            z-index: -1;
+            animation: borderRotate 3s linear infinite;
+        }
+
+        @keyframes borderRotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .style3-icon i {
+            font-size: 24px;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Style 4 : Effet minimal */
+        .style4-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: rgba(99, 86, 229, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            backdrop-filter: blur(5px);
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .style4-icon i {
+            font-size: 24px;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Style 5 : Particules flottantes */
+        .style5-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: rgba(99, 86, 229, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            backdrop-filter: blur(5px);
+            position: relative;
+            overflow: visible;
+        }
+
+        .style5-icon::before {
+            content: '✨';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            font-size: 12px;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0.5) rotate(0deg);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1) rotate(180deg);
+            }
+        }
+
+        .style5-icon i {
+            font-size: 24px;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Style 6 : Dégradé animé */
+        .style6-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: linear-gradient(45deg, 
+                rgba(99, 86, 229, 0.6),
+                rgba(255, 255, 255, 0.3),
+                rgba(99, 86, 229, 0.6)
+            );
+            background-size: 200% 200%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            backdrop-filter: blur(5px);
+            position: relative;
+            animation: gradientShift 3s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .style6-icon i {
+            font-size: 24px;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-text h3 {
+            margin: 0 0 8px;
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .feature-text p {
+            margin: 0;
+            font-size: 15px;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .choice-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .choice-btn {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #6356e5, #4338ca);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .choice-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(99, 86, 229, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">🎨 Choisissez votre Style d'Icônes</h1>
+        
+        <div class="options-grid">
+            <!-- Style 1 -->
+            <div class="option-card">
+                <div class="option-title">1️⃣ Lueur Douce</div>
+                <div class="feature-item">
+                    <div class="style1-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <div class="feature-text">
+                        <h3>Effet au survol</h3>
+                        <p>Lueur subtile qui s'intensifie</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Style 2 -->
+            <div class="option-card">
+                <div class="option-title">2️⃣ Pulsation Subtile</div>
+                <div class="feature-item">
+                    <div class="style2-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="feature-text">
+                        <h3>Respiration douce</h3>
+                        <p>Pulsation calme et apaisante</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Style 3 -->
+            <div class="option-card">
+                <div class="option-title">3️⃣ Bordure Animée</div>
+                <div class="feature-item">
+                    <div class="style3-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="feature-text">
+                        <h3>Bordure rotative</h3>
+                        <p>Contour coloré qui tourne</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Style 4 -->
+            <div class="option-card">
+                <div class="option-title">4️⃣ Minimal Élégant</div>
+                <div class="feature-item">
+                    <div class="style4-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <div class="feature-text">
+                        <h3>Simplicité pure</h3>
+                        <p>Aucun effet, juste élégant</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Style 5 -->
+            <div class="option-card">
+                <div class="option-title">5️⃣ Particules Magiques</div>
+                <div class="feature-item">
+                    <div class="style5-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="feature-text">
+                        <h3>Étoiles scintillantes</h3>
+                        <p>Petites particules délicates</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Style 6 -->
+            <div class="option-card">
+                <div class="option-title">6️⃣ Dégradé Fluide</div>
+                <div class="feature-item">
+                    <div class="style6-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="feature-text">
+                        <h3>Couleurs qui bougent</h3>
+                        <p>Dégradé animé en douceur</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="choice-buttons">
+            <button class="choice-btn" onclick="showInfo(1)">Choisir Style 1</button>
+            <button class="choice-btn" onclick="showInfo(2)">Choisir Style 2</button>
+            <button class="choice-btn" onclick="showInfo(3)">Choisir Style 3</button>
+            <button class="choice-btn" onclick="showInfo(4)">Choisir Style 4</button>
+            <button class="choice-btn" onclick="showInfo(5)">Choisir Style 5</button>
+            <button class="choice-btn" onclick="showInfo(6)">Choisir Style 6</button>
+        </div>
+    </div>
+
+    <script>
+        function showInfo(style) {
+            const styles = {
+                1: "Lueur Douce - Effet au survol avec lueur qui s'intensifie",
+                2: "Pulsation Subtile - Animation de respiration douce et continue",
+                3: "Bordure Animée - Contour coloré qui tourne autour de l'icône",
+                4: "Minimal Élégant - Aucun effet, design simple et sophistiqué",
+                5: "Particules Magiques - Petites étoiles scintillantes",
+                6: "Dégradé Fluide - Couleurs qui bougent en arrière-plan"
+            };
+            
+            alert(`Vous avez choisi : ${styles[style]}\n\nDites-moi quel style vous préférez et je l'appliquerai !`);
+        }
+    </script>
+</body>
+</html>

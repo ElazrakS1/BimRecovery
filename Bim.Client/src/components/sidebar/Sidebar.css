@@ -4,13 +4,13 @@
   left: 0;
   bottom: 0;
   width: 250px;
-  background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-  color: #ffffff;
+  background: linear-gradient(180deg, var(--primary-dark) 0%, var(--primary) 100%);
+  color: var(--white);
   display: flex;
   flex-direction: column;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow-x: hidden;
-  box-shadow: var(--shadow-elevation-2);
+  box-shadow: 0 10px 15px -3px rgba(132, 112, 243, 0.1);
   z-index: 1000;
   border-right: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -99,6 +99,51 @@
   overflow: hidden;
 }
 
+/* Styles de scrollbar pour la barre latérale */
+.sidebar-menu::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.sidebar-menu::-webkit-scrollbar-track {
+  background: rgba(241, 241, 241, 0.05);
+  border-radius: 3px;
+}
+
+.sidebar-menu::-webkit-scrollbar-thumb {
+  background: rgba(136, 136, 136, 0.3);
+  border-radius: 3px;
+  transition: background-color 0.2s ease;
+}
+
+.sidebar-menu::-webkit-scrollbar-thumb:hover {
+  background: rgba(85, 85, 85, 0.6);
+}
+
+/* Dark mode styles for the sidebar scrollbar */
+.dark .sidebar-menu::-webkit-scrollbar-track {
+  background: rgba(30, 30, 30, 0.2);
+}
+
+.dark .sidebar-menu::-webkit-scrollbar-thumb {
+  background: rgba(160, 160, 160, 0.4);
+}
+
+.dark .sidebar-menu::-webkit-scrollbar-thumb:hover {
+  background: rgba(180, 180, 180, 0.7);
+}
+
+/* Firefox scrollbar styles */
+.sidebar-menu {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(136, 136, 136, 0.3) rgba(241, 241, 241, 0.05);
+}
+
+/* Firefox dark mode */
+.dark .sidebar-menu {
+  scrollbar-color: rgba(160, 160, 160, 0.4) rgba(30, 30, 30, 0.2);
+}
+
 .menu-item {
   display: flex;
   align-items: center;
@@ -136,7 +181,7 @@
   top: 0;
   height: 100%;
   width: 4px;
-  background: var(--construct-yellow);
+  background: var(--color-accent);
   border-radius: 0 2px 2px 0;
 }
 
@@ -177,9 +222,36 @@
   backdrop-filter: blur(10px);
 }
 
+.menu-separator {
+  margin: 1rem 0;
+  padding: 0 1rem;
+  position: relative;
+}
+
+.menu-separator::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.separator-text {
+  position: relative;
+  display: inline-block;
+  padding: 0 0.5rem;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background-color: var(--sidebar-bg, #1a1a1a);
+}
+
 /* Special icon colors with improved contrast */
-.menu-item i.fa-home { color: var(--construct-yellow); }
-.menu-item i.fa-building { color: var(--safety-orange); }
+.menu-item i.fa-home { color: var(--color-primary); }
+.menu-item i.fa-building { color: var(--color-accent); }
 .menu-item i.fa-drafting-compass { color: #60a5fa; }
 .menu-item i.fa-users { color: #c4b5fd; }
 .menu-item i.fa-chart-line { color: #6ee7b7; }
@@ -190,3 +262,5 @@
   color: white !important;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
+
+

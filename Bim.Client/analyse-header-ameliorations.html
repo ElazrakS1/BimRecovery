@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎯 Analyse Header - Problèmes & Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6356e5;
+            --primary-dark: #1e1b4b;
+            --primary-medium: #4338ca;
+            --primary-light: #ede9fe;
+            --secondary: #10b981;
+            --secondary-dark: #059669;
+            --radius-lg: 12px;
+            --header-height: 70px;
+            --color-background: #f8fafc;
+            --color-surface: #f1f5f9;
+            --color-text: #1e293b;
+            --color-text-light: #64748b;
+            --color-accent: #6356e5;
+            --color-danger: #ef4444;
+            --shadow-elevation-1: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-elevation-2: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-elevation-3: 0 10px 15px rgba(0, 0, 0, 0.1);
+            --border-radius-md: 8px;
+            --steel-gray: #64748b;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, 
+                rgba(30, 27, 75, 0.05) 0%, 
+                rgba(67, 56, 202, 0.05) 50%,
+                rgba(99, 86, 229, 0.05) 100%
+            );
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .test-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .test-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .analysis-section {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid;
+        }
+
+        .problems-section {
+            border-color: #ef4444;
+            background: rgba(239, 68, 68, 0.05);
+        }
+
+        .solutions-section {
+            border-color: var(--secondary);
+            background: rgba(16, 185, 129, 0.05);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .problems-section .section-title {
+            color: #ef4444;
+        }
+
+        .solutions-section .section-title {
+            color: var(--secondary);
+        }
+
+        /* Header Actuel (Problématique) */
+        .current-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            height: var(--header-height);
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-elevation-2);
+            border-bottom: 1px solid rgba(132, 112, 243, 0.1);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .current-header .header-title h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        .current-header .header-actions {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            flex: 1;
+            gap: 1.5rem;
+            margin-left: 2rem;
+            margin-right: 1rem;
+        }
+
+        .current-header .search-box {
+            position: relative;
+            max-width: 320px;
+            flex: 1;
+        }
+
+        .current-header .search-box form {
+            display: flex;
+            align-items: center;
+            background: var(--color-background);
+            border-radius: var(--radius-lg);
+            padding: 0.5rem 1rem;
+            border: 1px solid rgba(3, 72, 113, 0.1);
+            box-shadow: var(--shadow-elevation-1);
+        }
+
+        .current-header .search-box input {
+            width: 280px;
+            max-width: 100%;
+            border: none;
+            background: transparent;
+            padding: 0.25rem;
+            font-size: 0.875rem;
+        }
+
+        /* Header Amélioré (Solution) */
+        .improved-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            height: 65px;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.95) 0%, 
+                rgba(248, 250, 252, 0.98) 100%
+            );
+            backdrop-filter: blur(15px);
+            box-shadow: 
+                0 4px 20px rgba(99, 86, 229, 0.08),
+                0 1px 3px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(99, 86, 229, 0.15);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .improved-header .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .improved-header .sidebar-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(99, 86, 229, 0.1);
+            color: var(--primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(99, 86, 229, 0.2);
+        }
+
+        .improved-header .sidebar-toggle:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(99, 86, 229, 0.3);
+        }
+
+        .improved-header .header-title {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .improved-header .header-title h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+
+        .improved-header .header-center {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            max-width: 500px;
+            margin: 0 2rem;
+        }
+
+        .improved-header .search-box {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .improved-header .search-box form {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 25px;
+            padding: 0.6rem 1.2rem;
+            border: 2px solid rgba(99, 86, 229, 0.1);
+            box-shadow: 
+                0 2px 10px rgba(99, 86, 229, 0.05),
+                inset 0 1px 3px rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .improved-header .search-box form:focus-within {
+            background: white;
+            border-color: var(--primary);
+            box-shadow: 
+                0 4px 20px rgba(99, 86, 229, 0.15),
+                0 0 0 3px rgba(99, 86, 229, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .improved-header .search-box i {
+            color: var(--primary);
+            margin-right: 0.75rem;
+            font-size: 1rem;
+        }
+
+        .improved-header .search-box input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            padding: 0.3rem;
+            font-size: 0.9rem;
+            color: var(--color-text);
+        }
+
+        .improved-header .search-box input::placeholder {
+            color: #94a3b8;
+            font-style: italic;
+        }
+
+        .improved-header .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .improved-header .notification-bell,
+        .improved-header .user-profile {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .improved-header .notification-bell {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--secondary);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .improved-header .notification-bell:hover {
+            background: var(--secondary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+
+        .improved-header .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ef4444;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid white;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .improved-header .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-medium));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 2px solid rgba(99, 86, 229, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .improved-header .user-avatar:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(99, 86, 229, 0.3);
+            border-color: var(--primary);
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .comparison-item {
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid;
+        }
+
+        .current-item {
+            border-color: #ef4444;
+            background: rgba(239, 68, 68, 0.05);
+        }
+
+        .improved-item {
+            border-color: var(--secondary);
+            background: rgba(16, 185, 129, 0.05);
+        }
+
+        .comparison-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .current-item .comparison-title {
+            color: #ef4444;
+        }
+
+        .improved-item .comparison-title {
+            color: var(--secondary);
+        }
+
+        .issues-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .issues-list li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .current-item .issues-list li {
+            color: #dc2626;
+        }
+
+        .improved-item .issues-list li {
+            color: #059669;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            padding: 1.5rem;
+            border-radius: 12px;
+            background: rgba(99, 86, 229, 0.05);
+            border: 1px solid rgba(99, 86, 229, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(99, 86, 229, 0.15);
+            border-color: var(--primary);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-medium));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-description {
+            color: var(--color-text-light);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .improved-header .header-center {
+                margin: 0 1rem;
+            }
+            
+            .improved-header .header-right {
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1 class="test-title">🎯 Analyse & Amélioration du Header</h1>
+
+        <!-- Header Actuel -->
+        <div class="analysis-section problems-section">
+            <div class="section-title">
+                <i class="fas fa-exclamation-triangle"></i>
+                Header Actuel - Problèmes Identifiés
+            </div>
+            <div class="current-header">
+                <div class="sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="header-title">
+                    <h1>Smart BIM</h1>
+                </div>
+                <div class="header-actions">
+                    <div class="search-box">
+                        <form>
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Rechercher..." />
+                        </form>
+                    </div>
+                    <div class="notification-bell">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </div>
+                    <div class="user-profile">
+                        <div class="user-avatar">JD</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Header Amélioré -->
+        <div class="analysis-section solutions-section">
+            <div class="section-title">
+                <i class="fas fa-check-circle"></i>
+                Header Amélioré - Solutions Proposées
+            </div>
+            <div class="improved-header">
+                <div class="header-left">
+                    <div class="sidebar-toggle">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                    <div class="header-title">
+                        <h1>Smart BIM</h1>
+                    </div>
+                </div>
+                
+                <div class="header-center">
+                    <div class="search-box">
+                        <form>
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Rechercher des projets, tâches..." />
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="header-right">
+                    <div class="notification-bell">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </div>
+                    <div class="user-profile">
+                        <div class="user-avatar">JD</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comparaison -->
+        <div class="comparison-grid">
+            <div class="comparison-item current-item">
+                <div class="comparison-title">
+                    <i class="fas fa-times-circle"></i>
+                    Problèmes Actuels
+                </div>
+                <ul class="issues-list">
+                    <li><i class="fas fa-minus"></i>Layout déséquilibré</li>
+                    <li><i class="fas fa-minus"></i>Barre de recherche trop à droite</li>
+                    <li><i class="fas fa-minus"></i>Éléments mal espacés</li>
+                    <li><i class="fas fa-minus"></i>Pas de hiérarchie visuelle claire</li>
+                    <li><i class="fas fa-minus"></i>Style basique sans personnalité</li>
+                    <li><i class="fas fa-minus"></i>Responsive perfectible</li>
+                </ul>
+            </div>
+
+            <div class="comparison-item improved-item">
+                <div class="comparison-title">
+                    <i class="fas fa-check-circle"></i>
+                    Améliorations Apportées
+                </div>
+                <ul class="issues-list">
+                    <li><i class="fas fa-plus"></i>Layout équilibré en 3 sections</li>
+                    <li><i class="fas fa-plus"></i>Recherche centrée et mise en valeur</li>
+                    <li><i class="fas fa-plus"></i>Espacement harmonieux</li>
+                    <li><i class="fas fa-plus"></i>Hiérarchie visuelle claire</li>
+                    <li><i class="fas fa-plus"></i>Style moderne avec thème cohérent</li>
+                    <li><i class="fas fa-plus"></i>Excellent responsive design</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Fonctionnalités -->
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-layout"></i>
+                </div>
+                <div class="feature-title">Layout Équilibré</div>
+                <div class="feature-description">
+                    Organisation en 3 sections distinctes : gauche (navigation), centre (recherche), droite (profil/notifications)
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="feature-title">Recherche Centrée</div>
+                <div class="feature-description">
+                    Barre de recherche placée au centre pour une meilleure accessibilité et visibilité
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <div class="feature-title">Design Cohérent</div>
+                <div class="feature-description">
+                    Intégration parfaite du nouveau thème bleu-violet avec effets et animations subtiles
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <div class="feature-title">Responsive Optimisé</div>
+                <div class="feature-description">
+                    Adaptation intelligente sur tous les écrans avec priorité au contenu important
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-magic"></i>
+                </div>
+                <div class="feature-title">Interactions Fluides</div>
+                <div class="feature-description">
+                    Animations et transitions subtiles pour une expérience utilisateur premium
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <div class="feature-title">Hiérarchie Visuelle</div>
+                <div class="feature-description">
+                    Utilisation intelligente des couleurs, tailles et espacements pour guider l'attention
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Animation au survol des éléments du header
+        document.querySelectorAll('.improved-header .sidebar-toggle, .improved-header .notification-bell, .improved-header .user-avatar').forEach(element => {
+            element.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px) scale(1.05)';
+            });
+            
+            element.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Animation de la barre de recherche
+        const searchForm = document.querySelector('.improved-header .search-box form');
+        const searchInput = document.querySelector('.improved-header .search-box input');
+        
+        searchInput.addEventListener('focus', function() {
+            searchForm.style.transform = 'translateY(-1px) scale(1.02)';
+            searchForm.style.boxShadow = '0 6px 25px rgba(99, 86, 229, 0.2), 0 0 0 3px rgba(99, 86, 229, 0.1)';
+        });
+        
+        searchInput.addEventListener('blur', function() {
+            searchForm.style.transform = 'translateY(0) scale(1)';
+            searchForm.style.boxShadow = '0 2px 10px rgba(99, 86, 229, 0.05), inset 0 1px 3px rgba(255, 255, 255, 0.5)';
+        });
+
+        // Animation des cartes de fonctionnalités
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        document.querySelectorAll('.feature-card').forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = `all 0.6s ease ${index * 0.1}s`;
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

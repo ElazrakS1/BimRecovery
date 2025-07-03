@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Connectivity Final Debug</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-section {
+            margin-bottom: 30px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .success { background-color: #d4edda; border-color: #c3e6cb; }
+        .error { background-color: #f8d7da; border-color: #f5c6cb; }
+        .warning { background-color: #fff3cd; border-color: #ffeaa7; }
+        .info { background-color: #d1ecf1; border-color: #bee5eb; }
+        .loading { background-color: #e2e3e5; border-color: #d6d8db; }
+        
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover { background: #0056b3; }
+        button:disabled { background: #6c757d; cursor: not-allowed; }
+        
+        .result-box {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 10px;
+            margin: 10px 0;
+            font-family: monospace;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .status-success { background-color: #28a745; }
+        .status-error { background-color: #dc3545; }
+        .status-warning { background-color: #ffc107; }
+        .status-info { background-color: #17a2b8; }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Network Connectivity Final Debug Tool</h1>
+        <p>This tool will help identify the exact cause of ERR_CONNECTION_REFUSED errors during login.</p>
+        
+        <div class="test-section">
+            <h3>Quick Server Status Check</h3>
+            <button onclick="testServerBasic()">Test Basic Connectivity</button>
+            <button onclick="testLoginEndpoint()">Test Login Endpoint</button>
+            <button onclick="testCORS()">Test CORS</button>
+            <div id="basicResults"></div>
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="container">
+            <h2>🌐 Network Tests</h2>
+            
+            <div class="test-section">
+                <h3>1. Server Ping Test</h3>
+                <button onclick="pingServer()">Ping Server</button>
+                <div id="pingResults"></div>
+            </div>
+            
+            <div class="test-section">
+                <h3>2. Port Accessibility</h3>
+                <button onclick="testPorts()">Test Ports</button>
+                <div id="portResults"></div>
+            </div>
+            
+            <div class="test-section">
+                <h3>3. Browser Network Stack</h3>
+                <button onclick="testBrowserNet()">Test Browser Network</button>
+                <div id="browserResults"></div>
+            </div>
+        </div>
+
+        <div class="container">
+            <h2>🔐 Authentication Tests</h2>
+            
+            <div class="test-section">
+                <h3>4. Login Flow Simulation</h3>
+                <button onclick="simulateLogin()">Simulate Login</button>
+                <div id="loginResults"></div>
+            </div>
+            
+            <div class="test-section">
+                <h3>5. Token Test</h3>
+                <button onclick="testToken()">Test Stored Token</button>
+                <div id="tokenResults"></div>
+            </div>
+            
+            <div class="test-section">
+                <h3>6. API Endpoints</h3>
+                <button onclick="testAllEndpoints()">Test All Endpoints</button>
+                <div id="endpointResults"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>🛠️ Environment Information</h2>
+        <div class="test-section">
+            <button onclick="showEnvironment()">Show Environment Info</button>
+            <div id="envResults"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>🔧 Real-time Log Monitor</h2>
+        <div class="test-section">
+            <button onclick="startLogMonitor()">Start Monitoring</button>
+            <button onclick="stopLogMonitor()">Stop Monitoring</button>
+            <div id="logMonitor" class="result-box" style="height: 200px;"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:5258';
+        let logInterval;
+        let logCount = 0;
+
+        function addResult(containerId, type, title, details = '') {
+            const container = document.getElementById(containerId);
+            const timestamp = new Date().toLocaleTimeString();
+            const statusClass = `status-${type}`;
+            
+            const resultDiv = document.createElement('div');
+            resultDiv.className = `result-box ${type}`;
+            resultDiv.innerHTML = `
+                <span class="status-indicator ${statusClass}"></span>
+                <strong>[${timestamp}] ${title}</strong>
+                ${details ? `\n${details}` : ''}
+            `;
+            
+            container.appendChild(resultDiv);
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function clearResults(containerId) {
+            document.getElementById(containerId).innerHTML = '';
+        }
+
+        // Basic connectivity tests
+        async function testServerBasic() {
+            clearResults('basicResults');
+            addResult('basicResults', 'info', 'Testing basic server connectivity...');
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/swagger`, {
+                    method: 'GET',
+                    signal: AbortSignal.timeout(5000)
+                });
+                
+                if (response.ok) {
+                    addResult('basicResults', 'success', '✅ Server is responding', 
+                        `Status: ${response.status}\nServer is accessible via HTTP`);
+                } else {
+                    addResult('basicResults', 'warning', '⚠️ Server responded with error', 
+                        `Status: ${response.status}\nResponse: ${response.statusText}`);
+                }
+            } catch (error) {
+                if (error.name === 'TimeoutError') {
+                    addResult('basicResults', 'error', '❌ Connection timeout', 
+                        'Server did not respond within 5 seconds');
+                } else if (error.message.includes('ERR_CONNECTION_REFUSED')) {
+                    addResult('basicResults', 'error', '❌ Connection refused', 
+                        'Server is not running or not accessible on port 5258');
+                } else {
+                    addResult('basicResults', 'error', '❌ Network error', error.message);
+                }
+            }
+        }
+
+        async function testLoginEndpoint() {
+            addResult('basicResults', 'info', 'Testing login endpoint...');
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: 'test@test.com',
+                        password: 'testpass'
+                    }),
+                    signal: AbortSignal.timeout(10000)
+                });
+                
+                const text = await response.text();
+                
+                if (response.status === 401) {
+                    addResult('basicResults', 'success', '✅ Login endpoint working', 
+                        `Status: 401 (expected for invalid credentials)\nEndpoint is accessible`);
+                } else {
+                    addResult('basicResults', 'info', `Login endpoint responded`, 
+                        `Status: ${response.status}\nResponse: ${text.substring(0, 200)}...`);
+                }
+            } catch (error) {
+                addResult('basicResults', 'error', '❌ Login endpoint error', 
+                    `Error: ${error.message}\nType: ${error.name}`);
+            }
+        }
+
+        async function testCORS() {
+            addResult('basicResults', 'info', 'Testing CORS configuration...');
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/auth/verify`, {
+                    method: 'GET',
+                    headers: {
+                        'Origin': 'http://localhost:5173',
+                        'Authorization': 'Bearer invalid-token'
+                    }
+                });
+                
+                addResult('basicResults', 'success', '✅ CORS working', 
+                    `Status: ${response.status}\nCORS headers properly configured`);
+            } catch (error) {
+                if (error.message.includes('CORS')) {
+                    addResult('basicResults', 'error', '❌ CORS blocked', error.message);
+                } else {
+                    addResult('basicResults', 'warning', '⚠️ CORS test inconclusive', 
+                        `Error: ${error.message}\nMay not be a CORS issue`);
+                }
+            }
+        }
+
+        // Network diagnostic tests
+        async function pingServer() {
+            clearResults('pingResults');
+            addResult('pingResults', 'info', 'Pinging server...');
+            
+            const start = performance.now();
+            try {
+                const response = await fetch(`${API_BASE_URL}/swagger`, {
+                    method: 'HEAD',
+                    signal: AbortSignal.timeout(3000)
+                });
+                
+                const duration = (performance.now() - start).toFixed(2);
+                addResult('pingResults', 'success', `✅ Server reachable`, 
+                    `Response time: ${duration}ms\nStatus: ${response.status}`);
+            } catch (error) {
+                const duration = (performance.now() - start).toFixed(2);
+                addResult('pingResults', 'error', '❌ Server unreachable', 
+                    `Time elapsed: ${duration}ms\nError: ${error.message}`);
+            }
+        }
+
+        async function testPorts() {
+            clearResults('portResults');
+            addResult('portResults', 'info', 'Testing port accessibility...');
+            
+            const ports = [5258, 5173, 7258];
+            
+            for (const port of ports) {
+                try {
+                    const response = await fetch(`http://localhost:${port}`, {
+                        method: 'HEAD',
+                        signal: AbortSignal.timeout(2000)
+                    });
+                    
+                    addResult('portResults', 'success', `✅ Port ${port} accessible`, 
+                        `Service responding on port ${port}`);
+                } catch (error) {
+                    if (error.name === 'TimeoutError') {
+                        addResult('portResults', 'warning', `⚠️ Port ${port} timeout`, 
+                            'Port may be open but service not responding');
+                    } else {
+                        addResult('portResults', 'error', `❌ Port ${port} unreachable`, 
+                            error.message);
+                    }
+                }
+            }
+        }
+
+        async function testBrowserNet() {
+            clearResults('browserResults');
+            addResult('browserResults', 'info', 'Testing browser network capabilities...');
+            
+            // Test if we're in a secure context
+            addResult('browserResults', 'info', `Secure context: ${window.isSecureContext ? 'Yes' : 'No'}`);
+            
+            // Test navigator.onLine
+            addResult('browserResults', 'info', `Navigator online: ${navigator.onLine ? 'Yes' : 'No'}`);
+            
+            // Test localStorage
+            try {
+                localStorage.setItem('test', 'value');
+                localStorage.removeItem('test');
+                addResult('browserResults', 'success', '✅ localStorage working');
+            } catch (error) {
+                addResult('browserResults', 'error', '❌ localStorage blocked', error.message);
+            }
+            
+            // Test if fetch is available
+            if (typeof fetch !== 'undefined') {
+                addResult('browserResults', 'success', '✅ Fetch API available');
+            } else {
+                addResult('browserResults', 'error', '❌ Fetch API not available');
+            }
+        }
+
+        // Authentication flow tests
+        async function simulateLogin() {
+            clearResults('loginResults');
+            addResult('loginResults', 'info', 'Simulating complete login flow...');
+            
+            // Step 1: Clear any existing tokens
+            localStorage.removeItem('token');
+            sessionStorage.removeItem('token');
+            addResult('loginResults', 'info', 'Step 1: Cleared existing tokens');
+            
+            // Step 2: Attempt login with test credentials
+            try {
+                const loginResponse = await fetch(`${API_BASE_URL}/api/auth/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: 'admin@example.com', // Try common admin email
+                        password: 'admin123'         // Try common admin password
+                    })
+                });
+                
+                const loginData = await loginResponse.text();
+                
+                if (loginResponse.status === 401) {
+                    addResult('loginResults', 'warning', 'Step 2: Login endpoint working (invalid credentials)', 
+                        'Try with real credentials if you have them');
+                } else if (loginResponse.ok) {
+                    const data = JSON.parse(loginData);
+                    if (data.token) {
+                        localStorage.setItem('token', data.token);
+                        addResult('loginResults', 'success', 'Step 2: Login successful!', 
+                            'Token received and stored');
+                        
+                        // Step 3: Test authenticated request
+                        await testAuthenticatedRequest(data.token);
+                    }
+                } else {
+                    addResult('loginResults', 'error', 'Step 2: Login failed', 
+                        `Status: ${loginResponse.status}\nResponse: ${loginData}`);
+                }
+            } catch (error) {
+                addResult('loginResults', 'error', 'Step 2: Login request failed', 
+                    `Error: ${error.message}`);
+            }
+        }
+
+        async function testAuthenticatedRequest(token) {
+            addResult('loginResults', 'info', 'Step 3: Testing authenticated request...');
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/auth/me`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    const userData = await response.json();
+                    addResult('loginResults', 'success', 'Step 3: Authenticated request successful', 
+                        `User: ${userData.email}\nRoles: ${JSON.stringify(userData.roles)}`);
+                } else {
+                    addResult('loginResults', 'warning', 'Step 3: Auth request failed', 
+                        `Status: ${response.status}`);
+                }
+            } catch (error) {
+                addResult('loginResults', 'error', 'Step 3: Auth request error', error.message);
+            }
+        }
+
+        async function testToken() {
+            clearResults('tokenResults');
+            addResult('tokenResults', 'info', 'Testing stored token...');
+            
+            const localToken = localStorage.getItem('token');
+            const sessionToken = sessionStorage.getItem('token');
+            
+            if (!localToken && !sessionToken) {
+                addResult('tokenResults', 'warning', 'No stored tokens found', 
+                    'Please login first to generate a token');
+                return;
+            }
+            
+            const token = localToken || sessionToken;
+            const storage = localToken ? 'localStorage' : 'sessionStorage';
+            
+            addResult('tokenResults', 'info', `Found token in ${storage}`, 
+                `Token preview: ${token.substring(0, 50)}...`);
+            
+            // Test token with server
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/auth/verify`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                
+                if (response.ok) {
+                    addResult('tokenResults', 'success', '✅ Token is valid');
+                } else {
+                    addResult('tokenResults', 'error', '❌ Token is invalid or expired', 
+                        `Status: ${response.status}`);
+                }
+            } catch (error) {
+                addResult('tokenResults', 'error', '❌ Token verification failed', error.message);
+            }
+        }
+
+        async function testAllEndpoints() {
+            clearResults('endpointResults');
+            addResult('endpointResults', 'info', 'Testing API endpoints...');
+            
+            const endpoints = [
+                { url: '/api/auth/login', method: 'POST', expectStatus: [400, 401] },
+                { url: '/api/auth/verify', method: 'GET', expectStatus: [401] },
+                { url: '/api/auth/me', method: 'GET', expectStatus: [401] },
+                { url: '/api/projects', method: 'GET', expectStatus: [401] },
+                { url: '/api/users', method: 'GET', expectStatus: [401] },
+                { url: '/swagger', method: 'GET', expectStatus: [200] }
+            ];
+            
+            for (const endpoint of endpoints) {
+                try {
+                    const response = await fetch(`${API_BASE_URL}${endpoint.url}`, {
+                        method: endpoint.method,
+                        headers: endpoint.method === 'POST' ? { 'Content-Type': 'application/json' } : {},
+                        body: endpoint.method === 'POST' ? JSON.stringify({}) : undefined,
+                        signal: AbortSignal.timeout(5000)
+                    });
+                    
+                    const isExpectedStatus = endpoint.expectStatus.includes(response.status);
+                    const resultType = isExpectedStatus ? 'success' : 'warning';
+                    const icon = isExpectedStatus ? '✅' : '⚠️';
+                    
+                    addResult('endpointResults', resultType, 
+                        `${icon} ${endpoint.method} ${endpoint.url}`, 
+                        `Status: ${response.status} (${isExpectedStatus ? 'expected' : 'unexpected'})`);
+                        
+                } catch (error) {
+                    addResult('endpointResults', 'error', 
+                        `❌ ${endpoint.method} ${endpoint.url}`, 
+                        `Error: ${error.message}`);
+                }
+            }
+        }
+
+        function showEnvironment() {
+            clearResults('envResults');
+            
+            const envInfo = {
+                'User Agent': navigator.userAgent,
+                'Platform': navigator.platform,
+                'Language': navigator.language,
+                'Online': navigator.onLine,
+                'Cookies Enabled': navigator.cookieEnabled,
+                'Local Storage': typeof(Storage) !== "undefined",
+                'Session Storage': typeof(Storage) !== "undefined",
+                'Current URL': window.location.href,
+                'Referrer': document.referrer || 'None',
+                'Screen Size': `${screen.width}x${screen.height}`,
+                'Viewport Size': `${window.innerWidth}x${window.innerHeight}`,
+                'Connection': navigator.connection ? `${navigator.connection.effectiveType} (${navigator.connection.downlink}Mbps)` : 'Unknown'
+            };
+            
+            for (const [key, value] of Object.entries(envInfo)) {
+                addResult('envResults', 'info', key, value);
+            }
+        }
+
+        function startLogMonitor() {
+            if (logInterval) {
+                clearInterval(logInterval);
+            }
+            
+            logCount = 0;
+            const monitor = document.getElementById('logMonitor');
+            monitor.innerHTML = 'Starting log monitor...\n';
+            
+            logInterval = setInterval(() => {
+                logCount++;
+                const timestamp = new Date().toLocaleTimeString();
+                
+                // Simulate checking for network activity
+                fetch(`${API_BASE_URL}/swagger`, { method: 'HEAD' })
+                    .then(() => {
+                        monitor.innerHTML += `[${timestamp}] ✅ Server ping successful (check ${logCount})\n`;
+                    })
+                    .catch(error => {
+                        monitor.innerHTML += `[${timestamp}] ❌ Server ping failed: ${error.message} (check ${logCount})\n`;
+                    });
+                
+                // Auto-scroll to bottom
+                monitor.scrollTop = monitor.scrollHeight;
+                
+                // Limit log size
+                const lines = monitor.innerHTML.split('\n');
+                if (lines.length > 50) {
+                    monitor.innerHTML = lines.slice(-40).join('\n');
+                }
+            }, 3000);
+            
+            addResult('logMonitor', 'info', 'Log monitor started (pinging every 3 seconds)');
+        }
+
+        function stopLogMonitor() {
+            if (logInterval) {
+                clearInterval(logInterval);
+                logInterval = null;
+                document.getElementById('logMonitor').innerHTML += '\nLog monitor stopped.\n';
+            }
+        }
+
+        // Auto-test on load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                testServerBasic();
+            }, 1000);
+        });
+
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', () => {
+            if (logInterval) {
+                clearInterval(logInterval);
+            }
+        });
+    </script>
+</body>
+</html>

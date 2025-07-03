@@ -1,12 +1,13 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Bim.Server.Models;
+using SystemTask = System.Threading.Tasks.Task;
 
 namespace Bim.Server.Data
 {
     public static class DbInitializer
     {
-        public static async Task Initialize(IServiceProvider serviceProvider)
+        public static async SystemTask Initialize(IServiceProvider serviceProvider)
         {
             using var scope = serviceProvider.CreateScope();
             var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();

@@ -1,0 +1,153 @@
+/* UserValidationAlert.css */
+
+.user-validation-alert {
+  margin: 1rem 0;
+  max-width: 100%;
+}
+
+.validation-alert {
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  border-left: 4px solid;
+  background-color: #f8f9fa;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.validation-alert.error {
+  border-left-color: #dc3545;
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.validation-alert.warning {
+  border-left-color: #ffc107;
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.validation-alert.success {
+  border-left-color: #28a745;
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.alert-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.alert-header i {
+  font-size: 1.25rem;
+  color: #dc3545;
+}
+
+.alert-header h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.alert-content {
+  font-size: 0.9rem;
+}
+
+.error-message {
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+}
+
+.invalid-users,
+.valid-users,
+.suggestions {
+  margin-top: 0.75rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+
+.invalid-users {
+  background-color: rgba(220, 53, 69, 0.1);
+}
+
+.valid-users {
+  background-color: rgba(40, 167, 69, 0.1);
+}
+
+.suggestions {
+  background-color: rgba(255, 193, 7, 0.1);
+  margin-top: 1rem;
+}
+
+.invalid-users ul,
+.valid-users ul,
+.suggestions ul {
+  margin-top: 0.5rem;
+  padding-left: 1.25rem;
+}
+
+.invalid-user,
+.valid-user,
+.suggestion {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.invalid-user code {
+  background-color: rgba(220, 53, 69, 0.2);
+  padding: 0.125rem 0.25rem;
+  border-radius: 3px;
+  font-family: monospace;
+}
+
+.valid-user i {
+  color: #28a745;
+}
+
+.suggestion i {
+  color: #ffc107;
+}
+
+/* Responsive design */
+@media (max-width: 576px) {
+  .validation-alert {
+    padding: 0.75rem;
+  }
+  
+  .alert-header h4 {
+    font-size: 0.9rem;
+  }
+  
+  .suggestions,
+  .alert-content {
+    font-size: 0.8125rem;
+  }
+  
+  .alert-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .btn {
+    justify-content: center;
+  }
+}
+
+/* Animation pour l'apparition */
+.user-validation-alert {
+  animation: slideInDown 0.3s ease-out;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

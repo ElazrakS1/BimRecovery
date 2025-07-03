@@ -1,0 +1,88 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+
+namespace Bim.Server.Data.Infrastructure;
+
+/// <summary>
+/// Extension methods for configuring database services
+/// </summary>
+public static class DatabaseServiceExtensions
+{
+    public static IServiceCollection AddBimDatabase(
+        this IServiceCollection services,
+        string connectionString)
+    {
+        // Add DbContext with standard configuration
+        services.AddDbContext<ApplicationDbContext>(options =>
+            ConfigureDbContext(options, connectionString));
+
+        // Add DbContext factory for background operations
+        services.AddPooledDbContextFactory<ApplicationDbContext>(options =>
+            ConfigureDbContext(options, connectionString));
+
+        return services;
+    }
+
+    public static async Task InitializeDatabaseAsync(IServiceProvider serviceProvider)
+    {
+        using var scope = serviceProvider.CreateScope();
+        var services = scope.ServiceProvider;
+
+        try
+        {
+            var context = services.GetRequiredService<ApplicationDbContext>();
+            var logger = services.GetRequiredService<ILogger<ApplicationDbContext>>();
+
+            logger.LogInformation("Ensuring database exists and is up to date...");
+            
+            if (await context.Database.EnsureCreatedAsync())
+            {
+                logger.LogInformation("Database was created");
+            }
+
+            var pendingMigrations = await context.Database.GetPendingMigrationsAsync();
+            if (pendingMigrations.Any())
+            {
+                logger.LogInformation("Applying {Count} pending migrations...", pendingMigrations.Count());
+                await context.Database.MigrateAsync();
+            }
+
+            logger.LogInformation("Seeding database...");
+            await SeedDatabaseAsync(services);
+
+            logger.LogInformation("Database initialization complete");
+        }
+        catch (Exception ex)
+        {
+            var logger = services.GetRequiredService<ILogger<ApplicationDbContext>>();
+            logger.LogError(ex, "An error occurred while initializing the database");
+            throw;
+        }
+    }
+
+    private static void ConfigureDbContext(DbContextOptionsBuilder options, string connectionString)
+    {
+        options.UseSqlServer(connectionString, sqlOptions =>
+        {
+            sqlOptions.EnableRetryOnFailure(
+                maxRetryCount: 5,
+                maxRetryDelay: TimeSpan.FromSeconds(30),
+                errorNumbersToAdd: null);
+
+            sqlOptions.CommandTimeout(30);
+            sqlOptions.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName);
+        });
+
+        #if DEBUG
+        options.EnableSensitiveDataLogging();
+        options.EnableDetailedErrors();
+        #endif
+    }
+
+    private static async Task SeedDatabaseAsync(IServiceProvider services)
+    {
+        // Seed initial data
+        await AdminUserSeeder.SeedAdminUser(services);
+    }
+}

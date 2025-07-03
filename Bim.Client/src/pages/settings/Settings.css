@@ -17,7 +17,7 @@
 }
 
 .settings-title i {
-  color: var(--construct-yellow);
+  color: var(--color-accent);
   font-size: 1.5rem;
 }
 
@@ -105,7 +105,7 @@
   top: 0;
   bottom: 0;
   width: 4px;
-  background: var(--construct-yellow);
+  background: var(--color-accent);
 }
 
 .settings-nav li i {
@@ -747,3 +747,37 @@ body.reduced-motion * {
     justify-content: center;
   }
 }
+
+/* Scrollbar styles for settings panels */
+.settings-content::-webkit-scrollbar,
+.settings-panel::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.settings-content::-webkit-scrollbar-track,
+.settings-panel::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.settings-content::-webkit-scrollbar-thumb,
+.settings-panel::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.settings-content::-webkit-scrollbar-thumb:hover,
+.settings-panel::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Firefox scrollbar styles */
+.settings-content,
+.settings-panel {
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}
+
+

@@ -193,7 +193,7 @@
 
 .action-button:hover {
   transform: scale(1.1);
-  background-color: #3498db;
+  background-color: #6356e5;
 }
 
 .action-button:hover i {
@@ -217,7 +217,9 @@
   font-size: 8px !important;
 }
 
-.project-status.active i { color: #2ecc71; }
+.project-status.active i { color: #10b981; }
 .project-status.pending i { color: #f1c40f; }
-.project-status.completed i { color: #3498db; }
+.project-status.completed i { color: #6356e5; }
 .project-status.archived i { color: #95a5a6; }
+
+

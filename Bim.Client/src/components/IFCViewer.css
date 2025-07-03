@@ -89,6 +89,72 @@
   color: #dc2626;
 }
 
+/* Grille d'outils */
+.tools-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+/* Contrôles de plans de coupe dans la section outils */
+.clipping-planes-controls {
+  grid-column: span 2;
+  background-color: #f8fafc;
+  border-radius: 8px;
+  padding: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.clip-control {
+  margin-bottom: 0.75rem;
+}
+
+.clip-control label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  color: var(--steel-gray);
+}
+
+.clip-control input[type="range"] {
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 3px;
+}
+
+.clip-control input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: var(--accent-color);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.clip-control input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: var(--accent-color);
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+
+.clip-control input[type="range"]::-ms-thumb {
+  width: 16px;
+  height: 16px;
+  background: var(--accent-color);
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+
 /* Boutons d'outils */
 .tool-button {
   width: 100%;
@@ -104,6 +170,7 @@
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
+  font-size: 0.875rem;
 }
 
 .tool-button:hover:not(:disabled) {
@@ -166,6 +233,7 @@
 
 .plane-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
+  appearance: none;
   width: 16px;
   height: 16px;
   background: var(--accent-color);
@@ -277,6 +345,7 @@
 
 .clip-control input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
+  appearance: none;
   width: 16px;
   height: 16px;
   background: #3b82f6;
@@ -340,6 +409,16 @@
   animation: spin 1s linear infinite;
 }
 
+.loading-spinner {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+}
+
 .loading-text {
   margin-top: 1rem;
   color: var(--steel-gray);
@@ -350,6 +429,10 @@
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
 /* Media queries pour la responsivité */
@@ -448,4 +531,44 @@
   pointer-events: none;
   z-index: 1000;
   backdrop-filter: blur(4px);
+}
+
+/* Styles pour le bouton de capture d'écran */
+.control-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: var(--concrete-white);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: var(--steel-gray);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.875rem;
+}
+
+.control-button:hover:not(:disabled) {
+  background: white;
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+.control-button.active {
+  background: var(--accent-color);
+  color: white;
+  border-color: transparent;
+}
+
+.control-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.screenshot-icon {
+  font-size: 1.2em;
+  line-height: 1;
 }

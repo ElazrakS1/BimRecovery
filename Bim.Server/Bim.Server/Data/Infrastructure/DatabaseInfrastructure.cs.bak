@@ -1,0 +1,77 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+
+namespace Bim.Server.Data.Infrastructure
+{
+    public static class DatabaseInfrastructure
+    {
+        public static IServiceCollection AddDatabase(
+            this IServiceCollection services,
+            string connectionString)
+        {
+            // Register DbContext with configured options
+            services.AddDbContext<ApplicationDbContext>(options =>
+                ConfigureDbContext(options, connectionString));
+
+            // Register DbContextFactory
+            services.AddPooledDbContextFactory<ApplicationDbContext>(options =>
+                ConfigureDbContext(options, connectionString));
+
+            return services;
+        }
+
+        public static async Task InitializeDatabase(IServiceProvider serviceProvider)
+        {
+            using var scope = serviceProvider.CreateScope();
+            var services = scope.ServiceProvider;
+
+            try
+            {
+                var context = services.GetRequiredService<ApplicationDbContext>();
+
+                await context.Database.EnsureCreatedAsync();
+
+                if ((await context.Database.GetPendingMigrationsAsync()).Any())
+                {
+                    await context.Database.MigrateAsync();
+                }
+
+                await SeedData(services);
+            }
+            catch (Exception ex)
+            {
+                var logger = services.GetRequiredService<ILogger<ApplicationDbContext>>();
+                logger.LogError(ex, "An error occurred while initializing the database");
+                throw;
+            }
+        }
+
+        private static void ConfigureDbContext(DbContextOptionsBuilder options, string connectionString)
+        {
+            options.UseSqlServer(connectionString, sqlOptions =>
+            {
+                sqlOptions.EnableRetryOnFailure(
+                    maxRetryCount: 5,
+                    maxRetryDelay: TimeSpan.FromSeconds(30),
+                    errorNumbersToAdd: null);
+                sqlOptions.CommandTimeout(30);
+                sqlOptions.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName);
+            });
+
+            #if DEBUG
+            options.EnableSensitiveDataLogging();
+            options.EnableDetailedErrors();
+            #endif
+        }
+
+        private static async Task SeedData(IServiceProvider services)
+        {
+            // Seed initial data
+            await AdminUserSeeder.SeedAdminUser(services);
+
+            // Add other data seeding here if needed
+            // Example: await DataSeeder.SeedInitialData(services);
+        }
+    }
+}

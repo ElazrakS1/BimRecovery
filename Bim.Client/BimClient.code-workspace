@@ -1,0 +1,15 @@
+{
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "settings": {
+        "css.validate": false,
+        "css.lint.unknownAtRules": "ignore",
+        "files.associations": {
+            "*.css": "tailwindcss"
+        },
+        "tailwindCSS.validate": true
+    }
+}

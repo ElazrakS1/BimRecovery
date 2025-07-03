@@ -1,0 +1,100 @@
+.reportContainer {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #eee;
+}
+
+.section {
+  margin-bottom: 2rem;
+}
+
+.sectionTitle {
+  font-size: 1.4rem;
+  color: #444;
+  margin-bottom: 1rem;
+}
+
+.actionList {
+  list-style: none;
+  padding: 0;
+}
+
+.actionItem {
+  margin-bottom: 1.5rem;
+}
+
+.actionHeader {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.actionCount {
+  background: #e5e7eb;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.logsList {
+  list-style: none;
+  padding-left: 1.5rem;
+}
+
+.logItem {
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-left: 3px solid #e5e7eb;
+  transition: all 0.2s ease;
+}
+
+.logItem:hover {
+  background: #f8f9fa;
+  border-left-color: #3b82f6;
+}
+
+.timestamp {
+  color: #666;
+  font-size: 0.9rem;
+  margin-right: 0.5rem;
+}
+
+.userName {
+  color: #4b5563;
+  font-style: italic;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  font-size: 1.1rem;
+  color: #666;
+}
+
+.error {
+  padding: 1rem;
+  background: #fee2e2;
+  border-left: 4px solid #ef4444;
+  color: #b91c1c;
+  margin: 1rem 0;
+  border-radius: 4px;
+}
+
+

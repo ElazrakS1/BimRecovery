@@ -1,0 +1,70 @@
+/* WebGL Status Indicator Styles */
+.webgl-status-indicator {
+  animation: slideInRight 0.3s ease-out;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.webgl-status-indicator.hidden {
+  animation: slideOutRight 0.3s ease-in;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.webgl-status-indicator .progress-bar {
+  transition: width 0.3s ease-out;
+}
+
+.webgl-status-indicator button {
+  transition: all 0.2s ease;
+}
+
+.webgl-status-indicator button:hover {
+  transform: translateY(-1px);
+  shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .webgl-status-indicator {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    max-width: none;
+  }
+}
+
+/* Animation for the recovery spinner */
+.webgl-status-indicator .recovery-spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

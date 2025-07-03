@@ -1,15 +1,16 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
-import { API_BASE_URL } from '../../config/api.config';
-import logoSame from '../../assets/logosame.png';
+import { login as authLogin, storeToken } from '../../services/authService';
+import logoSame from '../../assets/12.png';
 import './Login.css';
+import './LoginFormOptionsForce.css';
 
 const backgroundImages = [
-  'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=2070', // Bureau d'architecte moderne
-  'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2070', // Building moderne
-  'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=2070', // Chantier professionnel
-  'https://plus.unsplash.com/premium_photo-1661964088064-dd92eaaa7dcf?auto=format&fit=crop&q=80&w=2070', // 3D BIM
+  'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=2070',
+  'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2070',
+  'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=2070',
+  'https://plus.unsplash.com/premium_photo-1661964088064-dd92eaaa7dcf?auto=format&fit=crop&q=80&w=2070',
 ];
 
 const Login = () => {
@@ -19,99 +20,100 @@ const Login = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [success, setSuccess] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const { setIsAuthenticated, checkAuth, isAuthenticated } = useContext(AuthContext);
+  const { setIsAuthenticated, checkAuth } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    // Nettoyage des tokens à l'arrivée sur la page de login
+    localStorage.removeItem('token');
+    sessionStorage.removeItem('token');
+    setIsAuthenticated(false);
+  }, [setIsAuthenticated]);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % backgroundImages.length);
-    }, 5000); // Change image every 5 seconds
-
+    }, 5000);
     return () => clearInterval(interval);
   }, []);
-
-  const renderFloatingElements = () => {
-    const elements = [];
-    const shapes = [
-      'M0,0 L30,0 L30,30 L0,30Z', // Carré
-      'M15,0 L30,30 L0,30Z',      // Triangle
-      'M0,15 L30,0 L30,30 L0,30Z' // Trapèze
-    ];
-
-    for (let i = 0; i < 15; i++) {
-      const style = {
-        left: `${Math.random() * 100}%`,
-        top: `${Math.random() * 100}%`,
-        transform: `scale(${0.5 + Math.random()})`,
-        animationDelay: `${Math.random() * 5}s`,
-      };
-
-      elements.push(
-        <div key={i} className="floating-element" style={style}>
-          <svg width="30" height="30" viewBox="0 0 30 30">
-            <path 
-              d={shapes[i % shapes.length]} 
-              fill="none"
-              stroke="rgba(52, 152, 219, 0.2)"
-              strokeWidth="1"
-            />
-          </svg>
-        </div>
-      );
-    }
-    return elements;
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-    setSuccess(false);
     setLoading(true);
     
     try {
-      const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ 
-          email: email,
-          password: password 
-        }),
+      console.log('Attempting login...');
+      const data = await authLogin(email, password);
+      
+      if (!data?.token) {
+        throw new Error('No token received from server');
+      }
+
+      console.log('Login response:', {
+        hasToken: true,
+        user: {
+          ...data.user,
+          roles: data.user?.roles
+        }
       });
-      
-      const data = await response.json();
-      
-      if (!response.ok) {
-        throw new Error(data.message || 'Erreur de connexion');
+
+      // Store token and update auth headers
+      const stored = storeToken(data.token, rememberMe);
+      if (!stored) {
+        throw new Error('Failed to store authentication token');
       }
       
-      // Store the token in the appropriate storage
-      if (rememberMe) {
-        localStorage.setItem('token', data.token);
-      } else {
-        sessionStorage.setItem('token', data.token);
+      // Attendre un moment pour que le token soit bien stocké
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      // Vérifier l'authentification et récupérer les données utilisateur
+      const verified = await checkAuth();
+      if (!verified) {
+        throw new Error('Failed to verify authentication');
       }
+
+      console.log('Authentication verified successfully');      // Determine redirect path based on role
+      let redirectPath = sessionStorage.getItem('redirectAfterLogin') || '/dashboard';
       
-      // Set authentication state directly here
-      setIsAuthenticated(true);
-      setSuccess(true);
+      // Clear stored redirect path
+      sessionStorage.removeItem('redirectAfterLogin');
+
+      // Vérification plus robuste du rôle administrateur
+      const isAdmin = 
+        data.user?.isAdmin === true || 
+        data.user?.roles?.some(role => typeof role === 'string' && role.toLowerCase() === 'admin') ||
+        data.user?.role === 'Admin';
+        
+      console.log('Vérification des droits admin après connexion:', { 
+        isAdmin,
+        userRoles: data.user?.roles,
+        userRole: data.user?.role,
+        userIsAdmin: data.user?.isAdmin
+      });
+
+      // Si l'utilisateur est admin et tentait d'accéder à une route admin, respecter cela
+      if (isAdmin && location.state?.from && 
+          (location.state.from.startsWith('/users') || 
+           location.state.from.startsWith('/tasks/manage') ||
+           location.state.from.startsWith('/analytics'))) {
+        redirectPath = location.state.from;
+      }
+
+      console.log('Redirecting to:', redirectPath);
+      navigate(redirectPath);
       
-      // Then navigate after a brief delay to show success message
-      setTimeout(() => {
-        navigate('/viewer');
-      }, 1000);
-      
-      // Call checkAuth() to load user data in the background
-      // but don't wait for it or check its results for navigation
-      checkAuth();
-    } catch (error) {
-      console.error('Erreur de connexion:', error);
-      setError(error.message || 'Une erreur est survenue lors de la connexion');
+    } catch (err) {
+      console.error('Login error:', err);
+      setError(err.message || 'Une erreur s\'est produite lors de la connexion');
       setIsAuthenticated(false);
+
+      // Clear any partially stored data
+      localStorage.removeItem('token');
+      sessionStorage.removeItem('token');
     } finally {
       setLoading(false);
     }
@@ -129,10 +131,6 @@ const Login = () => {
         ))}
       </div>
       <div className="background-overlay" />
-
-      <div className="floating-elements">
-        {renderFloatingElements()}
-      </div>
       
       <div className="login-content-wrapper">
         <div className="login-info-section">
@@ -180,10 +178,6 @@ const Login = () => {
               </div>
             </div>
           </div>
-          
-          <div className="info-footer">
-            <p>Utilisé par des professionnels de la construction dans le monde entier</p>
-          </div>
         </div>
 
         <div className="login-form-section">
@@ -196,7 +190,6 @@ const Login = () => {
             
             <form className="login-form" onSubmit={handleSubmit}>
               {error && <div className="error-message">{error}</div>}
-              {success && <div className="success-message">Connexion réussie ! Redirection...</div>}
               
               <div className="form-group">
                 <label htmlFor="email">
@@ -208,6 +201,7 @@ const Login = () => {
                   placeholder="Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  autoComplete="username"
                   required
                 />
               </div>
@@ -222,6 +216,7 @@ const Login = () => {
                   placeholder="Mot de passe"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  autoComplete="current-password"
                   required
                 />
                 {password.length > 0 && (
@@ -234,22 +229,24 @@ const Login = () => {
                     <i className={`fas ${showPassword ? "fa-eye-slash" : "fa-eye"}`}></i>
                   </button>
                 )}
-              </div>
-              
-              <div className="form-options">
-                <div className="remember-me">
-                  <input
-                    type="checkbox"
-                    id="remember"
-                    checked={rememberMe}
-                    onChange={(e) => setRememberMe(e.target.checked)}
-                  />
-                  <label htmlFor="remember">Se souvenir de moi</label>
+              </div>                <div className="form-options">
+                  <div className="remember-me">
+                    <input
+                      type="checkbox"
+                      id="remember"
+                      checked={rememberMe}
+                      onChange={(e) => setRememberMe(e.target.checked)}
+                    />
+                    <label htmlFor="remember">Se souvenir de moi</label>
+                  </div>
+                  <button 
+                    type="button" 
+                    className="forgot-password" 
+                    onClick={() => navigate('/forgot-password', { replace: true })}
+                  >
+                    Mot de passe oublié ?
+                  </button>
                 </div>
-                <a href="/forgot-password" className="forgot-password">
-                  Mot de passe oublié ?
-                </a>
-              </div>
               
               <button type="submit" className="login-button" disabled={loading}>
                 {loading ? 'Connexion...' : 'Se connecter'}

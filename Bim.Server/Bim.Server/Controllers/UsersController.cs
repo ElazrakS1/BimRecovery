@@ -31,23 +31,29 @@ namespace Bim.Server.Controllers
         public async Task<IActionResult> GetUsers()
         {
             try
-            {
-                var users = await _userManager.Users
-                    .Select(u => new
+            {                var users = await _userManager.Users.ToListAsync();
+                var userList = new List<object>();
+                
+                foreach (var user in users)
+                {
+                    var roles = await _userManager.GetRolesAsync(user);
+                    
+                    userList.Add(new
                     {
-                        u.Id,
-                        u.Email,
-                        u.FirstName,
-                        u.LastName,
-                        u.Company,
-                        u.Position,
-                        u.IsActive,
-                        u.CreatedAt,
-                        u.LastLogin
-                    })
-                    .ToListAsync();
+                        user.Id,
+                        user.Email,
+                        user.FirstName,
+                        user.LastName,
+                        user.Company,
+                        user.Position,
+                        user.IsActive,
+                        user.CreatedAt,
+                        user.LastLogin,
+                        Roles = roles.ToList()
+                    });
+                }
 
-                return Ok(users);
+                return Ok(userList);
             }
             catch (Exception ex)
             {

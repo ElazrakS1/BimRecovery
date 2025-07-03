@@ -1,16 +1,15 @@
 /* Mise à jour des variables de couleur */
 :root {
-  --color-primary: #00427A;          /* Bleu BIM profond */
-  --color-secondary: #0077B6;        /* Bleu construction */
-  --color-accent: #FF6B00;          /* Orange sécurité */
-  --color-success: #00875A;         /* Vert professionnel */
-  --color-warning: #FFB100;         /* Jaune attention */
+  --color-primary: #6356e5;          /* Bleu-violet foncé principal */
+  --color-secondary: #1e1b4b;        /* Bleu très sombre */  --color-accent: #10b981;           /* Vert émeraude moderne */
+  --color-success: #10b981;          /* Vert succès moderne */
+  --color-warning: #6356e5;          /* Violet foncé pour attention */
   --color-danger: #DC2626;          /* Rouge danger */
   --color-text: #1E293B;            /* Texte principal */
   --color-text-light: #64748B;      /* Texte secondaire */
   --color-background: #F1F5F9;      /* Fond principal */
   --color-surface: #FFFFFF;         /* Surface des cartes */
-  --gradient-blueprint: linear-gradient(135deg, #00427A 0%, #0077B6 100%);
+  --gradient-blueprint: linear-gradient(135deg, #1e1b4b 0%, #6356e5 50%, #4338ca 100%);
   --shadow-elevation-1: 0 2px 4px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.1);
   --shadow-elevation-2: 0 4px 6px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.1);
   --shadow-elevation-3: 0 10px 15px rgba(0, 0, 0, 0.05), 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -169,6 +168,8 @@
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.25rem;
   margin-bottom: 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .stat-card {
@@ -254,6 +255,8 @@
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1rem;
   padding: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .project-card {
@@ -472,8 +475,8 @@
 }
 
 .project-status-badge.status-pending {
-  background-color: #FEF3C7;
-  color: #92400E;
+  background-color: rgba(99, 86, 229, 0.1);
+  color: #1e1b4b;
 }
 
 .project-status-badge.status-active {
@@ -679,7 +682,7 @@
 }
 
 .action-button:hover {
-  background: #F57C00;
+  background: #047857;
   transform: translateY(-2px);
   box-shadow: var(--shadow-elevation-2);
 }
@@ -804,6 +807,12 @@
   }
 }
 
+@media (max-width: 992px) {
+  .dashboard-footer {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 768px) {
   .dashboard-container {
     padding: 1rem;
@@ -821,3 +830,150 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Dashboard Footer Section with Activity and Notifications */
+.dashboard-footer {
+  grid-column: span 12;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+/* Notifications Section */
+.notifications-section {
+  background: var(--color-surface);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-elevation-2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.notifications-section:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-elevation-3);
+}
+
+.notifications-section .section-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fcfcfc;
+}
+
+.notifications-section .section-header h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.notifications-section .section-header h2 i {
+  margin-right: 0.5rem;
+  color: var(--color-primary);
+}
+
+.notifications-list {
+  padding: 0;
+  overflow-y: auto;
+  max-height: 400px;
+  flex-grow: 1;
+}
+
+.dashboard-notification {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  gap: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.dashboard-notification:hover {
+  background-color: rgba(99, 86, 229, 0.05);
+}
+
+.dashboard-notification:last-child {
+  border-bottom: none;
+}
+
+.dashboard-notification.unread {
+  background-color: rgba(99, 86, 229, 0.05);
+}
+
+.dashboard-notification .notification-icon {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(99, 86, 229, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.dashboard-notification .notification-icon i {
+  color: var(--color-primary);
+  font-size: 1rem;
+}
+
+.dashboard-notification .notification-content {
+  flex: 1;
+}
+
+.dashboard-notification .notification-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.25rem;
+}
+
+.dashboard-notification .notification-header h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.dashboard-notification .notification-header span {
+  font-size: 0.7rem;
+  color: var(--color-text-light);
+  white-space: nowrap;
+}
+
+.dashboard-notification p {
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.empty-notifications {
+  padding: 3rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--color-text-light);
+}
+
+.empty-notifications i {
+  font-size: 2rem;
+  color: #cfd8dc;
+  margin-bottom: 1rem;
+}
+
+.empty-notifications p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+

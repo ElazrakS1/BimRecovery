@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Connectivity Test</title>
+</head>
+<body>
+    <h1>Testing API Server Connectivity</h1>
+    <div id="results"></div>
+    
+    <script>
+        async function testAPI() {
+            const results = document.getElementById('results');
+            
+            try {
+                // Test basic connectivity
+                results.innerHTML += '<p>Testing basic connectivity...</p>';
+                const healthResponse = await fetch('http://localhost:5258/health');
+                results.innerHTML += `<p>Health check: ${healthResponse.status}</p>`;
+                
+                // Test auth endpoint
+                results.innerHTML += '<p>Testing auth endpoint...</p>';
+                const authResponse = await fetch('http://localhost:5258/api/auth/test', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                results.innerHTML += `<p>Auth endpoint: ${authResponse.status}</p>`;
+                
+                // Test collaborative endpoints
+                results.innerHTML += '<p>Testing collaborative endpoints...</p>';
+                const notifResponse = await fetch('http://localhost:5258/api/notifications', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                results.innerHTML += `<p>Notifications endpoint: ${notifResponse.status}</p>`;
+                
+                const tasksResponse = await fetch('http://localhost:5258/api/collaborationtasks', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                results.innerHTML += `<p>CollaborationTasks endpoint: ${tasksResponse.status}</p>`;
+                
+            } catch (error) {
+                results.innerHTML += `<p style="color: red;">Error: ${error.message}</p>`;
+                console.error('API Test Error:', error);
+            }
+        }
+        
+        // Run test when page loads
+        testAPI();
+    </script>
+</body>
+</html>

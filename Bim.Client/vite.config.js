@@ -1,61 +1,47 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import path from 'path'
-import fs from 'fs'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
-  plugins: [
-    react(),
-    {
-      name: 'configure-worker',
-      configureServer(server) {
-        server.middlewares.use((req, res, next) => {
-          if (req.url.includes('web-ifc-mt.worker.js')) {
-            res.setHeader('Content-Type', 'application/javascript');
-            res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
-            res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
-          }
-          next();
-        });
-      }
-    }
-  ],
-  base: '/',
-  publicDir: 'public',
-  build: {
-    target: 'esnext',
-    outDir: 'dist',
-    assetsDir: 'assets',
-    rollupOptions: {
-      output: {
-        assetFileNames: (assetInfo) => {
-          if (assetInfo.name.endsWith('.wasm')) {
-            return 'wasm/[name][extname]'  
-          }
-          if (assetInfo.name.endsWith('.worker.js')) {
-            return 'workers/[name][extname]'
-          }
-          return 'assets/[name]-[hash][extname]'
-        },
-        format: 'es'
-      }
+  plugins: [react()],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
     }
   },
   optimizeDeps: {
-    exclude: ['web-ifc'],
-    esbuildOptions: {
-      target: 'esnext'
+    exclude: ['fs', 'fs-extra', 'path', 'graceful-fs']
+  },
+  build: {
+    commonjsOptions: {
+      include: [],
+      ignore: ['fs', 'path', 'graceful-fs']
+    },
+    rollupOptions: {
+      external: ['fs', 'fs-extra', 'path', 'graceful-fs']
     }
   },
-  resolve: {
-    alias: {
-      '~': path.resolve(__dirname, 'src'),
-      'web-ifc': path.resolve(__dirname, 'node_modules/web-ifc'),
-      '@wasm': path.resolve(__dirname, 'public/wasm'),
-      '@': path.resolve(__dirname, './src'),
-      '@assets': path.resolve(__dirname, './src/assets'),
-      '@components': path.resolve(__dirname, './src/components'),
-      '@context': path.resolve(__dirname, './src/context')
-    }
+  define: {
+    'process.env': {}
+  },
+  server: {
+    middlewares: [
+      (req, res, next) => {
+        // Security headers
+        res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
+        res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
+        
+        // Handle WASM and worker files
+        if (req.url.endsWith('.wasm')) {
+          res.setHeader('Content-Type', 'application/wasm');
+        } else if (req.url.includes('.worker.js')) {
+          res.setHeader('Content-Type', 'application/javascript');
+        }
+
+        next();
+      }
+    ]
   }
-})
+});

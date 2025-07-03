@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug - Nettoyage Authentification</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .section { background: #f5f5f5; padding: 15px; margin: 10px 0; border-radius: 5px; }
+        .button { padding: 10px 15px; margin: 5px; border: none; border-radius: 4px; cursor: pointer; }
+        .danger { background: #dc3545; color: white; }
+        .success { background: #28a745; color: white; }
+        .info { background: #17a2b8; color: white; }
+        .log { background: #fff; padding: 10px; border: 1px solid #ddd; border-radius: 4px; white-space: pre-wrap; max-height: 300px; overflow-y: auto; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 Debug - Nettoyage Authentification BIM Recovery</h1>
+        
+        <div class="section">
+            <h3>📊 État Actuel du Stockage</h3>
+            <button class="button info" onclick="checkCurrentState()">🔍 Vérifier l'État</button>
+            <div id="currentState" class="log"></div>
+        </div>
+        
+        <div class="section">
+            <h3>🧹 Actions de Nettoyage</h3>
+            <button class="button danger" onclick="clearAllAuth()">🗑️ Nettoyer TOUT l'Auth</button>
+            <button class="button danger" onclick="clearLocalStorage()">📦 Vider localStorage</button>
+            <button class="button danger" onclick="clearSessionStorage()">🎯 Vider sessionStorage</button>
+        </div>
+        
+        <div class="section">
+            <h3>🧪 Test de Création de Tâche</h3>
+            <button class="button success" onclick="testTaskCreation()">📋 Tester Création Tâche</button>
+            <div id="testResults" class="log"></div>
+        </div>
+        
+        <div class="section">
+            <h3>📋 Logs d'Action</h3>
+            <button class="button info" onclick="clearLogs()">🧽 Effacer Logs</button>
+            <div id="actionLogs" class="log"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:5258';
+        
+        function log(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const logElement = document.getElementById('actionLogs');
+            const prefix = type === 'error' ? '❌' : type === 'success' ? '✅' : 'ℹ️';
+            logElement.textContent += `[${timestamp}] ${prefix} ${message}\n`;
+            logElement.scrollTop = logElement.scrollHeight;
+        }
+        
+        function checkCurrentState() {
+            const state = {
+                localStorage: {},
+                sessionStorage: {},
+                cookies: document.cookie
+            };
+            
+            // Check localStorage
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                const value = localStorage.getItem(key);
+                state.localStorage[key] = value?.length > 50 ? 
+                    value.substring(0, 50) + '...' : value;
+            }
+            
+            // Check sessionStorage
+            for (let i = 0; i < sessionStorage.length; i++) {
+                const key = sessionStorage.key(i);
+                const value = sessionStorage.getItem(key);
+                state.sessionStorage[key] = value?.length > 50 ? 
+                    value.substring(0, 50) + '...' : value;
+            }
+            
+            document.getElementById('currentState').textContent = 
+                JSON.stringify(state, null, 2);
+            
+            log('État du stockage vérifié');
+        }
+        
+        function clearAllAuth() {
+            const authKeys = ['token', 'authToken', 'refreshToken', 'user', 'userId', 'userRole'];
+            let cleared = 0;
+            
+            authKeys.forEach(key => {
+                if (localStorage.getItem(key)) {
+                    localStorage.removeItem(key);
+                    cleared++;
+                    log(`Supprimé de localStorage: ${key}`);
+                }
+                if (sessionStorage.getItem(key)) {
+                    sessionStorage.removeItem(key);
+                    cleared++;
+                    log(`Supprimé de sessionStorage: ${key}`);
+                }
+            });
+            
+            log(`✅ Nettoyage auth terminé - ${cleared} éléments supprimés`, 'success');
+            checkCurrentState();
+        }
+        
+        function clearLocalStorage() {
+            const count = localStorage.length;
+            localStorage.clear();
+            log(`✅ localStorage vidé - ${count} éléments supprimés`, 'success');
+            checkCurrentState();
+        }
+        
+        function clearSessionStorage() {
+            const count = sessionStorage.length;
+            sessionStorage.clear();
+            log(`✅ sessionStorage vidé - ${count} éléments supprimés`, 'success');
+            checkCurrentState();
+        }
+        
+        function clearLogs() {
+            document.getElementById('actionLogs').textContent = '';
+            document.getElementById('testResults').textContent = '';
+        }
+        
+        async function testTaskCreation() {
+            const testData = {
+                title: "Test Task - Debug Clean Auth",
+                description: "Test après nettoyage de l'authentification",
+                projectId: 1,
+                priority: "medium"
+            };
+            
+            log('🧪 Début du test de création de tâche...');
+            
+            try {
+                // Test sans authentification
+                log('Test 1: Sans authentification...');
+                const response1 = await fetch(`${API_BASE_URL}/api/collaborationtasks`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(testData)
+                });
+                
+                const result1 = `Status: ${response1.status} - ${response1.statusText}`;
+                log(`Résultat 1: ${result1}`);
+                document.getElementById('testResults').textContent += `Test sans auth: ${result1}\n`;
+                
+                // Test avec token factice
+                log('Test 2: Avec token factice...');
+                const response2 = await fetch(`${API_BASE_URL}/api/collaborationtasks`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer fake-token-for-testing'
+                    },
+                    body: JSON.stringify(testData)
+                });
+                
+                const result2 = `Status: ${response2.status} - ${response2.statusText}`;
+                log(`Résultat 2: ${result2}`);
+                document.getElementById('testResults').textContent += `Test token factice: ${result2}\n`;
+                
+                if (response1.status === 401 && response2.status === 401) {
+                    log('✅ Serveur fonctionne correctement - retourne 401 comme attendu', 'success');
+                    document.getElementById('testResults').textContent += 
+                        '\n✅ CONCLUSION: Le serveur fonctionne correctement.\n' +
+                        'L\'erreur 500 vient probablement d\'un token corrompu côté client.\n' +
+                        'Essayez de vous reconnecter dans l\'application.';
+                } else {
+                    log('⚠️ Comportement inattendu du serveur', 'error');
+                }
+                
+            } catch (error) {
+                log(`❌ Erreur lors du test: ${error.message}`, 'error');
+                document.getElementById('testResults').textContent += `Erreur: ${error.message}\n`;
+            }
+        }
+        
+        // Auto-check state on load
+        window.onload = () => {
+            checkCurrentState();
+            log('🚀 Outil de debug chargé');
+        };
+    </script>
+</body>
+</html>

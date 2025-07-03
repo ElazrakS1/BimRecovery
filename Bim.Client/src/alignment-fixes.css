@@ -1,0 +1,111 @@
+/* Fichier CSS spécifique pour les corrections d'alignement global */
+
+/* Règle universelle pour le box-sizing */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Conteneurs principaux */
+.content-wrapper, .main-content, .project-details, 
+.projects-container, .users-container, .dashboard-container {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  padding: 1.5rem !important;
+}
+
+/* Grilles et cartes */
+.grid, .project-grid, .stats-grid, .users-grid, .files-grid {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  display: grid;
+}
+
+/* Cartes et éléments de projet */
+.project-card, .stats-card, .user-card, .file-card {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+}
+
+/* Ajustement pour les métadonnées en bas des cartes */
+.project-metadata, .card-footer, .stats-footer, .user-footer {
+  margin-top: auto !important;
+}
+
+/* En-têtes de sections */
+.project-header, .section-header, .card-header {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+
+/* Ajustement des titres pour éviter les débordements */
+.project-header h3, .section-header h3, .card-header h3 {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  padding-right: 0.5rem !important;
+}
+
+/* Formulaires et champs */
+form, .form-group, .form-control {
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+input, textarea, select {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  padding: 0.75rem 1rem !important;
+}
+
+/* Modales */
+.modal-content, .modal-header, .modal-body, .modal-footer {
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Alignement des boutons */
+.btn-group {
+  display: flex !important;
+  gap: 0.75rem !important;
+}
+
+.btn-group-right {
+  justify-content: flex-end !important;
+}
+
+/* Ajustements spécifiques pour ProjectDetails */
+.files-container, .project-info {
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.file-actions {
+  width: 100% !important;
+  margin-top: auto !important;
+  display: flex !important;
+  gap: 0.5rem !important;
+}
+
+/* Ajustements responsive */
+@media (max-width: 768px) {
+  .grid, .project-grid, .stats-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .btn-group {
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+  
+  .btn-group button {
+    width: 100% !important;
+  }
+}
+
+

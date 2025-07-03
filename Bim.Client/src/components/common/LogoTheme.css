@@ -1,0 +1,309 @@
+/* 
+ * Styles du thème basés sur le nouveau logo 12.png
+ * Couleurs principales : Dégradé bleu-violet (#2a1a5e → #8470f3) et blanc
+ */
+
+/* Variables CSS spécifiques au logo */
+:root {
+  --logo-primary: #8470f3;
+  --logo-dark: #2a1a5e;
+  --logo-light: #f4f3ff;
+  --logo-white: #ffffff;
+  --logo-gradient: linear-gradient(135deg, #2a1a5e 0%, #5537b4 50%, #8470f3 100%);
+  --logo-gradient-reverse: linear-gradient(315deg, #2a1a5e 0%, #5537b4 50%, #8470f3 100%);
+  --logo-shadow: 0 4px 14px 0 rgba(132, 112, 243, 0.15);
+  --logo-shadow-lg: 0 10px 25px 0 rgba(132, 112, 243, 0.20);
+  --logo-shadow-xl: 0 20px 40px 0 rgba(132, 112, 243, 0.25);
+}
+
+/* Classes utilitaires pour le thème logo */
+.logo-gradient-text {
+  background: var(--logo-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.logo-gradient-bg {
+  background: var(--logo-gradient);
+}
+
+.logo-gradient-reverse-bg {
+  background: var(--logo-gradient-reverse);
+}
+
+.logo-primary-color {
+  color: var(--logo-primary);
+}
+
+.logo-dark-color {
+  color: var(--logo-dark);
+}
+
+.logo-white-color {
+  color: var(--logo-white);
+}
+
+.logo-shadow {
+  box-shadow: var(--logo-shadow);
+}
+
+.logo-shadow-lg {
+  box-shadow: var(--logo-shadow-lg);
+}
+
+.logo-shadow-xl {
+  box-shadow: var(--logo-shadow-xl);
+}
+
+/* Boutons avec style logo */
+.btn-logo {
+  background: var(--logo-gradient);
+  color: var(--logo-white);
+  border: none;
+  border-radius: 12px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--logo-shadow);
+}
+
+.btn-logo:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--logo-shadow-lg);
+}
+
+.btn-logo:active {
+  transform: translateY(0);
+  box-shadow: var(--logo-shadow);
+}
+
+.btn-logo-outline {
+  background: transparent;
+  color: var(--logo-primary);
+  border: 2px solid var(--logo-primary);
+  border-radius: 12px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-logo-outline:hover {
+  background: var(--logo-gradient);
+  color: var(--logo-white);
+  border-color: transparent;
+  transform: translateY(-2px);
+  box-shadow: var(--logo-shadow-lg);
+}
+
+.btn-logo-ghost {
+  background: rgba(132, 112, 243, 0.1);
+  color: var(--logo-primary);
+  border: none;
+  border-radius: 12px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-logo-ghost:hover {
+  background: rgba(132, 112, 243, 0.2);
+  transform: translateY(-1px);
+}
+
+/* Cartes avec style logo */
+.card-logo {
+  background: var(--logo-white);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: var(--logo-shadow);
+  border: 1px solid rgba(132, 112, 243, 0.1);
+  transition: all 0.3s ease;
+}
+
+.card-logo:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--logo-shadow-lg);
+  border-color: rgba(132, 112, 243, 0.2);
+}
+
+.card-logo-featured {
+  background: linear-gradient(135deg, #f4f3ff 0%, #ebe9fe 100%);
+  border: 2px solid rgba(132, 112, 243, 0.2);
+}
+
+.card-logo-gradient {
+  background: var(--logo-gradient);
+  color: var(--logo-white);
+}
+
+/* Inputs avec style logo */
+.input-logo {
+  border: 2px solid rgba(132, 112, 243, 0.2);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: var(--logo-white);
+}
+
+.input-logo:focus {
+  outline: none;
+  border-color: var(--logo-primary);
+  box-shadow: 0 0 0 3px rgba(132, 112, 243, 0.1);
+}
+
+.input-logo::placeholder {
+  color: rgba(132, 112, 243, 0.5);
+}
+
+/* Badges et tags avec style logo */
+.badge-logo {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  background: var(--logo-gradient);
+  color: var(--logo-white);
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.badge-logo-outline {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  background: transparent;
+  color: var(--logo-primary);
+  border: 2px solid var(--logo-primary);
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.badge-logo-subtle {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  background: rgba(132, 112, 243, 0.1);
+  color: var(--logo-primary);
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/* Navigation avec style logo */
+.nav-logo {
+  background: var(--logo-gradient);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.nav-item-logo {
+  color: var(--logo-white);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.nav-item-logo:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--logo-light);
+}
+
+.nav-item-logo.active {
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--logo-white);
+}
+
+/* Alertes et notifications avec style logo */
+.alert-logo {
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  border-left: 4px solid var(--logo-primary);
+  background: var(--logo-light);
+  color: var(--logo-dark);
+}
+
+.alert-logo-success {
+  border-left-color: #10b981;
+  background: #f0fdf4;
+  color: #166534;
+}
+
+.alert-logo-warning {  border-left-color: #6356e5;
+  background: rgba(99, 86, 229, 0.1);
+  color: #92400e;
+}
+
+.alert-logo-error {
+  border-left-color: #ef4444;
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+/* Loaders et spinners avec style logo */
+.spinner-logo {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(132, 112, 243, 0.2);
+  border-left-color: var(--logo-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Effets de verre avec style logo */
+.glass-logo {
+  background: rgba(132, 112, 243, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(132, 112, 243, 0.2);
+  border-radius: 16px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .btn-logo,
+  .btn-logo-outline,
+  .btn-logo-ghost {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+  }
+  
+  .card-logo {
+    padding: 1rem;
+    border-radius: 12px;
+  }
+  
+  .input-logo {
+    padding: 0.625rem 0.875rem;
+  }
+}
+
+/* Mode sombre (si implémenté) */
+.dark .card-logo {
+  background: rgba(42, 26, 94, 0.1);
+  border-color: rgba(132, 112, 243, 0.3);
+}
+
+.dark .input-logo {
+  background: rgba(42, 26, 94, 0.1);
+  border-color: rgba(132, 112, 243, 0.3);
+  color: var(--logo-white);
+}
+
+.dark .input-logo::placeholder {
+  color: rgba(132, 112, 243, 0.6);
+}
+
+

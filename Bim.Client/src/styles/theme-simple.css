@@ -1,0 +1,226 @@
+/* 
+ * Thème principal BIM Recovery - Version simplifiée sans @apply
+ * Couleurs : Dégradé bleu-violet (#2a1a5e → #8470f3) et blanc
+ */
+
+:root {
+  /* Variables de couleur basées sur le logo 12.png - Version foncée élégante */
+  --primary: #6356e5;          /* Bleu-violet foncé principal */
+  --primary-dark: #1e1b4b;     /* Bleu très sombre du dégradé */
+  --primary-medium: #4338ca;   /* Bleu-violet medium */
+  --primary-light: #ede9fe;    /* Bleu très clair */
+  --white: #ffffff;            /* Blanc pur */
+  --gray-light: #f8fafc;       /* Gris très clair */
+  --gray: #64748b;             /* Gris neutre */
+  --gray-dark: #1e293b;        /* Gris sombre */
+  
+  /* Couleur complémentaire moderne */
+  --secondary: #10b981;        /* Vert émeraude moderne */
+  --secondary-dark: #059669;   /* Vert émeraude foncé */
+  --secondary-light: #ecfdf5;  /* Vert très clair */
+  
+  /* États */
+  --success: #10b981;          /* Vert succès moderne */
+  --warning: #f59e0b;          /* Orange attention */
+  --error: #dc2626;            /* Rouge erreur */
+  --info: #6356e5;             /* Bleu-violet information */
+  
+  /* Dégradés */
+  --gradient-primary: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-medium) 100%);
+  --gradient-secondary: linear-gradient(135deg, var(--secondary-dark) 0%, var(--secondary) 100%);
+  --gradient-subtle: linear-gradient(135deg, var(--primary-light) 0%, var(--white) 100%);
+  
+  /* Ombres */
+  --shadow: 0 4px 6px -1px rgba(132, 112, 243, 0.1), 0 2px 4px -1px rgba(132, 112, 243, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(132, 112, 243, 0.1), 0 4px 6px -2px rgba(132, 112, 243, 0.05);
+  --shadow-secondary: 0 4px 6px -1px rgba(16, 185, 129, 0.1), 0 2px 4px -1px rgba(16, 185, 129, 0.06);
+  
+  /* Transitions */
+  --transition: all 0.2s ease-in-out;
+}
+
+/* Classes utilitaires principales */
+.btn {
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  outline: none;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+
+.btn:focus {
+  box-shadow: 0 0 0 2px rgba(132, 112, 243, 0.5);
+}
+
+.btn-primary {
+  background: var(--gradient-primary);
+  color: var(--white);
+  box-shadow: var(--shadow);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+}
+
+.btn-secondary:hover {
+  background: var(--primary);
+  color: var(--white);
+}
+
+.card {
+  background: white;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  transition: all 0.2s ease-in-out;
+  box-shadow: var(--shadow);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid rgba(132, 112, 243, 0.2);
+  border-radius: 0.5rem;
+  transition: all 0.2s ease-in-out;
+  outline: none;
+}
+
+.input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(132, 112, 243, 0.1);
+}
+
+/* Texte avec dégradé */
+.text-gradient {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Navigation */
+.nav {
+  background: var(--gradient-primary);
+}
+
+.nav-item {
+  padding: 0.75rem 1rem;
+  border-radius: 0.375rem;
+  color: white;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-item.active {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.125rem 0.625rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background: var(--primary);
+  color: var(--white);
+}
+
+.badge-outline {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.125rem 0.625rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 2px solid var(--primary);
+  color: var(--primary);
+  background: transparent;
+}
+
+/* Alertes */
+.alert {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border-left: 4px solid;
+}
+
+.alert-info {
+  background: var(--primary-light);
+  border-color: var(--primary);
+  color: var(--primary-dark);
+}
+
+.alert-success {
+  background: #ecfdf5;
+  border-color: #10b981;
+  color: #065f46;
+}
+
+.alert-warning {
+  background: #fef3c7;
+  border-color: #f59e0b;
+  color: #92400e;
+}
+
+.alert-error {
+  background: #fef2f2;
+  border-color: #dc2626;
+  color: #991b1b;
+}
+
+/* Effet de verre */
+.glass {
+  background: rgba(132, 112, 243, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(132, 112, 243, 0.2);
+}
+
+/* Spinner */
+.spinner {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  color: var(--primary);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .btn {
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+  }
+  
+  .card {
+    padding: 1rem;
+  }
+}

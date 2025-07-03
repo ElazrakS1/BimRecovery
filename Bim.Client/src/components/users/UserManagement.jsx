@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './UserManagement.css';
 import { API_BASE_URL } from '../../config/api.config';
+import api from '../../config/api.config';
+import { userService } from '../../services/userService';
+import { getStoredToken } from '../../services/authService';
+import useAdminAuth from '../../hooks/useAdminAuth';
 
 const UserManagement = () => {
   const [loading, setLoading] = useState(true);
@@ -9,8 +13,8 @@ const UserManagement = () => {
   const [successMessage, setSuccessMessage] = useState('');
   const [showAddForm, setShowAddForm] = useState(false);
   const [formErrors, setFormErrors] = useState({});
-  const [editMode, setEditMode] = useState(false);
-  const [editUserId, setEditUserId] = useState(null);
+  const [editMode, setEditMode] = useState(false);  const [editUserId, setEditUserId] = useState(null);
+  useAdminAuth(); // Ensure admin authentication is checked
   
   // État du formulaire
   const [newUser, setNewUser] = useState({
@@ -21,7 +25,7 @@ const UserManagement = () => {
     confirmPassword: '',
     company: '',
     position: '',
-    role: 'User'
+    role: ''
   });
 
   // Réinitialiser les erreurs du formulaire lors de l'affichage
@@ -124,10 +128,8 @@ const UserManagement = () => {
     if (!validateForm()) {
       return;
     }
-    
-    try {
+      try {
       setLoading(true);
-      const token = localStorage.getItem('token') || sessionStorage.getItem('token');
       
       const userData = {
         firstName: newUser.firstName,
@@ -141,24 +143,24 @@ const UserManagement = () => {
       if (!editMode || (editMode && newUser.password)) {
         userData.password = newUser.password;
       }
-
+      
+      // Using axios/api instance instead of fetch for consistent header handling
       const url = editMode 
-        ? `${API_BASE_URL}/api/users/${editUserId}` 
-        : `${API_BASE_URL}/api/auth/register`;
-
-      const response = await fetch(url, {
-        method: editMode ? 'PUT' : 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify(userData)
+        ? `/api/users/${editUserId}` 
+        : `/api/auth/register`;
+      
+      console.log('Sending user data to:', url, {
+        email: userData.email,
+        role: userData.role,
+        withAuthToken: !!getStoredToken()
       });
       
-      if (!response.ok) {
-        const responseData = await response.json();
-        console.error("Erreur du backend :", responseData);
-        setError(responseData.message || "Une erreur s'est produite");
+      const response = await userService.saveUser(url, userData, editMode); // The API service already handles response validation and error formatting
+      // The response is directly from axios, not fetch, so we check differently
+      if (!response || response.status >= 400) {
+        const errorMessage = response?.data?.message || "Une erreur s'est produite";
+        console.error("Backend error:", errorMessage);
+        setError(errorMessage);
         return;
       }
       
@@ -182,52 +184,50 @@ const UserManagement = () => {
       fetchUsersList();
     } catch (err) {
       console.error("Erreur lors de l'opération :", err);
-      setError("Une erreur s'est produite. Veuillez réessayer.");
+      setError(err.message || "Une erreur s'est produite. Veuillez réessayer.");
     } finally {
       setLoading(false);
     }
   };
-  
   const fetchUsersList = async () => {
     try {
-      const token = localStorage.getItem('token') || sessionStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/api/users`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
+      setError('');
+      // Utiliser la méthode spécifique pour l'administration des utilisateurs
+      const userData = await userService.getAllUsersAdmin();
       
-      if (!response.ok) {
-        throw new Error("Échec du chargement des utilisateurs");
-      }
+      // Normalize data to ensure consistent property names
+      const normalizedUsers = userData.map(user => ({
+        ...user,
+        roles: user.roles || user.Roles || [] // Ensure we always have a roles array (lowercase)
+      }));
       
-      const usersData = await response.json();
-      setUsers(usersData);
+      setUsers(normalizedUsers);
     } catch (err) {
-      console.error('Erreur:', err);
-      setError(err.message);
+      console.error('Error fetching users:', err);
+      if (err.message.includes('Unauthorized')) {
+        setError("Vous n'avez pas les permissions nécessaires pour accéder à cette page. Seuls les administrateurs peuvent voir la liste des utilisateurs.");
+      } else {
+        setError(err.message);
+      }
     } finally {
       setLoading(false);
     }
   };
-  
-  const toggleUserStatus = async (userId, currentStatus) => {
+    const toggleUserStatus = async (userId, currentStatus) => {
     try {
       setError('');
-      const token = localStorage.getItem('token') || sessionStorage.getItem('token');
       
-      const response = await fetch(`${API_BASE_URL}/api/users/${userId}/status`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({ isActive: !currentStatus })
+      console.log('Toggling user status:', {
+        userId,
+        currentStatus,
+        newStatus: !currentStatus
       });
       
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Échec de la mise à jour du statut de l'utilisateur");
+      // Use API client for consistent header handling
+      const response = await api.put(`/api/users/${userId}/status`, { isActive: !currentStatus });
+      
+      if (!response || response.status >= 400) {
+        throw new Error(response?.data?.message || "Échec de la mise à jour du statut de l'utilisateur");
       }
       
       setUsers(users.map(user => 
@@ -235,11 +235,10 @@ const UserManagement = () => {
       ));
       
     } catch (err) {
-      console.error('Erreur:', err);
-      setError(err.message);
+      console.error('Erreur lors du changement de statut:', err);
+      setError(err.message || "Une erreur s'est produite lors de la mise à jour du statut");
     }
   };
-
   const handleEditClick = (user) => {
     setNewUser({
       firstName: user.firstName,
@@ -265,15 +264,14 @@ const UserManagement = () => {
         <div className="loader-container">
           <div className="loader"></div>
           <p>Chargement des utilisateurs...</p>
-        </div>
-      ) : (
+        </div>      ) : (
         <>
           {error && <div className="error-message">{error}</div>}
           {successMessage && <div className="success-message">{successMessage}</div>}
           
           <div className="section-header">
             <h2>Utilisateurs</h2>
-            <button 
+            <button
               className="btn-primary" 
               onClick={() => setShowAddForm(true)}
             >
@@ -431,55 +429,63 @@ const UserManagement = () => {
               </form>
             </div>
           ) : (
-            <table className="users-table">
-              <thead>
-                <tr>
-                  <th>Nom</th>
-                  <th>Email</th>
-                  <th>Entreprise</th>
-                  <th>Rôle</th>
-                  <th>Statut</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {users.map(user => (
-                  <tr key={user.id}>
-                    <td>{user.firstName} {user.lastName}</td>
-                    <td>{user.email}</td>
-                    <td>{user.company || '-'}</td>
-                    <td>
-                      <span className={`role-badge ${(user.roles && user.roles[0] ? user.roles[0].toLowerCase() : 'user')}`}>
-                        {user.roles && user.roles[0] ? user.roles[0] : 'User'}
-                      </span>
-                    </td>
-                    <td>
-                      <span className={`status-badge ${user.isActive ? 'active' : 'inactive'}`}>
-                        {user.isActive ? 'Actif' : 'Inactif'}
-                      </span>
-                    </td>
-                    <td>
-                      <div className="action-buttons">
-                        <button 
-                          className="btn-icon edit"
-                          title="Modifier"
-                          onClick={() => handleEditClick(user)}
-                        >
-                          <i className="fas fa-edit"></i>
-                        </button>
-                        <button 
-                          className={`btn-icon ${user.isActive ? 'deactivate' : 'activate'}`}
-                          title={user.isActive ? 'Désactiver' : 'Activer'}
-                          onClick={() => toggleUserStatus(user.id, user.isActive)}
-                        >
-                          <i className={`fas fa-${user.isActive ? 'user-slash' : 'user-check'}`}></i>
-                        </button>
-                      </div>
-                    </td>
+            <div className="table-container">
+              <table className="users-table">
+                <thead>
+                  <tr>
+                    <th>Nom</th>
+                    <th>Email</th>
+                    <th>Entreprise</th>
+                    <th>Rôle</th>
+                    <th>Statut</th>
+                    <th>Actions</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>{users.map(user => (
+                <tr key={user.id}>
+                  <td title={`${user.firstName} ${user.lastName}`}>{user.firstName} {user.lastName}</td>
+                  <td title={user.email}>{user.email}</td>
+                  <td title={user.company || '-'}>{user.company || '-'}</td>
+                  <td>
+                    {/* Debugging: afficher des informations détaillées sur les rôles */}
+                    {console.log('User Details:', { 
+                      email: user.email, 
+                      originalRoles: user.Roles, 
+                      normalizedRoles: user.roles, 
+                      roleType: typeof user.roles, 
+                      isArray: Array.isArray(user.roles) 
+                    })}
+                    <span className={`role-badge ${user.roles && user.roles[0] ? user.roles[0].toLowerCase() : 'user'}`}>
+                      {user.roles && user.roles.length > 0 ? user.roles[0] : 'User'}
+                    </span>
+                  </td>
+                  <td>
+                    <span className={`status-badge ${user.isActive ? 'active' : 'inactive'}`}>
+                      {user.isActive ? 'Actif' : 'Inactif'}
+                    </span>
+                  </td>
+                  <td>
+                    <div className="action-buttons">
+                      <button 
+                        className="btn-icon edit"
+                        title="Modifier"
+                        onClick={() => handleEditClick(user)}
+                      >
+                        <i className="fas fa-edit"></i>
+                      </button>
+                      <button 
+                        className={`btn-icon ${user.isActive ? 'deactivate' : 'activate'}`}
+                        title={user.isActive ? 'Désactiver' : 'Activer'}
+                        onClick={() => toggleUserStatus(user.id, user.isActive)}
+                      >
+                        <i className={`fas fa-${user.isActive ? 'user-slash' : 'user-check'}`}></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}              </tbody>
+              </table>
+            </div>
           )}
         </>
       )}

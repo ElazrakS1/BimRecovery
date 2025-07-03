@@ -1,6 +1,78 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
+
+/* Tailwind CSS imports */
+@import './tailwind-directives.css';
+
+/* Thème principal basé sur le logo */
+@import './styles/theme.css';
+
+/* Import custom global component styles */
+@import './components/common/Button.css';
+@import './components/common/Form.css';
+@import './components/common/Utilities.css';
+@import './components/common/DropdownFixes.css';
+@import './components/common/DropdownCompatibility.css';
+
+/* Global scrollbar styles */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgba(241, 241, 241, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(136, 136, 136, 0.5);
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(85, 85, 85, 0.8);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(136, 136, 136, 0.5) rgba(241, 241, 241, 0.1);
+}
+
+/* Dark mode scrollbar styles */
+.dark ::-webkit-scrollbar-track {
+  background-color: rgba(30, 30, 30, 0.2);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background-color: rgba(160, 160, 160, 0.5);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(180, 180, 180, 0.8);
+}
+
+/* Firefox dark mode */
+.dark * {
+  scrollbar-color: rgba(160, 160, 160, 0.5) rgba(30, 30, 30, 0.2);
+}
+
+/* Styles pour les conteneurs avec défilement */
+[class*="scroll-container"],
+.overflow-auto,
+.overflow-y-auto,
+.overflow-x-auto {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* Styles spécifiques pour les modales et menus déroulants */
+[class*="modal"],
+[class*="dropdown"],
+[class*="menu"] {
+  scrollbar-gutter: stable;
+}
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -11,10 +83,14 @@
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
+  font-synthesis: none;  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 html, body {
@@ -40,11 +116,11 @@ html, body {
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #6356e5;
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: #4338ca;
 }
 
 body {
@@ -72,11 +148,43 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #6356e5;
 }
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* Add modal scrollbar styles */
+.modal-content::-webkit-scrollbar,
+[class*="modal"]::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track,
+[class*="modal"]::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb,
+[class*="modal"]::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover,
+[class*="modal"]::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Firefox scrollbar styles for modals */
+.modal-content,
+[class*="modal"] {
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
 }
 
 @media (prefers-color-scheme: light) {
@@ -85,9 +193,11 @@ button:focus-visible {
     background-color: #ffffff;
   }
   a:hover {
-    color: #747bff;
+    color: #6356e5;
   }
   button {
     background-color: #f9f9f9;
   }
 }
+
+

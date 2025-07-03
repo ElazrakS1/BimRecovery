@@ -28,6 +28,9 @@ namespace Bim.Server.Models
         public string Author { get; set; } = string.Empty;
         public string Organization { get; set; } = string.Empty;
 
+        // Chemin vers la capture d'écran du modèle
+        public string? ScreenshotPath { get; set; }
+
         // Foreign key for Project
         [Required]
         public int ProjectId { get; set; }
