@@ -239,6 +239,35 @@ const UserManagement = () => {
       setError(err.message || "Une erreur s'est produite lors de la mise à jour du statut");
     }
   };
+  
+  const handleDeleteUser = async (userId, userEmail) => {
+    if (!window.confirm(`Êtes-vous sûr de vouloir supprimer l'utilisateur ${userEmail} ? Cette action est irréversible.`)) {
+      return;
+    }
+    
+    try {
+      setError('');
+      setLoading(true);
+      
+      const response = await api.delete(`/api/users/${userId}`);
+      
+      if (response.status === 200) {
+        setSuccessMessage('Utilisateur supprimé avec succès');
+        setTimeout(() => setSuccessMessage(''), 3000);
+        
+        // Retirer l'utilisateur de la liste
+        setUsers(users.filter(user => user.id !== userId));
+      } else {
+        throw new Error(response?.data?.message || "Erreur lors de la suppression");
+      }
+    } catch (err) {
+      console.error('Erreur lors de la suppression:', err);
+      setError(err.message || "Une erreur s'est produite lors de la suppression");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleEditClick = (user) => {
     setNewUser({
       firstName: user.firstName,
@@ -441,8 +470,9 @@ const UserManagement = () => {
                     <th>Actions</th>
                   </tr>
                 </thead>
-                <tbody>{users.map(user => (
-                <tr key={user.id}>
+                <tbody>
+                  {users.map(user => (
+                    <tr key={user.id}>
                   <td title={`${user.firstName} ${user.lastName}`}>{user.firstName} {user.lastName}</td>
                   <td title={user.email}>{user.email}</td>
                   <td title={user.company || '-'}>{user.company || '-'}</td>
@@ -480,10 +510,18 @@ const UserManagement = () => {
                       >
                         <i className={`fas fa-${user.isActive ? 'user-slash' : 'user-check'}`}></i>
                       </button>
+                      <button 
+                        className="btn-icon delete"
+                        title="Supprimer"
+                        onClick={() => handleDeleteUser(user.id, user.email)}
+                      >
+                        <i className="fas fa-trash"></i>
+                      </button>
                     </div>
                   </td>
-                </tr>
-              ))}              </tbody>
+                    </tr>
+                  ))}
+                </tbody>
               </table>
             </div>
           )}

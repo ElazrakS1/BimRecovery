@@ -415,7 +415,7 @@ html, body {
   justify-content: center;
   align-items: center;
   padding: 40px;
-  background: rgba(255, 255, 255, 0.97);
+  background: rgba(255, 255, 255, 1);
   box-shadow: 0 20px 50px rgba(99, 86, 229, 0.25);
   border-radius: 0 20px 20px 0;
   position: relative;
@@ -449,7 +449,7 @@ html, body {
   max-width: 400px;
   padding: 70px;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 1);
   box-shadow: 
     0 8px 32px rgba(0, 0, 0, 0.1),
     0 1px 3px rgba(0, 0, 0, 0.05);

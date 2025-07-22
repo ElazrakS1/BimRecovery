@@ -1,0 +1,84 @@
+/* 🔧 CORRECTION DROPDOWN PROFIL - STYLES FORCÉS ULTRA PRIORITÉ */
+/* Ce fichier force l'application des styles compacts pour le dropdown */
+
+/* FORCE LA LARGEUR COMPACTE AVEC PRIORITÉ MAXIMALE */
+.dropdown-compact-fixed,
+.profile-dropdown,
+.profile-dropdown.modern-dropdown,
+.modern-profile .profile-dropdown,
+div[class*="profile-dropdown"],
+div[style*="position: fixed"] {
+  width: 220px !important;
+  max-width: 220px !important;
+  min-width: 220px !important;
+  border-radius: 10px !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12) !important;
+  /* Removed blur effect */
+}
+
+/* FORCE LES PADDINGS COMPACTS */
+.dropdown-compact-fixed .dropdown-header,
+.profile-dropdown .dropdown-header,
+.modern-dropdown .dropdown-header,
+.dropdown-header {
+  padding: 0.8rem !important;
+}
+
+.dropdown-compact-fixed .dropdown-item,
+.profile-dropdown .dropdown-item,
+.modern-dropdown .dropdown-item,
+.dropdown-item {
+  padding: 0.5rem 0.8rem !important;
+  gap: 0.5rem !important;
+  font-size: 0.8rem !important;
+}
+
+.dropdown-compact-fixed .dropdown-divider,
+.profile-dropdown .dropdown-divider,
+.modern-dropdown .dropdown-divider,
+.dropdown-divider {
+  margin: 0.4rem 0.8rem !important;
+}
+
+.dropdown-compact-fixed .dropdown-menu,
+.profile-dropdown .dropdown-menu,
+.modern-dropdown .dropdown-menu {
+  padding: 0.5rem 0 !important;
+}
+
+/* FORCE LE POSITIONNEMENT CORRECT */
+.profile-dropdown,
+.profile-dropdown.modern-dropdown {
+  position: fixed !important;
+  z-index: 1350 !important;
+}
+
+/* RESPONSIVE FORCÉ */
+@media (max-width: 768px) {
+  .profile-dropdown,
+  .profile-dropdown.modern-dropdown,
+  .modern-profile .profile-dropdown {
+    width: 200px !important;
+    max-width: 200px !important;
+    min-width: 200px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .profile-dropdown,
+  .profile-dropdown.modern-dropdown,
+  .modern-profile .profile-dropdown {
+    width: 180px !important;
+    max-width: 180px !important;
+    min-width: 180px !important;
+  }
+  
+  .dropdown-header {
+    padding: 0.6rem !important;
+  }
+  
+  .dropdown-item {
+    padding: 0.4rem 0.6rem !important;
+    font-size: 0.75rem !important;
+  }
+}

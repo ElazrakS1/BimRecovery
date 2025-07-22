@@ -1,10 +1,12 @@
-import { useState, useEffect, useCallback, useContext } from 'react';
+import React, { useState, useEffect, useCallback, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { API_BASE_URL } from '../config/api.config';
 import { getProject, deleteFile, uploadFileToProject } from '../services/projectService';
 import { convertIFCToPDF, convertIFCToXML } from '../services/ifcService';
 import TaskManagement from '../components/Tasks/TaskManagement';
 import { AuthContext } from '../context/AuthContext';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './ProjectDetails.css';
 
 export default function ProjectDetails({ projectId }) {
@@ -16,6 +18,7 @@ export default function ProjectDetails({ projectId }) {
   const [convertingPdf, setConvertingPdf] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
   
   // Hooks and context
   const params = useParams();
@@ -147,9 +150,15 @@ export default function ProjectDetails({ projectId }) {
   const handleConvertToXml = async (file) => {
     try {
       console.log('Starting XML conversion:', { projectId: project.id, fileId: file.id, fileName: file.fileName });
+      setError(null);
       setConverting(true);
       setSelectedFile(file.id);
+      
       const xmlData = await convertIFCToXML(project.id, file.id);
+      
+      if (!xmlData || typeof xmlData !== 'string') {
+        throw new Error('La réponse du serveur est invalide');
+      }
       
       // Créer et télécharger le fichier XML
       const blob = new Blob([xmlData], { type: 'application/xml' });
@@ -160,10 +169,44 @@ export default function ProjectDetails({ projectId }) {
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      window.URL.revokeObjectURL(url);    } catch (err) {
-      const errorMessage = err.response?.data?.message || err.message || 'Erreur lors de la conversion en XML';
+      window.URL.revokeObjectURL(url);
+      
+      // Show success notification
+      setSuccessMessage('Le fichier XML a été généré avec succès');
+      setTimeout(() => setSuccessMessage(null), 5000);
+      
+    } catch (err) {
+      console.error('XML conversion error:', err);
+      
+      // Enhanced error handling
+      let errorMessage;
+      
+      if (err.response) {
+        // Handle specific status codes
+        if (err.response.status === 401) {
+          errorMessage = 'Session expirée. Veuillez vous reconnecter pour convertir en XML.';
+        } else if (err.response.status === 403) {
+          errorMessage = 'Vous n\'avez pas les permissions nécessaires pour cette opération.';
+        } else if (err.response.status === 404) {
+          errorMessage = 'Le fichier demandé n\'existe pas ou a été supprimé.';
+        } else {
+          errorMessage = err.response.data?.message || 
+                        err.response.data?.error || 
+                        `Erreur serveur (${err.response.status})`;
+        }
+      } else if (err.message && err.message.includes('authentifi')) {
+        // Handle authentication specific errors
+        errorMessage = err.message;
+        // Redirect to login after a delay if it's an auth error
+        setTimeout(() => {
+          window.location.href = '/login';
+        }, 3000);
+      } else {
+        // Generic error
+        errorMessage = err.message || 'Erreur lors de la conversion en XML';
+      }
+      
       setError(errorMessage);
-      console.error('Erreur de conversion XML:', err);
     } finally {
       setConverting(false);
       setSelectedFile(null);
@@ -183,11 +226,11 @@ export default function ProjectDetails({ projectId }) {
       
       // Validate PDF blob
       if (!(pdfBlob instanceof Blob)) {
-        throw new Error('Invalid response from server');
+        throw new Error('La réponse du serveur est invalide');
       }
 
       if (!pdfBlob.type.includes('pdf')) {
-        throw new Error('Server did not return a PDF file');
+        throw new Error('Le serveur n\'a pas retourné un fichier PDF');
       }
 
       // Create and trigger download
@@ -203,15 +246,46 @@ export default function ProjectDetails({ projectId }) {
       link.click();
       document.body.removeChild(link);
       window.URL.revokeObjectURL(url);
+      
+      // Show success notification
+      setSuccessMessage('Le fichier PDF a été généré avec succès');
+      setTimeout(() => setSuccessMessage(null), 5000);
+      
     } catch (err) {
       console.error('PDF conversion error:', err);
-      const errorMessage = err.response?.data?.message || 
-                         err.response?.data?.error ||
-                         err.message || 
-                         'Failed to generate PDF. Please try again.';
-      setError(`Error: ${errorMessage}`);
+      
+      // Enhanced error handling
+      let errorMessage;
+      
+      if (err.response) {
+        // Handle specific status codes
+        if (err.response.status === 401) {
+          errorMessage = 'Session expirée. Veuillez vous reconnecter pour convertir en PDF.';
+        } else if (err.response.status === 403) {
+          errorMessage = 'Vous n\'avez pas les permissions nécessaires pour cette opération.';
+        } else if (err.response.status === 404) {
+          errorMessage = 'Le fichier demandé n\'existe pas ou a été supprimé.';
+        } else {
+          errorMessage = err.response.data?.message || 
+                        err.response.data?.error || 
+                        `Erreur serveur (${err.response.status})`;
+        }
+      } else if (err.message && err.message.includes('authentifi')) {
+        // Handle authentication specific errors
+        errorMessage = err.message;
+        // Redirect to login after a delay if it's an auth error
+        setTimeout(() => {
+          window.location.href = '/login';
+        }, 3000);
+      } else {
+        // Generic error
+        errorMessage = err.message || 'Erreur lors de la conversion en PDF';
+      }
+      
+      setError(errorMessage);
     } finally {
       setConvertingPdf(false);
+      setSelectedFile(null);
     }
   };
   const handleFileUpload = async (event) => {

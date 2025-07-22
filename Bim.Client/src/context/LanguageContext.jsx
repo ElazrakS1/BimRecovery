@@ -22,6 +22,7 @@ const translations = {
     noSearchResults: 'Aucun résultat trouvé',
     // Settings translations
     general: 'Général',
+
     account: 'Compte',
     appearance: 'Apparence',
     accessibility: 'Accessibilité',
@@ -94,11 +95,11 @@ const translations = {
     accountSettings: 'Account settings',
     fullName: 'Full name',
     email: 'Email',
-    password: 'Password',
+    password: 'Code',
     role: 'Role',
     dangerZone: 'Danger zone',
     deleteAccount: 'Delete account',
-    notificationSettings: 'Notification settings',
+    notificationSettings: 'Notification Parametres',
     emailNotifications: 'Email notifications',
     browserNotifications: 'Browser notifications',
     notifyMeAbout: 'Notify me about',
@@ -124,7 +125,7 @@ const translations = {
     allowAnalytics: 'Allow anonymous usage analytics',
     allowErrorReports: 'Allow error reports',
     saveChanges: 'Save changes',
-    cancel: 'Cancel',
+    cancel: 'Annuler',
     changesApplied: 'Your changes have been applied',
     somethingWentWrong: 'Something went wrong'
   },

@@ -1,13 +1,12 @@
-/* eslint-disable react-refresh/only-export-components */
 import { createContext, useState, useEffect, useCallback } from 'react';
 import { API_BASE_URL } from '../config/api.config';
 import { setAuthToken } from '../services/authService';
 import api from '../config/api.config';
 
 // Create the auth context with some defaults
-export const AuthContext = createContext();
+const AuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
+const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);  const [userData, setUserData] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -127,6 +126,22 @@ export const AuthProvider = ({ children }) => {
       throw error;
     }
   }, [normalizeRoles]);
+  // Retry mechanism with exponential backoff
+  const retryWithBackoff = useCallback(async (fn, retries = 3, delay = 500) => {
+    try {
+      return await fn();
+    } catch (error) {
+      if (retries <= 0) {
+        throw error;
+      }
+      
+      console.log(`AuthContext: Retry attempt, ${retries} retries left. Waiting ${delay}ms...`);
+      await new Promise(resolve => setTimeout(resolve, delay));
+      
+      return retryWithBackoff(fn, retries - 1, delay * 2);
+    }
+  }, []);
+
   const checkAuth = useCallback(async () => {
     try {
       const token = localStorage.getItem('token') || sessionStorage.getItem('token');
@@ -140,6 +155,14 @@ export const AuthProvider = ({ children }) => {
         setIsLoading(false);
         return false;
       }
+      
+      // Add auth check debounce
+      if (window._authCheckInProgress) {
+        console.log('AuthContext: Vérification déjà en cours, requête ignorée');
+        return false;
+      }
+      
+      window._authCheckInProgress = true;
 
       // Parse and validate token
       const decodedToken = parseToken(token);
@@ -172,7 +195,8 @@ export const AuthProvider = ({ children }) => {
         setIsLoading(false);
         return false;
       }      try {
-        const userInfo = await fetchUserData(token);
+        // Use retry mechanism for API call
+        const userInfo = await retryWithBackoff(() => fetchUserData(token), 2, 500);
 
         // Ensure isAdmin flag is set consistently on the user data
         const hasAdminRole = userInfo.roles.some(role => 
@@ -181,6 +205,7 @@ export const AuthProvider = ({ children }) => {
         userInfo.isAdmin = hasAdminRole;
         
         setIsAuthenticated(true);
+        setUserData(userInfo);
         setIsAdmin(hasAdminRole);
         setIsLoading(false);
 
@@ -191,14 +216,34 @@ export const AuthProvider = ({ children }) => {
           roles: userInfo.roles,
           isAdmin: hasAdminRole
         });
-
+        
+        window._authCheckInProgress = false;
         return true;
       } catch (error) {
         console.error('Error verifying authentication:', error);
+        
+        // Specific error handling based on error type
+        if (error.response) {
+          console.log(`AuthContext: Server responded with status ${error.response.status}`);
+          
+          if (error.response.status === 401 || error.response.status === 403) {
+            localStorage.removeItem('token');
+            sessionStorage.removeItem('token');
+          }
+          
+          if (error.response.status >= 500) {
+            console.error('AuthContext: Server error - might retry later');
+          }
+        } else if (error.request) {
+          console.error('AuthContext: No response from server - network issue');
+        }
+        
         setIsAuthenticated(false);
         setUserData(null);
         setIsAdmin(false);
         setIsLoading(false);
+        
+        window._authCheckInProgress = false;
         return false;
       }
     } catch (error) {
@@ -207,6 +252,8 @@ export const AuthProvider = ({ children }) => {
       setUserData(null);
       setIsAdmin(false);
       setIsLoading(false);
+      
+      window._authCheckInProgress = false;
       return false;
     }
   }, [parseToken, fetchUserData]);
@@ -245,3 +292,5 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
+export { AuthContext, AuthProvider };

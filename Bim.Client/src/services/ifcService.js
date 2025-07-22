@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_BASE_URL } from '../config/api.config';
+import api, { API_BASE_URL } from '../config/api.config';
 import { IfcAPI } from 'web-ifc';
 
 // Fonction pour charger l'API IFC et les fichiers WASM nécessaires
@@ -293,10 +293,22 @@ const extractIfcMetadata = (api, modelID) => {
   // Vérifier si le schéma existe avant d'utiliser Object.values
   if (!api || !api.schema) {
     console.error('Erreur: Le schéma IFC n\'est pas disponible ou n\'est pas correctement initialisé');
+    
+    // Essayer une approche alternative pour compter les éléments
+    let alternativeTotalElements = 0;
+    try {
+      // Méthode alternative : essayer de compter tous les éléments sans utiliser le schéma
+      const allLines = api.GetAllLines(modelID);
+      alternativeTotalElements = allLines.size();
+      console.log(`📊 Méthode alternative: ${alternativeTotalElements} éléments trouvés`);
+    } catch (altError) {
+      console.warn('Méthode alternative échouée:', altError);
+    }
+    
     return {
       projectName: 'Inconnu',
       projectDescription: 'Schéma IFC non disponible',
-      totalElements: 0,
+      totalElements: alternativeTotalElements,
       entityCounts: {},
       stats: {
         wallCount: 0,
@@ -305,7 +317,7 @@ const extractIfcMetadata = (api, modelID) => {
         floorCount: 0
       },
       schemaError: true,
-      noEntitiesExtracted: true
+      alternativeCount: true
     };
   }
   
@@ -331,11 +343,15 @@ const extractIfcMetadata = (api, modelID) => {
         const typeName = Object.keys(api.schema).find(key => api.schema[key] === type) || `Type_${type}`;
         entityCounts[typeName] = count;
         totalElements += count;
+        console.log(`🔍 Trouvé ${count} éléments de type ${typeName}`);
       }
     } catch (error) {
       console.warn(`Erreur lors du comptage des éléments de type ${type}:`, error);
     }
   });
+  
+  console.log(`📊 Total des éléments extraits: ${totalElements}`);
+  console.log(`📋 Types d'entités trouvés:`, entityCounts);
   
   // Extraire les informations du projet
   let projectName = "Inconnu";
@@ -359,7 +375,7 @@ const extractIfcMetadata = (api, modelID) => {
     console.warn('Erreur lors de l\'extraction des informations du projet:', error);
   }
   
-  return {
+  const result = {
     projectName,
     projectDescription,
     totalElements,
@@ -372,6 +388,9 @@ const extractIfcMetadata = (api, modelID) => {
       floorCount: entityCounts['IFCSLAB'] || 0,
     }
   };
+  
+  console.log('🎯 Métadonnées finales extraites:', result);
+  return result;
 };
 
 export const uploadIFCFile = async (file) => {
@@ -390,16 +409,28 @@ export const uploadIFCFile = async (file) => {
     
     const formData = new FormData();
     formData.append('file', file);
+    
+    // Add required parameters for backend
+    formData.append('projectId', '1'); // Default project ID
+    formData.append('description', `Fichier IFC téléchargé: ${file.name}`);
+
+    // Get the token for authentication
+    const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+    console.log('🔐 Token for file upload:', token ? `${token.substring(0, 20)}...` : 'NO TOKEN FOUND');
 
     try {
       // Essayer d'abord l'API d'intégration 
       const endpoint = `${API_BASE_URL}/api/integration/import`;
       console.log(`Tentative d'upload vers: ${endpoint}`);
       
+      const headers = {
+        'Content-Type': 'multipart/form-data',
+        ...(token && { 'Authorization': `Bearer ${token}` })
+      };
+      console.log('📋 Headers for upload:', Object.keys(headers));
+      
       const response = await axios.post(endpoint, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
+        headers,
         // Ajouter un timeout pour éviter les attentes trop longues
         timeout: 30000
       });
@@ -504,50 +535,216 @@ export const getIFCFile = async (fileId) => {
 
 export const convertIFCToPDF = async (projectId, fileId) => {
   try {
+    console.log('Converting to PDF:', { projectId, fileId });
+    
+    // Verify token before making request
     const token = localStorage.getItem('token') || sessionStorage.getItem('token');
     if (!token) {
-      throw new Error('No authentication token found');
+      console.error('No authentication token found for PDF conversion');
+      throw new Error('Vous n\'êtes pas authentifié. Veuillez vous reconnecter pour convertir en PDF.');
     }
-
-    console.log('Converting to PDF:', { projectId, fileId });
-    const response = await axios.get(
-      `${API_BASE_URL}/api/Projects/${projectId}/files/${fileId}/pdf`, 
-      {
-        responseType: 'blob',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Accept': 'application/pdf'
+    
+    // Explicitly set token in headers for this critical request
+    const tokenValue = token.startsWith('Bearer ') ? token : `Bearer ${token}`;
+    const headers = {
+      'Authorization': tokenValue,
+      'Accept': 'application/pdf'
+    };
+    
+    let response;
+    
+    try {
+      // First attempt with Projects capitalized
+      response = await api.get(
+        `/api/Projects/${projectId}/files/${fileId}/pdf`,
+        {
+          responseType: 'blob',
+          headers
+        }
+      );
+      return response.data;
+    } catch (firstError) {
+      console.log('First endpoint attempt failed, trying alternative format...', firstError);
+      
+      if (firstError.response && firstError.response.status === 401) {
+        console.log('Authentication error detected, attempting token refresh before retry');
+        
+        try {
+          // Try to verify and refresh token
+          const refreshResponse = await api.get('/api/users/profile', {
+            headers: { 'Authorization': tokenValue }
+          });
+          
+          if (refreshResponse.status === 200) {
+            console.log('Token verified via profile endpoint, retrying with confirmed token');
+          }
+        } catch (refreshError) {
+          console.warn('Token refresh attempt failed', refreshError);
         }
       }
-    );
-    return response.data;
+      
+      // Second attempt with projects lowercase (in case API is case sensitive)
+      response = await api.get(
+        `/api/projects/${projectId}/files/${fileId}/pdf`,
+        {
+          responseType: 'blob',
+          headers
+        }
+      );
+      return response.data;
+    }
   } catch (error) {
     console.error('Error converting to PDF:', error);
+    
+    // Detailed error analysis and reporting
+    if (error.response) {
+      console.error(`Server responded with status: ${error.response.status}`);
+      
+      if (error.response.status === 401) {
+        console.error('Authentication failed. Token may be invalid or expired.');
+        
+        // Check token status
+        const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+        console.error('Current token status:', token ? 'Present' : 'Missing');
+        
+        // Attempt direct axios call as last resort
+        try {
+          console.log('Attempting direct axios call as fallback...');
+          const tokenValue = token.startsWith('Bearer ') ? token : `Bearer ${token}`;
+          
+          const fallbackResponse = await axios.get(
+            `${API_BASE_URL}/api/projects/${projectId}/files/${fileId}/pdf`,
+            {
+              responseType: 'blob',
+              headers: {
+                'Authorization': tokenValue,
+                'Accept': 'application/pdf'
+              }
+            }
+          );
+          
+          if (fallbackResponse.status === 200) {
+            console.log('Fallback direct axios call succeeded!');
+            return fallbackResponse.data;
+          }
+        } catch (fallbackError) {
+          console.error('Fallback attempt also failed:', fallbackError);
+        }
+        
+        throw new Error('Erreur d\'authentification. Veuillez vous reconnecter et réessayer.');
+      }
+    } else if (error.request) {
+      console.error('No response received:', error.request);
+      throw new Error('Le serveur ne répond pas. Vérifiez votre connexion internet.');
+    }
     throw error;
   }
 };
 
 export const convertIFCToXML = async (projectId, fileId) => {
   try {
+    console.log('Converting to XML:', { projectId, fileId });
+    
+    // Verify token before making request
     const token = localStorage.getItem('token') || sessionStorage.getItem('token');
     if (!token) {
-      throw new Error('No authentication token found');
+      console.error('No authentication token found for XML conversion');
+      throw new Error('Vous n\'êtes pas authentifié. Veuillez vous reconnecter pour convertir en XML.');
     }
-
-    console.log('Converting to XML:', { projectId, fileId });
-    const response = await axios.get(
-      `${API_BASE_URL}/api/Projects/${projectId}/files/${fileId}/xml`,
-      {
-        responseType: 'text',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Accept': 'application/xml'
+    
+    // Explicitly set token in headers for this critical request
+    const tokenValue = token.startsWith('Bearer ') ? token : `Bearer ${token}`;
+    const headers = {
+      'Authorization': tokenValue,
+      'Accept': 'application/xml'
+    };
+    
+    let response;
+    
+    try {
+      // First attempt with Projects capitalized
+      response = await api.get(
+        `/api/Projects/${projectId}/files/${fileId}/xml`,
+        {
+          responseType: 'text',
+          headers
+        }
+      );
+      return response.data;
+    } catch (firstError) {
+      console.log('First endpoint attempt failed, trying alternative format...', firstError);
+      
+      if (firstError.response && firstError.response.status === 401) {
+        console.log('Authentication error detected, attempting token refresh before retry');
+        
+        try {
+          // Try to verify and refresh token
+          const refreshResponse = await api.get('/api/users/profile', {
+            headers: { 'Authorization': tokenValue }
+          });
+          
+          if (refreshResponse.status === 200) {
+            console.log('Token verified via profile endpoint, retrying with confirmed token');
+          }
+        } catch (refreshError) {
+          console.warn('Token refresh attempt failed', refreshError);
         }
       }
-    );
-    return response.data;
+      
+      // Second attempt with projects lowercase (in case API is case sensitive)
+      response = await api.get(
+        `/api/projects/${projectId}/files/${fileId}/xml`,
+        {
+          responseType: 'text',
+          headers
+        }
+      );
+      return response.data;
+    }
   } catch (error) {
     console.error('Error converting to XML:', error);
+    
+    // Detailed error analysis and reporting
+    if (error.response) {
+      console.error(`Server responded with status: ${error.response.status}`);
+      
+      if (error.response.status === 401) {
+        console.error('Authentication failed. Token may be invalid or expired.');
+        
+        // Check token status
+        const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+        console.error('Current token status:', token ? 'Present' : 'Missing');
+        
+        // Attempt direct axios call as last resort
+        try {
+          console.log('Attempting direct axios call as fallback for XML...');
+          const tokenValue = token.startsWith('Bearer ') ? token : `Bearer ${token}`;
+          
+          const fallbackResponse = await axios.get(
+            `${API_BASE_URL}/api/projects/${projectId}/files/${fileId}/xml`,
+            {
+              responseType: 'text',
+              headers: {
+                'Authorization': tokenValue,
+                'Accept': 'application/xml'
+              }
+            }
+          );
+          
+          if (fallbackResponse.status === 200) {
+            console.log('Fallback direct axios call succeeded for XML!');
+            return fallbackResponse.data;
+          }
+        } catch (fallbackError) {
+          console.error('Fallback attempt also failed for XML:', fallbackError);
+        }
+        
+        throw new Error('Erreur d\'authentification. Veuillez vous reconnecter et réessayer.');
+      }
+    } else if (error.request) {
+      console.error('No response received:', error.request);
+      throw new Error('Le serveur ne répond pas. Vérifiez votre connexion internet.');
+    }
     throw error;
   }
 };

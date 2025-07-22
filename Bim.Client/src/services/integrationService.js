@@ -11,11 +11,42 @@ const OPERATION_HISTORY_KEY = 'bim_operation_history';
 const getLocalOperationHistory = () => {
   try {
     const storedHistory = localStorage.getItem(OPERATION_HISTORY_KEY);
-    return storedHistory ? JSON.parse(storedHistory) : [];
+    const history = storedHistory ? JSON.parse(storedHistory) : [];
+    
+    // Nettoyer les doublons au chargement
+    const cleanHistory = removeDuplicatesFromHistory(history);
+    
+    // Sauvegarder l'historique nettoyé si nécessaire
+    if (cleanHistory.length !== history.length) {
+      console.log(`🧹 Doublons supprimés: ${history.length - cleanHistory.length}`);
+      saveLocalOperationHistory(cleanHistory);
+    }
+    
+    return cleanHistory;
   } catch (error) {
     console.error('Erreur lors de la récupération de l\'historique local:', error);
     return [];
   }
+};
+
+/**
+ * Supprime les doublons d'un historique
+ * @param {Array} history - L'historique à nettoyer
+ * @returns {Array} - L'historique sans doublons
+ */
+const removeDuplicatesFromHistory = (history) => {
+  const seen = new Set();
+  const cleanHistory = [];
+  
+  history.forEach(op => {
+    const key = `${op.type}-${op.source || op.file}-${op.date}`;
+    if (!seen.has(key)) {
+      seen.add(key);
+      cleanHistory.push(op);
+    }
+  });
+  
+  return cleanHistory;
 };
 
 /**
@@ -36,12 +67,32 @@ const saveLocalOperationHistory = (history) => {
  */
 const addOperationToHistory = (operation) => {
   const history = getLocalOperationHistory();
+  
   // Générer un ID unique si nécessaire
   const newOperation = {
     ...operation,
     id: operation.id || Date.now(),
     date: operation.date || new Date().toISOString()
   };
+  
+  // Vérifier les doublons avant d'ajouter
+  const isDuplicate = history.some(existingOp => {
+    // Vérifier si c'est le même fichier importé dans les 5 dernières secondes
+    const timeDiff = Math.abs(new Date(newOperation.date).getTime() - new Date(existingOp.date).getTime());
+    const isSameFile = (existingOp.source || existingOp.file) === (newOperation.source || newOperation.file);
+    const isSameType = existingOp.type === newOperation.type;
+    const isRecent = timeDiff < 5000; // 5 secondes
+    
+    return isSameFile && isSameType && isRecent;
+  });
+  
+  if (isDuplicate) {
+    console.log('⚠️ Doublon détecté, opération ignorée:', newOperation.source || newOperation.file);
+    return history.find(op => 
+      (op.source || op.file) === (newOperation.source || newOperation.file) && 
+      op.type === newOperation.type
+    );
+  }
   
   // Ajouter au début pour que les plus récentes apparaissent en premier
   history.unshift(newOperation);
@@ -50,6 +101,7 @@ const addOperationToHistory = (operation) => {
   const limitedHistory = history.slice(0, 50);
   
   saveLocalOperationHistory(limitedHistory);
+  console.log('✅ Opération ajoutée à l\'historique local:', newOperation.source || newOperation.file);
   return newOperation;
 };
 
@@ -89,19 +141,33 @@ export const integrationService = {
         }
         
         // Ajouter l'opération à l'historique local
+        console.log('🔍 Debug métadonnées IFC:', {
+          totalElements: ifcResult.metadata.totalElements,
+          entityCounts: ifcResult.metadata.entityCounts,
+          metadata: ifcResult.metadata
+        });
+        
+        const elementsCount = ifcResult.metadata.totalElements || 0;
+        console.log('📊 Nombre d\'éléments pour l\'historique:', elementsCount);
+        
         const historyEntry = addOperationToHistory({
           type: 'import',
           source: importData.file.name,
+          file: importData.file.name,
+          size: `${(importData.file.size / (1024 * 1024)).toFixed(2)} MB`,
           format: importData.format,
           status: 'success',
           user: localStorage.getItem('userName') || 'Utilisateur actuel',
+          elements: elementsCount,
           details: {
-            elements: ifcResult.metadata.totalElements,
-            properties: Object.keys(ifcResult.metadata.entityCounts).length,
+            elements: elementsCount,
+            properties: Object.keys(ifcResult.metadata.entityCounts || {}).length,
             projectName: ifcResult.metadata.projectName || 'Inconnu',
             stats: ifcResult.metadata.stats || {}
           }
         });
+        
+        console.log('✅ Opération ajoutée à l\'historique local:', historyEntry);
         
         // Retourner les résultats combinés
         return {
@@ -134,35 +200,51 @@ export const integrationService = {
         formData.append('url', importData.url);
       }
 
-      // Pour simuler l'API si elle n'existe pas encore
-      if (process.env.NODE_ENV === 'development' && !process.env.USE_REAL_API) {
+      // Pour simuler l'API si elle n'existe pas encore (seulement pour les non-IFC)
+      if (import.meta.env.DEV && !import.meta.env.VITE_USE_REAL_API) {
         await new Promise(resolve => setTimeout(resolve, 2000)); // Délai artificiel
         
-        // Pour les simulations, ajouter aussi à l'historique
-        const historyEntry = addOperationToHistory({
-          type: 'import',
-          source: importData.file?.name || importData.url || 'Source externe',
-          format: importData.format,
-          status: 'success',
-          user: localStorage.getItem('userName') || 'Utilisateur actuel',
-          details: {
-            elements: 156,
-            properties: 892,
-            warnings: 3
-          }
-        });
-        
-        return {
-          success: true,
-          message: 'Import simulé réussi',
-          source: 'simulated',
-          data: {
-            elements: 156,
-            properties: 892,
-            warnings: 3,
-            operationId: historyEntry.id
-          }
-        };
+        // Pour les simulations, ajouter aussi à l'historique UNIQUEMENT si ce n'est pas un fichier IFC
+        // (car les fichiers IFC sont déjà traités dans la logique ci-dessus)
+        if (!importData.file || 
+            (!importData.file.name.endsWith('.ifc') && !importData.file.name.endsWith('.ifcXML'))) {
+          const historyEntry = addOperationToHistory({
+            type: 'import',
+            source: importData.file?.name || importData.url || 'Source externe',
+            format: importData.format,
+            status: 'success',
+            user: localStorage.getItem('userName') || 'Utilisateur actuel',
+            details: {
+              elements: 156,
+              properties: 892,
+              warnings: 3
+            }
+          });
+          
+          return {
+            success: true,
+            message: 'Import simulé réussi',
+            source: 'simulated',
+            data: {
+              elements: 156,
+              properties: 892,
+              warnings: 3,
+              operationId: historyEntry.id
+            }
+          };
+        } else {
+          // Pour les fichiers IFC, ne pas ajouter à l'historique ici car c'est déjà fait
+          return {
+            success: true,
+            message: 'Import IFC simulé réussi',
+            source: 'simulated',
+            data: {
+              elements: 156,
+              properties: 892,
+              warnings: 3
+            }
+          };
+        }
       }
 
       const response = await api.post('/api/integration/import', formData, {
@@ -219,7 +301,7 @@ export const integrationService = {
       console.log('🔄 Début de l\'exportation avec les données:', exportData);
 
       // Pour simuler l'API si elle n'existe pas encore
-      if (process.env.NODE_ENV === 'development' && !process.env.USE_REAL_API) {
+      if (import.meta.env.DEV && !import.meta.env.VITE_USE_REAL_API) {
         await new Promise(resolve => setTimeout(resolve, 1800)); // Délai artificiel
         
         if (exportData.target === 'file') {
@@ -324,7 +406,8 @@ export const integrationService = {
   getConnectors: async () => {
     try {
       // Pour simuler l'API si elle n'existe pas encore
-      if (process.env.NODE_ENV === 'development' && !process.env.USE_REAL_API) {
+      // Utilisation de import.meta.env au lieu de process.env pour Vite
+      if (import.meta.env.DEV && !import.meta.env.VITE_USE_REAL_API) {
         await new Promise(resolve => setTimeout(resolve, 800)); // Délai artificiel
         return [
           { id: 'revit', name: 'Autodesk Revit', status: 'active', version: '2025', lastUsed: '2025-06-28T14:22:45' },
@@ -353,7 +436,7 @@ export const integrationService = {
   updateConnectorStatus: async (connectorId, status) => {
     try {
       // Pour simuler l'API si elle n'existe pas encore
-      if (process.env.NODE_ENV === 'development' && !process.env.USE_REAL_API) {
+      if (import.meta.env.DEV && !import.meta.env.VITE_USE_REAL_API) {
         await new Promise(resolve => setTimeout(resolve, 500)); // Délai artificiel
         return {
           success: true,
@@ -377,51 +460,90 @@ export const integrationService = {
    */
   getOperationHistory: async (filters = {}) => {
     try {
-      // D'abord, essayer de récupérer l'historique local réel
-      const localHistory = getLocalOperationHistory();
+      console.log('📋 Récupération de l\'historique avec filtres:', filters);
       
-      // Si nous avons des opérations locales, les renvoyer
-      if (localHistory.length > 0) {
-        console.log('📜 Historique local récupéré:', localHistory.length, 'opérations');
+      // Essayer d'abord l'API réelle
+      try {
+        const response = await api.get('/api/integration/history', { params: filters });
+        console.log('✅ Historique API récupéré:', response.data);
         
-        // Appliquer des filtres si nécessaire
-        let filteredHistory = [...localHistory];
+        // Récupérer l'historique local pour fusionner avec l'historique de l'API
+        const localHistory = getLocalOperationHistory();
         
-        if (filters.type) {
-          filteredHistory = filteredHistory.filter(op => op.type === filters.type);
+        // Fusionner l'historique API avec l'historique local récent
+        // Priorité aux opérations locales récentes (moins de 5 minutes)
+        const recentThreshold = Date.now() - (5 * 60 * 1000); // 5 minutes
+        const recentLocalOperations = localHistory.filter(op => 
+          new Date(op.date).getTime() > recentThreshold
+        );
+        
+        let mergedHistory = response.data || [];
+        
+        // Ajouter les opérations locales récentes qui ne sont pas dans l'API
+        recentLocalOperations.forEach(localOp => {
+          const existsInApi = mergedHistory.some(apiOp => 
+            apiOp.id === localOp.id || 
+            (apiOp.source === localOp.source && 
+             Math.abs(new Date(apiOp.date).getTime() - new Date(localOp.date).getTime()) < 10000)
+          );
+          
+          if (!existsInApi) {
+            console.log('🔄 Ajout de l\'opération locale récente à l\'historique:', localOp);
+            mergedHistory.unshift(localOp);
+          }
+        });
+        
+        // Sauvegarder l'historique fusionné
+        if (mergedHistory.length > 0) {
+          saveLocalOperationHistory(mergedHistory);
         }
         
-        if (filters.status) {
-          filteredHistory = filteredHistory.filter(op => op.status === filters.status);
+        return mergedHistory;
+      } catch (apiError) {
+        console.warn('⚠️ API indisponible, utilisation de l\'historique local:', apiError.message);
+        
+        // Récupérer l'historique local si l'API n'est pas disponible
+        const localHistory = getLocalOperationHistory();
+        
+        // Si nous avons des opérations locales, les renvoyer
+        if (localHistory.length > 0) {
+          console.log('📜 Historique local récupéré:', localHistory.length, 'opérations');
+          
+          // Appliquer des filtres si nécessaire
+          let filteredHistory = [...localHistory];
+          
+          if (filters.type) {
+            filteredHistory = filteredHistory.filter(op => op.type === filters.type);
+          }
+          
+          if (filters.status) {
+            filteredHistory = filteredHistory.filter(op => op.status === filters.status);
+          }
+          
+          if (filters.dateFrom) {
+            const fromDate = new Date(filters.dateFrom);
+            filteredHistory = filteredHistory.filter(op => new Date(op.date) >= fromDate);
+          }
+          
+          if (filters.dateTo) {
+            const toDate = new Date(filters.dateTo);
+            filteredHistory = filteredHistory.filter(op => new Date(op.date) <= toDate);
+          }
+          
+          return filteredHistory;
         }
         
-        if (filters.dateFrom) {
-          const fromDate = new Date(filters.dateFrom);
-          filteredHistory = filteredHistory.filter(op => new Date(op.date) >= fromDate);
-        }
-        
-        if (filters.dateTo) {
-          const toDate = new Date(filters.dateTo);
-          filteredHistory = filteredHistory.filter(op => new Date(op.date) <= toDate);
-        }
-        
-        return filteredHistory;
-      }
-      
-      // Pour simuler l'API si l'historique local est vide
-      if (process.env.NODE_ENV === 'development' && !process.env.USE_REAL_API) {
-        await new Promise(resolve => setTimeout(resolve, 700)); // Délai artificiel
-        
-        // Créer un historique simulé avec des valeurs réalistes
-        const simulatedHistory = [
+        // Données de démonstration seulement si pas d'historique local ET pas de vraies opérations récentes
+        console.log('📋 Aucun historique local trouvé, création d\'un historique de démonstration');
+        const demoHistory = [
           { 
-            id: 101, 
+            id: 'demo-101', 
             type: 'import', 
             source: 'Building-Project.ifc', 
             format: 'ifc4',
-            date: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString(), // Hier
+            date: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString(),
             status: 'success', 
-            user: 'Utilisateur actuel', 
+            user: 'Utilisateur démo', 
             details: { 
               elements: 124, 
               properties: 756, 
@@ -430,68 +552,19 @@ export const integrationService = {
             } 
           },
           { 
-            id: 102, 
+            id: 'demo-102', 
             type: 'export', 
             destination: 'export-model.ifc', 
             format: 'ifc4',
-            date: new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString(), // Avant-hier
+            date: new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString(),
             status: 'success', 
-            user: 'Utilisateur actuel', 
+            user: 'Utilisateur démo', 
             details: { format: 'IFC4', fileSize: '2.4MB' } 
-          },
-          { 
-            id: 103, 
-            type: 'import', 
-            source: 'Commercial-Space.ifc', 
-            format: 'ifc2x3',
-            date: new Date(Date.now() - 72 * 60 * 60 * 1000).toISOString(), // Il y a 3 jours
-            status: 'failed', 
-            user: 'Utilisateur actuel', 
-            error: 'Format incompatible', 
-            details: { error: 'Invalid schema version' } 
-          },
-          { 
-            id: 104, 
-            type: 'export', 
-            destination: 'data-export.cobie', 
-            format: 'cobie',
-            date: new Date(Date.now() - 96 * 60 * 60 * 1000).toISOString(), // Il y a 4 jours
-            status: 'success', 
-            user: 'Utilisateur actuel', 
-            details: { fileSize: '1.2MB' } 
-          },
-          { 
-            id: 105, 
-            type: 'import', 
-            source: 'Residential-Tower.ifc', 
-            format: 'ifc4',
-            date: new Date(Date.now() - 120 * 60 * 60 * 1000).toISOString(), // Il y a 5 jours
-            status: 'success', 
-            user: 'Utilisateur actuel', 
-            details: { 
-              elements: 287, 
-              properties: 1412,
-              projectName: 'Residential Tower',
-              stats: { wallCount: 97, doorCount: 52, windowCount: 124 }
-            } 
           }
         ];
         
-        // Sauvegarder l'historique simulé pour les prochaines utilisations
-        saveLocalOperationHistory(simulatedHistory);
-        
-        return simulatedHistory;
+        return demoHistory;
       }
-
-      // Si nous arrivons ici et que nous avons une API réelle, l'utiliser
-      const response = await api.get('/api/integration/history', { params: filters });
-      
-      // Sauvegarder l'historique récupéré de l'API pour une utilisation hors ligne
-      if (response.data && Array.isArray(response.data) && response.data.length > 0) {
-        saveLocalOperationHistory(response.data);
-      }
-      
-      return response.data;
     } catch (error) {
       console.error('❌ Erreur lors de la récupération de l\'historique des opérations:', error);
       
@@ -513,7 +586,7 @@ export const integrationService = {
   getExchangeFormats: async () => {
     try {
       // Pour simuler l'API si elle n'existe pas encore
-      if (process.env.NODE_ENV === 'development' && !process.env.USE_REAL_API) {
+      if (import.meta.env.DEV && !import.meta.env.VITE_USE_REAL_API) {
         await new Promise(resolve => setTimeout(resolve, 300)); // Délai artificiel
         return [
           { id: 'ifc2x3', name: 'IFC 2x3', description: 'Industry Foundation Classes 2x3', supported: true },
@@ -542,7 +615,7 @@ export const integrationService = {
   getExternalApis: async () => {
     try {
       // Pour simuler l'API si elle n'existe pas encore
-      if (process.env.NODE_ENV === 'development' && !process.env.USE_REAL_API) {
+      if (import.meta.env.DEV && !import.meta.env.VITE_USE_REAL_API) {
         await new Promise(resolve => setTimeout(resolve, 500)); // Délai artificiel
         return [
           { 
@@ -618,7 +691,7 @@ export const integrationService = {
   syncExternalApi: async (apiId) => {
     try {
       // Pour simuler l'API si elle n'existe pas encore
-      if (process.env.NODE_ENV === 'development' && !process.env.USE_REAL_API) {
+      if (import.meta.env.DEV && !import.meta.env.VITE_USE_REAL_API) {
         await new Promise(resolve => setTimeout(resolve, 1500)); // Délai artificiel
         return {
           success: true,
@@ -644,7 +717,7 @@ export const integrationService = {
   configureExternalApi: async (apiConfig) => {
     try {
       // Pour simuler l'API si elle n'existe pas encore
-      if (process.env.NODE_ENV === 'development' && !process.env.USE_REAL_API) {
+      if (import.meta.env.DEV && !import.meta.env.VITE_USE_REAL_API) {
         await new Promise(resolve => setTimeout(resolve, 800)); // Délai artificiel
         return {
           success: true,
@@ -686,6 +759,474 @@ export const integrationService = {
     } catch (error) {
       console.error(`❌ Erreur lors de la synchronisation de l'API ${apiId}:`, error);
       throw new Error(error.message || 'Échec de la synchronisation');
+    }
+  },
+
+  /**
+   * Importe un fichier avec gestion du progrès
+   * @param {File} file - Le fichier à importer
+   * @param {Object} options - Options d'importation avec projectId et onProgress
+   * @returns {Promise<Object>} - Le résultat de l'importation
+   */
+  importFile: async (file, options = {}) => {
+    try {
+      const importData = {
+        file: file,
+        format: options.format || 'ifc4',
+        sourceType: 'file',
+        options: {
+          validateGeometry: options.validateGeometry ?? true,
+          importProperties: options.importProperties ?? true,
+          importMaterials: options.importMaterials ?? true,
+          generateThumbnails: options.generateThumbnails ?? false,
+          preserveHierarchy: options.preserveHierarchy ?? true
+        }
+      };
+
+      if (options.onProgress) {
+        // Simuler le progrès
+        const progressInterval = setInterval(() => {
+          const progress = Math.min(100, Math.floor(Math.random() * 100));
+          options.onProgress(progress);
+        }, 200);
+
+        const result = await integrationService.importData(importData);
+        clearInterval(progressInterval);
+        options.onProgress(100);
+        return result;
+      }
+
+      return await integrationService.importData(importData);
+    } catch (error) {
+      console.error('❌ Erreur lors de l\'importation de fichier:', error);
+      throw error;
+    }
+  },
+
+  /**
+   * Importe depuis une URL
+   * @param {string} url - URL source
+   * @param {Object} options - Options d'importation
+   * @returns {Promise<Object>} - Le résultat de l'importation
+   */
+  importFromUrl: async (url, options = {}) => {
+    try {
+      const importData = {
+        url: url,
+        format: options.format || 'ifc4',
+        sourceType: 'url',
+        options: {
+          validateGeometry: options.validateGeometry ?? true,
+          importProperties: options.importProperties ?? true,
+          importMaterials: options.importMaterials ?? true,
+          generateThumbnails: options.generateThumbnails ?? false,
+          preserveHierarchy: options.preserveHierarchy ?? true
+        }
+      };
+
+      return await integrationService.importData(importData);
+    } catch (error) {
+      console.error('❌ Erreur lors de l\'importation depuis URL:', error);
+      throw error;
+    }
+  },
+
+  /**
+   * Valide un fichier avant importation
+   * @param {File} file - Le fichier à valider
+   * @param {Array} supportedFormats - Les formats supportés
+   * @returns {Object} - Résultat de la validation
+   */
+  validateFile: (file, supportedFormats = []) => {
+    const errors = [];
+    
+    if (!file) {
+      errors.push('Aucun fichier sélectionné');
+      return { valid: false, errors };
+    }
+
+    // Vérifier la taille du fichier (limite à 100MB)
+    const maxSize = 100 * 1024 * 1024; // 100MB en bytes
+    if (file.size > maxSize) {
+      errors.push('Le fichier est trop volumineux (maximum 100MB)');
+    }
+
+    // Vérifier l'extension
+    const extension = file.name.split('.').pop().toLowerCase();
+    
+    // Mapping des extensions vers les formats supportés
+    const extensionToFormatMap = {
+      'ifc': ['ifc4', 'ifc2x3'],
+      'ifcxml': ['ifc4', 'ifc2x3'],
+      'dwg': ['dwg'],
+      'dxf': ['dwg'],
+      'step': ['step'],
+      'stp': ['step'],
+      'obj': ['obj'],
+      'gltf': ['gltf'],
+      'glb': ['gltf'],
+      'cobie': ['cobie'],
+      'gbxml': ['gbxml'],
+      'json': ['json'],
+      'csv': ['csv'],
+      'xlsx': ['excel'],
+      'xls': ['excel']
+    };
+
+    // Vérifier si l'extension est supportée
+    const supportedExtensions = Object.keys(extensionToFormatMap);
+    if (!supportedExtensions.includes(extension)) {
+      errors.push(`Format de fichier non supporté: .${extension}`);
+    } else {
+      // Vérifier si au moins un format correspondant à cette extension est supporté
+      const possibleFormats = extensionToFormatMap[extension];
+      const availableFormats = supportedFormats.map(f => f.id.toLowerCase());
+      
+      if (supportedFormats.length > 0) {
+        const hasValidFormat = possibleFormats.some(format => 
+          availableFormats.includes(format)
+        );
+        
+        if (!hasValidFormat) {
+          errors.push(`Aucun format supporté disponible pour l'extension .${extension}`);
+        }
+      }
+    }
+
+    return {
+      valid: errors.length === 0,
+      errors
+    };
+  },
+
+  /**
+   * Récupère les formats supportés
+   * @returns {Promise<Array>} - Liste des formats supportés
+   */
+  getSupportedFormats: async () => {
+    try {
+      // Pour simuler l'API si elle n'existe pas encore
+      if (import.meta.env.DEV && !import.meta.env.VITE_USE_REAL_API) {
+        await new Promise(resolve => setTimeout(resolve, 500));
+        return [
+          { id: 'ifc4', name: 'IFC 4.0', description: 'Standard BIM ouvert', supported: true },
+          { id: 'ifc2x3', name: 'IFC 2x3', description: 'Version classique IFC', supported: true },
+          { id: 'dwg', name: 'DWG', description: 'Format AutoCAD', supported: true },
+          { id: 'step', name: 'STEP', description: 'Format 3D standard', supported: true },
+          { id: 'obj', name: 'OBJ', description: 'Format 3D simple', supported: true },
+          { id: 'gltf', name: 'glTF', description: 'Format 3D web', supported: true },
+          { id: 'cobie', name: 'COBie', description: 'Construction Operations Building information exchange', supported: true },
+          { id: 'gbxml', name: 'gbXML', description: 'Green Building XML', supported: true }
+        ];
+      }
+
+      const response = await api.get('/api/integration/supported-formats');
+      return response.data;
+    } catch (error) {
+      console.error('❌ Erreur lors de la récupération des formats supportés:', error);
+      // Retourner des formats par défaut
+      return [
+        { id: 'ifc4', name: 'IFC 4.0', description: 'Standard BIM ouvert', supported: true },
+        { id: 'ifc2x3', name: 'IFC 2x3', description: 'Version classique IFC', supported: true },
+        { id: 'dwg', name: 'DWG', description: 'Format AutoCAD', supported: true }
+      ];
+    }
+  },
+
+  /**
+   * Active/désactive un connecteur
+   * @param {string} connectorId - ID du connecteur
+   * @param {string} status - Nouveau statut
+   * @returns {Promise<Object>} - Résultat de l'opération
+   */
+  toggleConnector: async (connectorId, status) => {
+    try {
+      // Pour simuler l'API si elle n'existe pas encore
+      if (import.meta.env.DEV && !import.meta.env.VITE_USE_REAL_API) {
+        await new Promise(resolve => setTimeout(resolve, 800));
+        return {
+          success: true,
+          message: `Connecteur ${status === 'active' ? 'activé' : 'désactivé'} avec succès`,
+          connectorId,
+          newStatus: status
+        };
+      }
+
+      const response = await api.put(`/api/integration/connectors/${connectorId}/toggle`, { status });
+      return response.data;
+    } catch (error) {
+      console.error('❌ Erreur lors du changement de statut du connecteur:', error);
+      throw new Error(error.response?.data?.message || 'Échec du changement de statut');
+    }
+  },
+
+  /**
+   * Synchronise un connecteur
+   * @param {string} connectorId - ID du connecteur
+   * @returns {Promise<Object>} - Résultat de la synchronisation
+   */
+  syncConnector: async (connectorId) => {
+    try {
+      // Pour simuler l'API si elle n'existe pas encore
+      if (import.meta.env.DEV && !import.meta.env.VITE_USE_REAL_API) {
+        await new Promise(resolve => setTimeout(resolve, 1200));
+        return {
+          success: true,
+          message: `Connecteur ${connectorId} synchronisé avec succès`,
+          connectorId,
+          lastSync: new Date().toISOString()
+        };
+      }
+
+      const response = await api.post(`/api/integration/connectors/${connectorId}/sync`);
+      return response.data;
+    } catch (error) {
+      console.error('❌ Erreur lors de la synchronisation du connecteur:', error);
+      throw new Error(error.response?.data?.message || 'Échec de la synchronisation');
+    }
+  },
+
+  /**
+   * Crée un nouveau connecteur
+   * @param {Object} connectorData - Données du connecteur
+   * @returns {Promise<Object>} - Résultat de la création
+   */
+  createConnector: async (connectorData) => {
+    try {
+      // Pour simuler l'API si elle n'existe pas encore
+      if (import.meta.env.DEV && !import.meta.env.VITE_USE_REAL_API) {
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        return {
+          success: true,
+          message: `Connecteur ${connectorData.name} créé avec succès`,
+          connector: {
+            id: `connector-${Date.now()}`,
+            name: connectorData.name,
+            type: connectorData.type,
+            status: 'inactive',
+            version: connectorData.version || '1.0',
+            lastUsed: null,
+            created: new Date().toISOString()
+          }
+        };
+      }
+
+      const response = await api.post('/api/integration/connectors', connectorData);
+      return response.data;
+    } catch (error) {
+      console.error('❌ Erreur lors de la création du connecteur:', error);
+      throw new Error(error.response?.data?.message || 'Échec de la création du connecteur');
+    }
+  },
+
+  /**
+   * Teste une API externe
+   * @param {string} apiId - ID de l'API
+   * @returns {Promise<Object>} - Résultat du test
+   */
+  testExternalApi: async (apiId) => {
+    try {
+      // Pour simuler l'API si elle n'existe pas encore
+      if (import.meta.env.DEV && !import.meta.env.VITE_USE_REAL_API) {
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        // Simuler un succès ou échec aléatoire
+        const success = Math.random() > 0.3;
+        return {
+          success,
+          message: success ? 'Connexion API réussie' : 'Échec de la connexion API',
+          apiId,
+          responseTime: Math.floor(Math.random() * 1000) + 100,
+          lastTest: new Date().toISOString()
+        };
+      }
+
+      const response = await api.post(`/api/integration/external-apis/${apiId}/test`);
+      return response.data;
+    } catch (error) {
+      console.error('❌ Erreur lors du test de l\'API externe:', error);
+      throw new Error(error.response?.data?.message || 'Échec du test de connexion');
+    }
+  },
+
+  /**
+   * Supprime une API externe
+   * @param {string} apiId - ID de l'API
+   * @returns {Promise<Object>} - Résultat de la suppression
+   */
+  deleteExternalApi: async (apiId) => {
+    try {
+      // Pour simuler l'API si elle n'existe pas encore
+      if (import.meta.env.DEV && !import.meta.env.VITE_USE_REAL_API) {
+        await new Promise(resolve => setTimeout(resolve, 600));
+        return {
+          success: true,
+          message: 'API externe supprimée avec succès',
+          apiId
+        };
+      }
+
+      const response = await api.delete(`/api/integration/external-apis/${apiId}`);
+      return response.data;
+    } catch (error) {
+      console.error('❌ Erreur lors de la suppression de l\'API externe:', error);
+      throw new Error(error.response?.data?.message || 'Échec de la suppression');
+    }
+  },
+
+  /**
+   * Exporte l'historique des opérations
+   * @param {Object} filters - Filtres pour l'export
+   * @returns {Promise<Object>} - Résultat de l'export
+   */
+  exportHistory: async (filters = {}) => {
+    try {
+      // Pour simuler l'API si elle n'existe pas encore
+      if (import.meta.env.DEV && !import.meta.env.VITE_USE_REAL_API) {
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        // Récupérer l'historique local
+        const history = await integrationService.getOperationHistory(filters);
+        
+        // Créer un fichier CSV
+        const csvContent = [
+          ['Date', 'Type', 'Source/Destination', 'Format', 'Statut', 'Utilisateur', 'Détails'],
+          ...history.map(op => [
+            new Date(op.date).toLocaleDateString('fr-FR'),
+            op.type,
+            op.source || op.destination || 'N/A',
+            op.format || 'N/A',
+            op.status,
+            op.user || 'N/A',
+            JSON.stringify(op.details || {})
+          ])
+        ].map(row => row.join(',')).join('\n');
+
+        // Déclencher le téléchargement
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `historique_operations_${new Date().toISOString().split('T')[0]}.csv`;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+
+        return {
+          success: true,
+          message: 'Historique exporté avec succès',
+          fileName: `historique_operations_${new Date().toISOString().split('T')[0]}.csv`,
+          itemCount: history.length
+        };
+      }
+
+      const response = await api.get('/api/integration/history/export', { params: filters });
+      
+      // Si c'est un téléchargement direct
+      if (response.data.downloadUrl) {
+        window.location.href = response.data.downloadUrl;
+      }
+      
+      return response.data;
+    } catch (error) {
+      console.error('❌ Erreur lors de l\'export de l\'historique:', error);
+      throw new Error(error.response?.data?.message || 'Échec de l\'export');
+    }
+  },
+
+  // Supprimer un fichier de l'historique
+  async deleteHistoryFile(fileId) {
+    try {
+      console.log('🗑️ Suppression du fichier:', fileId);
+      
+      // Vérifier que l'ID est valide
+      if (!fileId || fileId === 'undefined' || fileId === 'null') {
+        throw new Error('ID de fichier invalide');
+      }
+      
+      // Si l'ID commence par 'demo-', c'est un fichier de démonstration
+      if (fileId.toString().startsWith('demo-')) {
+        console.log('🗑️ Suppression d\'un fichier de démonstration');
+        return {
+          success: true,
+          message: 'Fichier de démonstration supprimé (simulation)'
+        };
+      }
+      
+      const response = await api.delete(`/api/integration/delete-file/${fileId}`);
+      
+      console.log('✅ Réponse du serveur:', response.status, response.data);
+      
+      if (response.data) {
+        return {
+          success: true,
+          message: response.data.message || 'Fichier supprimé avec succès',
+          data: response.data
+        };
+      }
+      
+      return {
+        success: false,
+        error: 'Réponse invalide du serveur'
+      };
+    } catch (error) {
+      console.error('❌ Erreur lors de la suppression du fichier:', error);
+      console.error('❌ Détails de l\'erreur:', {
+        status: error.response?.status,
+        statusText: error.response?.statusText,
+        data: error.response?.data,
+        url: error.config?.url,
+        method: error.config?.method,
+        headers: error.config?.headers
+      });
+      
+      // Messages d'erreur spécifiques selon le code de statut
+      let errorMessage = 'Échec de la suppression du fichier';
+      
+      if (error.response?.status === 400) {
+        errorMessage = 'Requête invalide. Vérifiez l\'ID du fichier.';
+      } else if (error.response?.status === 401) {
+        errorMessage = 'Non autorisé. Veuillez vous reconnecter.';
+      } else if (error.response?.status === 403) {
+        errorMessage = 'Accès interdit. Permissions insuffisantes.';
+      } else if (error.response?.status === 404) {
+        errorMessage = 'Fichier non trouvé.';
+      } else if (error.response?.status >= 500) {
+        errorMessage = 'Erreur serveur. Veuillez réessayer plus tard.';
+      }
+      
+      return {
+        success: false,
+        error: error.response?.data?.message || errorMessage
+      };
+    }
+  },
+
+  // Vider tout l'historique
+  async clearAllHistory() {
+    try {
+      console.log('🗑️ Vidage de tout l\'historique');
+      
+      const response = await api.delete('/api/integration/clear-history');
+      
+      if (response.data) {
+        return {
+          success: true,
+          message: response.data.message || 'Historique vidé avec succès',
+          data: response.data
+        };
+      }
+      
+      return {
+        success: false,
+        error: 'Réponse invalide du serveur'
+      };
+    } catch (error) {
+      console.error('❌ Erreur lors du vidage de l\'historique:', error);
+      return {
+        success: false,
+        error: error.response?.data?.message || 'Échec du vidage de l\'historique'
+      };
     }
   }
 };

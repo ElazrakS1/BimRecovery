@@ -1,214 +1,318 @@
 import React, { useState, useContext, useEffect, useCallback } from 'react';
 import { LanguageContext } from '../../context/LanguageContext';
 import { AuthContext } from '../../context/AuthContext';
-import styles from './tasks.module.css';  // Chemin d'importation corrigé
+import styles from './tasks.module.css';
 import { taskService } from '../../services/taskService';
 import { userService } from '../../services/userService';
+import { FaPlug, FaExchangeAlt, FaDownload, FaUpload, FaSyncAlt, FaCheck, FaTimes, FaExclamationTriangle } from 'react-icons/fa';
 
 // Helper functions for styling
 const getStatusColor = (status) => {
   switch (status) {
-    case 'Not Started': return styles.statusNotStarted;
-    case 'In Progress': return styles.statusInProgress;
-    case 'Under Review': return styles.statusUnderReview;
-    case 'Completed': return styles.statusCompleted;
+    case 'Compatible': return styles.statusCompleted;
+    case 'En cours': return styles.statusInProgress;
+    case 'Partiel': return styles.statusUnderReview;
+    case 'Incompatible': return styles.statusNotStarted;
     default: return '';
   }
 };
 
-const getPriorityColor = (priority) => {
-  switch (priority) {
-    case 'Low': return styles.priorityLow;
-    case 'Medium': return styles.priorityMedium;
-    case 'High': return styles.priorityHigh;
-    case 'Urgent': return styles.priorityUrgent;
-    default: return '';
+const getIntegrationTypeIcon = (type) => {
+  switch (type) {
+    case 'Import': return <FaDownload className={styles.integrationIcon} />;
+    case 'Export': return <FaUpload className={styles.integrationIcon} />;
+    case 'Bidirectionnel': return <FaExchangeAlt className={styles.integrationIcon} />;
+    case 'Synchronisation': return <FaSyncAlt className={styles.integrationIcon} />;
+    default: return <FaPlug className={styles.integrationIcon} />;
   }
 };
 
-const TasksPage = ({ isAdminView = false }) => {
+const InteroperabilityPage = ({ isAdminView = false }) => {
   const { isAuthenticated, userData, isAdmin, isLoading: authLoading } = useContext(AuthContext);
-  const [tasks, setTasks] = useState([]);
-  const [users, setUsers] = useState([]);
+  const [integrations, setIntegrations] = useState([]);
+  const [platforms, setPlatforms] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [newTask, setNewTask] = useState({
-    title: '',
+  const [newIntegration, setNewIntegration] = useState({
+    name: '',
     description: '',
-    dueDate: '',
-    assignedTo: '',
-    priority: 'Medium',
-    status: 'Not Started'
+    platform: '',
+    type: 'Import',
+    fileFormats: '',
+    status: 'En cours'
   });
   const [filterStatus, setFilterStatus] = useState('all');
-  const [filterAssignee, setFilterAssignee] = useState('all');
+  const [filterPlatform, setFilterPlatform] = useState('all');
+  const [filterType, setFilterType] = useState('all');
 
   const statusOptions = [
-    'Not Started',
-    'In Progress',
-    'Under Review',
-    'Completed'
+    'Compatible',
+    'En cours',
+    'Partiel',
+    'Incompatible'
   ];
 
-  const priorityOptions = [
-    'Low',
-    'Medium',
-    'High',
-    'Urgent'
+  const integrationTypes = [
+    'Import',
+    'Export',
+    'Bidirectionnel',
+    'Synchronisation'
+  ];
+  
+  const fileFormats = [
+    'IFC2X3',
+    'IFC4',
+    'DXF',
+    'DWG',
+    'RVT',
+    'SKP',
+    'OBJ',
+    'FBX',
+    'PDF',
+    'BCF',
+    'COBie',
+    'XLS'
   ];
 
+  // Fonction pour charger les plateformes disponibles
+  const loadPlatforms = useCallback(async () => {
+    try {
+      // Normalement on ferait un appel API - simulons des données pour l'instant
+      const mockPlatforms = [
+        { id: '1', name: 'Autodesk Revit', icon: 'revit' },
+        { id: '2', name: 'Graphisoft ArchiCAD', icon: 'archicad' },
+        { id: '3', name: 'Nemetschek Allplan', icon: 'allplan' },
+        { id: '4', name: 'Bentley AECOsim', icon: 'bentley' },
+        { id: '5', name: 'Tekla Structures', icon: 'tekla' },
+        { id: '6', name: 'Trimble Connect', icon: 'trimble' },
+        { id: '7', name: 'Solibri Model Checker', icon: 'solibri' },
+        { id: '8', name: 'Autodesk Navisworks', icon: 'navisworks' }
+      ];
+      setPlatforms(mockPlatforms);
+    } catch (err) {
+      console.error('Erreur lors du chargement des plateformes:', err);
+    }
+  }, []);
+
+  // Fonction pour charger les intégrations disponibles
+  const loadIntegrations = useCallback(async () => {
+    try {
+      setLoading(true);
+      
+      // Normalement on ferait un appel API - simulons des données pour l'instant
+      const mockIntegrations = [
+        {
+          id: '1',
+          name: 'Importation Revit vers BIM Recovery',
+          description: 'Permet d\'importer des modèles Revit directement dans BIM Recovery',
+          platformId: '1',
+          platformName: 'Autodesk Revit',
+          type: 'Import',
+          fileFormats: ['RVT', 'IFC4'],
+          status: 'Compatible',
+          lastTested: '2025-06-12',
+          apiVersion: '2025.1'
+        },
+        {
+          id: '2',
+          name: 'Export ArchiCAD',
+          description: 'Exporte les données de BIM Recovery vers ArchiCAD',
+          platformId: '2',
+          platformName: 'Graphisoft ArchiCAD',
+          type: 'Export',
+          fileFormats: ['IFC2X3', 'BCF'],
+          status: 'Partiel',
+          lastTested: '2025-05-27',
+          apiVersion: '26.0.0'
+        },
+        {
+          id: '3',
+          name: 'Synchronisation Trimble Connect',
+          description: 'Synchronisation bidirectionnelle avec Trimble Connect',
+          platformId: '6',
+          platformName: 'Trimble Connect',
+          type: 'Bidirectionnel',
+          fileFormats: ['IFC4', 'BCF', 'PDF'],
+          status: 'En cours',
+          lastTested: '2025-07-01',
+          apiVersion: '4.2'
+        },
+        {
+          id: '4',
+          name: 'Exportation Tekla',
+          description: 'Exporte les structures vers Tekla',
+          platformId: '5',
+          platformName: 'Tekla Structures',
+          type: 'Export',
+          fileFormats: ['IFC4', 'DXF'],
+          status: 'Compatible',
+          lastTested: '2025-06-25',
+          apiVersion: '2025'
+        },
+        {
+          id: '5',
+          name: 'Import Navisworks',
+          description: 'Importe les données de coordination Navisworks',
+          platformId: '8',
+          platformName: 'Autodesk Navisworks',
+          type: 'Import',
+          fileFormats: ['NWC', 'NWD', 'IFC4'],
+          status: 'Incompatible',
+          lastTested: '2025-04-18',
+          apiVersion: '2025.2'
+        },
+        {
+          id: '6',
+          name: 'Validation Solibri',
+          description: 'Intégration avec le processus de validation Solibri',
+          platformId: '7',
+          platformName: 'Solibri Model Checker',
+          type: 'Bidirectionnel',
+          fileFormats: ['IFC4', 'SMC'],
+          status: 'Compatible',
+          lastTested: '2025-07-05',
+          apiVersion: '9.12.0'
+        }
+      ];
+      
+      setIntegrations(mockIntegrations);
+      setError(null);
+    } catch (err) {
+      console.error('Erreur lors du chargement des intégrations:', err);
+      setError("Erreur lors du chargement des données d'intégration");
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+  
   // Debug logging
   useEffect(() => {
-    console.log('TasksPage - Auth State:', {
+    console.log('InteroperabilityPage - Auth State:', {
       isAuthenticated,
       isAdmin,
       userData,
       authLoading
     });
   }, [isAuthenticated, isAdmin, userData, authLoading]);
-  // Load tasks when auth is ready
+  
+  // Charger les intégrations et plateformes quand l'authentification est prête
   useEffect(() => {
     if (!authLoading && isAuthenticated) {
-      loadTasks();
-      if (isAdmin) {
-        loadUsers();
-      }
+      loadIntegrations();
+      loadPlatforms();
     }
-  }, [isAuthenticated, isAdmin, authLoading, loadTasks]);
-
-  // Define loadTasks with useCallback to prevent useEffect dependency issues
-  const loadTasks = useCallback(async () => {
-    try {
-      setLoading(true);
-      let tasksData;
-      
-      if (isAdminView && isAdmin) {
-        // Admin view: load all tasks
-        tasksData = await taskService.getAllTasks();
-      } else {
-        // User view: load only assigned tasks
-        tasksData = await taskService.getUserTasks(userData?.id);
-      }
-      
-      setTasks(Array.isArray(tasksData) ? tasksData : []);
-      setError(null);
-    } catch (err) {
-      console.error('Error loading tasks:', err);
-      setError("Erreur lors du chargement des tâches");
-    } finally {
-      setLoading(false);
-    }
-  }, [isAdminView, isAdmin, userData]);
-
-  // Load tasks with proper filtering based on admin view
-  useEffect(() => {
-    if (isAuthenticated && !authLoading) {
-      loadTasks();
-    }
-  }, [isAuthenticated, authLoading, loadTasks]);
-
-  const loadUsers = async () => {
-    try {
-      const data = await userService.getAllUsers();
-      setUsers(data);
-    } catch (err) {    console.error('Error loading users:', err);
-    }
-  };
+  }, [isAuthenticated, authLoading, loadIntegrations, loadPlatforms]);
   
-  const handleCreateTask = async (e) => {
+  const handleCreateIntegration = async (e) => {
     e.preventDefault();
     if (!isAdmin) {
-      setError('Only administrators can create tasks');
+      setError('Seuls les administrateurs peuvent créer des intégrations');
       return;
     }
 
-    // Validate title field
-    if (!newTask.title?.trim()) {
-      setError('Le titre de la tâche est requis');
+    // Validation des champs requis
+    if (!newIntegration.name?.trim()) {
+      setError('Le nom de l\'intégration est requis');
       return;
     }
 
-    try {      // Validate required fields
-      if (!newTask.assignedTo) {
-        setError('L\'attribution est requise');
+    try {
+      if (!newIntegration.platform) {
+        setError('La plateforme est requise');
         return;
       }
 
-      // Format the task data with proper casing for the backend
-      const formattedTask = {
-        Title: newTask.title.trim(),
-        Description: newTask.description?.trim() || "",
-        Status: newTask.status || "Not Started",
-        Priority: newTask.priority || "Medium",
-        DueDate: newTask.dueDate || null,
-        AssignedToId: String(newTask.assignedTo),
-        ProjectId: 1 // Make sure this project exists in your database
+      // Dans un cas réel, on enverrait cette information à l'API
+      const formattedIntegration = {
+        Name: newIntegration.name.trim(),
+        Description: newIntegration.description?.trim() || "",
+        Status: newIntegration.status || "En cours",
+        Type: newIntegration.type || "Import",
+        PlatformId: String(newIntegration.platform),
+        FileFormats: newIntegration.fileFormats || [],
+        LastTested: new Date().toISOString().split('T')[0]
       };
 
-      await taskService.createTask(formattedTask);
+      console.log('Nouvelle intégration à créer:', formattedIntegration);
+      // Simuler l'ajout à la liste
+      const platformDetails = platforms.find(p => p.id === newIntegration.platform);
+      const newIntegrationWithDetails = {
+        id: `new-${Date.now()}`,
+        name: newIntegration.name,
+        description: newIntegration.description,
+        platformId: newIntegration.platform,
+        platformName: platformDetails?.name || 'Inconnu',
+        type: newIntegration.type,
+        fileFormats: Array.isArray(newIntegration.fileFormats) ? newIntegration.fileFormats : [newIntegration.fileFormats],
+        status: newIntegration.status,
+        lastTested: new Date().toISOString().split('T')[0],
+        apiVersion: 'N/A'
+      };
+      
+      setIntegrations(prevIntegrations => [...prevIntegrations, newIntegrationWithDetails]);
       setError(null);
 
-      // Reset form
-      setNewTask({
-        title: '',
+      // Réinitialisation du formulaire
+      setNewIntegration({
+        name: '',
         description: '',
-        dueDate: '',
-        assignedTo: '',
-        priority: 'Medium',
-        status: 'Not Started'
+        platform: '',
+        type: 'Import',
+        fileFormats: '',
+        status: 'En cours'
       });
       
       setIsModalOpen(false);
-      await loadTasks();
     } catch (err) {
-      setError(err.message);
+      setError(err.message || "Erreur lors de la création de l'intégration");
     }
   };
-  // Filter tasks based on current view and filters
-  const filteredTasks = tasks.filter(task => {
-    const statusMatch = filterStatus === 'all' || task.status === filterStatus;
-    
-    // Vérification flexible de l'assignation pour gérer différentes structures de données
-    const assigneeMatch = 
-      filterAssignee === 'all' || 
-      String(task.assignedTo) === String(filterAssignee) ||
-      String(task.assignedToId) === String(filterAssignee) ||
-      (task.assignedUser && String(task.assignedUser.id) === String(filterAssignee)) ||
-      (task.assignedUser && task.assignedUser.name && task.assignedUser.name.includes(filterAssignee));
-      
-    return statusMatch && assigneeMatch;
-  });
-
-  // Admin-specific actions
-  const handleStatusChange = async (taskId, newStatus) => {
+  
+  const handleStatusChange = async (integrationId, newStatus) => {
     try {
-      await taskService.updateTaskStatus(taskId, newStatus);
-      setTasks(tasks.map(task => 
-        task.id === taskId ? { ...task, status: newStatus } : task
+      // Dans un cas réel, on mettrait à jour via l'API
+      setIntegrations(integrations.map(integration => 
+        integration.id === integrationId ? { ...integration, status: newStatus } : integration
       ));
     } catch (err) {
       setError("Erreur lors de la mise à jour du statut");
     }
   };
 
-  const handleDeleteTask = async (taskId) => {
+  const handleDeleteIntegration = async (integrationId) => {
     if (!isAdmin) return;
     
-    if (window.confirm('Êtes-vous sûr de vouloir supprimer cette tâche ?')) {
+    if (window.confirm('Êtes-vous sûr de vouloir supprimer cette intégration ?')) {
       try {
-        await taskService.deleteTask(taskId);
-        setTasks(tasks.filter(task => task.id !== taskId));
+        // Dans un cas réel, on supprimerait via l'API
+        setIntegrations(integrations.filter(integration => integration.id !== integrationId));
       } catch (err) {
-        setError("Erreur lors de la suppression de la tâche");
+        setError("Erreur lors de la suppression de l'intégration");
       }
     }
+  };
+  // Filtrage des intégrations basé sur les filtres actuels
+  const filteredIntegrations = integrations.filter(integration => {
+    const statusMatch = filterStatus === 'all' || integration.status === filterStatus;
+    const platformMatch = filterPlatform === 'all' || integration.platformId === filterPlatform;
+    const typeMatch = filterType === 'all' || integration.type === filterType;
+      
+    return statusMatch && platformMatch && typeMatch;
+  });
+
+  // Fonction pour formater la liste des formats de fichiers
+  const formatFileFormats = (formats) => {
+    if (!formats) return 'N/A';
+    if (typeof formats === 'string') return formats;
+    if (Array.isArray(formats)) return formats.join(', ');
+    return 'N/A';
   };
 
   if (!isAuthenticated) {
     return (
       <div className={styles.messageContainer}>
-        <p>Please log in to view tasks.</p>
+        <p>Veuillez vous connecter pour voir les intégrations.</p>
       </div>
     );
   }
@@ -216,13 +320,13 @@ const TasksPage = ({ isAdminView = false }) => {
   return (
     <div className={styles.tasksContainer}>
       <div className={styles.header}>
-        <h1>{isAdminView ? 'Gestion des tâches' : 'Mes tâches'}</h1>
+        <h1>Interopérabilité & Intégration</h1>
         <div className={styles.actions}>
           <button 
             className={styles.addButton}
             onClick={() => setIsModalOpen(true)}
           >
-            {isAdminView ? 'Nouvelle tâche' : 'Ajouter une tâche'}
+            {isAdmin ? 'Nouvelle Intégration' : 'Demander une Intégration'}
           </button>
         </div>
       </div>
@@ -239,20 +343,29 @@ const TasksPage = ({ isAdminView = false }) => {
           ))}
         </select>
 
-        {isAdminView && (
-          <select 
-            value={filterAssignee} 
-            onChange={(e) => setFilterAssignee(e.target.value)}
-            className={styles.filterSelect}
-          >
-            <option value="all">Tous les assignés</option>
-            {users.map(user => (
-              <option key={user.id} value={user.id}>
-                {user.firstName} {user.lastName}
-              </option>
-            ))}
-          </select>
-        )}
+        <select 
+          value={filterPlatform} 
+          onChange={(e) => setFilterPlatform(e.target.value)}
+          className={styles.filterSelect}
+        >
+          <option value="all">Toutes les plateformes</option>
+          {platforms.map(platform => (
+            <option key={platform.id} value={platform.id}>
+              {platform.name}
+            </option>
+          ))}
+        </select>
+        
+        <select 
+          value={filterType} 
+          onChange={(e) => setFilterType(e.target.value)}
+          className={styles.filterSelect}
+        >
+          <option value="all">Tous les types</option>
+          {integrationTypes.map(type => (
+            <option key={type} value={type}>{type}</option>
+          ))}
+        </select>
       </div>
 
       {loading ? (
@@ -265,34 +378,40 @@ const TasksPage = ({ isAdminView = false }) => {
         </div>
       ) : (
         <div className={styles.tasksList}>
-          {filteredTasks.length === 0 ? (
-            <p className={styles.noTasks}>No tasks found</p>
+          {filteredIntegrations.length === 0 ? (
+            <p className={styles.noTasks}>Aucune intégration trouvée</p>
           ) : (
-            filteredTasks.map((task) => (
-              <div key={task.id} className={`${styles.taskCard} ${getStatusColor(task.status)}`}>
+            filteredIntegrations.map((integration) => (
+              <div key={integration.id} className={`${styles.taskCard} ${getStatusColor(integration.status)}`}>
                 <div className={styles.taskHeader}>
-                  <h3>{task.title}</h3>
-                  <span className={`${styles.priorityBadge} ${getPriorityColor(task.priority)}`}>
-                    {task.priority}
-                  </span>
+                  <h3>{integration.name}</h3>
+                  {getIntegrationTypeIcon(integration.type)}
                 </div>
-                <p className={styles.taskDescription}>{task.description}</p>
-                <div className={styles.taskMeta}>
-                  <p className={styles.assignedTo}>
-                    <span>Assigned to:</span> {task.assignedUser?.name || 'Unassigned'}
-                  </p>
-                  {task.dueDate && (
-                    <p className={styles.dueDate}>
-                      Due: {new Date(task.dueDate).toLocaleDateString()}
+                <p className={styles.taskDescription}>{integration.description}</p>
+                <div className={styles.integrationDetails}>
+                  <div className={styles.integrationMeta}>
+                    <p className={styles.platform}>
+                      <span>Plateforme:</span> {integration.platformName}
                     </p>
-                  )}
+                    <p className={styles.fileFormats}>
+                      <span>Formats:</span> {formatFileFormats(integration.fileFormats)}
+                    </p>
+                  </div>
+                  <div className={styles.integrationInfo}>
+                    <p className={styles.lastTested}>
+                      Dernière validation: {integration.lastTested}
+                    </p>
+                    <p className={styles.apiVersion}>
+                      Version API: {integration.apiVersion}
+                    </p>
+                  </div>
                 </div>
                 <div className={styles.taskStatus}>
-                  <span>Status:</span>
+                  <span>Statut:</span>
                   <select
-                    value={task.status}
-                    onChange={(e) => handleStatusChange(task.id, e.target.value)}
-                    className={`${styles.statusSelect} ${getStatusColor(task.status)}`}
+                    value={integration.status}
+                    onChange={(e) => handleStatusChange(integration.id, e.target.value)}
+                    className={`${styles.statusSelect} ${getStatusColor(integration.status)}`}
                   >
                     {statusOptions.map(status => (
                       <option key={status} value={status}>{status}</option>
@@ -303,8 +422,8 @@ const TasksPage = ({ isAdminView = false }) => {
                   <div className={styles.adminActions}>
                     <button 
                       className={styles.deleteButton}
-                      onClick={() => handleDeleteTask(task.id)}
-                      title="Delete Task"
+                      onClick={() => handleDeleteIntegration(integration.id)}
+                      title="Supprimer l'intégration"
                     >
                       ×
                     </button>
@@ -314,12 +433,14 @@ const TasksPage = ({ isAdminView = false }) => {
             ))
           )}
         </div>
-      )}      {isAdmin && (
+      )}      
+
+      {isAdmin && (
         <>
           <button 
             className={styles.fabButton}
             onClick={() => setIsModalOpen(true)}
-            title="Add New Task"
+            title="Ajouter une nouvelle intégration"
           >
             +
           </button>
@@ -328,7 +449,7 @@ const TasksPage = ({ isAdminView = false }) => {
             <div className={styles.modalOverlay}>
               <div className={styles.modal}>
                 <div className={styles.modalHeader}>
-                  <h2>Create New Task</h2>
+                  <h2>Nouvelle Intégration</h2>
                   <button 
                     className={styles.closeButton}
                     onClick={() => setIsModalOpen(false)}
@@ -336,74 +457,90 @@ const TasksPage = ({ isAdminView = false }) => {
                     ×
                   </button>
                 </div>
-                <form onSubmit={handleCreateTask}>
+                <form onSubmit={handleCreateIntegration}>
                   <div className={styles.formGrid}>
                     <div className={styles.formGroup}>
-                      <label>Title</label>
+                      <label>Nom</label>
                       <input
                         type="text"
-                        placeholder="Task Title"
-                        value={newTask.title}
-                        onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
+                        placeholder="Nom de l'intégration"
+                        value={newIntegration.name}
+                        onChange={(e) => setNewIntegration({ ...newIntegration, name: e.target.value })}
                         required
                         className={styles.input}
                       />
                     </div>
                     <div className={styles.formGroup}>
-                      <label>Assigned To</label>
+                      <label>Plateforme</label>
                       <select
                         className={styles.input}
-                        value={newTask.assignedTo}
-                        onChange={(e) => setNewTask({ ...newTask, assignedTo: e.target.value })}
+                        value={newIntegration.platform}
+                        onChange={(e) => setNewIntegration({ ...newIntegration, platform: e.target.value })}
                         required
                       >
-                        <option value="">Select User</option>
-                        {users.map(user => (
-                          <option key={user.id} value={user.id}>
-                            {user.name || user.email}
+                        <option value="">Sélectionner une plateforme</option>
+                        {platforms.map(platform => (
+                          <option key={platform.id} value={platform.id}>
+                            {platform.name}
                           </option>
                         ))}
                       </select>
                     </div>
                     <div className={styles.formGroup}>
-                      <label>Priority</label>
+                      <label>Type d'intégration</label>
                       <select
                         className={styles.input}
-                        value={newTask.priority}
-                        onChange={(e) => setNewTask({ ...newTask, priority: e.target.value })}
+                        value={newIntegration.type}
+                        onChange={(e) => setNewIntegration({ ...newIntegration, type: e.target.value })}
                       >
-                        {priorityOptions.map(priority => (
-                          <option key={priority} value={priority}>{priority}</option>
+                        {integrationTypes.map(type => (
+                          <option key={type} value={type}>{type}</option>
                         ))}
                       </select>
                     </div>
                     <div className={styles.formGroup}>
-                      <label>Due Date</label>
-                      <input
-                        type="date"
-                        value={newTask.dueDate}
-                        onChange={(e) => setNewTask({ ...newTask, dueDate: e.target.value })}
+                      <label>Statut</label>
+                      <select
                         className={styles.input}
-                        required
-                      />
+                        value={newIntegration.status}
+                        onChange={(e) => setNewIntegration({ ...newIntegration, status: e.target.value })}
+                      >
+                        {statusOptions.map(status => (
+                          <option key={status} value={status}>{status}</option>
+                        ))}
+                      </select>
                     </div>
+                  </div>
+                  <div className={styles.formGroup}>
+                    <label>Formats de fichier supportés</label>
+                    <select
+                      className={styles.input}
+                      value={newIntegration.fileFormats}
+                      onChange={(e) => setNewIntegration({ ...newIntegration, fileFormats: e.target.value })}
+                      multiple
+                    >
+                      {fileFormats.map(format => (
+                        <option key={format} value={format}>{format}</option>
+                      ))}
+                    </select>
+                    <small className={styles.helpText}>Maintenez Ctrl ou Cmd pour sélectionner plusieurs formats</small>
                   </div>
                   <div className={styles.formGroup}>
                     <label>Description</label>
                     <textarea
-                      placeholder="Task Description"
-                      value={newTask.description}
-                      onChange={(e) => setNewTask({ ...newTask, description: e.target.value })}
+                      placeholder="Description détaillée de l'intégration"
+                      value={newIntegration.description}
+                      onChange={(e) => setNewIntegration({ ...newIntegration, description: e.target.value })}
                       className={styles.textarea}
                       required
                     />
                   </div>
                   <div className={styles.modalActions}>
                     <button type="button" className={styles.cancelButton} onClick={() => setIsModalOpen(false)}>
-                      Cancel
+                      Annuler
                     </button>
                     <button type="submit" className={styles.button}>
-                      Create Task
+                      Créer l'intégration
                     </button>
                   </div>
                 </form>
@@ -416,4 +553,4 @@ const TasksPage = ({ isAdminView = false }) => {
   );
 };
 
-export default TasksPage;
+export default InteroperabilityPage;

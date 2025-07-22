@@ -3,13 +3,14 @@ import { AuthContext } from './AuthContext';
 import NotificationService, { notificationService } from '../services/notificationService';
 import api from '../config/api.config';
 
-export const NotificationContext = createContext();
+const NotificationContext = createContext();
 
-export const NotificationProvider = ({ children }) => {
+const NotificationProvider = ({ children }) => {
   const [notifications, setNotifications] = useState([]);
   const [unreadCount, setUnreadCount] = useState(0);
   const [isConnected, setIsConnected] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [toastNotifications, setToastNotifications] = useState([]);
   const { isAuthenticated, userData } = useContext(AuthContext);
   
   // Expose context for testing
@@ -139,6 +140,32 @@ export const NotificationProvider = ({ children }) => {
     }
   }, [isAuthenticated, userData?.id]);
 
+  // Fonction pour afficher une notification toast
+  const showToast = useCallback((message, type = 'info', duration = 5000) => {
+    const id = Date.now() + Math.random();
+    const toast = {
+      id,
+      message,
+      type, // 'success', 'error', 'warning', 'info'
+      timestamp: new Date().toISOString(),
+      duration
+    };
+    
+    setToastNotifications(prev => [...prev, toast]);
+    
+    // Retirer automatiquement la notification après la durée spécifiée
+    setTimeout(() => {
+      setToastNotifications(prev => prev.filter(t => t.id !== id));
+    }, duration);
+    
+    return id;
+  }, []);
+
+  // Fonction pour retirer manuellement une notification toast
+  const removeToast = useCallback((id) => {
+    setToastNotifications(prev => prev.filter(t => t.id !== id));
+  }, []);
+
   return (
     <NotificationContext.Provider
       value={{
@@ -146,9 +173,12 @@ export const NotificationProvider = ({ children }) => {
         unreadCount,
         isConnected,
         isLoading,
+        toastNotifications,
         markAsRead,
         markAllAsRead,
-        refreshNotifications
+        refreshNotifications,
+        showToast,
+        removeToast
       }}
     >
       {children}
@@ -156,4 +186,4 @@ export const NotificationProvider = ({ children }) => {
   );
 };
 
-export default NotificationProvider;
+export { NotificationContext, NotificationProvider };

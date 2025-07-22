@@ -1,0 +1,557 @@
+/* 
+ * Fichier CSS pour le nouveau header
+ * Design moderne avec animations et effets cinématiques
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Variables CSS pour la personnalisation facile */
+:root {
+  --header-height: 70px;
+  --header-bg: #ffffff;
+  --header-bg-scrolled: rgba(255, 255, 255, 0.95);
+  --header-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  --primary-color: #5250cd;
+  --primary-light: #6c63ff;
+  --primary-dark: #3a38a7;
+  --primary-glow: rgba(108, 99, 255, 0.15);
+  --text-primary: #333;
+  --text-secondary: #666;
+  --border-radius: 8px;
+  --transition-speed: 0.3s;
+  --box-shadow-dropdown: 0 10px 25px rgba(0, 0, 0, 0.1);
+  --notification-badge: #ff4757;
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+}
+
+/* Mode sombre */
+.dark-mode {
+  --header-bg: #1a1a2e;
+  --header-bg-scrolled: rgba(26, 26, 46, 0.95);
+  --header-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  --text-primary: #f5f5f5;
+  --text-secondary: #b8b8b8;
+  --glass-bg: rgba(26, 26, 46, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --primary-glow: rgba(108, 99, 255, 0.25);
+}
+
+/* Structure de base du header avec effet de verre */
+.new-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-height);
+  padding: 0 24px;
+  background-color: var(--header-bg);
+  color: var(--text-primary);
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: all var(--transition-speed) ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--header-shadow);
+}
+
+/* Effet de scroll */
+.new-header.scrolled {
+  height: 60px;
+  background-color: var(--header-bg-scrolled);
+  box-shadow: var(--header-shadow);
+}
+
+/* Header en mode sombre */
+.new-header.dark {
+  color: var(--text-primary);
+  background: linear-gradient(135deg, rgba(26,26,46,0.8) 0%, rgba(20,20,40,0.9) 100%);
+}
+
+/* Particules animées dans le header */
+.header-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: var(--primary-light);
+  border-radius: 50%;
+  filter: blur(2px);
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+/* Parties gauche, centre et droite du header */
+.header-left, .header-center, .header-right {
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 5;
+}
+
+.header-left {
+  flex: 1;
+}
+
+.header-center {
+  flex: 2;
+  justify-content: center;
+}
+
+.header-right {
+  flex: 1;
+  justify-content: flex-end;
+}
+
+/* Menu hamburger avec animation */
+.menu-toggle {
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16px;
+  transition: all 0.3s ease;
+}
+
+/* Style pour les boutons avec effet cinématique */
+.cinematic-button {
+  position: relative;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16px;
+  transition: all 0.3s ease;
+}
+
+.cinematic-button:hover {
+  color: var(--primary-color);
+  background-color: var(--primary-glow);
+}
+
+/* Menu principal */
+.main-menu {
+  position: absolute;
+  top: calc(100% + 15px);
+  left: 0;
+  width: 250px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: var(--border-radius);
+  box-shadow: var(--glass-shadow);
+  border: 1px solid var(--glass-border);
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.menu-header {
+  padding: 15px;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.menu-header h3 {
+  margin: 0;
+  font-weight: 500;
+}
+
+.menu-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--text-primary);
+}
+
+.menu-items-container {
+  padding: 10px 0;
+}
+
+.menu-item {
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.menu-item:hover {
+  background-color: rgba(0,0,0,0.03);
+}
+
+.menu-item.active {
+  background-color: var(--primary-glow);
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+.menu-item-icon {
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+}
+
+/* Logo 3D */
+.logo-3d-container {
+  width: 50px;
+  height: 50px;
+  position: relative;
+  margin-right: 20px;
+}
+
+.logo-3d-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: float 6s ease-in-out infinite;
+}
+
+.logo-3d-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: white;
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  border-radius: 8px;
+}
+
+.logo-glow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+  filter: blur(8px);
+  opacity: 0.7;
+  animation: pulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes float {
+  0%, 100% {transform: translateY(0);}
+  50% {transform: translateY(-10px);}
+}
+
+@keyframes pulse {
+  0%, 100% {opacity: 0.5; transform: scale(0.8);}
+  50% {opacity: 0.8; transform: scale(1.1);}
+}
+
+/* Texte animé avec effets */
+.animated-text {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-left: 20px;
+}
+
+.animated-letter {
+  display: inline-block;
+  position: relative;
+  font-weight: 600;
+  font-size: 1.3rem;
+  transition: all 0.3s ease;
+}
+
+.animated-letter:hover {
+  color: var(--primary-light);
+  transform: translateY(-3px);
+}
+
+/* Title underline */
+.title-underline-container {
+  position: relative;
+  width: 100%;
+  height: 2px;
+  margin-top: 5px;
+  overflow: hidden;
+}
+
+.title-underline {
+  position: absolute;
+  left: 0;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%,
+    var(--primary-color) 30%,
+    var(--primary-light) 50%,
+    var(--primary-color) 70%,
+    transparent 100%
+  );
+}
+
+.title-underline-glow {
+  position: absolute;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%,
+    rgba(255, 255, 255, 0.8) 50%,
+    transparent 100%
+  );
+  filter: blur(2px);
+}
+
+/* Notifications */
+.notifications-toggle {
+  position: relative;
+}
+
+.notification-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 18px;
+  height: 18px;
+  background: var(--notification-badge);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.notifications-dropdown {
+  position: absolute;
+  top: calc(100% + 15px);
+  right: 0;
+  width: 320px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: var(--border-radius);
+  box-shadow: var(--glass-shadow);
+  border: 1px solid var(--glass-border);
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.notifications-header {
+  padding: 15px;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.notifications-header h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.notification-items-wrapper {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.notification-item {
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.notification-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.03);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  font-size: 1.2rem;
+}
+
+.notification-content p {
+  margin: 0 0 5px 0;
+}
+
+.notification-time {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.unread-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: var(--notification-badge);
+  border-radius: 50%;
+  margin-left: 5px;
+}
+
+/* Profile */
+.profile-container {
+  position: relative;
+}
+
+.profile-toggle {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  padding: 6px;
+  border-radius: 30px;
+  cursor: pointer;
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+}
+
+.profile-toggle.active {
+  background: var(--primary-glow);
+}
+
+.profile-image-container {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+}
+
+.profile-initials {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(45deg, var(--primary-color), var(--primary-light));
+  color: white;
+  font-weight: 600;
+}
+
+.profile-name {
+  margin-left: 10px;
+  margin-right: 5px;
+  font-weight: 500;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dropdown-arrow {
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+}
+
+.profile-dropdown {
+  position: absolute;
+  top: calc(100% + 15px);
+  right: 0;
+  width: 280px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: var(--border-radius);
+  box-shadow: var(--glass-shadow);
+  border: 1px solid var(--glass-border);
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.profile-info {
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.profile-large-image {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.profile-initials.large {
+  font-size: 2rem;
+}
+
+.profile-info h3 {
+  margin: 0 0 5px 0;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.profile-info p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.profile-links {
+  padding: 10px 0;
+}
+
+.profile-link {
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.profile-link:hover {
+  background-color: rgba(0,0,0,0.03);
+}
+
+.profile-link svg {
+  margin-right: 15px;
+}
+
+.profile-link.logout {
+  color: #ff4757;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .profile-name {
+    display: none;
+  }
+  
+  .header-center {
+    flex: 1;
+  }
+}

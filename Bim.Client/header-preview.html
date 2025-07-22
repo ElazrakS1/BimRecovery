@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIM Recovery - Aperçu du Header Modernisé</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Styles de base pour la démonstration */
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9fafb;
+            padding-top: 64px;
+            color: #1f2937;
+        }
+        
+        .content {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            margin-top: 0;
+        }
+        
+        .feature-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .feature {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            flex: 1 1 300px;
+        }
+        
+        .feature-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: rgba(99, 102, 241, 0.1);
+            color: #6366f1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature h3 {
+            margin-top: 0;
+        }
+    </style>
+    <!-- Inclusion des styles du Header et des notifications -->
+    <link rel="stylesheet" href="./Header-modern.css">
+    <link rel="stylesheet" href="./NotificationsMenu-modern.css">
+</head>
+<body>
+    <!-- Aperçu du Header -->
+    <header class="main-header">
+        <div class="header-left">
+            <button class="sidebar-toggle-btn">
+                <i class="fa fa-bars"></i>
+            </button>
+            <div class="header-logo">
+                <span class="logo-text">BIM Recovery</span>
+            </div>
+            <nav class="header-nav">
+                <button class="header-nav-item">
+                    Menu <i class="icon-chevron down"></i>
+                </button>
+            </nav>
+        </div>
+
+        <div class="header-center">
+            <h1 class="page-title">Tableau de bord</h1>
+        </div>
+        
+        <div class="header-right">
+            <form class="search-form">
+                <div class="search-container">
+                    <input type="text" placeholder="Rechercher..." class="search-input">
+                    <button type="submit" class="search-button" aria-label="Rechercher">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </form>
+            
+            <div class="header-actions">
+                <button class="action-button theme-toggle" aria-label="Changer de thème">
+                    <i class="fa fa-moon"></i>
+                </button>
+                
+                <button class="action-button notification-button" aria-label="Notifications">
+                    <i class="fa fa-bell"></i>
+                    <span class="notification-badge">2</span>
+                </button>
+                
+                <button class="user-profile-button" aria-label="Menu utilisateur">
+                    <div class="user-avatar">
+                        <div class="avatar-placeholder">S</div>
+                    </div>
+                    <span class="user-name">Salah-Eddine</span>
+                    <i class="icon-chevron down"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenu principal -->
+    <div class="content">
+        <div class="card">
+            <h1>Amélioration du Header</h1>
+            <p>Le nouveau header de l'application BIM Recovery a été complètement revu pour offrir une meilleure expérience utilisateur :</p>
+            
+            <div class="feature-list">
+                <div class="feature">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Design moderne</h3>
+                    <p>Interface claire et attrayante avec des animations fluides pour un rendu visuel de qualité professionnelle.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">📱</div>
+                    <h3>Responsive</h3>
+                    <p>S'adapte parfaitement à tous les appareils, des grands écrans aux mobiles.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Performance</h3>
+                    <p>Code optimisé pour des interactions rapides et une expérience fluide.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Recherche améliorée</h3>
+                    <p>Accès rapide à tous les contenus de l'application.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">🌙</div>
+                    <h3>Mode sombre</h3>
+                    <p>Basculez facilement entre les thèmes clair et sombre pour plus de confort.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">🔔</div>
+                    <h3>Notifications</h3>
+                    <p>Système de notifications intégré pour ne rien manquer des activités importantes.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Simulation de FontAwesome pour la démo -->
+    <script>
+        // Simulation simple des icônes FontAwesome
+        document.querySelectorAll('.fa-bars').forEach(el => { el.innerHTML = '☰'; });
+        document.querySelectorAll('.fa-search').forEach(el => { el.innerHTML = '🔍'; });
+        document.querySelectorAll('.fa-moon').forEach(el => { el.innerHTML = '🌙'; });
+        document.querySelectorAll('.fa-bell').forEach(el => { el.innerHTML = '🔔'; });
+        document.querySelectorAll('.icon-chevron.down').forEach(el => { el.innerHTML = '▼'; });
+        document.querySelectorAll('.icon-chevron.up').forEach(el => { el.innerHTML = '▲'; });
+    </script>
+</body>
+</html>

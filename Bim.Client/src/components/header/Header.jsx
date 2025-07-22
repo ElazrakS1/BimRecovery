@@ -3,8 +3,18 @@ import { useNavigate } from 'react-router-dom';
 import { LanguageContext } from '../../context/LanguageContext';
 import { API_BASE_URL } from '../../config/api.config';
 import NotificationsMenu from '../notifications/NotificationsMenu';
-import './Header.css';
+import { createPortal } from 'react-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { 
+  FaBars, FaSearch, FaUser, FaCog, FaSignOutAlt, 
+  FaSpinner, FaSearchMinus, FaFile, FaRocket,
+  FaMoon, FaSun, FaBell, FaChevronDown, FaChevronUp,
+  FaProjectDiagram, FaCubes, FaTachometerAlt, FaHome
+} from 'react-icons/fa';
+import './Header-modern.css'; // Nouveau style moderne et bien structuré
+import '../notifications/NotificationsMenu-modern.css'; // Styles pour le menu de notifications
 
+// Définition du composant Header
 const Header = ({ title, userData, pageTitle, onToggleSidebar }) => {
   const { texts } = useContext(LanguageContext);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -12,290 +22,459 @@ const Header = ({ title, userData, pageTitle, onToggleSidebar }) => {
   const [searchResults, setSearchResults] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
   const [showSearchResults, setShowSearchResults] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  
+  // State pour stocker la position du dropdown
+  const [dropdownPosition, setDropdownPosition] = useState({ top: 0, right: 0 });
   
   const navigate = useNavigate();
   const dropdownRef = useRef(null);
-  const searchRef = useRef(null);
-  const searchTimeoutRef = useRef(null);
-    const toggleDropdown = (e) => {
-    e.stopPropagation(); // Empêcher la propagation du clic
-    setDropdownOpen(!dropdownOpen);
-  };
+  const userButtonRef = useRef(null);
+  const searchInputRef = useRef(null);
+  const searchResultsRef = useRef(null);
   
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setDropdownOpen(false);
-      }
-      if (searchRef.current && !searchRef.current.contains(event.target)) {
-        setShowSearchResults(false);
-      }
-    };
+  // Référence pour le conteneur de notification
+  const notificationRef = useRef(null);
+  const [notificationOpen, setNotificationOpen] = useState(false);
+  const [unreadCount, setUnreadCount] = useState(2); // Valeur initiale pour la démo
+  const [notifications, setNotifications] = useState([]);
+  const [isLoadingNotifications, setIsLoadingNotifications] = useState(false);
+  
+  // Navigation rapide
+  const [quickNavOpen, setQuickNavOpen] = useState(false);
+  const quickNavRef = useRef(null);
 
-    // Toujours ajouter les événements, pas seulement si le dropdown est ouvert
-    document.addEventListener('mousedown', handleClickOutside);
+  // Fonction pour gérer le scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
     
+    window.addEventListener('scroll', handleScroll);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-  
-  const handleProfileClick = (e) => {
-    e.stopPropagation(); // Empêcher la propagation de l'événement
-    navigate('/settings?tab=account');
-    setDropdownOpen(false);
-  };
-  
-  const handleSettingsClick = (e) => {
-    e.stopPropagation(); // Empêcher la propagation de l'événement
-    navigate('/settings');
-    setDropdownOpen(false);
-  };
-  
-  const handleLogoutClick = (e) => {
-    e.stopPropagation(); // Empêcher la propagation de l'événement
-    localStorage.removeItem('token');
-    sessionStorage.removeItem('token');
-    navigate('/login');
-    setDropdownOpen(false);
-  };
-  const handleTitleClick = () => {
-    if (title === "Profile" || title === texts.settings || title === "Settings") {
-      navigate('/dashboard');
-    }
+
+  // Gestionnaire pour le changement de thème
+  const toggleDarkMode = () => {
+    const newDarkMode = !darkMode;
+    setDarkMode(newDarkMode);
+    document.body.classList.toggle('dark-mode', newDarkMode);
+    localStorage.setItem('darkMode', newDarkMode);
   };
 
-  const handleSearchChange = (e) => {
-    const value = e.target.value;
-    setSearchTerm(value);
-    
-    if (searchTimeoutRef.current) {
-      clearTimeout(searchTimeoutRef.current);
-    }
-    
-    if (value.trim().length > 0) {
-      setIsSearching(true);
-      setShowSearchResults(true);
+  // Charge le thème depuis localStorage au montage
+  useEffect(() => {
+    const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+    setDarkMode(savedDarkMode);
+    document.body.classList.toggle('dark-mode', savedDarkMode);
+  }, []);
+
+  // Fermeture des dropdowns en cliquant ailleurs
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (dropdownOpen && dropdownRef.current && !dropdownRef.current.contains(event.target) &&
+          userButtonRef.current && !userButtonRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
       
-      searchTimeoutRef.current = setTimeout(() => {
-        performSearch(value);
-      }, 300);
-    } else {
-      setShowSearchResults(false);
+      if (notificationOpen && notificationRef.current && !notificationRef.current.contains(event.target)) {
+        setNotificationOpen(false);
+      }
+      
+      if (showSearchResults && searchResultsRef.current && !searchResultsRef.current.contains(event.target) &&
+          searchInputRef.current && !searchInputRef.current.contains(event.target)) {
+        setShowSearchResults(false);
+      }
+      
+      if (quickNavOpen && quickNavRef.current && !quickNavRef.current.contains(event.target)) {
+        setQuickNavOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleOutsideClick);
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, [dropdownOpen, notificationOpen, showSearchResults, quickNavOpen]);
+
+  // Fonction pour gérer la recherche
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    if (!searchTerm.trim()) return;
+    
+    setIsSearching(true);
+    setShowSearchResults(true);
+    
+    try {
+      // Simuler un appel API pour la recherche
+      setTimeout(() => {
+        // Résultats simulés
+        const mockResults = [
+          { id: 1, type: 'project', title: 'Projet Résidentiel A', path: '/projects/1', icon: <FaProjectDiagram /> },
+          { id: 2, type: 'file', title: 'Plan d\'étage.ifc', path: '/files/2', icon: <FaFile /> },
+          { id: 3, type: 'task', title: 'Révision structurelle', path: '/tasks/3', icon: <FaCog /> }
+        ];
+        setSearchResults(mockResults);
+        setIsSearching(false);
+      }, 500);
+    } catch (error) {
+      console.error("Erreur lors de la recherche:", error);
       setSearchResults([]);
       setIsSearching(false);
     }
   };
-  
-  const performSearch = async (term) => {
-    try {
-      const token = localStorage.getItem('token') || sessionStorage.getItem('token');
-      
-      const normalizedTerm = term.toLowerCase().trim();
-      
-      const response = await fetch(`${API_BASE_URL}/api/search?q=${encodeURIComponent(term)}`, {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
+
+  // Calcul de la position du dropdown
+  const toggleUserDropdown = () => {
+    if (userButtonRef.current) {
+      const rect = userButtonRef.current.getBoundingClientRect();
+      setDropdownPosition({
+        top: rect.bottom + 10,
+        right: window.innerWidth - rect.right - 10
       });
-      
-      if (response.ok) {
-        const data = await response.json();
-        const filteredResults = data.filter(item => 
-          item.name.toLowerCase().includes(normalizedTerm)
-        );
-        setSearchResults(filteredResults);
-      } else {
-        const demoResults = [
-          { id: 1, type: 'project', name: 'Tour Eiffel Rénovation', url: '/projects/1' },
-          { id: 2, type: 'project', name: 'Centre Commercial', url: '/projects/3' },
-          { id: 3, type: 'model', name: 'Étage 1 - Tour Eiffel', url: '/models/1' },
-          { id: 4, type: 'project', name: 'Immeuble Résidentiel Haussmann', url: '/projects/4' },
-          { id: 5, type: 'model', name: 'Fondations Centre Commercial', url: '/models/5' }
-        ];
-        
-        const filteredResults = demoResults.filter(item => 
-          item.name.toLowerCase().includes(normalizedTerm)
-        );
-        
-        setSearchResults(filteredResults);
-      }
-    } catch (error) {
-      console.error('Search error:', error);
-      const fallbackResults = [
-        { id: 1, type: 'project', name: 'Tour Eiffel Rénovation', url: '/projects/1' },
-        { id: 2, type: 'project', name: 'Centre Commercial', url: '/projects/3' }
-      ];
-      
-      const filteredFallback = fallbackResults.filter(item => 
-        item.name.toLowerCase().includes(term.toLowerCase())
-      );
-      
-      setSearchResults(filteredFallback);
-    } finally {
-      setIsSearching(false);
+    }
+    
+    setDropdownOpen(!dropdownOpen);
+  };
+
+  // Toggle pour le menu des notifications
+  const toggleNotifications = () => {
+    setNotificationOpen(!notificationOpen);
+    if (!notificationOpen) {
+      // Simuler le chargement des notifications
+      setIsLoadingNotifications(true);
+      setTimeout(() => {
+        setNotifications([
+          {
+            id: 1,
+            type: 'info',
+            message: 'Nouveau commentaire sur le projet A',
+            date: new Date(),
+            read: false
+          },
+          {
+            id: 2,
+            type: 'warning',
+            message: 'Mise à jour requise pour le modèle IFC',
+            date: new Date(Date.now() - 3600000),
+            read: false
+          },
+          {
+            id: 3,
+            type: 'success',
+            message: 'Exportation du modèle terminée',
+            date: new Date(Date.now() - 86400000),
+            read: true
+          }
+        ]);
+        setIsLoadingNotifications(false);
+      }, 600);
     }
   };
-  const _highlightMatch = (text, term) => {
-    if (!term.trim()) return text;
-    
-    const regex = new RegExp(`(${term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
-    const parts = text.split(regex);
-    
+
+  // Gestionnaire pour la déconnexion
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/login');
+  };
+  
+  // Gestionnaire pour la navigation vers les paramètres
+  const navigateToSettings = () => {
+    navigate('/settings');
+    setDropdownOpen(false);
+  };
+  
+  // Gestionnaire pour la navigation vers le profil
+  const navigateToProfile = () => {
+    navigate('/profile');
+    setDropdownOpen(false);
+  };
+
+  // Navigation rapide
+  const navigationItems = [
+    { icon: <FaHome />, label: "Accueil", path: "/dashboard" },
+    { icon: <FaProjectDiagram />, label: "Projets", path: "/projects" },
+    { icon: <FaCubes />, label: "Maquettes", path: "/maquettes" },
+    { icon: <FaTachometerAlt />, label: "Tableau de bord", path: "/dashboard" },
+  ];
+  
+  const quickNav = () => {
     return (
-      <>
-        {parts.map((part, i) => 
-          regex.test(part) ? <mark key={i}>{part}</mark> : part
-        )}
-      </>
+      <motion.div
+        className="quick-nav-menu"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -20 }}
+        transition={{ duration: 0.2 }}
+        ref={quickNavRef}
+      >
+        <div className="quick-nav-header">Navigation rapide</div>
+        <div className="quick-nav-items">
+          {navigationItems.map((item, index) => (
+            <div 
+              key={index} 
+              className="quick-nav-item"
+              onClick={() => {
+                navigate(item.path);
+                setQuickNavOpen(false);
+              }}
+            >
+              <div className="quick-nav-icon">{item.icon}</div>
+              <div className="quick-nav-label">{item.label}</div>
+            </div>
+          ))}
+        </div>
+      </motion.div>
     );
   };
 
-  const _handleSearchItemClick = (url) => {
-    setShowSearchResults(false);
-    setSearchTerm('');
-    navigate(url);
-  };
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    if (searchTerm.trim()) {
-      navigate(`/search?q=${encodeURIComponent(searchTerm)}`);
-      setShowSearchResults(false);
-    }
-  };
-
-  return (
-    <header className="main-header">
-      {/* Section Gauche - Navigation */}
-      <div className="header-left">
-        <div className="sidebar-toggle" onClick={onToggleSidebar}>
-          <i className={`fas fa-bars`}></i>
-        </div>
-        <div className={`header-title ${(title === "Profile" || title === texts.settings || title === "Settings") ? "clickable" : ""}`} onClick={handleTitleClick}>
-          <h1>{title || pageTitle || "Smart BIM"}</h1>
-        </div>
-      </div>
-
-      {/* Section Centre - Recherche */}
-      <div className="header-center">
-        <div className="search-box" ref={searchRef}>
-          <form onSubmit={handleSearchSubmit}>
-            <i className="fas fa-search"></i>
-            <input 
-              type="text" 
-              placeholder={texts.searchPlaceholder || "Rechercher des projets, tâches, documents..."}
-              value={searchTerm}
-              onChange={handleSearchChange}
-              onFocus={() => {
-                if (searchTerm.trim().length > 0) {
-                  setShowSearchResults(true);
-                }
-              }}
-            />
-          </form>
-          
-          {showSearchResults && (
-            <div className="search-results-dropdown">
+  // Rendu des résultats de recherche
+  const renderSearchResults = () => {
+    if (!showSearchResults) return null;
+    
+    return createPortal(
+      <motion.div 
+        className="search-results-container"
+        ref={searchResultsRef}
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -10 }}
+        transition={{ duration: 0.2 }}
+        style={{
+          position: 'absolute',
+          top: `${searchInputRef.current?.getBoundingClientRect().bottom + 5}px`,
+          left: `${searchInputRef.current?.getBoundingClientRect().left}px`,
+          width: `${searchInputRef.current?.offsetWidth}px`,
+          zIndex: 1100
+        }}
+      >
+        <div className="search-results-card">
+          {isSearching ? (
+            <div className="search-loading">
+              <FaSpinner className="spinner" />
+              <span>Recherche en cours...</span>
+            </div>
+          ) : searchResults.length > 0 ? (
+            <>
               <div className="search-results-header">
-                <h3>
-                  <i className="fas fa-search"></i>
-                  {texts.searchResults || "Résultats de recherche"}
-                </h3>
+                {searchResults.length} résultat{searchResults.length > 1 ? 's' : ''}
               </div>
-              <ul className="search-results-list">
-                {isSearching ? (
-                  <li className="search-loading">
-                    <i className="fas fa-spinner fa-spin"></i>
-                    <span>{texts.searching || "Recherche en cours..."}</span>
-                  </li>
-                ) : searchResults.length > 0 ? (
-                  searchResults.map(result => (
-                    <li key={result.id} onClick={() => navigate(result.url)}>
-                      <i className={`fas ${result.icon || 'fa-file'}`}></i>
-                      <div className="search-result-content">
-                        <span className="search-result-title">{result.name}</span>
-                        <span className="search-result-type">{result.type}</span>
-                      </div>
-                    </li>
-                  ))
-                ) : (
-                  <li className="no-results">
-                    <i className="fas fa-search-minus"></i>
-                    <span>{texts.noResults || "Aucun résultat trouvé"}</span>
-                  </li>
-                )}
-              </ul>
+              <div className="search-results-list">
+                {searchResults.map(result => (
+                  <div 
+                    key={`${result.type}-${result.id}`}
+                    className="search-result-item"
+                    onClick={() => {
+                      navigate(result.path);
+                      setShowSearchResults(false);
+                      setSearchTerm('');
+                    }}
+                  >
+                    <div className="search-result-icon">
+                      {result.icon || <FaFile />}
+                    </div>
+                    <div className="search-result-content">
+                      <div className="search-result-title">{result.title}</div>
+                      <div className="search-result-type">{result.type}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : (
+            <div className="search-no-results">
+              <FaSearchMinus />
+              <span>Aucun résultat trouvé</span>
             </div>
           )}
         </div>
-      </div>      {/* Section Droite - Notifications & Profil */}
-      <div className="header-right">
-          <NotificationsMenu />
+      </motion.div>,
+      document.body
+    );
+  };
+
+  // Rendu du menu des notifications
+  const renderNotificationsMenu = () => {
+    if (!notificationOpen) return null;
+    
+    return (
+      <NotificationsMenu 
+        notifications={notifications} 
+        isLoading={isLoadingNotifications}
+        onClose={() => setNotificationOpen(false)}
+        onMarkAllRead={() => {
+          setUnreadCount(0);
+          setNotifications(notifications.map(n => ({ ...n, read: true })));
+        }}
+      />
+    );
+  };
+
+  return (
+    <motion.header 
+      className={`main-header ${isScrolled ? 'scrolled' : ''}`}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ type: 'spring', damping: 20, stiffness: 100 }}
+    >
+      <div className="header-left">
+        <button 
+          aria-label="Toggle Sidebar" 
+          className="sidebar-toggle-btn"
+          onClick={onToggleSidebar}
+        >
+          <FaBars />
+        </button>
         
-        <div className="user-profile" ref={dropdownRef}>
-          <div 
-            className={`profile-info ${dropdownOpen ? 'active' : ''}`} 
-            onClick={toggleDropdown}
+        <div className="header-logo" onClick={() => navigate('/dashboard')}>
+          <span className="logo-text">BIM Recovery</span>
+        </div>
+        
+        <nav className="header-nav">
+          <button 
+            className={`header-nav-item ${quickNavOpen ? 'active' : ''}`}
+            onClick={() => setQuickNavOpen(!quickNavOpen)}
           >
-            <div className="profile-info-left">
-              {userData?.profilePhoto ? (
-                <img 
-                  src={userData.profilePhoto} 
-                  alt="Avatar" 
-                  className="avatar-img" 
-                />
+            Menu <FaChevronDown className={`icon-chevron ${quickNavOpen ? 'up' : 'down'}`} />
+          </button>
+          {quickNavOpen && quickNav()}
+        </nav>
+      </div>
+
+      <div className="header-center">
+        <h1 className="page-title">{pageTitle || title || 'BIM Recovery'}</h1>
+      </div>
+      
+      <div className="header-right">
+        <form className="search-form" onSubmit={handleSearch}>
+          <div className="search-container">
+            <input
+              ref={searchInputRef}
+              type="text"
+              placeholder={texts.search || "Rechercher..."}
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              onFocus={() => {
+                if (searchTerm.trim() && searchResults.length > 0) {
+                  setShowSearchResults(true);
+                }
+              }}
+              className="search-input"
+            />
+            <button type="submit" className="search-button" aria-label="Rechercher">
+              <FaSearch />
+            </button>
+          </div>
+        </form>
+        {renderSearchResults()}
+        
+        <div className="header-actions">
+          <button 
+            className="action-button theme-toggle" 
+            onClick={toggleDarkMode}
+            aria-label={darkMode ? "Activer le mode clair" : "Activer le mode sombre"}
+          >
+            {darkMode ? <FaSun /> : <FaMoon />}
+          </button>
+          
+          <button 
+            className="action-button notification-button"
+            onClick={toggleNotifications}
+            ref={notificationRef}
+            aria-label="Notifications"
+          >
+            <FaBell />
+            {unreadCount > 0 && (
+              <span className="notification-badge">{unreadCount}</span>
+            )}
+          </button>
+          {renderNotificationsMenu()}
+          
+          <button 
+            ref={userButtonRef}
+            className="user-profile-button"
+            onClick={toggleUserDropdown}
+            aria-label="Menu utilisateur"
+            aria-expanded={dropdownOpen}
+          >
+            <div className="user-avatar">
+              {userData?.avatar ? (
+                <img src={userData.avatar} alt={`${userData.firstName || 'Utilisateur'}`} />
               ) : (
-                <div className="avatar">
-                  {userData?.firstName?.[0]}{userData?.lastName?.[0]}
+                <div className="avatar-placeholder">
+                  {userData?.firstName ? userData.firstName.charAt(0) : 'U'}
                 </div>
               )}
-              <span className="user-name">{userData?.firstName} {userData?.lastName}</span>
             </div>
-            <i className={`fas fa-chevron-${dropdownOpen ? 'up' : 'down'}`}></i>
-          </div>
-          
-          {/* Suppression de la condition pour toujours afficher le dropdown (avec visibilité CSS) */}
-          <div className={`profile-dropdown ${dropdownOpen ? 'visible' : 'hidden'}`}>
-            <div className="dropdown-header">
-              <div className="dropdown-user-info">
-                {userData?.profilePhoto ? (
-                  <img 
-                    src={userData.profilePhoto} 
-                    alt="Avatar" 
-                    className="dropdown-avatar-img" 
-                  />
-                ) : (
-                  <div className="dropdown-avatar">
-                    {userData?.firstName?.[0]}{userData?.lastName?.[0]}
+            <span className="user-name">{userData?.firstName || 'Utilisateur'}</span>
+            <FaChevronDown className={`icon-chevron ${dropdownOpen ? 'up' : 'down'}`} />
+          </button>
+        </div>
+        
+        <AnimatePresence>
+          {dropdownOpen && createPortal(
+            <motion.div 
+              ref={dropdownRef}
+              className="user-dropdown"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.2 }}
+              style={{
+                position: 'fixed',
+                top: `${dropdownPosition.top}px`,
+                right: `${dropdownPosition.right}px`,
+              }}
+            >
+              <div className="dropdown-header">
+                <div className="dropdown-user-avatar">
+                  {userData?.avatar ? (
+                    <img src={userData.avatar} alt="Avatar utilisateur" />
+                  ) : (
+                    <div className="avatar-placeholder large">
+                      {userData?.firstName ? userData.firstName.charAt(0) : 'U'}
+                    </div>
+                  )}
+                </div>
+                <div className="dropdown-user-info">
+                  <div className="dropdown-user-name">
+                    {userData?.firstName ? `${userData.firstName} ${userData.lastName || ''}` : "Utilisateur"}
                   </div>
-                )}
-                <div className="dropdown-user-details">
-                  <p className="dropdown-name">{userData?.firstName} {userData?.lastName}</p>
-                  <p className="dropdown-email">{userData?.email}</p>
+                  <div className="dropdown-user-email">
+                    {userData?.email || "user@example.com"}
+                  </div>
+                  <div className="dropdown-user-role">
+                    {userData?.roles?.includes('Admin') ? "Administrateur" : "Utilisateur"}
+                  </div>
                 </div>
               </div>
-            </div>
-            <ul className="dropdown-menu">
-              <li onClick={handleProfileClick}>
-                <i className="fas fa-user"></i>
-                <span>{texts.profile || "Profil"}</span>
-              </li>
-              <li onClick={handleSettingsClick}>
-                <i className="fas fa-cog"></i>
-                <span>{texts.settings || "Paramètres"}</span>
-              </li>
-              <li className="divider"></li>
-              <li className="logout-item" onClick={handleLogoutClick}>
-                <i className="fas fa-sign-out-alt"></i>
-                <span>{texts.logout || "Déconnexion"}</span>
-              </li>
-            </ul>
-          </div>
-        </div>
+              
+              <div className="dropdown-content">
+                <button onClick={navigateToProfile} className="dropdown-item">
+                  <FaUser className="dropdown-item-icon" />
+                  <span>{texts.profile || "Mon Profil"}</span>
+                </button>
+                <button onClick={navigateToSettings} className="dropdown-item">
+                  <FaCog className="dropdown-item-icon" />
+                  <span>{texts.settings || "Paramètres"}</span>
+                </button>
+                <hr className="dropdown-divider" />
+                <button onClick={handleLogout} className="dropdown-item logout-item">
+                  <FaSignOutAlt className="dropdown-item-icon" />
+                  <span>{texts.logout || "Déconnexion"}</span>
+                </button>
+              </div>
+            </motion.div>,
+            document.body
+          )}
+        </AnimatePresence>
       </div>
-    </header>
+    </motion.header>
   );
 };
 
+// Export du composant Header
 export default Header;

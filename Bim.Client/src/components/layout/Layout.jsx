@@ -1,8 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import Header from '../header/Header';
+import CinematicHeader from '../header/CinematicHeader';
+import ModernHeader from '../header/ModernHeader';
+import HeaderFixed from '../header/HeaderFixed';
+// import Header from '../header/Header';  // Ancienne version
 import Sidebar from '../sidebar/Sidebar';
 import UserProfile from '../users/UserProfile';
+import ToastNotifications from '../notifications/ToastNotifications';
 import { AuthContext } from '../../context/AuthContext';
 import './Layout.css';
 
@@ -62,14 +66,14 @@ const Layout = ({ children }) => {
   if (!isAuthenticated || !authUserData) {
     return null; // or a loading spinner
   }
+  
+  console.log('Layout rendering, path:', location.pathname);
+  
   return (
     <div className="layout">
-      <Header 
-        pageTitle={getPageTitle(location.pathname)}
-        userData={authUserData}
-        sidebarCollapsed={sidebarCollapsed}
-        onToggleSidebar={() => setSidebarCollapsed(!sidebarCollapsed)}
-      />      <div className="content-wrapper">
+      <CinematicHeader onToggleSidebar={() => setSidebarCollapsed(!sidebarCollapsed)} />
+      
+      <div className="content-wrapper">
         <Sidebar collapsed={sidebarCollapsed} userData={authUserData} />
         <main className={`main-content ${sidebarCollapsed ? 'expanded' : ''}`}>
           {location.pathname === '/profile' ? (
@@ -85,6 +89,9 @@ const Layout = ({ children }) => {
           )}
         </main>
       </div>
+      
+      {/* Composant global des notifications toast */}
+      <ToastNotifications />
     </div>
   );
 };

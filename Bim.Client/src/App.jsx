@@ -1,9 +1,11 @@
+import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { LanguageProvider } from './context/LanguageContext';
 import { AuthProvider } from './context/AuthContext';
-import NotificationProvider from './context/NotificationContext';
-import CollaborationProvider from './components/Collaboration/CollaborationProvider';
+import { NotificationProvider } from './context/NotificationContext';
+import { CollaborationProvider } from './components/Collaboration/CollaborationProvider';
+import ErrorBoundary from './components/ErrorBoundary';
 import Layout from './components/layout/Layout';
 import Login from './components/auth/Login';
 import ForgotPassword from './components/auth/ForgotPassword';
@@ -24,59 +26,58 @@ import './utils/adminAuthManager';
 
 function App() {
   return (
-    <AuthProvider>
-      <LanguageProvider>
-        <NotificationProvider>
-          <CollaborationProvider>
-            <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="/reset-password/:token" element={<ResetPassword />} />
-            
-            {/* Protected routes */}
-            <Route path="/" element={<ProtectedRoute><Layout><Dashboard /></Layout></ProtectedRoute>} />
-            <Route path="/dashboard" element={<ProtectedRoute><Layout><Dashboard /></Layout></ProtectedRoute>} />
-            <Route path="/projects" element={<ProtectedRoute><Layout><Projects /></Layout></ProtectedRoute>} />
-            <Route path="/projects/:id" element={<ProtectedRoute><Layout><Projects /></Layout></ProtectedRoute>} />
-            <Route path="/maquettes" element={<ProtectedRoute><Layout><IFCViewer /></Layout></ProtectedRoute>} />
-            <Route path="/documents" element={<ProtectedRoute><Layout><Dashboard /></Layout></ProtectedRoute>} />
-            <Route path="/tasks" element={<ProtectedRoute><Layout><InteroperabilityPage /></Layout></ProtectedRoute>} />          <Route path="/settings" element={<ProtectedRoute><Layout><Settings /></Layout></ProtectedRoute>} />
-            
-            {/* Route de test du thème */}
-            <Route path="/test-theme" element={<TestTheme />} />
-            
-            {/* Admin-only routes */}
-            <Route path="/users" element={
-              <ProtectedRoute adminOnly={true}>
-                <Layout><UserManagement /></Layout>
-              </ProtectedRoute>
-            } />
-            <Route path="/tasks/manage" element={
-              <ProtectedRoute adminOnly={true}>
-                <Layout><InteroperabilityPage isAdminView={true} /></Layout>
-              </ProtectedRoute>
-            } />
-            <Route path="/analytics" element={
-              <ProtectedRoute adminOnly={true}>
-                <Layout><Dashboard /></Layout>
-              </ProtectedRoute>
-            } />
-              {/* Fallback route */}
-            <Route path="*" element={<Navigate to="/dashboard" replace />} />
-          </Routes>
-          <Toaster 
-            position="top-right"
-            toastOptions={{
-              duration: 4000,
-              style: {
-                background: '#363636',
-                color: '#fff',
-              },
-            }}
-          />          </CollaborationProvider>
-        </NotificationProvider>
+    <ErrorBoundary>
+      <AuthProvider>
+        <LanguageProvider>
+          <NotificationProvider>
+            <CollaborationProvider>
+              <Routes>
+                <Route path="/login" element={<Login />} />
+                <Route path="/forgot-password" element={<ForgotPassword />} />
+                <Route path="/reset-password/:token" element={<ResetPassword />} />
+                
+                {/* Protected routes */}
+                <Route path="/" element={<ProtectedRoute><Layout><Dashboard /></Layout></ProtectedRoute>} />
+                <Route path="/dashboard" element={<ProtectedRoute><Layout><Dashboard /></Layout></ProtectedRoute>} />
+                <Route path="/projects" element={<ProtectedRoute><Layout><Projects /></Layout></ProtectedRoute>} />
+                <Route path="/projects/:id" element={<ProtectedRoute><Layout><Projects /></Layout></ProtectedRoute>} />
+                <Route path="/maquettes" element={<ProtectedRoute><Layout><IFCViewer /></Layout></ProtectedRoute>} />
+                <Route path="/documents" element={<ProtectedRoute><Layout><Dashboard /></Layout></ProtectedRoute>} />
+                <Route path="/tasks" element={<ProtectedRoute><Layout><InteroperabilityPage isAdminView={true} /></Layout></ProtectedRoute>} />
+                <Route path="/settings" element={<ProtectedRoute><Layout><Settings /></Layout></ProtectedRoute>} />
+                
+                {/* Route de test du thème */}
+                <Route path="/test-theme" element={<TestTheme />} />
+                
+                {/* Admin-only routes */}
+                <Route path="/users" element={
+                  <ProtectedRoute adminOnly={true}>
+                    <Layout><UserManagement /></Layout>
+                  </ProtectedRoute>
+                } />
+                <Route path="/analytics" element={
+                  <ProtectedRoute adminOnly={true}>
+                    <Layout><Dashboard /></Layout>
+                  </ProtectedRoute>
+                } />
+                {/* Fallback route */}
+                <Route path="*" element={<Navigate to="/dashboard" replace />} />
+              </Routes>
+              <Toaster 
+                position="top-right"
+                toastOptions={{
+                  duration: 4000,
+                  style: {
+                    background: '#363636',
+                    color: '#fff',
+                  },
+                }}
+              />
+            </CollaborationProvider>
+          </NotificationProvider>
         </LanguageProvider>
       </AuthProvider>
+    </ErrorBoundary>
   );
 }
 

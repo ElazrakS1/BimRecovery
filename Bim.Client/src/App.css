@@ -25,7 +25,7 @@
   --radius-lg: 12px;
   --radius-xl: 16px;
   
-  --header-height: 72px;
+  --header-height: 64px; /* Hauteur synchronisée avec ModernHeader.css */
 }
 
 /* Styles de base */

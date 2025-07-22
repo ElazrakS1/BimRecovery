@@ -121,9 +121,24 @@ export const login = async (email, password) => {
     localStorage.removeItem('token');
     sessionStorage.removeItem('token');
     
+    // Vérifier l'URL de l'API
+    console.log(`API Base URL: ${api.defaults.baseURL}`);
+    
+    // Validation des entrées
+    if (!email || !password) {
+      throw new Error('Email et mot de passe requis');
+    }
+    
+    // Utiliser un timeout plus long pour les authentifications
     const response = await api.post(API_URL + 'login', {
       email,
       password
+    }, {
+      timeout: 10000, // 10 secondes
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
     });
 
     console.log('Login response:', {
@@ -143,11 +158,7 @@ export const login = async (email, password) => {
 
     return response.data;
   } catch (error) {
-    console.error('Login error:', {
-      status: error.response?.status,
-      statusText: error.response?.statusText,
-      message: error.message,
-      data: error.response?.data,
+    console.error('Login error:', error, {
       url: error.config?.url,
       method: error.config?.method,
       headers: error.config?.headers,
@@ -155,6 +166,26 @@ export const login = async (email, password) => {
       stack: error.stack,
       timestamp: new Date().toISOString()
     });
+    
+    // Erreur spécifique selon le type d'erreur
+    if (error.response) {
+      // Le serveur a répondu avec un code d'erreur
+      if (error.response.status === 500) {
+        throw new Error("Erreur serveur - Contactez l'administrateur système");
+      } else if (error.response.status === 401) {
+        throw new Error(error.response.data?.message || "Email ou mot de passe incorrect");
+      } else if (error.response.status === 403) {
+        throw new Error("Accès non autorisé - Votre compte pourrait être désactivé");
+      } else {
+        throw new Error(`Erreur ${error.response.status}: ${error.response.data?.message || "Une erreur s'est produite"}`);
+      }
+    } else if (error.request) {
+      // La requête a été envoyée mais aucune réponse n'a été reçue
+      throw new Error("Serveur inaccessible - Vérifiez votre connexion réseau");
+    } else {
+      // Erreur lors de la configuration de la requête
+      throw error;
+    }
 
     // Check for network connectivity issues
     if (error.code === 'ERR_NETWORK' || error.code === 'ERR_CONNECTION_REFUSED') {

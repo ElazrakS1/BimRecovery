@@ -13,12 +13,19 @@ const Sidebar = ({ collapsed, onCollapse }) => {
   const handleToggleCollapse = () => {
     onCollapse(!collapsed);
   };
-    const handleLogout = () => {
-    localStorage.removeItem('token');
-    sessionStorage.removeItem('token');
-    navigate('/login');
+
+  const handleLogout = () => {
+    // Animation de fondu avant la déconnexion
+    const sidebar = document.querySelector('.sidebar');
+    sidebar.style.opacity = '0';
+    
+    setTimeout(() => {
+      localStorage.removeItem('token');
+      sessionStorage.removeItem('token');
+      navigate('/login');
+    }, 300);
   };
-  
+
   return (
     <div className={`sidebar ${collapsed ? 'collapsed' : ''}`}>
       <div className="sidebar-header">

@@ -27,6 +27,7 @@ namespace Bim.Server.Models
         public string IfcProjectDescription { get; set; } = string.Empty;
         public string Author { get; set; } = string.Empty;
         public string Organization { get; set; } = string.Empty;
+        public int ElementCount { get; set; } = 0;
 
         // Chemin vers la capture d'écran du modèle
         public string? ScreenshotPath { get; set; }

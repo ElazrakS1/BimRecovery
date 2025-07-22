@@ -397,7 +397,7 @@
 
 .action-buttons {
   display: flex;
-  gap: 8px;
+  gap: 12px;
 }
 
 .btn-icon {
@@ -427,6 +427,11 @@
   color: white;
 }
 
+.btn-icon.delete {
+  background-color: #dc2626;
+  color: white;
+}
+
 .btn-icon:hover {
   transform: scale(1.05);
 }
@@ -441,6 +446,10 @@
 
 .btn-icon.deactivate:hover {
   background-color: #c0392b;
+}
+
+.btn-icon.delete:hover {
+  background-color: #b91c1c;
 }
 
 

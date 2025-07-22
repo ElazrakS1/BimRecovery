@@ -7,7 +7,7 @@ import { AuthContext } from '../../context/AuthContext';
 const CollaborationContext = createContext();
 
 // Hook to use collaboration context
-export const useCollaboration = () => {
+const useCollaboration = () => {
   const context = useContext(CollaborationContext);
   if (!context) {
     throw new Error('useCollaboration must be used within a CollaborationProvider');
@@ -131,4 +131,4 @@ const CollaborationProvider = ({ children }) => {
   );
 };
 
-export default CollaborationProvider;
+export { CollaborationContext, CollaborationProvider, useCollaboration };

@@ -1,0 +1,886 @@
+/* ModernHeader.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Variables */
+:root {
+  --header-height: 64px;
+  --primary: #5250cd;
+  --primary-light: #6c63ff;
+  --primary-dark: #3a38a7;
+  --primary-glow: rgba(108, 99, 255, 0.3);
+  --primary-hover: rgba(108, 99, 255, 0.1);
+  --text-light: #333;
+  --text-dark: #f5f5f5;
+  --bg-light: #ffffff;
+  --bg-dark: #1a1a2e;
+  --glass-light: rgba(255, 255, 255, 0.7);
+  --glass-dark: rgba(26, 26, 46, 0.7);
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  --shadow-strong: 0 4px 20px rgba(0, 0, 0, 0.15);
+  --notification: #ff4757;
+  --border-radius: 8px;
+  --transition: all 0.3s ease;
+  --animation-timing: cubic-bezier(0.34, 1.56, 0.64, 1); /* Bounce effect */
+}
+
+/* Header principal */
+@keyframes headerAppear {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modern-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-height);
+  padding: 0 24px;
+  background-color: var(--glass-light);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--text-light);
+  box-shadow: var(--shadow);
+  font-family: 'Poppins', sans-serif;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: var(--transition);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  animation: headerAppear 0.6s var(--animation-timing) forwards;
+}
+
+/* Mode sombre */
+.modern-header.dark {
+  background-color: var(--glass-dark);
+  color: var(--text-dark);
+  box-shadow: var(--shadow-strong);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+/* Sections */
+.header-section {
+  display: flex;
+  align-items: center;
+}
+
+.header-section.left {
+  flex: 1;
+}
+
+.header-section.center {
+  flex: 2;
+  justify-content: center;
+}
+
+.header-section.right {
+  flex: 1;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+  gap: 16px; /* Espacement uniforme entre les éléments */
+  padding-right: 8px; /* Marge à droite pour éviter de coller au bord */
+}
+
+/* Logo */
+@keyframes logoGlow {
+  0% {
+    text-shadow: 0 0 0px var(--primary-glow);
+  }
+  50% {
+    text-shadow: 0 0 10px var(--primary-glow);
+  }
+  100% {
+    text-shadow: 0 0 0px var(--primary-glow);
+  }
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: var(--primary);
+  margin-left: 16px;
+  letter-spacing: 1px;
+  transition: transform 0.3s var(--animation-timing);
+  cursor: pointer;
+  position: relative;
+  animation: logoGlow 3s infinite;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.logo-text {
+  background: linear-gradient(45deg, var(--primary), var(--primary-light));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Titre de la page */
+@keyframes titleSlide {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.page-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0;
+  position: relative;
+  animation: titleSlide 0.5s var(--animation-timing) forwards;
+}
+
+/* Bouton menu */
+@keyframes pulseButton {
+  0% {
+    box-shadow: 0 0 0 0 rgba(82, 80, 205, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(82, 80, 205, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(82, 80, 205, 0);
+  }
+}
+
+.menu-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  font-size: 1.5rem;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s var(--animation-timing);
+  position: relative;
+}
+
+.menu-button:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  transform: rotate(90deg);
+  color: var(--primary);
+}
+
+.menu-button:active {
+  transform: scale(0.9) rotate(90deg);
+}
+
+.dark .menu-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Barre de recherche */
+.search-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.3s var(--animation-timing);
+}
+
+.search-container.expanded {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 20px;
+  padding-right: 10px;
+  width: 200px;
+}
+
+.dark .search-container.expanded {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.search-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 8px 10px;
+  width: 100%;
+  color: inherit;
+  font-family: inherit;
+  font-size: 0.9rem;
+  animation: fadeIn 0.3s forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Boutons d'icônes */
+@keyframes iconAppear {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.icon-button {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-radius: 12px !important;
+  width: 48px !important;
+  height: 48px !important;
+  margin: 0 6px !important;
+  opacity: 1 !important;
+  z-index: 10 !important;
+  box-shadow: 0 4px 12px rgba(82, 80, 205, 0.15) !important;
+  border: none !important;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.icon-button::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background: linear-gradient(135deg, rgba(108, 99, 255, 0.2), rgba(82, 80, 205, 0.05)) !important;
+  border-radius: 12px !important;
+  opacity: 0.5 !important;
+  z-index: -1 !important;
+}
+
+.dark .icon-button {
+  background: rgba(40, 40, 60, 0.9) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+}
+
+.dark .icon-button::before {
+  background: linear-gradient(135deg, rgba(108, 99, 255, 0.3), rgba(82, 80, 205, 0.1)) !important;
+}
+
+.icon-button svg {
+  font-size: 1.4rem !important;
+  color: var(--primary) !important;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.1)) !important;
+  transition: all 0.3s ease !important;
+}
+
+.dark .icon-button svg {
+  color: var(--primary-light) !important;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3)) !important;
+}
+
+/* Styles avancés pour les icônes - Mode premium */
+.icon-button {
+  position: relative !important;
+  overflow: hidden !important;
+  border-radius: 12px !important;
+}
+
+.icon-button:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 8px 24px rgba(82, 80, 205, 0.25) !important;
+  background: white !important;
+}
+
+.icon-button:hover::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+  opacity: 0.6;
+  transform: scale(0);
+  transition: transform 0.5s ease-out;
+  pointer-events: none;
+  z-index: -1;
+  animation: rippleEffect 0.8s ease-out;
+}
+
+@keyframes rippleEffect {
+  0% {
+    transform: scale(0);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+.icon-button:hover svg {
+  transform: scale(1.1) !important;
+  color: var(--primary-dark) !important;
+}
+
+.icon-button:active {
+  transform: scale(0.95) !important;
+  box-shadow: 0 2px 8px rgba(82, 80, 205, 0.15) !important;
+}
+
+.dark .icon-button:hover {
+  background: rgba(30, 30, 50, 0.95) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4) !important;
+}
+
+.dark .icon-button:hover svg {
+  color: var(--primary-light) !important;
+  text-shadow: 0 0 8px rgba(108, 99, 255, 0.5) !important;
+}
+
+/* Badge notification - Animation premium */
+@keyframes notificationPulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 4px 10px rgba(255, 71, 87, 0.5);
+  }
+  50% {
+    transform: scale(1.2);
+    box-shadow: 0 0 0 5px rgba(255, 71, 87, 0.3);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 4px 10px rgba(255, 71, 87, 0.5);
+  }
+}
+
+@keyframes bellRing {
+  0% {
+    transform: rotate(0);
+  }
+  5% {
+    transform: rotate(15deg);
+  }
+  10% {
+    transform: rotate(-15deg);
+  }
+  15% {
+    transform: rotate(15deg);
+  }
+  20% {
+    transform: rotate(-15deg);
+  }
+  25% {
+    transform: rotate(15deg);
+  }
+  30% {
+    transform: rotate(-15deg);
+  }
+  35% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
+
+.notification {
+  position: relative;
+}
+
+.notification:hover svg {
+  animation: bellRing 2s ease;
+  color: var(--notification);
+}
+
+.badge {
+  position: absolute;
+  top: -6px !important;
+  right: -6px !important;
+  min-width: 24px !important;
+  height: 24px !important;
+  background: linear-gradient(135deg, #ff4757, #ff6b81) !important;
+  color: white;
+  border-radius: 50%;
+  font-size: 0.8rem !important;
+  font-weight: 700 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 3px;
+  box-shadow: 0 4px 10px rgba(255, 71, 87, 0.5) !important;
+  animation: notificationPulse 1.5s infinite;
+  border: 3px solid white !important;
+  z-index: 20 !important;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2) !important;
+  transform-origin: center;
+}
+
+.dark .badge {
+  border: 3px solid var(--bg-dark) !important;
+  box-shadow: 0 4px 10px rgba(255, 71, 87, 0.7) !important;
+}
+
+/* Animation forte pour le badge */
+@keyframes strongPulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 71, 87, 0.7);
+  }
+  50% {
+    transform: scale(1.2);
+    box-shadow: 0 0 0 10px rgba(255, 71, 87, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 71, 87, 0);
+  }
+}
+
+.badge {
+  animation: strongPulse 1.5s infinite !important;
+}
+
+/* Profil */
+@keyframes profileAppear {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes arrowPulse {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(3px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.profile {
+  position: relative;
+  margin-left: 16px;
+  animation: profileAppear 0.6s var(--animation-timing) forwards;
+  animation-delay: 0.3s;
+  opacity: 0;
+}
+
+.profile-button {
+  display: flex;
+  align-items: center;
+  background: rgba(108, 99, 255, 0.05);
+  border: 1px solid rgba(108, 99, 255, 0.1);
+  padding: 6px 12px;
+  border-radius: 30px;
+  cursor: pointer;
+  color: inherit;
+  transition: all 0.3s var(--animation-timing);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+}
+
+.profile-button:hover {
+  background: rgba(108, 99, 255, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(82, 80, 205, 0.15);
+}
+
+.profile-button:hover .arrow {
+  animation: arrowPulse 1s infinite;
+}
+
+.dark .profile-button {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.dark .profile-button:hover {
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 5px 15px rgba(108, 99, 255, 0.2);
+}
+
+@keyframes avatarPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(108, 99, 255, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(108, 99, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(108, 99, 255, 0);
+  }
+}
+
+.avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, var(--primary), var(--primary-light));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  margin-right: 8px;
+  transition: all 0.3s var(--animation-timing);
+}
+
+.profile-button:hover .avatar {
+  animation: avatarPulse 2s infinite;
+}
+
+.name {
+  margin: 0 8px;
+  font-weight: 500;
+}
+
+.arrow {
+  font-size: 0.7rem;
+}
+
+/* Dropdown menu */
+@keyframes dropdownAppear {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes itemsAppear {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 10px;
+  width: 220px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: var(--border-radius);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  overflow: hidden;
+  animation: dropdownAppear 0.3s var(--animation-timing) forwards;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.dark .dropdown {
+  background: rgba(36, 36, 68, 0.9);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.dropdown-item {
+  padding: 14px 18px;
+  cursor: pointer;
+  transition: all 0.3s var(--animation-timing);
+  position: relative;
+  animation: itemsAppear 0.3s forwards;
+  animation-delay: calc(var(--item-index, 0) * 0.05s);
+  opacity: 0;
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-item:hover {
+  background-color: rgba(108, 99, 255, 0.08);
+  padding-left: 24px;
+}
+
+.dark .dropdown-item:hover {
+  background-color: rgba(108, 99, 255, 0.15);
+}
+
+.dropdown-item.logout {
+  color: var(--notification);
+  font-weight: 500;
+}
+
+.dropdown-item.logout:hover {
+  background-color: rgba(255, 71, 87, 0.08);
+}
+
+.dark .dropdown-item.logout:hover {
+  background-color: rgba(255, 71, 87, 0.15);
+}
+
+.dropdown-divider {
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.1);
+  margin: 8px 0;
+}
+
+.dark .dropdown-divider {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Animations supplémentaires pour les icônes dans les dropdown items */
+.dropdown-item svg {
+  transition: transform 0.3s var(--animation-timing);
+}
+
+.dropdown-item:hover svg {
+  transform: translateX(3px);
+}
+
+/* Effet de pulsation sur le logo */
+@keyframes logoPulse {
+  0% {
+    opacity: 0.95;
+    letter-spacing: 1px;
+  }
+  50% {
+    opacity: 1;
+    letter-spacing: 1.2px;
+  }
+  100% {
+    opacity: 0.95;
+    letter-spacing: 1px;
+  }
+}
+
+.logo:hover .logo-text {
+  animation: logoPulse 1.5s infinite;
+}
+
+/* Amélioration des tooltips pour une meilleure UX */
+.icon-button, .profile-button, .menu-button {
+  position: relative;
+}
+
+/* Ajout d'un effet de surlignage au survol des éléments du menu */
+.dropdown-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  transition: width 0.3s var(--animation-timing);
+}
+
+.dropdown-item:hover::after {
+  width: 100%;
+}
+
+.dropdown-item.logout::after {
+  background: var(--notification);
+}
+
+/* Amélioration de l'accessibilité avec focus visible */
+.icon-button:focus-visible,
+.profile-button:focus-visible,
+.menu-button:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Ajustement pour l'alignement parfait sur une seule ligne */
+.header-section.left,
+.header-section.center {
+  height: 100%;
+  align-items: center;
+}
+
+/* Effets visuels avancés */
+
+/* Effet de glassmorphisme renforcé */
+.modern-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(120deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.05) 100%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.modern-header.dark::before {
+  background: linear-gradient(120deg, rgba(108,99,255,0.05) 0%, rgba(26,26,46,0.02) 100%);
+}
+
+/* Effet de flottement sur les boutons */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.icon-button:nth-child(odd):hover {
+  animation: float 2s ease-in-out infinite;
+}
+
+/* Style avancé pour le titre de page */
+.page-title::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary), var(--primary-light));
+  transition: width 0.4s var(--animation-timing);
+}
+
+.header-section.center:hover .page-title::after {
+  width: 100%;
+}
+
+/* Effet de lueur sur les boutons actifs */
+.icon-button:focus {
+  box-shadow: 0 0 0 2px var(--primary-glow);
+  outline: none;
+}
+
+.dark .icon-button:focus {
+  box-shadow: 0 0 0 2px var(--primary-glow);
+}
+
+/* Animation pour le dropdown */
+.dropdown::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  right: 20px;
+  width: 10px;
+  height: 10px;
+  background: inherit;
+  transform: rotate(45deg);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  border-left: 1px solid rgba(0, 0, 0, 0.05);
+  z-index: -1;
+}
+
+.dark .dropdown::before {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Boucle d'animation pour les icônes */
+.icon-button:nth-child(1) {
+  --icon-index: 1;
+}
+
+.icon-button:nth-child(2) {
+  --icon-index: 2;
+}
+
+.icon-button:nth-child(3) {
+  --icon-index: 3;
+}
+
+/* Animation pour les items du dropdown */
+.dropdown-item:nth-child(1) {
+  --item-index: 1;
+}
+
+.dropdown-item:nth-child(2) {
+  --item-index: 2;
+}
+
+.dropdown-item:nth-child(3) {
+  --item-index: 3;
+}
+
+.dropdown-item:nth-child(4) {
+  --item-index: 4;
+}
+
+/* Ombres dynamiques avec le mouvement */
+.icon-button:hover, 
+.profile-button:hover {
+  transition-timing-function: cubic-bezier(0.05, 0.7, 0.1, 1.0);
+}
+
+/* Effet au clic pour le feedback utilisateur */
+.icon-button:active,
+.profile-button:active {
+  transform: scale(0.95);
+}
+
+/* Amélioration des boutons du header avec effet néon en mode sombre */
+.dark .icon-button:hover {
+  text-shadow: 0 0 5px var(--primary-light);
+}
+
+.dark .page-title {
+  text-shadow: 0 0 2px rgba(255, 255, 255, 0.2);
+}
+
+/* Animation de la barre de recherche */
+.search-button:focus-within {
+  width: 180px;
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.dark .search-button:focus-within {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .modern-header {
+    padding: 0 16px;
+  }
+  
+  .logo {
+    font-size: 1.1rem;
+  }
+  
+  .page-title {
+    font-size: 1.1rem;
+  }
+  
+  .profile .name,
+  .profile .arrow {
+    display: none;
+  }
+  
+  .profile-button {
+    padding: 0;
+    background: none;
+    border: none;
+    box-shadow: none;
+  }
+  
+  .profile-button:hover {
+    box-shadow: none;
+  }
+}

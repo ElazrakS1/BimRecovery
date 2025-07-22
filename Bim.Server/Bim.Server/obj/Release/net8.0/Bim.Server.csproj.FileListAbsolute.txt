@@ -4,7 +4,6 @@ C:\Users\Salah-Eddine\BimRecovery\Bim.Server\Bim.Server\bin\Release\net8.0\appse
 C:\Users\Salah-Eddine\BimRecovery\Bim.Server\Bim.Server\bin\Release\net8.0\package-lock.json
 C:\Users\Salah-Eddine\BimRecovery\Bim.Server\Bim.Server\bin\Release\net8.0\package.json
 C:\Users\Salah-Eddine\BimRecovery\Bim.Server\Bim.Server\bin\Release\net8.0\Bim.Server.staticwebassets.runtime.json
-C:\Users\Salah-Eddine\BimRecovery\Bim.Server\Bim.Server\bin\Release\net8.0\Bim.Server.staticwebassets.endpoints.json
 C:\Users\Salah-Eddine\BimRecovery\Bim.Server\Bim.Server\bin\Release\net8.0\Bim.Server.exe
 C:\Users\Salah-Eddine\BimRecovery\Bim.Server\Bim.Server\bin\Release\net8.0\Bim.Server.deps.json
 C:\Users\Salah-Eddine\BimRecovery\Bim.Server\Bim.Server\bin\Release\net8.0\Bim.Server.runtimeconfig.json
@@ -199,12 +198,16 @@ C:\Users\Salah-Eddine\BimRecovery\Bim.Server\Bim.Server\obj\Release\net8.0\Bim.S
 C:\Users\Salah-Eddine\BimRecovery\Bim.Server\Bim.Server\obj\Release\net8.0\Bim.Server.sourcelink.json
 C:\Users\Salah-Eddine\BimRecovery\Bim.Server\Bim.Server\obj\Release\net8.0\scopedcss\bundle\Bim.Server.styles.css
 C:\Users\Salah-Eddine\BimRecovery\Bim.Server\Bim.Server\obj\Release\net8.0\staticwebassets.build.json
-C:\Users\Salah-Eddine\BimRecovery\Bim.Server\Bim.Server\obj\Release\net8.0\staticwebassets.build.json.cache
 C:\Users\Salah-Eddine\BimRecovery\Bim.Server\Bim.Server\obj\Release\net8.0\staticwebassets.development.json
-C:\Users\Salah-Eddine\BimRecovery\Bim.Server\Bim.Server\obj\Release\net8.0\staticwebassets.build.endpoints.json
 C:\Users\Salah-Eddine\BimRecovery\Bim.Server\Bim.Server\obj\Release\net8.0\Bim.Server.csproj.Up2Date
 C:\Users\Salah-Eddine\BimRecovery\Bim.Server\Bim.Server\obj\Release\net8.0\Bim.Server.dll
 C:\Users\Salah-Eddine\BimRecovery\Bim.Server\Bim.Server\obj\Release\net8.0\refint\Bim.Server.dll
 C:\Users\Salah-Eddine\BimRecovery\Bim.Server\Bim.Server\obj\Release\net8.0\Bim.Server.pdb
 C:\Users\Salah-Eddine\BimRecovery\Bim.Server\Bim.Server\obj\Release\net8.0\Bim.Server.genruntimeconfig.cache
 C:\Users\Salah-Eddine\BimRecovery\Bim.Server\Bim.Server\obj\Release\net8.0\ref\Bim.Server.dll
+C:\Users\Salah-Eddine\BimRecovery\Bim.Server\Bim.Server\bin\Release\net8.0\global.json
+C:\Users\Salah-Eddine\BimRecovery\Bim.Server\Bim.Server\obj\Release\net8.0\staticwebassets\msbuild.Bim.Server.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\Salah-Eddine\BimRecovery\Bim.Server\Bim.Server\obj\Release\net8.0\staticwebassets\msbuild.build.Bim.Server.props
+C:\Users\Salah-Eddine\BimRecovery\Bim.Server\Bim.Server\obj\Release\net8.0\staticwebassets\msbuild.buildMultiTargeting.Bim.Server.props
+C:\Users\Salah-Eddine\BimRecovery\Bim.Server\Bim.Server\obj\Release\net8.0\staticwebassets\msbuild.buildTransitive.Bim.Server.props
+C:\Users\Salah-Eddine\BimRecovery\Bim.Server\Bim.Server\obj\Release\net8.0\staticwebassets.pack.json

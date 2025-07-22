@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
-import App from './App';
+import App from './App.jsx';  // Explicitly adding the .jsx extension
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import des styles Bootstrap
 import './index.css';
 import './alignment-fixes.css'; // Import direct des corrections d'alignement

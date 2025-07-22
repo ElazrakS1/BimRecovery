@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Bim.Server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+49625c6e7a0a151b6e4a98aea74c3485fb6560e6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+057562fdc7a0e05fc1c4b70e060cdefeb866432e")]
 [assembly: System.Reflection.AssemblyProductAttribute("Bim.Server")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Bim.Server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

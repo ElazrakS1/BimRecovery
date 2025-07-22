@@ -1,0 +1,186 @@
+// Copie de sauvegarde de ModernHeader.jsx - Ne pas modifier
+// Fichier de sauvegarde créé le 9 juillet 2025
+import React, { useState, useContext, useEffect, useRef } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext';
+import './ModernHeader.css';
+import { 
+  FaSearch, 
+  FaBell, 
+  FaMoon, 
+  FaSun, 
+  FaChevronDown, 
+  FaBars, 
+  FaUser, 
+  FaCog, 
+  FaSignOutAlt, 
+  FaHome 
+} from 'react-icons/fa';
+
+const ModernHeader = ({ onToggleSidebar }) => {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
+  const [notificationCount, setNotificationCount] = useState(2);
+  const [isSearchExpanded, setIsSearchExpanded] = useState(false);
+  const { userData } = useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const searchInputRef = useRef(null);
+  const profileRef = useRef(null);
+
+  const getPageTitle = () => {
+    const pathname = location.pathname;
+    if (pathname === '/' || pathname === '/dashboard') {
+      return 'Dashboard';
+    } else if (pathname === '/maquettes') {
+      return 'Maquettes';
+    } else if (pathname === '/projects') {
+      return 'Projets';
+    } else if (pathname.startsWith('/projects/')) {
+      return 'Détails du Projet';
+    } else if (pathname === '/settings') {
+      return 'Paramètres';
+    } else if (pathname === '/profile') {
+      return 'Profil';
+    } else if (pathname === '/tasks') {
+      return 'Tâches';
+    } else {
+      return 'Smart BIM';
+    }
+  };
+
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+    document.body.classList.toggle('dark-mode', !isDarkMode);
+  };
+
+  const handleSearchIconClick = () => {
+    setIsSearchExpanded(!isSearchExpanded);
+    if (!isSearchExpanded) {
+      setTimeout(() => {
+        searchInputRef.current?.focus();
+      }, 100);
+    }
+  };
+
+  const handleProfileClick = () => {
+    setProfileDropdownOpen(!profileDropdownOpen);
+  };
+
+  const navigateTo = (path) => {
+    navigate(path);
+    setProfileDropdownOpen(false);
+  };
+
+  const logout = () => {
+    localStorage.removeItem('token');
+    sessionStorage.removeItem('token');
+    navigate('/login');
+  };
+
+  // Fermer le dropdown en cas de clic à l'extérieur
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (profileRef.current && !profileRef.current.contains(event.target)) {
+        setProfileDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  return (
+    <header className="modern-header">
+      <div className="header-left">
+        <button className="sidebar-toggle" onClick={onToggleSidebar}>
+          <FaBars />
+        </button>
+        <div className="page-title-container">
+          <h1 className="page-title">{getPageTitle()}</h1>
+        </div>
+      </div>
+      
+      <div className="header-center">
+        <div className={`search-container ${isSearchExpanded ? 'expanded' : ''}`}>
+          <button 
+            className="search-icon-button" 
+            onClick={handleSearchIconClick}
+            aria-label="Rechercher"
+          >
+            <FaSearch />
+          </button>
+          <input
+            ref={searchInputRef}
+            type="text"
+            placeholder="Rechercher..."
+            className="search-input"
+          />
+        </div>
+      </div>
+      
+      <div className="header-right">
+        <button className="icon-button theme-button" onClick={toggleDarkMode}>
+          {isDarkMode ? <FaSun /> : <FaMoon />}
+        </button>
+        
+        <button className="icon-button notification-button">
+          <FaBell />
+          <span className="notification-badge">{notificationCount}</span>
+        </button>
+        
+        <div className="profile-dropdown" ref={profileRef}>
+          <button className="profile-button" onClick={handleProfileClick}>
+            <span className="profile-name">{userData?.name || 'Utilisateur'}</span>
+            <div className="profile-avatar">
+              {userData?.avatar ? (
+                <img src={userData.avatar} alt="Avatar" />
+              ) : (
+                <FaUser />
+              )}
+            </div>
+            <FaChevronDown className={`dropdown-arrow ${profileDropdownOpen ? 'open' : ''}`} />
+          </button>
+          
+          {profileDropdownOpen && (
+            <div className="dropdown-menu">
+              <div className="dropdown-header">
+                <div className="dropdown-avatar">
+                  {userData?.avatar ? (
+                    <img src={userData.avatar} alt="Avatar" />
+                  ) : (
+                    <FaUser size={40} />
+                  )}
+                </div>
+                <div className="dropdown-user-info">
+                  <h4>{userData?.name || 'Utilisateur'}</h4>
+                  <p>{userData?.email || 'utilisateur@example.com'}</p>
+                </div>
+              </div>
+              
+              <ul className="dropdown-items">
+                <li onClick={() => navigateTo('/profile')}>
+                  <FaUser />
+                  <span>Profil</span>
+                </li>
+                <li onClick={() => navigateTo('/settings')}>
+                  <FaCog />
+                  <span>Paramètres</span>
+                </li>
+                <li className="dropdown-divider"></li>
+                <li onClick={logout}>
+                  <FaSignOutAlt />
+                  <span>Déconnexion</span>
+                </li>
+              </ul>
+            </div>
+          )}
+        </div>
+      </div>
+    </header>
+  );
+};
+
+export default ModernHeader;

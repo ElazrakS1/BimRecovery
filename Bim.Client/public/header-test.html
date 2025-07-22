@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Header Cinématique - BIM Recovery</title>
+    <style>
+        /* Variables générales */
+        :root {
+            --primary-blue: #3b82f6;
+            --primary-indigo: #6366f1;
+            --secondary-purple: #8b5cf6;
+            --accent-cyan: #06b6d4;
+            --accent-blue: #0284c7;
+            --neon-blue: #60a5fa;
+            --neon-glow: #93c5fd;
+            --dark-blue: #1e3a8a;
+            --header-height: 70px;
+            --header-bg: rgba(15, 23, 42, 0.85);
+            --header-bg-scrolled: rgba(15, 23, 42, 0.95);
+            --text-light: #f8fafc;
+            --text-dim: #cbd5e1;
+            --shadow-subtle: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-strong: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.15);
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            height: 100%;
+            background-color: #020617;
+            color: white;
+        }
+
+        /* Animation de fond cinématique */
+        .cinematic-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+            background: linear-gradient(135deg, #020617, #0f172a, #172554);
+            opacity: 1;
+            transition: opacity 1s ease;
+        }
+
+        .tech-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            animation: gridMove 15s infinite linear;
+        }
+
+        .tech-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(var(--neon-blue) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: particleFade 20s infinite alternate;
+        }
+
+        @keyframes gridMove {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 30px 30px;
+            }
+        }
+
+        @keyframes particleFade {
+            0% {
+                opacity: 0.2;
+                transform: translateY(0);
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 0.2;
+                transform: translateY(20px);
+            }
+        }
+
+        /* Header principal */
+        .main-header {
+            position: relative;
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1.5rem;
+            background-color: var(--header-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+            overflow: hidden;
+        }
+
+        /* Effets de luminosité sur le header */
+        .cinematic-glow {
+            position: absolute;
+            height: 2px;
+            left: 0;
+            right: 0;
+            opacity: 0.7;
+            z-index: 1;
+        }
+
+        .cinematic-glow.top {
+            top: 0;
+            background: linear-gradient(90deg, 
+                transparent, 
+                var(--primary-blue),
+                var(--accent-cyan),
+                var(--primary-blue),
+                transparent
+            );
+            animation: glowPulse 4s ease-in-out infinite alternate;
+        }
+
+        .cinematic-glow.bottom {
+            bottom: 0;
+            background: linear-gradient(90deg, 
+                transparent, 
+                var(--secondary-purple),
+                var(--primary-indigo),
+                var(--secondary-purple),
+                transparent
+            );
+            animation: glowPulse 4s ease-in-out infinite alternate-reverse;
+        }
+
+        @keyframes glowPulse {
+            0% {
+                opacity: 0.3;
+                transform: translateX(-30%);
+            }
+            50% {
+                opacity: 0.7;
+            }
+            100% {
+                opacity: 0.3;
+                transform: translateX(30%);
+            }
+        }
+
+        /* Sections du header */
+        .header-left,
+        .header-center,
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-left {
+            flex: 1;
+        }
+
+        .header-center {
+            flex: 2;
+            justify-content: center;
+        }
+
+        .header-right {
+            flex: 1;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+
+        /* Logo et titre animé */
+        .header-logo {
+            cursor: pointer;
+            margin-right: 24px;
+        }
+
+        .animated-title {
+            display: flex;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            letter-spacing: 0.5px;
+        }
+
+        .animated-letter {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-cyan));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px rgba(99, 202, 241, 0.3);
+            transition: transform 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .animated-letter:hover {
+            transform: translateY(-2px);
+            text-shadow: 0 0 15px rgba(99, 202, 241, 0.7);
+        }
+
+        /* Titre de page */
+        .page-title {
+            margin: 0;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: white;
+            text-align: center;
+            background: linear-gradient(135deg, #e0f2fe, #ffffff, #bae6fd);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px rgba(14, 165, 233, 0.5);
+            letter-spacing: 0.5px;
+        }
+
+        /* Bouton Néon pour Charger IFC */
+        .neon-button {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(2, 132, 199, 0.2);
+            border: 1px solid rgba(14, 165, 233, 0.5);
+            border-radius: 24px;
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 
+                0 0 10px rgba(14, 165, 233, 0.3),
+                inset 0 0 5px rgba(14, 165, 233, 0.2);
+        }
+
+        .neon-icon {
+            font-size: 1rem;
+            color: #38bdf8;
+            filter: drop-shadow(0 0 2px #38bdf8);
+        }
+
+        .neon-text {
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+
+        .neon-glow {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(56, 189, 248, 0.3),
+                transparent
+            );
+            animation: neonSweep 3s linear infinite;
+        }
+
+        .neon-button:hover {
+            background: rgba(2, 132, 199, 0.3);
+            border-color: #0ea5e9;
+            box-shadow: 
+                0 0 15px rgba(14, 165, 233, 0.5),
+                inset 0 0 8px rgba(14, 165, 233, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .neon-button.pulsate {
+            animation: neonPulse 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes neonSweep {
+            0% {
+                left: -100%;
+            }
+            50%, 100% {
+                left: 200%;
+            }
+        }
+
+        @keyframes neonPulse {
+            0%, 100% {
+                box-shadow: 
+                    0 0 10px rgba(14, 165, 233, 0.3),
+                    inset 0 0 5px rgba(14, 165, 233, 0.2);
+            }
+            50% {
+                box-shadow: 
+                    0 0 15px rgba(14, 165, 233, 0.6),
+                    inset 0 0 10px rgba(14, 165, 233, 0.3);
+            }
+        }
+
+        /* Contenu de la page */
+        .page-content {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Animation de fond cinématique -->
+    <div class="cinematic-bg">
+        <div class="tech-grid"></div>
+        <div class="tech-particles"></div>
+    </div>
+    
+    <!-- Header cinématique -->
+    <header class="main-header">
+        <div class="cinematic-glow top"></div>
+        <div class="cinematic-glow bottom"></div>
+        
+        <div class="header-left">
+            <!-- Logo et Titre -->
+            <div class="header-logo">
+                <div class="animated-title">
+                    <!-- Lettres animées du titre -->
+                    <span class="animated-letter" style="animation-delay: 0.1s;">B</span>
+                    <span class="animated-letter" style="animation-delay: 0.2s;">I</span>
+                    <span class="animated-letter" style="animation-delay: 0.3s;">M</span>
+                    <span class="animated-letter" style="animation-delay: 0.4s;">&nbsp;</span>
+                    <span class="animated-letter" style="animation-delay: 0.5s;">R</span>
+                    <span class="animated-letter" style="animation-delay: 0.6s;">e</span>
+                    <span class="animated-letter" style="animation-delay: 0.7s;">c</span>
+                    <span class="animated-letter" style="animation-delay: 0.8s;">o</span>
+                    <span class="animated-letter" style="animation-delay: 0.9s;">v</span>
+                    <span class="animated-letter" style="animation-delay: 1.0s;">e</span>
+                    <span class="animated-letter" style="animation-delay: 1.1s;">r</span>
+                    <span class="animated-letter" style="animation-delay: 1.2s;">y</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="header-center">
+            <!-- Titre de la page -->
+            <h1 class="page-title">Maquettes</h1>
+        </div>
+        
+        <div class="header-right">
+            <!-- Bouton Néon pour Charger IFC -->
+            <button class="neon-button pulsate">
+                <span class="neon-icon">
+                    <!-- Icône de chargement -->
+                    📁
+                </span>
+                <span class="neon-text">Charger IFC</span>
+                <div class="neon-glow"></div>
+            </button>
+        </div>
+    </header>
+    
+    <!-- Contenu de la page -->
+    <div class="page-content">
+        <h2>Test du Header Cinématique</h2>
+        <p>Cette page est un test pour visualiser les effets du header cinématique.</p>
+    </div>
+
+    <script>
+        // Animation des lettres du titre
+        document.querySelectorAll('.animated-letter').forEach((letter, index) => {
+            letter.style.opacity = 0;
+            setTimeout(() => {
+                letter.style.opacity = 1;
+                letter.style.transform = 'translateY(0)';
+            }, index * 100);
+        });
+    </script>
+</body>
+</html>

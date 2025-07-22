@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIM Recovery - Test Header Cinématique</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #3b82f6;
+            --primary-indigo: #6366f1;
+            --secondary-purple: #8b5cf6;
+            --accent-cyan: #06b6d4;
+            --accent-blue: #0284c7;
+            --neon-blue: #60a5fa;
+            --neon-glow: #93c5fd;
+            --dark-blue: #1e3a8a;
+            --header-height: 70px;
+            --header-bg: rgba(15, 23, 42, 0.85);
+            --header-bg-scrolled: rgba(15, 23, 42, 0.95);
+            --text-light: #f8fafc;
+            --text-dim: #cbd5e1;
+            --shadow-subtle: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-strong: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #0f172a;
+            color: var(--text-light);
+            min-height: 100vh;
+        }
+
+        /* Animation de fond cinématique */
+        .cinematic-bg {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            height: 100vh !important;
+            z-index: -1 !important;
+            overflow: hidden !important;
+            background: linear-gradient(135deg, #020617, #0f172a, #172554) !important;
+            opacity: 1 !important;
+            transition: opacity 1s ease !important;
+        }
+
+        .cinematic-bg.active {
+            opacity: 1 !important;
+        }
+
+        .tech-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            animation: gridMove 15s infinite linear;
+        }
+
+        .tech-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(var(--neon-blue) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: particleFade 20s infinite alternate;
+        }
+
+        @keyframes gridMove {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 30px 30px;
+            }
+        }
+
+        @keyframes particleFade {
+            0% {
+                opacity: 0.2;
+                transform: translateY(0);
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 0.2;
+                transform: translateY(20px);
+            }
+        }
+
+        /* Header principal */
+        .main-header.cinematic {
+            position: relative;
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1.5rem;
+            background-color: var(--header-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            transition: var(--transition-smooth);
+            border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+            overflow: hidden;
+        }
+
+        /* Effets de luminosité sur le header */
+        .cinematic-glow {
+            position: absolute;
+            height: 2px;
+            left: 0;
+            right: 0;
+            opacity: 0.7;
+            z-index: 1;
+        }
+
+        .cinematic-glow.top {
+            top: 0;
+            background: linear-gradient(90deg, 
+                transparent, 
+                var(--primary-blue),
+                var(--accent-cyan),
+                var(--primary-blue),
+                transparent
+            );
+            animation: glowPulse 4s ease-in-out infinite alternate;
+        }
+
+        .cinematic-glow.bottom {
+            bottom: 0;
+            background: linear-gradient(90deg, 
+                transparent, 
+                var(--secondary-purple),
+                var(--primary-indigo),
+                var(--secondary-purple),
+                transparent
+            );
+            animation: glowPulse 4s ease-in-out infinite alternate-reverse;
+        }
+
+        @keyframes glowPulse {
+            0% {
+                opacity: 0.3;
+                transform: translateX(-30%);
+            }
+            50% {
+                opacity: 0.7;
+            }
+            100% {
+                opacity: 0.3;
+                transform: translateX(30%);
+            }
+        }
+
+        /* Sections du header */
+        .header-left,
+        .header-center,
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-left {
+            flex: 1;
+        }
+
+        .header-center {
+            flex: 2;
+            justify-content: center;
+        }
+
+        .header-right {
+            flex: 1;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+
+        /* Style pour le titre animé */
+        .animated-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--text-light);
+            text-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+        }
+
+        .animated-letter {
+            display: inline-block;
+            animation: letterAnimation 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+            animation-delay: calc(0.1s * var(--letter-index));
+            color: var(--text-light);
+        }
+
+        @keyframes letterAnimation {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Style pour le bouton néon */
+        .neon-button {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: none;
+            border: 2px solid var(--neon-blue);
+            color: var(--neon-blue);
+            border-radius: 5px;
+            font-weight: 600;
+            overflow: hidden;
+            z-index: 1;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 5px var(--neon-blue);
+            box-shadow: 0 0 10px rgba(96, 165, 250, 0.3), 
+                        inset 0 0 10px rgba(96, 165, 250, 0.2);
+        }
+
+        .neon-button:hover {
+            color: white;
+            text-shadow: 0 0 10px white;
+            box-shadow: 0 0 20px var(--neon-blue), 
+                        inset 0 0 10px var(--neon-blue);
+            border-color: white;
+        }
+
+        .neon-button.pulsate {
+            animation: neonPulsate 1.5s infinite alternate;
+        }
+
+        @keyframes neonPulsate {
+            0% {
+                box-shadow: 0 0 10px rgba(96, 165, 250, 0.3), 
+                           inset 0 0 10px rgba(96, 165, 250, 0.2);
+                text-shadow: 0 0 5px var(--neon-blue);
+                border-color: var(--neon-blue);
+            }
+            100% {
+                box-shadow: 0 0 20px var(--neon-blue), 
+                           inset 0 0 10px var(--neon-blue);
+                text-shadow: 0 0 10px white, 0 0 20px var(--neon-blue);
+                border-color: white;
+            }
+        }
+
+        .neon-glow {
+            position: absolute;
+            top: -20%;
+            right: -20%;
+            width: 70%;
+            height: 70%;
+            background: radial-gradient(circle, var(--neon-glow) 0%, transparent 70%);
+            opacity: 0.5;
+            filter: blur(10px);
+            animation: moveGlow 3s ease infinite alternate;
+            z-index: -1;
+        }
+
+        @keyframes moveGlow {
+            0% {
+                opacity: 0.3;
+                transform: translate(0%, 0%);
+            }
+            100% {
+                opacity: 0.7;
+                transform: translate(-30%, 30%);
+            }
+        }
+
+        /* Style pour les icônes de navigation */
+        .nav-icon {
+            font-size: 1.2rem;
+            padding: 8px;
+            border-radius: 50%;
+            background: var(--glass-bg);
+            color: var(--text-light);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-icon:hover {
+            background: var(--primary-blue);
+            color: white;
+            box-shadow: 0 0 15px var(--primary-blue);
+            transform: translateY(-2px);
+        }
+
+        /* Style pour le conteneur principal */
+        .container {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="cinematic-bg active">
+        <div class="tech-grid"></div>
+        <div class="tech-particles"></div>
+    </div>
+
+    <header class="main-header cinematic">
+        <!-- Effets de lueur cinématiques -->
+        <div class="cinematic-glow top"></div>
+        <div class="cinematic-glow bottom"></div>
+        
+        <!-- Partie gauche du header -->
+        <div class="header-left">
+            <button class="nav-icon">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- Partie centrale avec titre animé -->
+        <div class="header-center">
+            <div class="animated-title">
+                <span class="animated-letter" style="--letter-index: 0">B</span>
+                <span class="animated-letter" style="--letter-index: 1">I</span>
+                <span class="animated-letter" style="--letter-index: 2">M</span>
+                <span class="animated-letter" style="--letter-index: 3">&nbsp;</span>
+                <span class="animated-letter" style="--letter-index: 4">R</span>
+                <span class="animated-letter" style="--letter-index: 5">E</span>
+                <span class="animated-letter" style="--letter-index: 6">C</span>
+                <span class="animated-letter" style="--letter-index: 7">O</span>
+                <span class="animated-letter" style="--letter-index: 8">V</span>
+                <span class="animated-letter" style="--letter-index: 9">E</span>
+                <span class="animated-letter" style="--letter-index: 10">R</span>
+                <span class="animated-letter" style="--letter-index: 11">Y</span>
+            </div>
+        </div>
+        
+        <!-- Partie droite avec bouton néon -->
+        <div class="header-right">
+            <button class="neon-button pulsate">
+                <i class="fas fa-file-upload"></i>
+                <span>Charger IFC</span>
+                <div class="neon-glow"></div>
+            </button>
+            <div class="nav-icon">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="nav-icon">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="nav-icon">
+                <i class="fas fa-bell"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>Test du Header Cinématique</h1>
+        <p>Cette page montre le header cinématique de BIM Recovery en isolation.</p>
+        <p>Vous devriez voir:</p>
+        <ul>
+            <li>Un fond animé avec une grille et des particules</li>
+            <li>Un titre "BIM RECOVERY" avec effet d'apparition lettre par lettre</li>
+            <li>Un bouton "Charger IFC" avec effet néon clignotant</li>
+            <li>Des icônes de menu qui s'illuminent au survol</li>
+            <li>Des effets de lueur en haut et en bas du header</li>
+        </ul>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add scroll event to simulate header compact behavior
+            window.addEventListener('scroll', () => {
+                const header = document.querySelector('.main-header');
+                if (window.scrollY > 10) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

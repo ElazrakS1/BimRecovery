@@ -9698,11 +9698,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Salah-Eddine\\BimRecovery\\bim.Server\\bim.Server\\Bim.Server.csproj",
+      "projectUniqueName": "C:\\Users\\Salah-Eddine\\BimRecovery\\Bim.Server\\Bim.Server\\Bim.Server.csproj",
       "projectName": "Bim.Server",
-      "projectPath": "C:\\Users\\Salah-Eddine\\BimRecovery\\bim.Server\\bim.Server\\Bim.Server.csproj",
+      "projectPath": "C:\\Users\\Salah-Eddine\\BimRecovery\\Bim.Server\\Bim.Server\\Bim.Server.csproj",
       "packagesPath": "C:\\Users\\Salah-Eddine\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Salah-Eddine\\BimRecovery\\bim.Server\\bim.Server\\obj\\",
+      "outputPath": "C:\\Users\\Salah-Eddine\\BimRecovery\\Bim.Server\\Bim.Server\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
